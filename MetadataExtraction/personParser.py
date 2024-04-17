@@ -12,6 +12,26 @@ args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--source", type=str, default="list_of_persons/", help="Direcroty with list(s) of persons.")
 
 
+class Affiliation:
+    """
+    A class for grouping the information about speaker party affiliation.
+
+    Contains information on since when to when the speaker was affiliated to given party
+    and what role did the person hold within the party.
+    All values of attributes are the values of attributes within the <affiliation> tag in the
+    parla-mint listPerson files.
+    """
+    since = str()
+    to = str()
+    role = str()
+    party = str()
+    def __init__(self, since=None, to=None, role=None, party=None):
+        self.since = since
+        self.party = party
+        self.role = role
+        self.to = to
+        
+
 class PersonName:
     """
     A class for grouping information about names of the speakers.
@@ -38,6 +58,19 @@ class Person:
     Contains information on person ID (mandatory) sex (may be missing), birth (may be missing)
     All information which are missing have value Missing <information> entry
     Also contains a list of name records for person
+    
+    Attributes:
+    -----------
+    personID (str):
+        Unique identificator of a speaker.
+    sex (str):
+        Gender of a speaker.
+    birth (str):
+        Birth date of a speaker
+    name_records ([str]):
+        Names that person has / had in the past.
+    affiliation_records ([str]):
+        Affiliations that this speaker had througout their career.
     """
     personID = str()
     sex = str()
@@ -47,6 +80,7 @@ class Person:
         self.sex = sex
         self.birth = birth
         self.name_records = []
+        self.affiliation_records = []
 
     def add_name_record(self, name):
         """
@@ -54,10 +88,25 @@ class Person:
 
         Parameters:
         -----------
-            name(PersonName):
+            name (PersonName):
                 new name record
         """
+        if name.since == '':
+            name.since = self.birth
         self.name_records.append(name)
+
+    def add_affiliation_record(self, affiliation):
+        """
+        Method for adding an affiliation record for a person
+
+        Parameters:
+        -----------
+            affiliation (Affiliation):
+                new affiliation record
+        """
+        if affiliation.to == '':
+            affiliation.to = "present"
+        self.affiliation_records.append(affiliation)
 
 class personParser:
     source_dir = str()
@@ -138,8 +187,18 @@ class personParser:
                     else: addname = ''
                     name = PersonName(since, to, surname, forename, addname)
                     person_instance.add_name_record(name)
-                persons_dict[person_instance.personID] = (person_instance, lang)
                 
+                # Extracting affiliation records for person
+                person_affiliations = person.getElementsByTagName("affiliation")
+                for person_affiliation in person_affiliations:
+                    since = person_affiliation.getAttribute("from")
+                    to = person_affiliation.getAttribute("to")
+                    role = person_affiliation.getAttribute("role")
+                    party = person_affiliation.getAttribute("ref")
+                    affiliation_instance = Affiliation(since, to, role, party)
+                    person_instance.add_affiliation_record(affiliation_instance)
+
+                persons_dict[person_instance.personID] = (person_instance, lang)
             
         return persons_dict  
                     
