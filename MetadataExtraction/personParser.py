@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
 args_parser = argparse.ArgumentParser()
-args_parser.add_argument("--source", type=str, default="list_of_persons/", help="Direcroty with list(s) of persons.")
+args_parser.add_argument("--source", type=str, default="../../list_of_persons", help="Direcroty with list(s) of persons.")
 
 
 class Affiliation:
@@ -111,10 +111,10 @@ class Person:
 class personParser:
     source_dir = str()
 
-    persons = dict()
+    persons_dict = dict()
     def __init__(self, args):
         self.source_dir = args.source
-        self.persons = {}
+        self.persons_dict = {}
         self.interesting_files = os.listdir(self.source_dir)
         self.parser = etree.XMLParser(recover=True)
     
@@ -147,10 +147,8 @@ class personParser:
         entries, which are different only in language.
 
         """
-        interesting_files = os.listdir(self.source_dir)
-        persons_dict = {}
-        for file in tqdm.tqdm(interesting_files, leave=False, desc="Iteration through files"):
-            domtree = xml.dom.minidom.parse(self.source_dir+file)
+        for file in tqdm.tqdm(self.interesting_files, leave=False, desc="Iteration through files"):
+            domtree = xml.dom.minidom.parse(f"{self.source_dir}/{file}")
             listPerson = domtree.documentElement
             lang = listPerson.getAttribute("xml:lang")
             persons = listPerson.getElementsByTagName('person')
@@ -198,9 +196,9 @@ class personParser:
                     affiliation_instance = Affiliation(since, to, role, party)
                     person_instance.add_affiliation_record(affiliation_instance)
 
-                persons_dict[person_instance.personID] = (person_instance, lang)
+                self.persons_dict[person_instance.personID] = (person_instance, lang)
             
-        return persons_dict  
+        return self.persons_dict  
                     
     
         
