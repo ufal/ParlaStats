@@ -42,11 +42,73 @@ class organisationParser:
     source_dir = str()
     organisations = dict()
 
-    def __init__(self, args):
-        self.source_dir = args.source
+    def __init__(self, source, country_code):
+        self.source = source
+        self.country_code = country_code
         self.organisations = {}
-        self.interesting_files = os.listdir(self.source_dir)
         self.parser = etree.XMLParser(recover=True)
+
+    def __extractNameRecords(self, organisation):
+        """
+        A helper method for extracting the name record(s) of a given organisation.
+
+        Name is extracted in both languageges, native and english if present, and
+        an abbreviation is extracted as well if present.
+
+        Parameters:
+        -----------
+            organisation - an 'org' xml element of Parla-Mint format.
+
+        Returns:
+        --------
+            A dictionary containing the name record(s) with the information on the
+            languege the name is written in or an abbreviation.
+
+        """
+
+        name_records = {}
+        orgNames = organisation.getElementsByTagName('orgName')
+        for orgName in orgNames:
+            full = orgName.getAttribute("full")
+            nameLang = orgName.getAttribute("xml:lang")
+            if "yes" == full:
+                name_records[nameLang] = orgName.childNodes[0].nodeValue
+            elif "abb" == full:
+                name_records["abb"] = orgName.childNodes[0].nodeValue
+        
+        return name_records
+
+    def __extractOrientationRecords(self, organisation):
+        """
+        A helper method for extracting information on political orientation.
+
+        I am aware that this information is not guaranteed by te Parla-Mint
+        format, but if it is there, then this will extract it, otherwise it
+        will inform about its absence.
+
+        Parameters:
+        -----------
+            organisation - an xml element of Parla-Mint format.
+
+        Returns:
+        --------
+            A list of political orientation records (usually just one).
+        """
+        states = organisation.getElementsByTagName('state')
+        orientation_records = []
+        if states:
+            for state in states:
+                state_type = state.getAttribute('type')
+                if "politicalOrientation" == state_type:
+                    pOrientation = state.getElementsByTagName('state')[0].getAttribute('ana')
+                    if pOrientation:
+                        orientation_records.append(PoliticalOrientation(pOrientation))
+                    else: 
+                        orientation_records.append("Missing information on political orientation.")
+        else:
+            orientation_records.append("Missing information on political orientation.")
+        
+        return orientation_records
 
     def extractMetadata(self):
         """
@@ -77,42 +139,23 @@ class organisationParser:
                 and I assume it is not that common that certain political party changes its orientation (assume!)
                 if wrong, will be adjusted.
         """
-        for file in tqdm.tqdm(self.interesting_files, leave=False, desc="Iterating thorugh Organisations"):
-            domtree = xml.dom.minidom.parse(f"{self.source_dir}/{file}")
-            listOrg = domtree.documentElement
-            lang = listOrg.getAttribute("xml:lang")
-            organisations = listOrg.getElementsByTagName('org')
+        domtree = xml.dom.minidom.parse(self.source)
+        listOrg = domtree.documentElement
+        organisations = listOrg.getElementsByTagName('org')
 
-            for organisation in tqdm.tqdm(organisations, leave=False, desc="Iterating through organisations"):
-                orgID = organisation.getAttribute("xml:id")
-                role = organisation.getAttribute("role")
+        for organisation in tqdm.tqdm(organisations, leave=False, desc="Iterating through organisations"):
+            orgID = organisation.getAttribute("xml:id")
+            role = organisation.getAttribute("role")
                 
-                org = Organisation(orgID, role)
+            org = Organisation(orgID, role)
                 
-                #Parse name entries
-                orgNames = organisation.getElementsByTagName('orgName')
-                for orgName in orgNames:
-                    full = orgName.getAttribute("full")
-                    nameLang = orgName.getAttribute("xml:lang")
-                    if "yes" == full:
-                        org.name[nameLang] = orgName.childNodes[0].nodeValue
-                    elif "abb" == full:
-                        org.name["abb"] = orgName.childNodes[0].nodeValue
-                
-                #Parse orientation_records
-                states = organisation.getElementsByTagName('state')
-                if states:
-                    for state in states:
-                        state_type = state.getAttribute('type')
-                        if "politicalOrientation" == state_type:
-                            pOrientation = state.getElementsByTagName('state')[0].getAttribute('ana')
-                            if pOrientation:
-                                org.orientation_records.append(PoliticalOrientation(pOrientation))
-                            else: 
-                                org.orientation_records.append("Missing information on political orientation.")
-                else:
-                    org.orientation_records.append("Missing information on political orientation.")
-                self.organisations[orgID] = (org, lang)
+            #Parse name entries
+            org.name = self.__extractNameRecords(organisation)  
+            
+            #Parse orientation_records
+            org.orientation_records = self.__extractOrientationRecords(organisation)
+
+            self.organisations[orgID] = (org, self.country_code)
         return self.organisations            
             
 
