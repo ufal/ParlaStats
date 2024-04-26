@@ -82,42 +82,135 @@ class Person:
         self.name_records = []
         self.affiliation_records = []
 
-    def add_name_record(self, name):
+    def add_name_records(self, names):
         """
         Method for adding a name record for a person (after marriage, etc.)
 
         Parameters:
         -----------
-            name (PersonName):
-                new name record
+            name ([PersonName]):
+                new name records
         """
-        if name.since == '':
-            name.since = self.birth
+        for name in names:
+            if name.since == '':
+                name.since = self.birth
         self.name_records.append(name)
 
-    def add_affiliation_record(self, affiliation):
+    def add_affiliation_record(self, affiliations):
         """
-        Method for adding an affiliation record for a person
+        Method for adding an affiliation records for a person
 
         Parameters:
         -----------
-            affiliation (Affiliation):
-                new affiliation record
+            affiliation ([Affiliation]):
+                new affiliation records
         """
-        if affiliation.to == '':
-            affiliation.to = "present"
-        self.affiliation_records.append(affiliation)
+        if affiliations.to == '':
+            affiliations.to = "present"
+        self.affiliation_records.append(affiliations)
 
 class personParser:
     source_dir = str()
 
     persons_dict = dict()
-    def __init__(self, args):
-        self.source_dir = args.source
+    def __init__(self, source, country_code):
+        self.source_dir = source
         self.persons_dict = {}
-        self.interesting_files = os.listdir(self.source_dir)
-        self.parser = etree.XMLParser(recover=True)
+        self.country_code = country_code   
     
+    def __extractSex(self, person):
+        """
+        A helper method for finding the information on sex of the 
+        given speaker.
+
+        Parameters:
+        -----------
+            person - xml element in the Parla-Mint format.
+
+        Returns:
+        --------
+            Value attribute of the 'sex' sub element of the person element 
+            according to Parla-Mint format if 'sex' element is present, 
+            otherwise informs of its absence.
+        """
+        personSex = person.getElementsByTagName('sex')
+        if len(personSex) < 1:
+            return "Missing information on sex."
+        return personSex[0].getAttribute('value')
+
+    def __extractBirth(self, person):
+        """
+        A helper method for finding the inforation on birth of the
+        given speaker.
+
+        Parameters:
+        -----------
+            person - xml element in the Paral-Mint format.
+
+        Returns:
+        --------
+            Value of the 'when' attribute of the 'birth' sub element of the person element
+            according to Parla-Mint format if 'birth' element is present,
+            otherwise informs of its absence.
+        """
+        personBirth = person.getElementsByTagName('birth')
+        if len(personBirth) < 1:
+            return "Missing information on birth."
+        return personBirth[0].getAttribute('when')
+    
+    def __extractNameRecords(self, person):
+        """
+        A helper method for extracting the name recors of the given speaker.
+
+        Parameters:
+        -----------
+            person - xml element in the Parla-Mint format.
+        
+        Returns:
+        --------
+            List of name records for the given speaker including the information
+            about time periods when these name records held.
+        """
+        person_name_records = person.getElementsByTagName('persName')
+        names = []
+        for name_record in person_name_records:
+            since = name_record.getAttribute('from')
+            to = name_record.getAttribute('to')
+            surname = name_record.getElementsByTagName("surname")[0].childNodes[0].nodeValue
+            forename = name_record.getElementsByTagName("forename")[0].childNodes[0].nodeValue
+            addname = name_record.getElementsByTagName("addName")
+            if len(addname) > 0:
+                addname = addname[0].childNodes[0].nodeValue
+            else: addname = ''
+            name = PersonName(since, to, surname, forename, addname)
+            names.append(name)
+        return names
+
+    def __extractAffiliationRecords(self, person):
+        """
+        A helper method for extracting the affiliation records the given speaker.
+
+        Parameters:
+        -----------
+            person - xml element in Parla-Mint format.
+
+        Returns:
+        --------
+            List of affiliation records for the given speaker including the time
+            period of person-organisation affiliation.
+        """
+        affiliations = []
+        person_affiliations = person.getElementsByTagName("affiliation")
+        for person_affiliation in person_affiliations:
+            since = person_affiliation.getAttribute("from")
+            to = person_affiliation.getAttribute("to")
+            role = person_affiliation.getAttribute("role")
+            party = person_affiliation.getAttribute("ref")
+            affiliation_instance = Affiliation(since, to, role, party)
+            affiliations.append(affiliation_instance)
+        
+        return affiliations
+
     def extractMetadata(self):
         """
         Method for extracting metadata about speakers from .xml files.
@@ -147,56 +240,29 @@ class personParser:
         entries, which are different only in language.
 
         """
-        for file in tqdm.tqdm(self.interesting_files, leave=False, desc="Iteration through files"):
-            domtree = xml.dom.minidom.parse(f"{self.source_dir}/{file}")
-            listPerson = domtree.documentElement
-            lang = listPerson.getAttribute("xml:lang")
-            persons = listPerson.getElementsByTagName('person')
-            for person in tqdm.tqdm(persons, leave=False, desc="Iterating through Persons"):
-                personID = person.getAttribute("xml:id")
+        domtree = xml.dom.minidom.parse(self.source)
+        listPerson = domtree.documentElement
+        persons = listPerson.getElementsByTagName('person')
+        for person in tqdm.tqdm(persons, leave=False, desc="Iterating through Persons"):
+            personID = person.getAttribute("xml:id")
                 
-                # Extract birth information
-                person_birth = person.getElementsByTagName('birth')
-                if len(person_birth) < 1:
-                    person_birth = "Missing birth entry"
-                else:
-                    person_birth = person_birth[0].getAttribute('when')
+            # Extract birth information
+            person_birth = self.__extractBrith(person)               
+            
+            # Extract sex information
+            person_sex = self.__extractSex(person)
+            
+            # Create a person record
+            person_instance = Person(personID, person_sex, person_birth)
                 
-                # Extract sex information
-                person_sex = person.getElementsByTagName('sex')
-                if len(person_sex) < 1:
-                    person_sex = "Missing sex entry"
-                else:
-                    person_sex = person_sex[0].getAttribute('value')
+            # Extracting name records for current person
+            person_instance.add_name_records(self.__extractNameRecords(person))
                 
-                person_instance = Person(personID, person_sex, person_birth)
-                
-                # Extracting name records for current person
-                person_name_records = person.getElementsByTagName("persName")
-                
-                for name_record in person_name_records:
-                    since = name_record.getAttribute('from')
-                    to = name_record.getAttribute('to')
-                    surname = name_record.getElementsByTagName("surname")[0].childNodes[0].nodeValue
-                    forename = name_record.getElementsByTagName("forename")[0].childNodes[0].nodeValue
-                    addname = name_record.getElementsByTagName("addName")
-                    if len(addname) > 0:
-                        addname = addname[0].childNodes[0].nodeValue
-                    else: addname = ''
-                    name = PersonName(since, to, surname, forename, addname)
-                    person_instance.add_name_record(name)
-                
-                # Extracting affiliation records for person
-                person_affiliations = person.getElementsByTagName("affiliation")
-                for person_affiliation in person_affiliations:
-                    since = person_affiliation.getAttribute("from")
-                    to = person_affiliation.getAttribute("to")
-                    role = person_affiliation.getAttribute("role")
-                    party = person_affiliation.getAttribute("ref")
-                    affiliation_instance = Affiliation(since, to, role, party)
-                    person_instance.add_affiliation_record(affiliation_instance)
-
-                self.persons_dict[person_instance.personID] = (person_instance, lang)
+            # Extracting affiliation records for person
+            person_instance.add_affiliation_records(self.__extractAffiliationRecords(person))
+            
+            # Store into persons dictionary, eventually will be dumped into some file
+            self.persons_dict[person_instance.personID] = (person_instance, self.country_code)
             
         return self.persons_dict  
                     
@@ -204,7 +270,8 @@ class personParser:
         
 
 def main(args):
-    pp = personParser(args)
+    # this no longer works - will take care later
+    pp = personParser(args.source)
     pp.extractMetadata()
 
 if __name__ == "__main__":
