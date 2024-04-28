@@ -139,10 +139,11 @@ class organisationParser:
                 and I assume it is not that common that certain political party changes its orientation (assume!)
                 if wrong, will be adjusted.
         """
+        
         domtree = xml.dom.minidom.parse(self.source)
         listOrg = domtree.documentElement
         organisations = listOrg.getElementsByTagName('org')
-
+        
         for organisation in tqdm.tqdm(organisations, leave=False, desc="Iterating through organisations"):
             orgID = organisation.getAttribute("xml:id")
             role = organisation.getAttribute("role")

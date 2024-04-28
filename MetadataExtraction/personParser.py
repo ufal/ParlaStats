@@ -94,7 +94,7 @@ class Person:
         for name in names:
             if name.since == '':
                 name.since = self.birth
-        self.name_records.append(name)
+            self.name_records.append(name)
 
     def add_affiliation_record(self, affiliations):
         """
@@ -105,16 +105,17 @@ class Person:
             affiliation ([Affiliation]):
                 new affiliation records
         """
-        if affiliations.to == '':
-            affiliations.to = "present"
-        self.affiliation_records.append(affiliations)
+        for affiliation in affiliations:
+            if affiliation.to == '':
+                affiliation.to = "present"
+            self.affiliation_records.append(affiliation)
 
 class personParser:
     source_dir = str()
 
     persons_dict = dict()
     def __init__(self, source, country_code):
-        self.source_dir = source
+        self.source = source
         self.persons_dict = {}
         self.country_code = country_code   
     
@@ -247,7 +248,7 @@ class personParser:
             personID = person.getAttribute("xml:id")
                 
             # Extract birth information
-            person_birth = self.__extractBrith(person)               
+            person_birth = self.__extractBirth(person)               
             
             # Extract sex information
             person_sex = self.__extractSex(person)
@@ -259,7 +260,7 @@ class personParser:
             person_instance.add_name_records(self.__extractNameRecords(person))
                 
             # Extracting affiliation records for person
-            person_instance.add_affiliation_records(self.__extractAffiliationRecords(person))
+            person_instance.add_affiliation_record(self.__extractAffiliationRecords(person))
             
             # Store into persons dictionary, eventually will be dumped into some file
             self.persons_dict[person_instance.personID] = (person_instance, self.country_code)
