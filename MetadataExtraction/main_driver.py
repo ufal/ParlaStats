@@ -59,6 +59,12 @@ class mainDriver:
 def main(args):
     d = mainDriver(args)
     p,o = d.main()
+    with open("Persons.txt", 'w') as out:
+        for key in p.keys():
+            print(p[key][0], file=out)
+    with open("Organisations.txt", 'w') as out:
+        for key in o.keys():
+            print(o[key][0], file=out)
 
 if __name__ == "__main__":
     main(args_parser.parse_args())

@@ -19,6 +19,9 @@ class PoliticalOrientation:
     orientation = str()
     def __init__(self, orientation):
         self.orientation = orientation
+    
+    def __str__(self):
+        return f"{self.orientation}"
 
 class Organisation:
     """
@@ -36,6 +39,14 @@ class Organisation:
         self.ID = ID
         self.role = role
         self.orientation_records = []
+    
+    def __str__(self):
+        header = f"###\nOrgID : {self.ID}\nRole : {self.role}\n"
+        name_records = "\n    ".join([f"{key} : {self.name[key]}" for key in self.name.keys()])
+        names = f"Name :\n    {name_records}\n"
+        orientation_records = "\n    ".join(list(map(str, self.orientation_records)))
+        orientation = f"Orientations :\n{orientation_records}"
+        return header + names + orientation
 
 
 class organisationParser:

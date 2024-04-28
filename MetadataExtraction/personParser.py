@@ -30,7 +30,10 @@ class Affiliation:
         self.party = party
         self.role = role
         self.to = to
-        
+    
+    def __str__(self):       
+        return f"{self.role} at {self.party}: {self.since} - {self.to}\n"
+
 
 class PersonName:
     """
@@ -50,6 +53,9 @@ class PersonName:
         self. surname = surname
         self.forename = forename
         self.addname = addname
+    
+    def __str__(self):
+        return f"{self.forename} {self.addname} {self.surname}: {self.since} - {self.to}"
 
 class Person:
     """
@@ -109,6 +115,15 @@ class Person:
             if affiliation.to == '':
                 affiliation.to = "present"
             self.affiliation_records.append(affiliation)
+
+    def __str__(self):
+        header = f"###\nPersonID : {self.personID}\nSex : {self.sex}\nBirth : {self.birth}\n"
+        name_records = "    ".join(map(str,self.name_records))
+        name_records += '\n'
+        names = f"Name records :\n    {name_records}"
+        affiliation_records = "    ".join(map(str,self.affiliation_records))
+        affiliations = f"Affiliations :\n    {affiliation_records}"
+        return header + names + affiliations + "###"
 
 class personParser:
     source_dir = str()
