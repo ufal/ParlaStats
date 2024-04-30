@@ -1,0 +1,4033 @@
+###
+OrgID : republic.CZ
+Role : republic
+Name :
+    cs : Česká republika
+    en : The Czech Republic
+    abb : CZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : government.VladaCR
+Role : government
+Name :
+    cs : Vláda České republiky
+    en : Government of the Czech Republic
+    abb : VládaČR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : chamberOfNations.FSSN
+Role : parliament
+Name :
+    cs : Sněmovna národů
+    en : Chamber of the Nations
+    abb : FSSN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : chamberOfPeople.FSSL
+Role : parliament
+Name :
+    cs : Sněmovna lidu
+    en : Chamber of the People
+    abb : FSSL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : nationalCouncil.CNR
+Role : parliament
+Name :
+    cs : Česká národní rada
+    en : Czech National Council
+    abb : CNR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : parliament.PSP
+Role : parliament
+Name :
+    cs : Poslanecká sněmovna
+    en : Chamber of Deputies
+    abb : PSP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : senate.SE
+Role : parliament
+Name :
+    cs : Senát
+    en : Senate
+    abb : SE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : senate.SE14
+Role : parliament
+Name :
+    cs : Senát
+    abb : SE14
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfGovernors.SRVZP.438
+Role : boardOfDirectors
+Name :
+    cs : Správní rada VZP
+    en : The Board of Directors of the General Health Insurance Company of the Czech Republic
+    abb : SRVZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DZVZP.439
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada VZP
+    en : The Supervisory Board of the General Health Insurance Company of the Czech Republic
+    abb : DZVZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DRPF.441
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada Pozemkového fondu České republiky
+    en : The Supervisory Board of the Land Fund of the Czech Republic
+    abb : DRPF
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DRSFDI.476
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada Státního fondu dopravní infrastruktury
+    en : The Supervisory Board of the State Fund of Transport Infrastructure
+    abb : DRSFDI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DRSZIF.480
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada Státního zemědělského intervenčního fondu
+    en : The Supervisory Board of the State Agricultural Intervention Fund
+    abb : DR SZIF
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DRSFRB.481
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada Státního fondu podpory investic
+    en : The Supervisory Board of the State Fund for Support of Investments
+    abb : DR SFRB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DRCKA.577
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada České konsolidační agentury
+    en : The Supervisory Board of the Czech Consolidation Agency
+    abb : DR ČKA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : boardOfTrustees.DRVF.580
+Role : supervisoryBoard
+Name :
+    cs : Dozorčí rada Vinařského fondu
+    en : The Supervisory Board of the Viticultural Fund
+    abb : DR VF
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKBA
+Role : commission
+Name :
+    cs : Stálá komise pro bankovnictví
+    en : Permanent Commission on Banking
+    abb : SKBA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKPKPS
+Role : commission
+Name :
+    cs : Stálá komise pro práci Kanceláře Poslanecké sněmovny
+    en : Standing Commission on the Activities of the Office of the Chamber of Deputies
+    abb : SKPKPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKSP
+Role : commission
+Name :
+    cs : Stálá komise pro sdělovací prostředky
+    en : Permanent Commission on Media
+    abb : SKSP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKPO
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu použití operativní techniky Policie ČR
+    en : Permanent Commission for oversight of the employment of Operational Technique
+    abb : SKPO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKBIS
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Bezpečnostní informační služby
+    en : Standing Commission on Oversight over the work of the Security Information Service
+    abb : SKBIS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKVY.24
+Role : commission
+Name :
+    cs : Stálá komise pro státní vyznamenání
+    en : Standing Commission on State Decorations
+    abb : SKVY
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VK
+Role : commission
+Name :
+    cs : Volební komise
+    en : Electoral Commission of the Chamber of Deputies
+    abb : VK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKKB.59
+Role : commission
+Name :
+    cs : Vyšetřovací komise KrB a.s. Plzeň
+    en : Commission of Enquiry on KrB a.s. Pilsen
+    abb : VKKB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKVOZ
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Vojenského obranného zpravodajství
+    en : Permanent Commission for oversight of the Military Intelligence activities
+    abb : SKVO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKOK.60
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro objasnění vztahu org. zločinu a státní správy v
+    en : Commission of Enquiry on the Organised Crime Profusion to the Public Sphere
+    abb : VKOK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKTC.220
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro vyšetření činnosti regionálního transplantačního centra FN Ostrava
+    en : Commission of Enquiry on the Activities of the Regional Transplantation Center in Ostrava Hospital
+    abb : VKTC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.DKDR.449
+Role : commission
+Name :
+    cs : Dočasná komise pro důchodovou reformu
+    en : Temporary commission for pensionary reformation
+    abb : DKDR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKIPB.478
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro objasnění rozhodování státu v IPB
+    en : Commission of Enquiry on the State-made decisions on IPB
+    abb : VK IPB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKRRP
+Role : commission
+Name :
+    cs : Stálá komise pro rodinu a rovné příležitosti
+    en : Standing Commission on Family Issues, Equal Opportunities and Minorities
+    abb : SKRRP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.DKOU.720
+Role : commission
+Name :
+    cs : Dočasná komise pro otázky Ústavy České republiky
+    en : Temopary commission on the Constitution
+    abb : DKOU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKD47
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro vyšetření závažných pochybení, která se stala při přípravě a realizaci stavby dálnice D47
+    en : Commission of Enquiry on Potential Misconduct in Relation to D47 Highway Construction
+    abb : VKD47
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKCME.723
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro zjištění skutečností v souvislosti s arbitrážním řízením ve věci CME versus Česká republika
+    en : Investigative Commission for CME vs. Czech Republic
+    abb : VKCME
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKPSZRV.742
+Role : commission
+Name :
+    cs : Vyšetřovací komise Poslanecké sněmovny pro zjištění role vlády, privátních firem a dalších subjektů v procesu restrukturalizace a privatizace chemického průmyslu
+    en : Commission of Enquiry on the role of the Goverment, Private Sector and Other Entities in the of Reconstruction and Privatisation of Chemical Industry
+    abb : VKPSZRV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKNBU
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Národního bezpečnostního úřadu
+    en : Standing Commission on Oversight over the work of the National Security Office
+    abb : SKNBÚ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKR.809
+Role : commission
+Name :
+    cs : Stálá komise pro rodinu
+    en : Permanent Commission on Family Issues
+    abb : SKR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKRP.810
+Role : commission
+Name :
+    cs : Stálá komise pro rovné příležitosti
+    en : Permanent Commission on Equal Opportunities
+    abb : SKRP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKKPOTP.811
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu použití operativní techniky Policie České republiky
+    en : Permanent Commission on Oversight over the employment of Operational Technique
+    abb : SKKPOTP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKVZ
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Vojenského zpravodajství
+    en : Standing Commission on Oversight over the work of Military Intelligence
+    abb : SKVZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKOU.831
+Role : commission
+Name :
+    cs : Stálá komise pro otázky Ústavy České republiky
+    en : Permanent Commission on the Constitution
+    abb : SKOÚ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKKPS.862
+Role : commission
+Name :
+    cs : Vyšetřovací komise Poslanecké sněmovny k vyšetření okolností výběrového řízení a uzavření smlouvy na dodávku výkonového mýta pro nákladní vozidla nad 12 tun mezi Českou republikou a firmou Kapsch
+    en : Commission of Inquiry into the circumstances regarding the public procurement procedure and conclusion of the contract for the delivery of the toll system for cargo motor vehicles above 12 tons between the Czech Republic and Kapsch
+    abb : VKKPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.DKMSC.924
+Role : commission
+Name :
+    cs : Dočasná komise pro řešení majetkových otázek mezi státem a církvemi a náboženskými společnostmi
+    en : Temporary Commission for the resolution of the property issues between the State and churches and religious associations
+    abb : DKMSC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKNZS.929
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro vyšetření neoprávněných zásahů do soukromého a rodinného života některých osob uskutečňovaných za účelem nátlaku na členy Parlamentu České republiky
+    en : Inquiry Commission on investigation of infringements and invasion of private and family life of certain persons carried out in order to promote undue influence on the members of the Parliament of the Czech Republic
+    abb : VKNZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.DKJUS.936
+Role : commission
+Name :
+    cs : Dočasná komise pro otázky posouzení nezávislosti výkonu a budoucího uspořádání české justice
+    en : Temporary Commission for issues related to analysis of independence of current operation and future organization of Czech justice
+    abb : DKJUS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKPOZ.937
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro vyšetření prorůstání organizovaného zločinu a zájmových skupin do činnosti orgánů veřejné moci
+    en : Investigation Commission for investigating of progression of organized crime and special interest groups into the operation of public administration authorities
+    abb : VKPOZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKNUAT.945
+Role : commission
+Name :
+    cs : Vyšetřovací komise pro vyšetření důvodů a souvislostí neoprávněného udělování akademických titulů na Fakultě právnické Západočeské univerzity v Plzni, včetně vyšetření role Akreditační komise a MŠMTV při garanci a kontrole kvalit vysokoškolského vzdělávání na veřejných a soukromých vysokých školách v České republice
+    en : Investigation Commission for examination of reason and connection with unauthorized conferment of academic degrees at the University of Western Bohemia, School of Law in Pilsen, including investigation of role of Accreditation Commission of Ministry of Education of Czech Republic being responsible for quality control of higher education at public and private universities in Czech Republic
+    abb : VKNUAT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKKPO
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu použití odposlechu a záznamu telekomunikačního provozu, použití sledování osob a věcí a rušení provozu elektronických komunikací
+    en : Standing Commission on Telecommunication Interception and Access, Spying and Interference to Electronic communication
+    abb : SKKPO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKGIBS
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Generální inspekce bezpečnostních sborů
+    en : Standing Commission on Activities of the General Inspection of Security Forces
+    abb : SKGIBS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.RRPNM
+Role : commission
+Name :
+    cs : Stálá komise pro rodinu, rovné příležitosti a národnostní menšiny
+    en : Permanent Commission on Family Issues, Equal Opportunities and Minorities
+    abb : SKRRPM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKOPC.1247
+Role : commission
+Name :
+    cs : Vyšetřovací komise k prověření způsobu vyšetřování kauzy Opencard
+    en : Commission of Enquiry on OpenCard Investigations
+    abb : VKOPC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKFAU
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Finančního analytického úřadu
+    en : Standing Commission on Activities of the Financial Analytical Office
+    abb : SKFAÚ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKUOOZ.1282
+Role : commission
+Name :
+    cs : Vyšetřovací komise k prověření činnosti příslušníků Policejního prezidia České republiky, Útvaru pro odhalování organizovaného zločinu Policie České republiky a státních zástupců Vrchního státního zastupitelství v Olomouci v souvislosti s reorganizací ÚOOZ a ÚOKFK Policie České republiky k 1. srpnu 2016
+    en : Commission of Enquiry on the Control of Activities of Police Headquarters, Department on Organised Crime and Public Prosecution Office in Olomouc in relation to its restructuring
+    abb : VKÚOOZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKZS.1287
+Role : commission
+Name :
+    cs : Vyšetřovací komise k prověření, zda nedocházelo k protiprávnímu jednání v souvislosti s možným neoprávněným získáváním spisů orgánů činných v trestním řízení nebo informací z těchto spisů a zda informace takto získané nebyly zneužívány k ovlivňování politické soutěže nebo destabilizaci demokratického právního státu
+    en : Investigatory Commission on Examination of Potential Illegal Data Acquision from Law Inforcement Authorities with Aim to Influence Political Competition
+    abb : VKZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKCEU
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu poskytnutí údajů z centrální evidence účtů
+    en : Standing Commission on Data Delivery by the Central Evidence of Accounts
+    abb : SKCEÚ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKNUKIB
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Národního úřadu pro kybernetickou a informační bezpečnost
+    en : Standing Commission on the Activities of the National Cyber and Information Security Agency
+    abb : SKNÚKIB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKUCR
+Role : commission
+Name :
+    cs : Stálá komise pro Ústavu České republiky
+    en : Standing Commission on the Constitution of the Czech Republic
+    abb : SKÚČR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKOKD.1337
+Role : commission
+Name :
+    cs : Vyšetřovací komise k OKD
+    en : Investigatory Commission on OKD
+    abb : VKOKD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKUZSI
+Role : commission
+Name :
+    cs : Stálá komise pro kontrolu činnosti Úřadu pro zahraniční styky a informace
+    en : Standing Commission on the Activities of the Office for Foreign Relations and Information
+    abb : SKÚZSI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.DKCOVID.1518
+Role : commission
+Name :
+    cs : Dočasná komise pro hodnocení účinnosti vládní pomoci v rámci COVID
+    abb : DKCOVID
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.SKHH
+Role : commission
+Name :
+    cs : Stálá komise pro hybridní hrozby
+    en : Standing Commission on Hybrid Threats
+    abb : SKHH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : commission.VKBECVA.1531
+Role : commission
+Name :
+    cs : Vyšetřovací komise k ekologické katastrofě na řece Bečvě
+    abb : VKBEČVA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.BBV
+Role : committee
+Name :
+    cs : Branný a bezpečnostní výbor
+    en : Committee for Defence and Security
+    abb : BBV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.HV
+Role : committee
+Name :
+    cs : Hospodářský výbor
+    en : Committee on Economic Affairs
+    abb : HV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.MIV
+Role : committee
+Name :
+    cs : Mandátový a imunitní výbor
+    en : Mandate and Immunity Committee
+    abb : MIV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.ORGV
+Role : committee
+Name :
+    cs : Organizační výbor
+    en : Steering Committee
+    abb : ORGV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.RV
+Role : committee
+Name :
+    cs : Rozpočtový výbor
+    en : Committee on the Budget
+    abb : RV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.UPV
+Role : committee
+Name :
+    cs : Ústavně právní výbor
+    en : Committee on Constitutional and Legal Affairs
+    abb : UPV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VSPZ
+Role : committee
+Name :
+    cs : Výbor pro sociální politiku a zdravotnictví
+    en : Committee for Social Policy and Health Care
+    abb : VSPZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VSRZP
+Role : committee
+Name :
+    cs : Výbor pro veřejnou správu, regionální rozvoj a životní prostředí
+    en : Committee for Public Administration, Regional Development and Environment
+    abb : VSRZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VVVKM
+Role : committee
+Name :
+    cs : Výbor pro vědu, vzdělání, kulturu, mládež a tělovýchovu
+    en : Committee on Science, Education, Culture, Youth and Sport
+    abb : VVVKM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.ZAV
+Role : committee
+Name :
+    cs : Zahraniční výbor
+    en : Committee on Foreign Affairs
+    abb : ZAV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.ZEV
+Role : committee
+Name :
+    cs : Zemědělský výbor
+    en : Committee on Agriculture
+    abb : ZEV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VOB
+Role : committee
+Name :
+    cs : Výbor pro obranu a bezpečnost
+    en : Committee for Defence and Security
+    abb : VOB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.PV
+Role : committee
+Name :
+    cs : Petiční výbor
+    en : Committee on Petitions
+    abb : PV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VEI
+Role : committee
+Name :
+    cs : Výbor pro evropskou integraci
+    en : Committee for European Integration
+    abb : VEI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VOV
+Role : committee
+Name :
+    cs : Volební výbor
+    en : Electoral Committee
+    abb : VOV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VEZ
+Role : committee
+Name :
+    cs : Výbor pro evropské záležitosti
+    en : Committee on European Affairs
+    abb : VEZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.KV
+Role : committee
+Name :
+    cs : Kontrolní výbor
+    en : Committee on Budgetary Control
+    abb : KV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VB
+Role : committee
+Name :
+    cs : Výbor pro bezpečnost
+    en : Committee on Security
+    abb : VB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VO
+Role : committee
+Name :
+    cs : Výbor pro obranu
+    en : Committee on Defence
+    abb : VO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VSP
+Role : committee
+Name :
+    cs : Výbor pro sociální politiku
+    en : Committee on Social Policy
+    abb : VSP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VSR
+Role : committee
+Name :
+    cs : Výbor pro veřejnou správu a regionální rozvoj
+    en : Committee on Public Administration and Regional Development
+    abb : VSR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VZ
+Role : committee
+Name :
+    cs : Výbor pro zdravotnictví
+    en : Committee on Health Care
+    abb : VZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.VZP
+Role : committee
+Name :
+    cs : Výbor pro životní prostředí
+    en : Committee on Environment
+    abb : VŽP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : committee.UPV.1551
+Role : committee
+Name :
+    cs : Ústavně-právní výbor
+    en : Committee on Constitutional and Legal Affairs
+    abb : ÚPV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.EP
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu pro spolupráci s Evropským parlamentem
+    en : Permanent Delegation for Cooperation with the European Parliament
+    abb : EP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.SDMPU
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu do Meziparlamentní unie
+    en : Permanent Delegation to the Inter-Parliamentary Union
+    abb : SDMPU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.SDNATO
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu do Parlamentního shromáždění NATO
+    en : Permanent Delegation to the NATO Parliamentary Assembly
+    abb : SDNATO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.SDOBSE
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu do Parlamentního shromáždění Organizace pro bezpečnost a spolupráci v Evropě
+    en : Permanent Delegation to the Parliamentary Assembly of the OSCE
+    abb : SDOBSE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.SDPSRE
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu do Parlamentního shromáždění Rady Evropy
+    en : Permanent Delegation to the Parliamentary Assembly of the Council of Europe
+    abb : SDPSRE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.SDSEI
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu do Středoevropské iniciativy
+    en : Permanent Delegation to the Central European Initiative
+    abb : SDSEI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : delegation.SDSZE
+Role : delegation
+Name :
+    cs : Stálá delegace Parlamentu do Shromáždění Západoevropské unie
+    en : Permanent Delegation to the Assembly of Western European Union
+    abb : SDSZE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : europeanParliament.EP
+Role : europeanParliament
+Name :
+    cs : Evropsky parlament
+    en : European Parliament
+    abb : EP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.RCR.425
+Role : institution
+Name :
+    cs : Rada Českého rozhlasu
+    en : The Czech Radio Council
+    abb : RČR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.RCT
+Role : institution
+Name :
+    cs : Rada České televize
+    en : The Czech Television Council
+    abb : RČT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.BRCNB.836
+Role : institution
+Name :
+    cs : Bankovní rada České národní banky
+    en : The Bank Board of the Czech National Bank
+    abb : BRČNB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.CSU.839
+Role : institution
+Name :
+    cs : Český statistický úřad
+    en : The Czech Statistical Office
+    abb : ČSÚ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.RCTK.428
+Role : institution
+Name :
+    cs : Rada České tiskové kanceláře
+    en : The Czech News Agency Council
+    abb : RČTK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.UOHS.843
+Role : institution
+Name :
+    cs : Úřad pro ochranu hospodářské soutěže
+    en : The Office for the Protection of Competition
+    abb : ÚOHS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.NKU.422
+Role : institution
+Name :
+    cs : Nejvyšší kontrolní úřad
+    en : The Supreme Audit Office of the Czech Republic
+    abb : NKÚ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.VFDM.429
+Role : institution
+Name :
+    cs : Výbor Fondu dětí a mládeže
+    abb : VFDM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.RRTV.426
+Role : institution
+Name :
+    cs : Rada pro rozhlasové a televizní vysílání
+    en : The Council for Radio and Television Broadcasting
+    abb : RRTV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.UVOP.423
+Role : institution
+Name :
+    cs : Úřad Veřejného ochránce práv
+    en : The Office of the Public Defender of Rights (Ombudsman) of the Czech Republic
+    abb : ÚVOP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : institution.RUSTR.1113
+Role : institution
+Name :
+    cs : Rada Ústavu pro studium totalitních režimů
+    abb : RUSTR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : internationalOrganisation.CPSOBSE.1278
+Role : internationalOrganisation
+Name :
+    cs : Hlavní výbor pro demokracii, lidská práva a humanitární otázky PS OBSE
+    abb : CPSOBSE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.A
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Rakousko
+    en : the Republic of Austria
+    abb : A
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ASEAN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : ASEAN
+    en : ASEAN
+    abb : PYA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.CN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Čína
+    en : China
+    abb : CN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.IL
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Izrael
+    en : State of Israel
+    abb : ISR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PL
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Polsko
+    en : Poland
+    abb : PL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SK
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Slovensko
+    en : Slovakia
+    abb : SK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.CU
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Kuba
+    en : the Republic of Cuba
+    abb : CU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.LAT.941
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : latinskoamerické země
+    en : Countries of Latin America
+    abb : LAT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.REK
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Řecko
+    en : Greece
+    abb : GR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.RU
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Ruská federace
+    en : Russian Federation
+    abb : RU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SRN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Německo
+    en : Germany
+    abb : PDE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.UA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Ukrajina
+    en : Ukraine
+    abb : UA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BG
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Bulharsko
+    en : Bulgaria
+    abb : BG
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BNL
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Benelux
+    en : Benelux
+    abb : BENELUX
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.KW
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Kuvajt
+    en : Kuwait
+    abb : KW
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.LT
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Litva
+    en : the Republic of Lithuania
+    abb : LT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.NOR.185
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Norsko
+    en : Norway
+    abb : NOR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.EE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Estonsko
+    en : the Republic of Estonia
+    abb : EE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.GBR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Velká Británie
+    en : Great Britain
+    abb : GBR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MONG
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Mongolsko
+    en : Mongolia
+    abb : MN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PT
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Portugalsko
+    en : Portugal
+    abb : PT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.RO
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Rumunsko
+    en : Romania
+    abb : RO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SVED.193
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Švédsko
+    en : Sweden
+    abb : ŠVÉD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.CH
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Švýcarsko
+    en : Switzerland
+    abb : CH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.FR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Francie
+    en : the French Republic
+    abb : FR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.KYPR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Kypr
+    en : Republic of Cyprus
+    abb : CY
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.USAI
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : USA
+    en : USA
+    abb : USA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.JP
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Japonsko
+    en : Japan
+    abb : JP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ESP.204
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Španělsko
+    en : Spain
+    abb : ESP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.IE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Irsko
+    en : Ireland
+    abb : IE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.IT
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Itálie
+    en : the Italian Republic
+    abb : IT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.LOTYS
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Lotyšsko
+    en : the Republic of Latvia
+    abb : LV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.TUN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Tunisko
+    en : Tunisia
+    abb : TN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.FIN.207
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Finsko
+    en : Finland
+    abb : FIN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.HR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Chorvatsko
+    en : Republic of Croatia
+    abb : HRV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.KR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Korejská republika
+    en : the Republic of Korea
+    abb : KR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SI
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Slovinsko
+    en : Republic of Slovenia
+    abb : SVN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.CA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Kanada
+    en : Canada
+    abb : CA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.TR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Turecká republika
+    en : Republic of Turkey
+    abb : TR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.A-NZ
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Austrálie a Nový Zéland
+    en : Australia and New Zeland
+    abb : PAUNZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.IN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Indie
+    en : India
+    abb : IN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SUBSAA.214
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : subsaharská Afrika
+    en : Sub-Saharan Africa
+    abb : SUBSAA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ZA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Jihoafrická republika
+    en : Republic of South Africa
+    abb : ZA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.H
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Maďarsko
+    en : Hungary
+    abb : H
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Marocké království
+    en : Kingdom of Morocco
+    abb : MA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ET
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Egypt
+    en : the Arab Republic of Egypt
+    abb : ET
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.LB
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Libanon
+    en : Lebanon
+    abb : LB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PK
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Pákistánská islámská republika
+    en : Islamic Republic of Pakistan
+    abb : PK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.AM
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Arménie
+    en : Republic of Armenia
+    abb : AM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.Arab.221
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : arabské země
+    en : Arabic Countries
+    abb : Arab
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BY
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Bělorusko
+    en : Belarus
+    abb : BY
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.FRJ.224
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Jugoslávie
+    en : Yugoslavia
+    abb : FRJ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.Kazach
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Kazachstán
+    en : the Republic of Kazakhstan
+    abb : KZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.VN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Vietnam
+    en : Socialist Republic of Vietnam
+    abb : VN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.IR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Íránská islámská republika
+    en : Islamic Republic of Iran
+    abb : IR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.NL
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Nizozemské království
+    en : Kingdom of the Netherlands
+    abb : NL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BALT
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Pobaltské státy
+    en : Baltic states
+    abb : PXBS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PXSCAN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Skandinávské státy
+    en : Scandinavian States
+    abb : PXSCAN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.UK.683
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Velká Británie
+    en : United Kingdom
+    abb : UK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SUB-SAH
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Subsaharská Afrika
+    en : Sub-Saharan African states
+    abb : PXSSA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PXLA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Latinská Amerika
+    en : Latin America states
+    abb : PXLA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.KARIBIK
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Střední Amerika a Karibik
+    en : Central America and Caribbean states
+    abb : PXCAC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PSRL.903
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Srí Lanka
+    en : the Democratic Socialist Republic of Sri Lanka
+    abb : PSRL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PXA.871
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Arabské státy
+    en : Arab states
+    abb : PXA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PXNA.899
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Severní Afrika
+    en : North African states
+    abb : PXNA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PYEA.878
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Euroasie
+    en : EUROASIA
+    abb : PYEA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.USA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Spojené státy americké
+    en : United States of America
+    abb : USA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PRU.898
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Rusko
+    en : the Russian Federation
+    abb : PRU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PSRB.915
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Srbsko
+    en : Serbia
+    abb : PSRB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BIH.946
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Bosna a Hercegovina
+    en : Bosnia and Herzegovina
+    abb : BIH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PMK.939
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Makedonie (FYROM)
+    en : Macedonia (FYROM)
+    abb : PMK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.VE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Venezuela
+    en : Bolivarian Republic of Venezuela
+    abb : VE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.AFG
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Afghánská islámská republika
+    en : Islamic Republic of Afghanistan
+    abb : AFG
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.AZ
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Ázerbajdžán
+    en : Republic of Azerbaijan
+    abb : AZE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XNS
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Severské státy (Švédsko, Finsko, Norsko, Dánsko, Island)
+    en : Nordic States (Sweden, Republic of Finland, Kingdom of Norway, Kingdom of Denmark, Republic of Iceland)
+    abb : XNS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.DE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Spolková republika Německo
+    en : the Federal Republic of Germany
+    abb : DE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.AUNZ
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Austrálie, Nový Zéland
+    en : the Commonwealth of Australia, New Zeland
+    abb : AU, NZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.INLK
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Indie, Srí Lanka
+    en : Republic of India, Democratic Socialist Republic of Sri Lanka
+    abb : IN, LK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MEXXS.1058
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Mexiko, státy Střední Ameriky a Karibiku (Mexiko, Kuba, Kostarika, Guatemala, Salvádor, Honduras, Panama Nikaragua)
+    en : Mexiko and Central America and Caribbean States (the United Mexican States, the Republic of Cuba, the Republic of Costa Rica, the Republic of Guatemala, the Republic of El Salvador, the Republic of Honduras, the Republic of Panama, the Republic of Nicaragua)
+    abb : MEX, XS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XAS
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy jihovýchodní Asie (Thajsko, Malajsie, Singapur, Kambodža, Myanmar/Barma, Laos)
+    en : Southeast Asian States (Kingdom of Thailand, Malaysia, Republic of Singapore, Kingdom of Cambodia, Republic of the Union of Myanmar, Lao People's Democratic Republic)
+    abb : XAS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XJKSA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy Střední Asie (Kazachstán, Uzbekistán, Kyrgyzstán, Tádžikistán, Turkmenistán)
+    en : Central Asia States (Republic of Kazakhstan, Republic of Uzbekistan, Kyrgyz Republic, Republic of Tajikistan, Turkmenistan)
+    abb : XJKSA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XJVE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy jihovýchodní Evropy (Albánská republika, Bosna a Hercegovina, Černá Hora, Kosovská republika, Makedonská republika)
+    en : South-East European States (Republic of Albania, Bosnia and Herzegovina, Montenegro, Republic of Kosovo, Republic of Macedonia)
+    abb : XJVE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XSSA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy severní Afriky (Alžírsko, Egypt, Libye, Tunisko)
+    en : North Africa States (People's Democratic Republic of Algeria, Arab Republic of Egypt, State of Libya, Republic of Tunisia)
+    abb : XSSA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XSV
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy Středního východu (Kuvajt, Saúdská Arábie, Spojené arabské emiráty, Jordánsko, Sýrie, Jemen, Libanon, Irák, Palestina)
+    en : Middle East States (State of Kuwait, Kingdom of Saudi Arabia, United Arab Emirates, Hashemite Kingdom of Jordan, Syrian Arab Republic, Republic of Yemen, Republic of Lebanon, Republic of Iraq, State of Palestine)
+    abb : XSV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.RS
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Srbská republika
+    en : Republic of Serbia
+    abb : RS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XBS
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Baltské státy (Estonsko, Litva, Lotyšsko)
+    en : Baltic States (Republic of Estonia, Republic of Lithuania, Republic of Latvia)
+    abb : XBS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XJA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy Jižní Ameriky
+    en : States of South America
+    abb : XJA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BR
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Brazílie
+    en : Federative Republic of Brasil
+    abb : BR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.EP.1075
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Španělsko, Portugalsko
+    en : Spain, Portugal
+    abb : E,P
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.CPV.1088
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Kapverdská republika
+    en : the Republic of Cape Verde
+    abb : CPV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XSBSA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy subsaharské Afriky
+    en : Sub-Saharan Africa
+    abb : XSBSA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.GE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Gruzie
+    en : Georgia
+    abb : GE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.GRCY.1184
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Řecko, Kypr
+    en : Hellenic Republic, Republic of Cyprus
+    abb : GRCY
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.CL
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Chile
+    en : Chile
+    abb : CL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MXXS.1213
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : státy Střední Ameriky a Karibiku (Kostarika, Guatemala, Salvador, Honduras, Panama, Nikaragua)
+    en : Central America and Caribbean States (Republic of Costa Rica, Republic of Guatemala, Republic of El Salvador, Republic of Honduras, Republic of Panama, Republic of Nicaragua)
+    abb : MX, XS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XSPK.1204
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Španělské království, Portugalská republika, Kapverdská republika
+    en : Kingdom of Spain, Portuguese Republic, Republic of Capo Verde
+    abb : XSPK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ET.1251
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Etiopie
+    en : Ethiopia
+    abb : ET
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ROMD.1260
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Rumunsko, Moldavská republika
+    en : Romania, Republic Moldova
+    abb : RO, MD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MX
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Mexiko
+    en : the United Mexican States
+    abb : MX
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SC.1262
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Seychelská republika
+    en : Republic of Seychelles
+    abb : SC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ID.1276
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Indonésie
+    en : Republic of Indonesia
+    abb : ID
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PH
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Filipínská republika
+    en : Republic of the Philippines
+    abb : PH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.XFR.1280
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Frankofonie
+    en : Francophone
+    abb : XFR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SN.1281
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Senegalská republika
+    en : Republic of Senegal
+    abb : SN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BD.1288
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Bangladéš
+    en : People´s Republic of Bangladesh
+    abb : BD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.NS
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Severské státy
+    en : Nordic States
+    abb : NS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SY.1426
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Syrská arabská republika
+    en : Syrian Arab Republic
+    abb : SY
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ES
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Španělské království
+    en : Kingdom of Spain
+    abb : ES
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ARE
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Spojené arabské emiráty
+    en : United Arab Emirates
+    abb : ARE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.OMN
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Sultanát Omán
+    en : Sultanate of Oman
+    abb : OMN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.NPL.1456
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Nepál
+    en : Federal Democratic Republic of Nepal
+    abb : NPL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.THA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Thajské království
+    en : Kingdom of Thailand
+    abb : THA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Saudská Arábie
+    en : Kingdom of Saudi Arabia
+    abb : SA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.JM.1468
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Jamajka
+    en : Jamaica
+    abb : JM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.JO
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Jordánské hášimovské království
+    en : Hashemite Kingdom of Jordan
+    abb : JO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.AO.1501
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Angola
+    en : Republic of Angola
+    abb : AO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.QA
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Katar
+    en : Qatar
+    abb : QA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.AL
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Albánská republika
+    en : Republic of Albania
+    abb : AL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.IQ
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Irácká republika
+    en : Republic of Iraq
+    abb : IQ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MK
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Severní Makedonie
+    en : Republic of North Macedonia
+    abb : MK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BH
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Bahrajnské království
+    en : Kingdom of Bahrain
+    abb : BH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MD
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Moldavsko
+    en : Moldova
+    abb : MD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.PE.1516
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Peruánská rapublika
+    en : Republic of Peru
+    abb : PE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.ME.1696
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Černá Hora
+    en : Montenegro
+    abb : ME
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.RW.1697
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Rwandská republika
+    en : Republic of Rwanda
+    abb : RW
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BH.1698
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Bosna a Hercegovina
+    en : Bosnia and Herzegovina
+    abb : BH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.TZ.1705
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Tanzanie
+    en : Tanzania
+    abb : TZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.BELU.1709
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Belgie, Lucembursko
+    en : Belgium, Luxembourg
+    abb : BE, LU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.GH.1708
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Ghana
+    en : Republic of Ghana
+    abb : GH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.SY.1710
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Sýrie
+    abb : SY
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.MYA.1723
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Republika Myanmarský svaz
+    en : Myanmar
+    abb : MYA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : interparliamentaryFriendshipGroup.RI.1724
+Role : interparliamentaryFriendshipGroup
+Name :
+    cs : Indonéská republika
+    en : Republic of Indonesia
+    abb : RI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : parliamentaryGroup.KSCS
+Role : parliamentaryGroup
+Name :
+    cs : Komunistická strana Československa
+    abb : KSČS
+Orientations :
+#orientation.FL
+###
+OrgID : parliamentaryGroup.KDU-CSL
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub KDU-ČSL
+    en : Political Group of the Christian and Democratic Union - Czechoslovak People's Party
+    abb : KDU-CSL
+Orientations :
+#orientation.CCR
+###
+OrgID : parliamentaryGroup.KSCM
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Komunistické strany Čech a Moravy
+    en : Political group Communist Party of Bohemia and Moravia
+    abb : KSCM
+Orientations :
+#orientation.LLF
+###
+OrgID : parliamentaryGroup.OF.512
+Role : parliamentaryGroup
+Name :
+    cs : Občanské fórum
+    abb : OF
+Orientations :
+#orientation.BT
+###
+OrgID : parliamentaryGroup.OH.515
+Role : parliamentaryGroup
+Name :
+    cs : Občanské hnutí
+    abb : OH
+Orientations :
+#orientation.CCL
+###
+OrgID : parliamentaryGroup.SDO.516
+Role : parliamentaryGroup
+Name :
+    cs : Klub Sociálně demokratické orientace
+    abb : SDO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : parliamentaryGroup.CSSD.540
+Role : parliamentaryGroup
+Name :
+    cs : ČSSD
+    abb : CSSD
+Orientations :
+#orientation.CL
+###
+OrgID : parliamentaryGroup.CSSD
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub České strany sociálně demokratické
+    en : Political group Czech Social Democratic Party
+    abb : CSSD
+Orientations :
+#orientation.CL
+###
+OrgID : parliamentaryGroup.KDS.6
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Křesťansko demokratické strany
+    en : Christian Democratic Party
+    abb : KDS
+Orientations :
+#orientation.CR
+###
+OrgID : parliamentaryGroup.LB.10
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Levého bloku
+    en : The Left Block
+    abb : LB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : parliamentaryGroup.ODS
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Občanské demokratické strany
+    en : Political group Civic Democratic Party
+    abb : ODS
+Orientations :
+#orientation.CRR
+###
+OrgID : parliamentaryGroup.VV.867
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Věci veřejné
+    en : Political group Public Affairs Party
+    abb : VV
+Orientations :
+#orientation.CR
+###
+OrgID : parliamentaryGroup.TOP09-S
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub TOP 09 a Starostové
+    en : Political group TOP 09 a Starostové
+    abb : TOP09
+Orientations :
+#orientation.CR
+###
+OrgID : parliamentaryGroup.ANO
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub ANO 2011
+    en : Political group ANO 2011
+    abb : ANO2011
+Orientations :
+#orientation.CCR
+###
+OrgID : parliamentaryGroup.Usvit.1111
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Úsvit - Národní Koalice
+    en : Political group of Usvit - Narodni Koalice
+    abb : USVIT
+Orientations :
+#orientation.FR
+###
+OrgID : parliamentaryGroup.Pirati
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub České pirátské strany
+    en : Political group Czech Pirate Party
+    abb : Pirates
+Orientations :
+#orientation.CCL
+###
+OrgID : parliamentaryGroup.STAN
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Starostové a nezávislí
+    en : Political group Mayors and Independents
+    abb : STAN
+Orientations :
+#orientation.CCR
+###
+OrgID : parliamentaryGroup.SPD
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub Svoboda a přímá demokracie
+    en : Political group Freedom and Direct Democracy
+    abb : SPD
+Orientations :
+#orientation.RRF
+###
+OrgID : parliamentaryGroup.TOP09
+Role : parliamentaryGroup
+Name :
+    cs : Poslanecký klub TOP 09
+    en : Political group TOP 09
+    abb : TOP09
+Orientations :
+#orientation.CR
+###
+OrgID : politicalParty.CSSD
+Role : politicalParty
+Name :
+    cs : Česká strana sociálně demokratická
+    en : Czech Social Democratic Party
+    abb : CSSD
+Orientations :
+#orientation.CL
+###
+OrgID : politicalParty.KDU-CSL
+Role : politicalParty
+Name :
+    cs : Křesťanská a demokratická unie - Československá strana lidová
+    en : Christian Democratic Union - Czechoslovak People's Party
+    abb : KDU-CSL
+Orientations :
+#orientation.CCR
+###
+OrgID : politicalParty.KSCM
+Role : politicalParty
+Name :
+    cs : Komunistická strana Čech a Moravy
+    en : Communist Party of Bohemia and Moravia
+    abb : KSCM
+Orientations :
+#orientation.LLF
+###
+OrgID : politicalParty.ODS
+Role : politicalParty
+Name :
+    cs : Občanská demokratická strana
+    en : Civic Democratic Party
+    abb : ODS
+Orientations :
+#orientation.CRR
+###
+OrgID : politicalParty.K
+Role : politicalParty
+Name :
+    cs : Koalice
+    en : Coalition
+    abb : K
+Orientations :
+Missing information on political orientation.
+###
+OrgID : politicalParty.TOP09
+Role : politicalParty
+Name :
+    cs : TOP 09
+    en : TOP 09
+    abb : TOP09
+Orientations :
+#orientation.CR
+###
+OrgID : politicalParty.VV
+Role : politicalParty
+Name :
+    cs : Věci veřejné
+    en : Public Matters
+    abb : VV
+Orientations :
+#orientation.CR
+###
+OrgID : politicalParty.ANO2011
+Role : politicalParty
+Name :
+    cs : ANO2011
+    en : ANO2011
+    abb : ANO2011
+Orientations :
+#orientation.CCR
+###
+OrgID : politicalParty.Usvit
+Role : politicalParty
+Name :
+    cs : Úsvit přímé demokracie Tomia Okamury
+    en : Rise of Direct Democracy of Tomio Okamura
+    abb : USVIT
+Orientations :
+#orientation.FR
+###
+OrgID : politicalParty.Pirati
+Role : politicalParty
+Name :
+    cs : Česká pirátská strana
+    en : Czech Pirate Party
+    abb : Pirates
+Orientations :
+#orientation.CCL
+###
+OrgID : politicalParty.SPD
+Role : politicalParty
+Name :
+    cs : Svoboda a prima demokracie - Tomio Okamura
+    en : Freedom and Direct Democracy - Tomio Okamura
+    abb : SPD
+Orientations :
+#orientation.RRF
+###
+OrgID : politicalParty.STAN
+Role : politicalParty
+Name :
+    cs : Starostove a nezavisli
+    en : Mayors and Independents
+    abb : STAN
+Orientations :
+#orientation.CCR
+###
+OrgID : politicalParty.PirSTAN
+Role : politicalParty
+Name :
+    cs : Pirati+STAN
+    abb : PirSTAN
+Orientations :
+#orientation.C
+###
+OrgID : politicalParty.SPOLU
+Role : politicalParty
+Name :
+    cs : Spolu
+    abb : SPOLU
+Orientations :
+#orientation.CR
+###
+OrgID : presidium.PFNM.434
+Role : institution
+Name :
+    cs : Prezídium Fondu národního majetku České republiky
+    abb : PFNM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.KONT
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kontrolu
+    en : Subcommittee for Oversight
+    abb : PRVPK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vězeňství
+    en : Subcommittee on Penology
+    abb : PV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.ZS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro zpravodajské služby
+    en : Subcommittee on the Secret Services
+    abb : PZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro rozvoj venkova
+    en : Subcommittee on Rural Development
+    abb : PRV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PD
+Role : subcommittee
+Name :
+    cs : Podvýbor pro dopravu
+    en : Subcommittee on Transportation
+    abb : PD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.subcommitteeForIndustryAndConstruction
+Role : subcommittee
+Name :
+    cs : Podvýbor pro průmysl a stavebnictví
+    en : Subcommittee for Industry and Construction
+    abb : PP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPL.102
+Role : subcommittee
+Name :
+    cs : Podvýbor pro podporu podnikání a legislativní činnost
+    en : Subcommittee for the Support of Business and Legislative Activities
+    abb : PPL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PH
+Role : subcommittee
+Name :
+    cs : Podvýbor pro heraldiku a vexilologii
+    en : Subcommittee on Heraldy and Vexillology
+    abb : PHV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PK
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kulturu
+    en : Subcommittee on Culture
+    abb : PK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPCRZ
+Role : subcommittee
+Name :
+    cs : Podvýbor pro prezentaci České republiky v zahraničí a vnější ekonomické vztahy
+    en : Subcommittee on the Projection of the Czech Republic Abroad
+    abb : PPCRZVE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVVS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vědu a vysoké školy
+    en : Subcommittee on Science and Post-Secondary Educational Institutions
+    abb : PVVS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PpM
+Role : subcommittee
+Name :
+    cs : Podvýbor pro mládež
+    en : Subcommittee for the Youth
+    abb : PpM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PpS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro školství
+    en : Subcommittee on Education
+    abb : PŠ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.TV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro tělovýchovu
+    en : Subcommittee for Physical Education
+    abb : PpTv
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.subcommitteeOnCountrymanRelations
+Role : subcommittee
+Name :
+    cs : Podvýbor pro styky s krajany
+    en : Subcommittee on Countryman Relations
+    abb : PSK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PNPUSV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro přípravu návrhů na propůjčení nebo udělení státních vyznamenání
+    en : Subcommittee on Preparation of Recommendations for Conferring or Awarding State Decorations
+    abb : PNPUSV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PZ.112
+Role : subcommittee
+Name :
+    cs : Podvýbor pro přípr. zák. o zásadách jednání a styku obou komor Parl.
+    en : Subcommittee for the Preparation of the Law Concerning the Principles of Behaviour and Contacts of Both Chambers of Parliament
+    abb : PZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.KFT.125
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kapitálové a finanční trhy
+    en : Subcommittee for Capital and Financial Markets
+    abb : KFT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.LEKPOL.120
+Role : subcommittee
+Name :
+    cs : Podvýbor pro lékovou politiku a úhradu zdravotní péče
+    en : Subcommittee for Medicinal Policies and Health Care Reimbursement
+    abb : LEKPOL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PBP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro bytovou politiku
+    en : Subcommittee on Housing Policy
+    abb : PBP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPIZSO
+Role : subcommittee
+Name :
+    cs : Podvýbor pro investice ve zdravotnictví a sociální oblasti
+    en : Subcommittee for Investment Grants in Health Care and Social Spheres
+    abb : PPIZSO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.REG
+Role : subcommittee
+Name :
+    cs : Podvýbor pro regionální rozvoj
+    en : Subcommittee for Regional Development
+    abb : PRR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.ROD.121
+Role : subcommittee
+Name :
+    cs : Podvýbor pro rovné příležitosti a otázky rodiny
+    en : Subcommittee for Equal Opportunities and Family Questions
+    abb : ROD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.VS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro veřejnou správu
+    en : Subcommittee on Public Administration
+    abb : PVS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.ZDRPOS.122
+Role : subcommittee
+Name :
+    cs : Podvýbor pro zdravotně postižené
+    en : Subcommittee for the Handicapped
+    abb : ZDRPOS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.ZP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ochranu životního prostředí a krajiny
+    en : Subcommittee for the Protection of the Environment and Country
+    abb : POZPK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.ZJR
+Role : subcommittee
+Name :
+    cs : Podvýbor pro přípravu novely zákona o jednacím řádu Poslanecké sněmovny
+    en : Subcommittee for the preparation of Law Amendments concerning the Rules of Procedure of the Chamber of Deputies
+    abb : PJŘ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.ISCP.128
+Role : subcommittee
+Name :
+    cs : Podvýbor pro integrovaný záchranný systém a civilní nouzové plánování
+    en : Subcommittee for an Integrated Rescue System and Emergency Civil Planning
+    abb : ISCP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.LPS.131
+Role : subcommittee
+Name :
+    cs : Podvýbor pro aplikaci Listiny základních práv a svobod
+    en : Subcommittee on Charter of Fundamental Human Rights and Freedoms Application
+    abb : LPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.NAR.130
+Role : subcommittee
+Name :
+    cs : Podvýbor pro národnosti
+    en : Subcommittee for Nationality
+    abb : NAR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.MEL
+Role : subcommittee
+Name :
+    cs : Podvýbor pro mediální legislativu
+    en : Subcommittee for Media Legislation
+    abb : PpML
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLVH
+Role : subcommittee
+Name :
+    cs : Podvýbor pro lesní a vodní hospodářství
+    en : Subcommittee on Forestry and Water Management
+    abb : PLVH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVPC
+Role : subcommittee
+Name :
+    cs : Podvýbor pro potravinářství a veterinární činnost
+    en : Subcommittee on the Food Industry and Veterinary Care
+    abb : PVPC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PIZS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro integrovaný záchranný systém a pro prevenci kriminality
+    en : Subcommittee on Integrated Emergency System and Crime Prevention
+    abb : PIZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPACR.644
+Role : subcommittee
+Name :
+    cs : Podvýbor pro profesionalizaci AČR
+    en : Subcommittee on Professional Standing Army of the Czech Republic
+    abb : PPACR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POP.643
+Role : subcommittee
+Name :
+    cs : Podvýbor pro obecní policii
+    en : Subcommittee on Municipal Police
+    abb : POP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPNM
+Role : subcommittee
+Name :
+    cs : Podvýbor pro národnostní menšiny
+    en : Subcommittee on the Protection of Rights of Persons Deprived of Liberty
+    abb : PNM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POOSOT.637
+Role : subcommittee
+Name :
+    cs : Podvýbor pro obchod, ochranu spotřebitele a ochranu trhu
+    en : Subcommittee on Trade, Consumer Protection and Trade Protection
+    abb : POOSOT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPMSP.639
+Role : subcommittee
+Name :
+    cs : Podvýbor pro podporu malého a středního podnikání
+    en : Subcommittee on the Small and Medium-Size Entreprizes Support
+    abb : PPMSP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEOZSP.672
+Role : subcommittee
+Name :
+    cs : Podvýbor pro etické otázky ve zdravotnictví a v sociální péči
+    en : Subcommittee on Ethical Issues in Health and Social Care
+    abb : PEOZSP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PISOZRV.668
+Role : subcommittee
+Name :
+    cs : Podvýbor pro informatiku v sociální oblasti a zdravotnictví a pro racionální vedení zdravotnické dokumentace
+    en : Subcommittee on Computerization in Social and Health Areas and Effective Management of Health Records
+    abb : PISOZRV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKZLPUZ.664
+Role : subcommittee
+Name :
+    cs : Podvýbor pro koncepci zdravotnictví, lékovou politiku, úhradu zdravotní péče a pro zdravotnickou informatiku
+    en : Subcommittee on the Health Care Concepts, Drug Policy, Health Care Financing and Heatl Care IT System
+    abb : PKZLPUZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POSOS.667
+Role : subcommittee
+Name :
+    cs : Podvýbor pro otázky sociálně ohrožených skupin
+    en : Subcommittee on the Socially Vulnerable Groups
+    abb : POSOS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPDT.669
+Role : subcommittee
+Name :
+    cs : Podvýbor pro problematiku drog a toxikománie
+    en : Subcommittee on Drugs and Drug Addiction Issues
+    abb : PPDT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro regionální a přeshraniční spolupráci
+    en : Subcommittee on Regional and Cross-border Cooperation
+    abb : PPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRDS.671
+Role : subcommittee
+Name :
+    cs : Podvýbor pro reformu důchodového systému a reformu nemocenského pojištění
+    en : Subcommittee on the Reform of the Pension Scheme and Sickness Insurance
+    abb : PRDS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVEV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vnější ekonomické vztahy
+    en : Subcommittee on Foreign Economic Relations
+    abb : PVEV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PZPOSPS.670
+Role : subcommittee
+Name :
+    cs : Podvýbor pro zdravotně postižené a občany se sníženou pracovní schopností
+    en : Subcommittee on Persons with Disabilities and with Impaired Ability to Work
+    abb : PZPOSPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PISVS.674
+Role : subcommittee
+Name :
+    cs : Podvýbor pro informační systémy ve veřejné správě
+    en : Subcommittee on Information Systems in Public Administration
+    abb : PISVS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPK
+Role : subcommittee
+Name :
+    cs : Podvýbor pro problematiku korupce
+    en : Subcommittee on Corruption Issues
+    abb : PPK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PFHUSVF
+Role : subcommittee
+Name :
+    cs : Podvýbor pro finanční hospodaření územních samospráv a pro využívání fondů Evropské unie
+    en : Subcommittee on the Financial Management of Regional Governments and for the use of European Union Funding
+    abb : PFHÚSVF
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.FP
+Role : subcommittee
+Name :
+    cs : Finanční podvýbor
+    en : Subcommittee on Finance
+    abb : PF
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPJ
+Role : subcommittee
+Name :
+    cs : Podvýbor pro justici
+    en : Subcommittee on Judicial System
+    abb : PJ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PMRVZ
+Role : subcommittee
+Name :
+    cs : Podvýbor pro myslivost, rybářství, včelařství, zahrádkářství a chovatelství
+    en : Subcommittee on Gamekeeping, Fisheries, Apiculture, Gardening and Animal Husbandry
+    abb : PMRVZC
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSAFAU
+Role : subcommittee
+Name :
+    cs : Podvýbor pro státní aktiva a pasiva a činnost Finančně analytického útvaru
+    en : Subcommittee on the state-owned assets, Liabilities and Activities of the Financial Analytical Office
+    abb : PSAFAU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVLK.734
+Role : subcommittee
+Name :
+    cs : Podvýbor pro letectví a kosmonautiku
+    en : Subcommittee on Aviation and Astronautics
+    abb : PVLK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.Pisigik.737
+Role : subcommittee
+Name :
+    cs : Podvýbor pro informační společnost, informační gramotnost a informační a komunikační technologie
+    en : Subcommittee on Information Society, Information Literacy and ICT
+    abb : Pisigik
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVKM.739
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kriminalitu mládeže
+    en : Subcommittee on Juvenile Delinquency
+    abb : PVKM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKML.775
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kulturu a mediální legislativu
+    en : Subcommittee on Culture and Media Legislation
+    abb : PKML
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PM
+Role : subcommittee
+Name :
+    cs : Podvýbor pro mládež a sport
+    en : Subcommittee on Youth and Sports
+    abb : PM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PFPZP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro financování péče o životní prostředí
+    en : Subcommittee on Environmental Finance
+    abb : PFŽP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKOVM.784
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kontrolu obchodu s vojenským materiálem
+    en : Subcommittee on Oversight over Trade in Military Goods
+    abb : PKOVM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKPUR.785
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kontrolu plnění úkolů reformy AČR
+    en : Subcommittee on Oversight over the Implementation of Reform of the Armed Forces of the Czech Republic
+    abb : PKPÚR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POPK
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ochranu přírody a krajiny
+    en : Subcommittee on Nature and Countryside Conservation
+    abb : POPK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSO
+Role : subcommittee
+Name :
+    cs : Podvýbor pro suroviny, odpady, obnovitelné zdroje a ochranu klimatu
+    en : Subcommittee on Raw Materials, Waste, Renewable Resources and Protection of the Climate
+    abb : PSO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PDR.851
+Role : subcommittee
+Name :
+    cs : Podvýbor pro důchodovou reformu
+    en : Subcommittee on Pension Reform
+    abb : PDR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEZ
+Role : subcommittee
+Name :
+    cs : Podvýbor pro elektronizaci ve zdravotnictví
+    en : Subcommittee on computerisation in the Health Care
+    abb : PEZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PISO.781
+Role : subcommittee
+Name :
+    cs : Podvýbor pro investice v sociální oblasti
+    en : Subcommittee on Investment in Social Care
+    abb : PISO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POFSR.778
+Role : subcommittee
+Name :
+    cs : Podvýbor pro oblasti financované ze státního rozpočtu - výzkum, investice, dotace
+    en : Subcommittee on Public Financing of Research, Investments and Grants
+    abb : POFSR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPCOZ.779
+Role : subcommittee
+Name :
+    cs : Podvýbor pro problematiku civilizačních onemocnění a závislostí
+    en : Subcommittee on Modern Civilization Illnesses and Addictions
+    abb : PPCOZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PZPSVS.780
+Role : subcommittee
+Name :
+    cs : Podvýbor pro zdravotně postižené a sociálně vyloučené skupiny
+    en : Subcommittee on Disabled Persons and Socially Disadvantaged Groups
+    abb : PZPSVS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro podnikatelské prostředí
+    en : Subcommittee on Business Environment
+    abb : PP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRRVFEU.787
+Role : subcommittee
+Name :
+    cs : Podvýbor pro regionální rozvoj a využívání fondů EU
+    en : Subcommittee on Regional Development and on use of European Union funding
+    abb : PRRVFEU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVSIS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro veřejnou správu a informační systémy
+    en : Subcommittee on Public Administration and Information Systems
+    abb : PVSIS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PK.789
+Role : subcommittee
+Name :
+    cs : Podvýbor pro krajany
+    en : Subcommittee on Compatriots Living Abroad
+    abb : PK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKS.793
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kontrolní systémy
+    en : Subcommittee on Control Systems
+    abb : PKS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PL.794
+Role : subcommittee
+Name :
+    cs : Podvýbor pro legislativu
+    en : Subcommittee on Legislation
+    abb : PL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVKHVS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kontrolu hospodaření veřejného sektoru
+    en : Subcommittee on Public Sector Audit
+    abb : KHVS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PCPREU.822
+Role : subcommittee
+Name :
+    cs : Podvýbor pro české předsednictví Rady EU
+    en : Subcommittee on the Czech Presidency of the Council of the European Union
+    abb : PČPREU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEF
+Role : subcommittee
+Name :
+    cs : Podvýbor pro evropské fondy
+    en : Subcommittee on European Union Funding
+    abb : PEF
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PCDCS.829
+Role : subcommittee
+Name :
+    cs : Podvýbor pro činnost daňové a celní správy
+    en : Subcommittee on the work of the Tax and Customs Administrations
+    abb : PČDCS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PFTL.830
+Role : subcommittee
+Name :
+    cs : Podvýbor pro finanční trhy a loterie
+    en : Subcommittee on Financial Markets and Lotteries
+    abb : PFTL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSK.859
+Role : subcommittee
+Name :
+    cs : Podvýbor pro strategie a koncepce
+    en : Subcommittee on Strategies and Concepts
+    abb : PSK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKPFACR.853
+Role : subcommittee
+Name :
+    cs : Podvýbor pro kontrolu programového financování AČR
+    en : Subcommittee on Oversight over Project Financing of the Armed Forces of the Czech Republic
+    abb : PKPFAČR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ochranu spotřebitele
+    en : Subcommittee on Consumer Protection
+    abb : POS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVVLK
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vědu, výzkum, letectví a kosmonautiku
+    en : Subcommittee on Science, Research, Aviation and Astronautics
+    abb : PVVLK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PE
+Role : subcommittee
+Name :
+    cs : Podvýbor pro energetiku
+    en : Subcommittee on Power Engineering
+    abb : PE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro legislativní podněty veřejného ochránce práv a Evropský soud pro lidská práva
+    en : Subcommittee on Public Defender of Rights Legislative Incentives
+    abb : PLP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVL.914
+Role : subcommittee
+Name :
+    cs : Podvýbor pro volební legislativu
+    en : Subcommittee on Election Legislation
+    abb : PVL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POMP.923
+Role : subcommittee
+Name :
+    cs : Podvýbor pro obecní a městské policie
+    en : Subcommittee on Municipal and City Police
+    abb : POMP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PBPFT
+Role : subcommittee
+Name :
+    cs : Podvýbor pro bankovnictví, pojišťovnictví a finanční trhy
+    en : Subcommittee on Banking, Insurance and Capital Markets
+    abb : PBPFT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PDCL
+Role : subcommittee
+Name :
+    cs : Podvýbor pro daně, cla a loterie
+    en : Subcommittee on Taxation, Customs and Lotteries
+    abb : PDCL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PFUSVPE
+Role : subcommittee
+Name :
+    cs : Podvýbor pro financování územních samospráv a využívání prostředků Evropské unie
+    en : Subcommittee on Financial Management of Teritorial Self-governing Units and European Funding Use
+    abb : PFMSPEU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PCR
+Role : subcommittee
+Name :
+    cs : Podvýbor pro cestovní ruch
+    en : Subcommittee on Tourism
+    abb : PCR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLKS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro legislativu a kontrolní systémy
+    en : Subcommittee on Legislation and Control Systems
+    abb : PLKS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLVHP.983
+Role : subcommittee
+Name :
+    cs : Podvýbor pro lesní a vodní hospodářství a potravinářství
+    en : Subcommittee on Forestry and Water Management and Food Industry
+    abb : PLVHP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro regionální školství
+    en : Subcommitte on Regional Education
+    abb : PRS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PURFVS.986
+Role : subcommittee
+Name :
+    cs : Podvýbor pro územní rozvoj a financování veřejné správy
+    en : Subcommittee on Territorial Development and Financial Management of Public Administration
+    abb : PURFVS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PACR
+Role : subcommittee
+Name :
+    cs : Podvýbor pro strategické koncepce a reformu AČR
+    en : Subcommittee on Strategic Targets and Reform of the Army
+    abb : PSKACR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PAMO
+Role : subcommittee
+Name :
+    cs : Podvýbor pro akvizice Ministerstva obrany, obchod s vojenským materiálem a inovace AČR
+    en : Subcommittee on Defence Acquisitions, Military Equipment Trade and Innovation of the Army of the Czech Republic
+    abb : PAMO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POPSBS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro obecní policie a soukromé bezpečnostní služby
+    en : Subcommittee on Municipal Police Forces and Private Security Services
+    abb : OPSBS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRPCR.991
+Role : subcommittee
+Name :
+    cs : Podvýbor pro reformu Policie ČR
+    en : Subcommittee on the Refrom of the Police of the Czech Republic
+    abb : PRPČR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PZP.1004
+Role : subcommittee
+Name :
+    cs : Podvýbor pro oblast zdravotní péče, vzdělávání a prevenci
+    en : Subcommittee on Health Care, Training and Prevention Issues
+    abb : PZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PBSCR.1019
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vytváření bezpečnostní strategie České republiky a zbrojní politiku
+    en : Subcommittee on National Security Strategy Concept and Armament Policy
+    abb : PBSCR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PKPCR.1018
+Role : subcommittee
+Name :
+    cs : Podvýbor pro styky s krajany, prezentaci České republiky v zahraničí a vnější ekonomické vztahy
+    en : Subcommittee on the Czech Friendship Groups, Presentation of the Czech Republic abroad and Foreign Economic Relations
+    abb : PKPCR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEKICTP.1023
+Role : subcommittee
+Name :
+    cs : Podvýbor pro elektronické komunikace a ICT průmysl
+    en : Subcommittee on Electronic Communication and ICT Industry
+    abb : PEKICTP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POZPSP.1027
+Role : subcommittee
+Name :
+    cs : Podvýbor pro osoby se zdravotním postižením a sociálně potřebné
+    en : Subcommittee on the Persons with Disabilities and the Socially Needy
+    abb : POZPSP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPPZ.1025
+Role : subcommittee
+Name :
+    cs : Podvýbor pro pracovní právo a zaměstnanost
+    en : Subcommittee on Labour Law and Employment
+    abb : PPPZ
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSPS.1026
+Role : subcommittee
+Name :
+    cs : Podvýbor pro sociálně pojistné systémy
+    en : Subcommittee on Social Security Systems
+    abb : PSPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPCR
+Role : subcommittee
+Name :
+    cs : Podvýbor pro Policii České republiky, obecní policii a soukromé bezpečnostní služby
+    en : Subcommittee on Police of the Czech Republic, Municipal Police and Private Security Services
+    abb : PPČR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEZZPLP.1162
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ekonomiku ve zdravotnictví, zdravotní pojištění a lékovou politiku
+    en : Subcommittee on Healthcare Economy, Health Insurance and Medicine Policy
+    abb : PEZZPLP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POZPVP.1161
+Role : subcommittee
+Name :
+    cs : Podvýbor pro oblast zdravotní péče, vzdělávání a prevenci
+    en : Subcommittee on Healthcare, Education and Prevention
+    abb : POZPVP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEFPS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro evropské fondy a přeshraniční spolupráci
+    en : Subcommittee on European Funds and Cross-boarder Cooperation
+    abb : PEFPS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PTOK.1220
+Role : subcommittee
+Name :
+    cs : Podvýbor pro technickou ochranu přírody
+    en : Subcommittee on Technical Environmental Protection
+    abb : PTOK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PICTPEG.1227
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ICT průmysl a e-Government
+    en : Subcommittee on ICT Industry and e-Government
+    abb : PICTPEG
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PILK.1226
+Role : subcommittee
+Name :
+    cs : Podvýbor pro inovace, letectví a kosmonautiku
+    en : Sobcommittee on Innovation, Aviation and Astronautics
+    abb : PILK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PJS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro justici a soudní samosprávu
+    en : Subcommitte on Justice System and Court Administration
+    abb : PJSS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro potravinářství, veterinární činnost a živočišnou výrobu
+    en : Subcommittee on Food Industry, Veterinary Medicine and Animal Production
+    abb : PPVČŽV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PUCR.1237
+Role : subcommittee
+Name :
+    cs : Podvýbor pro Ústavu České republiky a parlamentní procedury
+    en : Subcommittee on the Constitution of the Czech Republic and Parliamentary Procedures
+    abb : PUCR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVSEG.1232
+Role : subcommittee
+Name :
+    cs : Podvýbor pro veřejnou správu a E-Government
+    en : Subcommittee on Public Administration and E-Government
+    abb : PVSEG
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPPSZS.1229
+Role : subcommittee
+Name :
+    cs : Podvýbor pro předškolní a základní školství
+    en : Subcommittee on Preschool and Primary Education
+    abb : PPPSZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSSVOS.1228
+Role : subcommittee
+Name :
+    cs : Podvýbor pro střední a vyšší odborné školství
+    en : Subcommittee on Secondary nad Vocational Education
+    abb : PSSVOS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.subcommitteeOnDevelopmentAndCooperation
+Role : subcommittee
+Name :
+    cs : Podvýbor pro rozvojovou spolupráci
+    en : Subcommittee on Development and Cooperation
+    abb : PRS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PNDS.1235
+Role : subcommittee
+Name :
+    cs : Podvýbor pro nepojistné dávkové systémy, zdravotně postižené, seniory a sociálně ohrožené skupiny
+    en : Subcommittee on Means-tested Benefits, Disabled and Senior Citizens and Disadvantaged Vulnerable Groups
+    abb : PNDS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPL.1236
+Role : subcommittee
+Name :
+    cs : Podvýbor pro pracovní legislativu, zaměstnanost a činnost Úřadu práce
+    en : Subcommittee on Work Legislation, Employment and Activities of State Employment Office
+    abb : PPL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSSDR.1234
+Role : subcommittee
+Name :
+    cs : Podvýbor pro sociálně pojistné systémy a důchodovou reformu
+    en : Subcommittee on Social Security Systems and Pension Scheme Reform
+    abb : PSSDR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POBP.1249
+Role : subcommittee
+Name :
+    cs : Podvýbor pro obrannou a bezpečnostní politiku a strategické koncepce ČR
+    en : Subcommittee on Defence and Security Policy; Strategic Concept for CR
+    abb : POBP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVV
+Role : subcommittee
+Name :
+    cs : Podvýbor pro válečné veterány
+    en : Subcommittee on War Veterans
+    abb : PVV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PMAP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro migraci a azylovou politiku
+    en : Subcommittee on Migration and Asylum Policy
+    abb : PMAP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PIT
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ICT, telekomunikace a digitální ekonomiku
+    en : Subcommittee on ICT, Telecommunication and Digital Economy
+    abb : PITDE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLVP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro letectví a vesmírný program
+    en : Subcommittee on Aviation and Space Program
+    abb : PLVP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVVI
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vědu, výzkum a inovace
+    en : Subcommittee on Science, Research and Innovations
+    abb : PVVI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLK.1352
+Role : subcommittee
+Name :
+    cs : Podvýbor pro lékovou politiku, racionální využití farmakoterapie a přístrojové techniky
+    en : Subcommittee on Medicines Policies, Sensible Use of Farmacology and Instrumentation
+    abb : PLK
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PNLP.1349
+Role : subcommittee
+Name :
+    cs : Podvýbor pro implementaci nových léčebných a vyšetřovacích postupů do praxe, propojení vědy a praxe
+    en : Subcommittee on Implementation of New Medical Treatment and Examination into Practice, combining Science and Practice
+    abb : PNLP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PV.1350
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vzdělávání ve zdravotnictví, včetně nelékařských pracovníků
+    en : Subcommittee on Education in Health Care, Including Non-medical Staff
+    abb : PV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PE.1347
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ekonomiku ve zdravotnictví, zdravotní pojištění a přímo řízené organizace
+    en : Subcommittee on Healthcare Economy, Health Insurance and Directly Controlled Organizations
+    abb : PE
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPP.1348
+Role : subcommittee
+Name :
+    cs : Podvýbor pro preventivní programy, přednemocniční zdravotní péči a práva pacientů
+    en : Subcommittee on Preventive Programmes, Prehospital Health Care and Patients' Rights
+    abb : PPP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POP.1373
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ochranu práv osob omezených na svobodě
+    en : Subcommittee on the Protection of Rights of Persons Deprived of Liberty
+    abb : POP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSSM.1374
+Role : subcommittee
+Name :
+    cs : Podvýbor pro svobodu slova a média
+    en : Subcommittee on Freedom of Speech and Media
+    abb : PSSM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PMVA
+Role : subcommittee
+Name :
+    cs : Podvýbor pro mládež a volnočasové aktivity
+    en : Subcommittee on Youth and Leisure Activities
+    abb : PMVA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PNVP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro náhradní výchovnou péči
+    en : Subcommittee on Substitute Care
+    abb : PNVP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro sport
+    en : Subcommittee on Sport
+    abb : PS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSK
+Role : subcommittee
+Name :
+    cs : Podvýbor pro obrannou, kybernetickou a bezpečnostní politiku a strategické koncepce ČR
+    en : Subcommittee on Defence, Cybernetic and Security Policy and Strategic Conceptions for CR
+    abb : POKBP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro sociální služby a osoby zdravotně postižené
+    en : Subcommittee on Social Services and Physically Disabled Persons
+    abb : PSSOZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PSZP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro sociálně zdravotní pomezí
+    en : Subcommittee on Common Issues of Social and Health Areas
+    abb : PSZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PTOZP
+Role : subcommittee
+Name :
+    cs : Podvýbor pro technickou ochranu životního prostředí
+    en : Subcommittee on Technical Protection of Environment
+    abb : PTOŽP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PIT.1372
+Role : subcommittee
+Name :
+    cs : Podvýbor pro informační technologie a dávkové systémy
+    en : Subcommittee on Information Technologies and Benefit Systems
+    abb : PIT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLH
+Role : subcommittee
+Name :
+    cs : Podvýbor pro lesní hospodářství
+    en : Subcommittee on Forestry Management
+    abb : PLH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVH
+Role : subcommittee
+Name :
+    cs : Podvýbor pro vodní hospodářství
+    en : Subcommittee on Water Management
+    abb : PVH
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PDJESB.1383
+Role : subcommittee
+Name :
+    cs : Podvýbor pro digitalizaci justice a e-Sbírku
+    en : Subcommittee on Digitalisation in Justice and E-collection
+    abb : PDJESB
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEIO.1382
+Role : subcommittee
+Name :
+    cs : Podvýbor pro problematiku exekucí, insolvencí a oddlužení
+    en : Subcommitte on Executions, Insolvency and Debt Deleverage
+    abb : PEIO
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVEG
+Role : subcommittee
+Name :
+    cs : Podvýbor pro e – Government
+    en : Subcommittee on e-Government
+    abb : PEG
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PHZS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro Hasičský záchranný sbor České republiky
+    en : Subcommittee on Fire Rescue Service of the Czech Republic
+    abb : PHZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PUR.1397
+Role : subcommittee
+Name :
+    cs : Podvýbor pro udržitelný rozvoj
+    en : Subcommittee on Sustainable Development
+    abb : PUR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PZZS
+Role : subcommittee
+Name :
+    cs : Podvýbor pro zdravotnické záchranné služby
+    en : Subcommittee on Ambulance Services
+    abb : PZZS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRT
+Role : subcommittee
+Name :
+    cs : Podvýbor pro regiony v transformaci
+    en : Subcommittee on Regions in Transition
+    abb : PPRT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PDSN.1588
+Role : subcommittee
+Name :
+    cs : Podvýbor pro problematiku domácího a sexuálního násilí
+    en : Subcommittee on Domestic and Sexual Violence
+    abb : PDSN
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPEI.1586
+Role : subcommittee
+Name :
+    cs : Podvýbor pro problematiku exekucí a insolvencí
+    en : Subcommittee on Executions and Insolvency
+    abb : PPEI
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PRSCV.1580
+Role : subcommittee
+Name :
+    cs : Podvýbor pro regionální školství a celoživotní učení
+    en : Subcommitte on Regional Education and Lifelong Learning
+    abb : PRSCV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEL.1596
+Role : subcommittee
+Name :
+    cs : Podvýbor pro environmentální legislativu EU
+    en : Subcommittee on EU Environmental Legislation
+    abb : PEL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEZEZL.1622
+Role : subcommittee
+Name :
+    cs : Podvýbor pro elektronizaci ve zdravotnictví a evropskou zdravotní legislativu
+    en : Subcommittee on Electronization in Health Care and EU Health Legislation
+    abb : PEZEZL
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PFZZP.1618
+Role : subcommittee
+Name :
+    cs : Podvýbor pro oblast financování zdravotnictví a zdravotní pojištění
+    en : Subcommittee on Health Care Financing and Health Insurance
+    abb : PFZZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PLPPTZP.1623
+Role : subcommittee
+Name :
+    cs : Podvýbor pro lékovou politiku, přístrojovou techniku a zdravotnické prostředky
+    en : Subcommittee on Pharmaceutical Policy, Instrumentation and Medical Devices
+    abb : PLPPTZP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POLP.1626
+Role : subcommittee
+Name :
+    cs : Podvýbor pro ochranu lidských práv
+    en : Subcommittee on Protection of Human Rights
+    abb : POLP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.POSPVVV.1625
+Role : subcommittee
+Name :
+    cs : Podvýbor pro oblast specializačního a profesního vzdělávání, vědu a výzkum
+    en : Subcommittee on Specialist and Professional Education, Science, and Research
+    abb : POSPVVV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPZILVM.1620
+Role : subcommittee
+Name :
+    cs : Podvýbor pro oblast populačního zdraví, implementaci nových léčebných a vyšetřovacích metod
+    en : Subcommittee on Population Health, Implementation of New Treatment and Examination Methods
+    abb : PPZILVM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PVZEP.1619
+Role : subcommittee
+Name :
+    cs : Podvýbor pro veřejné zdravotnictví, epidemiologii a prevenci
+    en : Subcommittee on Public Health Care, Epidemiology and Prevention
+    abb : PVZEP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PEFPSZT.1608
+Role : subcommittee
+Name :
+    cs : Podvýbor pro evropské fondy, přeshraniční spolupráci a zelenou transformaci
+    en : Subcommittee on EU Funds, Cross-border Cooperation and Green Transition
+    abb : PEFPSZT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PITDSPU.1631
+Role : subcommittee
+Name :
+    cs : Podvýbor pro informační technologie, dávkové systémy a problematiku Úřadu práce
+    en : Subcommittee on Information Technologies, Social Benefit Systems and Employment Administration
+    abb : PITDSPU
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.SVLZLVT.1633
+Role : subcommittee
+Name :
+    cs : Podvýbor pro sociálně vyloučené lokality a začleňování lidí po výkonu trestu
+    en : Subcommittee on Socially Excluded Localities and Integration of Former Inmates
+    abb : SVLZLVT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PMSS.1641
+Role : subcommittee
+Name :
+    cs : Podvýbor pro média a svobodu slova
+    en : Subcommittee on Media and Freedom of Speech
+    abb : PMSS
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PBPV.1635
+Role : subcommittee
+Name :
+    cs : Podvýbor pro bytovou politiku a výstavbu
+    en : Subcommittee on Housing Policy and Construction
+    abb : PBPV
+Orientations :
+Missing information on political orientation.
+###
+OrgID : subcommittee.PPD.1717
+Role : subcommittee
+Name :
+    cs : Podvýbor pro podporu demokracie a lidských práv v zahraničí
+    abb : PPD
+Orientations :
+Missing information on political orientation.
+###
+OrgID : supervisoryCommission.DKNSA.1725
+Role : institution
+Name :
+    cs : Dozorčí komise Národní sportovní agentury
+    abb : DKNSA
+Orientations :
+Missing information on political orientation.
+###
+OrgID : workingGroup.PSNM.729
+Role : workingGroup
+Name :
+    cs : Pracovní skupina pro řešení problematiky nepotřebného majetku a ekologické likvidace nepotřebné munice Ministerstva obrany ČR
+    en : Working Group for resolving the problem of unneeded property and ecological disposal of unneeded munitions of the Ministry of Defense of the Czech Republic
+    abb : PSNM
+Orientations :
+Missing information on political orientation.
+###
+OrgID : workingGroup.PSJNRT.916
+Role : workingGroup
+Name :
+    cs : Pracovní skupina Parlamentu pro jednání s poslanci Národní rady Rakouska o otázkách souvisejících s provozem jaderné elektrárny Temelín
+    en : Working Group of the Parliament for discussion with Members of National Council of Austria concerning Nuclear Power Plant Temelin
+    abb : PSJNRT
+Orientations :
+Missing information on political orientation.
+###
+OrgID : workingGroup.ESDNP.1064
+Role : workingGroup
+Name :
+    cs : Expertní skupina pro řešení problematiky definice nároku pacienta (standardu a nadstandardu)
+    en : Group of Experts on Patient Standard of Care Definitions
+    abb : ESDNP
+Orientations :
+Missing information on political orientation.
+###
+OrgID : workingGroup.NSLCR.1095
+Role : workingGroup
+Name :
+    cs : Pracovní skupina k problematice zvyšování nájmů LČR pod sportovišti
+    en : Work Group on Rent Rise of LČR at Sporting Grounds
+    abb : NSLCR
+Orientations :
+Missing information on political orientation.
+###
+OrgID : workingGroup.PSPC.1096
+Role : workingGroup
+Name :
+    cs : Pracovní skupina k problematice průvodcovské činnosti
+    en : Work Group on Tour Guide Activities
+    abb : PSPC
+Orientations :
+Missing information on political orientation.

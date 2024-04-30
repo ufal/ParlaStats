@@ -1,0 +1,632 @@
+***
+Speech ps2017-004-01-017-002.u4 given by #AdamKalous.1979 at 2017-12-12
+tokens: 217
+sentences: 7
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-007-01-001-001.u4 given by #AdamKalous.1979 at 2018-02-27
+tokens: 298
+sentences: 12
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-007-01-001-001.u14 given by #AdamKalous.1979 at 2018-02-27
+tokens: 21
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-012-04-001-047.u6 given by #AdamKalous.1979 at 2018-04-13
+tokens: 113
+sentences: 3
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-012-04-001-047.u8 given by #AdamKalous.1979 at 2018-04-13
+tokens: 49
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-012-04-001-047.u10 given by #AdamKalous.1979 at 2018-04-13
+tokens: 19
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-012-04-001-047.u12 given by #AdamKalous.1979 at 2018-04-13
+tokens: 29
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-013-06-007-038.u12 given by #AdamKalous.1979 at 2018-05-30
+tokens: 210
+sentences: 12
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-03-002-076.u2 given by #AdamKalous.1979 at 2018-09-13
+tokens: 857
+sentences: 34
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u74 given by #AdamKalous.1979 at 2018-10-02
+tokens: 101
+sentences: 8
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u78 given by #AdamKalous.1979 at 2018-10-02
+tokens: 198
+sentences: 9
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u80 given by #AdamKalous.1979 at 2018-10-02
+tokens: 13
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u82 given by #AdamKalous.1979 at 2018-10-02
+tokens: 31
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u84 given by #AdamKalous.1979 at 2018-10-02
+tokens: 179
+sentences: 8
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u86 given by #AdamKalous.1979 at 2018-10-02
+tokens: 18
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u88 given by #AdamKalous.1979 at 2018-10-02
+tokens: 16
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-019-09-006-076.u90 given by #AdamKalous.1979 at 2018-10-02
+tokens: 39
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-020-09-002-012.u6 given by #AdamKalous.1979 at 2018-11-13
+tokens: 328
+sentences: 14
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-026-05-001-006.u18 given by #AdamKalous.1979 at 2019-01-29
+tokens: 228
+sentences: 9
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-027-04-001-103.u10 given by #AdamKalous.1979 at 2019-03-08
+tokens: 721
+sentences: 27
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-030-09-005-003.u8 given by #AdamKalous.1979 at 2019-06-18
+tokens: 414
+sentences: 25
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-030-10-002-150.u2 given by #AdamKalous.1979 at 2019-06-19
+tokens: 596
+sentences: 23
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-034-04-006-218.u38 given by #AdamKalous.1979 at 2019-09-13
+tokens: 81
+sentences: 7
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-034-08-005-020.u10 given by #AdamKalous.1979 at 2019-09-27
+tokens: 266
+sentences: 8
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-035-02-014-006.u26 given by #AdamKalous.1979 at 2019-10-16
+tokens: 173
+sentences: 6
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-035-03-003-318.u16 given by #AdamKalous.1979 at 2019-10-17
+tokens: 274
+sentences: 13
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-040-08-007-068.u2 given by #AdamKalous.1979 at 2020-01-31
+tokens: 510
+sentences: 24
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-041-05-008-025.u4 given by #AdamKalous.1979 at 2020-03-10
+tokens: 448
+sentences: 23
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u6 given by #AdamKalous.1979 at 2020-04-09
+tokens: 419
+sentences: 18
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u12 given by #AdamKalous.1979 at 2020-04-09
+tokens: 176
+sentences: 9
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u14 given by #AdamKalous.1979 at 2020-04-09
+tokens: 21
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u18 given by #AdamKalous.1979 at 2020-04-09
+tokens: 105
+sentences: 9
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u20 given by #AdamKalous.1979 at 2020-04-09
+tokens: 46
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u22 given by #AdamKalous.1979 at 2020-04-09
+tokens: 35
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u24 given by #AdamKalous.1979 at 2020-04-09
+tokens: 28
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u26 given by #AdamKalous.1979 at 2020-04-09
+tokens: 38
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-044-03-004-018.u28 given by #AdamKalous.1979 at 2020-04-09
+tokens: 10
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-01-004-004.u8 given by #AdamKalous.1979 at 2020-07-09
+tokens: 367
+sentences: 14
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u50 given by #AdamKalous.1979 at 2020-07-10
+tokens: 27
+sentences: 3
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u54 given by #AdamKalous.1979 at 2020-07-10
+tokens: 47
+sentences: 5
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u56 given by #AdamKalous.1979 at 2020-07-10
+tokens: 30
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u58 given by #AdamKalous.1979 at 2020-07-10
+tokens: 22
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u60 given by #AdamKalous.1979 at 2020-07-10
+tokens: 33
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u62 given by #AdamKalous.1979 at 2020-07-10
+tokens: 30
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u64 given by #AdamKalous.1979 at 2020-07-10
+tokens: 28
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u66 given by #AdamKalous.1979 at 2020-07-10
+tokens: 25
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u68 given by #AdamKalous.1979 at 2020-07-10
+tokens: 28
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u70 given by #AdamKalous.1979 at 2020-07-10
+tokens: 44
+sentences: 3
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u72 given by #AdamKalous.1979 at 2020-07-10
+tokens: 36
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u74 given by #AdamKalous.1979 at 2020-07-10
+tokens: 34
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u76 given by #AdamKalous.1979 at 2020-07-10
+tokens: 24
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u78 given by #AdamKalous.1979 at 2020-07-10
+tokens: 42
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u80 given by #AdamKalous.1979 at 2020-07-10
+tokens: 41
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u82 given by #AdamKalous.1979 at 2020-07-10
+tokens: 45
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u84 given by #AdamKalous.1979 at 2020-07-10
+tokens: 52
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u86 given by #AdamKalous.1979 at 2020-07-10
+tokens: 40
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u88 given by #AdamKalous.1979 at 2020-07-10
+tokens: 32
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u90 given by #AdamKalous.1979 at 2020-07-10
+tokens: 49
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u92 given by #AdamKalous.1979 at 2020-07-10
+tokens: 50
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u94 given by #AdamKalous.1979 at 2020-07-10
+tokens: 62
+sentences: 2
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u96 given by #AdamKalous.1979 at 2020-07-10
+tokens: 37
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-056-02-001-004.u98 given by #AdamKalous.1979 at 2020-07-10
+tokens: 5
+sentences: 1
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-064-01-001-001.u16 given by #AdamKalous.1979 at 2020-11-05
+tokens: 113
+sentences: 10
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-064-01-001-001.u18 given by #AdamKalous.1979 at 2020-11-05
+tokens: 90
+sentences: 7
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-064-01-001-001.u72 given by #AdamKalous.1979 at 2020-11-05
+tokens: 129
+sentences: 8
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-064-01-001-001.u99 given by #AdamKalous.1979 at 2020-11-05
+tokens: 2398
+sentences: 119
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-064-01-001-001.u117 given by #AdamKalous.1979 at 2020-11-05
+tokens: 139
+sentences: 8
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-072-03-004-019.u12 given by #AdamKalous.1979 at 2020-12-03
+tokens: 370
+sentences: 19
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-079-02-003-348.u2 given by #AdamKalous.1979 at 2021-01-20
+tokens: 1004
+sentences: 54
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-079-02-003-348.u40 given by #AdamKalous.1979 at 2021-01-20
+tokens: 229
+sentences: 14
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-087-02-003-468.u4 given by #AdamKalous.1979 at 2021-03-03
+tokens: 339
+sentences: 14
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-095-01-002-999.u22 given by #AdamKalous.1979 at 2021-04-01
+tokens: 112
+sentences: 9
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-095-01-002-999.u64 given by #AdamKalous.1979 at 2021-04-01
+tokens: 196
+sentences: 12
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-095-01-002-999.u74 given by #AdamKalous.1979 at 2021-04-01
+tokens: 1387
+sentences: 66
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-095-01-003-002.u10 given by #AdamKalous.1979 at 2021-04-01
+tokens: 110
+sentences: 3
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-095-01-004-003.u2 given by #AdamKalous.1979 at 2021-04-01
+tokens: 59
+sentences: 4
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-098-10-002-999.u22 given by #AdamKalous.1979 at 2021-05-05
+tokens: 179
+sentences: 6
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-104-01-004-004.u2 given by #AdamKalous.1979 at 2021-05-25
+tokens: 425
+sentences: 25
+named entity refferences: 0
+***
+
+###
+***
+Speech ps2017-104-01-004-004.u22 given by #AdamKalous.1979 at 2021-05-25
+tokens: 35
+sentences: 3
+named entity refferences: 0
+***
+
+###
