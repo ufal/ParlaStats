@@ -9,7 +9,7 @@ import xml.dom.minidom
 
 from personParser import personParser
 from orgParser import organisationParser
-
+from speechParser import speechParser
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--root", type=str, default="../../ParCzech.TEI.ana/", help="Path to the corpus root file.")
@@ -18,6 +18,10 @@ class mainDriver:
     def __init__(self, args):
         self.source = args.root 
     
+    def __parse_speech_files(self):
+        speech_parser = speechParser(self.source)
+        speech_parser.parseSpeeches()
+
     def __parse_persons_file(self, file, country_code):
         person_parser = personParser(file, country_code)
         persons = person_parser.extractMetadata()
@@ -53,7 +57,9 @@ class mainDriver:
 
         persons = self.__parse_persons_file(persons_file, country_code)
         organisations = self.__parse_orgs_file(organisations_file, country_code)
-        
+        self.__parse_speech_files()
+
+
         return persons, organisations
 
 def main(args):

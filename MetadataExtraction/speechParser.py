@@ -122,7 +122,39 @@ class speechParser:
                 tokens = sentence.getElementsByTagName('name')
                 named_entity_refference_count += len(tokens)
         return named_entity_refference_count                
+    
+    def __get_relevant_tags_count(self, speech):
+        """
+        Merged method for extracting the counts of sentences, tokens and named entity
+        refferences from given utterance.
 
+        Parameters:
+        -----------
+            speech - <u> element of the Par-Czech transcript .xml file
+
+        Returns:
+            count of the <w> tags within the utterance.
+            count of the <s> tags within the utterance.
+            count of the <name> tags within the utterance.
+        --------
+            
+        """
+
+        named_entity_refferences_count = 0
+        tokens_count = 0
+        sentences_count = 0
+        segments = speech.getElementsByTagName('seg')
+        for segment in segments:
+            sentences = segment.getElementsByTagName('s')
+            sentences_count += len(sentences)
+            for sentence in sentences:
+                tokens = sentence.getElementsByTagName('w')
+                named_entities = sentence.getElementsByTagName('name')
+                tokens_count += len(tokens)
+                named_entity_refferences_count += len(named_entities)
+
+        return tokens_count, sentences_count, named_entity_refferences_count
+    
     def __process_file(self, filePath):
         """
         A method for extracting speech information from singular file.
@@ -155,10 +187,8 @@ class speechParser:
             speaker = u.getAttribute('who')
             utterance_id = u.getAttribute('xml:id')
             
-            tokens_count = self.__get_token_count(u)
-            sentences_count = self.__get_sentence_count(u)
-            named_entities_count = self.__get_named_entities_refference_count(u)
-            
+            tokens_count, sentences_count, named_entities_count = self.__get_relevant_tags_count(u)
+
             ut = Speech(tokens_count, sentences_count, named_entities_count, utterance_id, speaker, when)
             if not speaker in result.keys():
                 result[speaker] = [ut]
