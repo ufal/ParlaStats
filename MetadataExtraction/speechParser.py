@@ -44,84 +44,6 @@ class speechParser:
         self.source_dir = source_dir
         self.current_file = ""
         self.corpus_root = self.source_dir + "ParCzech.ana.xml"
-
-    def __get_token_count(self, speech):
-        """
-        A helper method for finding the token count in a given speech.
-
-        Count the <w> tag in each <s> tag in each <seg> tag of the given
-        <u> element, which I understand is element containing the transcript of one speech.
-        Eventually this method along with __get_sentence_count() and __get_named_entities_refference_count()
-        may get merged into one as these will be called quite a lot. For now though i keep them separated
-        so it is (I think) easier to observe how the file is being processed.
-
-        Parameters:
-        -----------
-            speech - <u> element of the Par-Czech transcript .xml file
-
-        Returns:
-        --------
-            cout of the <w> tag in given speech
-        """
-        tokens_count = 0
-        segments = speech.getElementsByTagName('seg')
-        for segment in segments:
-            sentences = segment.getElementsByTagName('s')
-            for sentence in sentences:
-                tokens = sentence.getElementsByTagName('w')
-                tokens_count += len(tokens)
-        return tokens_count
-
-    
-    def __get_sentence_count(self, speech):
-        """
-        A helper method for finding the token count in a given speech,
-        
-        Count the <s> tags in each <seg> tag of the given <u> element, 
-        which I understand to be the element containing the transcript of one speech.
-        Eventually this method, along with __get_token_count() and __get_named_entities_refference_count()
-        may get merged into one.
-
-        Parameters:
-        -----------
-            speech - <u> element of the Par-Czech transcript .xml file
-
-        Returns:
-        --------
-            count of the <s> tag in given speech
-        """
-        sentence_count = 0
-        segments = speech.getElementsByTagName('seg')
-        for segment in segments:
-            sentences = segment.getElementsByTagName('s')
-            sentence_count += len(sentences)
-        
-        return sentence_count
-
-    def __get_named_entities_refference_count(self, speech):
-        """
-        A helper method finding named_entity_refferences in a given speech.
-
-        Count the <name> tags which are marked to be named entities by annotations.
-        Eventually this method, along with __get_token_count() and __get_sentence_count()
-        may get merged into one.
-
-        Parameters:
-        -----------
-            speech - <u> element of the Par-Czech transcript .xml file
-
-        Returns:
-        --------
-            count of the <name> tags annotated to be named entities.
-        """
-        named_entity_refference_count = 0
-        segments = speech.getElementsByTagName('seg')
-        for segment in segments:
-            sentences = segment.getElementsByTagName('s')
-            for sentence in sentences:
-                tokens = sentence.getElementsByTagName('name')
-                named_entity_refference_count += len(tokens)
-        return named_entity_refference_count                
     
     def __get_relevant_tags_count(self, speech):
         """
@@ -143,13 +65,13 @@ class speechParser:
         named_entity_refferences_count = 0
         tokens_count = 0
         sentences_count = 0
-        segments = speech.getElementsByTagName('seg')
+        segments = speech.findall('.//seg', speech.nsmap)
         for segment in segments:
-            sentences = segment.getElementsByTagName('s')
+            sentences = segment.findall('.//s', speech.nsmap)
             sentences_count += len(sentences)
             for sentence in sentences:
-                tokens = sentence.getElementsByTagName('w')
-                named_entities = sentence.getElementsByTagName('name')
+                tokens = sentence.findall('.//w', speech.nsmap)
+                named_entities = sentence.findall('.//name', speech.nsmap)
                 tokens_count += len(tokens)
                 named_entity_refferences_count += len(named_entities)
 
@@ -169,24 +91,17 @@ class speechParser:
         """
         # Extract the information on hwen the speech was given
         result = defaultdict()
-        root = xml.dom.minidom.parse(filePath)
-        teiHeader = root.getElementsByTagName('teiHeader')[0]
-        fileDesc = teiHeader.getElementsByTagName('fileDesc')[0]
-        profileDesc = teiHeader.getElementsByTagName('settingDesc')[0]
-        settingDesc = profileDesc.getElementsByTagName('sourceDesc')[0]
-        setting = settingDesc.getElementsByTagName('setting')[0]
-        date = setting.getElementsByTagName('date')[0]
-        when = date.getAttribute('when')
+        root = (etree.parse(filePath)).getroot()
+        date = root.find('.//teiHeader/profileDesc/settingDesc/setting/date', root.nsmap)
+        when = date.get('when')
+
         
         # Extract other information
-        text = root.getElementsByTagName('text')[0]
-        body = text.getElementsByTagName('body')[0]
-        div = body.getElementsByTagName('div')[0]
-        utterances = div.getElementsByTagName('u')
+        utterances = root.findall(".//text/body/div/u", root.nsmap)
         
         for u in utterances:
-            speaker = u.getAttribute('who')
-            utterance_id = u.getAttribute('xml:id')
+            speaker = u.get('who')
+            utterance_id = u.get('{http://www.w3.org/XML/1998/namespace}id', root.nsmap)
             
             tokens_count, sentences_count, named_entities_count = self.__get_relevant_tags_count(u)
 
