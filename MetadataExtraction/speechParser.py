@@ -172,9 +172,10 @@ class speechParser:
         root = xml.dom.minidom.parse(filePath)
         teiHeader = root.getElementsByTagName('teiHeader')[0]
         fileDesc = teiHeader.getElementsByTagName('fileDesc')[0]
-        sourceDesc = fileDesc.getElementsByTagName('sourceDesc')[0]
-        bibl = sourceDesc.getElementsByTagName('bibl')[0]
-        date = bibl.getElementsByTagName('date')[0]
+        profileDesc = teiHeader.getElementsByTagName('settingDesc')[0]
+        settingDesc = profileDesc.getElementsByTagName('sourceDesc')[0]
+        setting = settingDesc.getElementsByTagName('setting')[0]
+        date = setting.getElementsByTagName('date')[0]
         when = date.getAttribute('when')
         
         # Extract other information
