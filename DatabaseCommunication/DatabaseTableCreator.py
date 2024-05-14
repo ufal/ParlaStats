@@ -1,7 +1,7 @@
 #!usr/bin/python3
 
 import psycopg2
-from DatabaseOperator import DatabaseOperator
+from DatabaseCommunication.DatabaseOperator import DatabaseOperator
 
 class DatabaseTableCreator(DatabaseOperator):
     """
@@ -13,6 +13,7 @@ class DatabaseTableCreator(DatabaseOperator):
     """
     def __init__(self, config_path="database.ini", log=False):
         super().__init__(config_path)
+        print("Database table creator connected succesfully.")
         self.log = log
     def create_tables(self):
         """
@@ -30,7 +31,7 @@ class DatabaseTableCreator(DatabaseOperator):
                     id SERIAL PRIMARY KEY,
                     person_id VARCHAR(100),
                     sex VARCHAR(1),
-                    birth VARCHAR(10)
+                    birth VARCHAR(20)
                 )
                 """,
                 """

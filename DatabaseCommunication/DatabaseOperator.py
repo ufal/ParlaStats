@@ -66,7 +66,6 @@ class DatabaseOperator:
 
         try:
             with psycopg2.connect(**config) as connection:
-                print("Database connection successful.")
                 return connection
         except (psycopg2.DatabaseError, Exception) as error:
             print(error)
