@@ -14,40 +14,43 @@ def create_tables():
     """
     commands = [
             """
+            CREATE TABLE IF NOT EXISTS Person (
+                id SERIAL PRIMARY KEY,
+                person_id VARCHAR(100),
+                sex VARCHAR(1), 
+                birth VARCHAR(10)
+            )
+            """,
+            """
             CREATE TABLE IF NOT EXISTS persName (
-                name_id SERIAL PRIMARY KEY,
+                id SERIAL PRIMARY KEY,
                 since VARCHAR(10),
                 until VARCHAR(10),
                 surname VARCHAR(100),
                 forename VARCHAR(100),
-                addname VARCHAR(100)
+                addname VARCHAR(100),
+                person_id SERIAL,
+                FOREIGN KEY (person_id)
+                    REFERENCES Person (id)
             )
             """,
             """
             CREATE TABLE IF NOT EXISTS speech (
-                speech_id VARCHAR(100) PRIMARY KEY,
+                id SERIAL PRIMARY KEY,
+                speech_id VARCHAR(100),
                 date VARCHAR(10),
                 token_count INTEGER,
                 sentence_count INTEGER,
-                named_entity_count INTEGER
-            )
-            """,
-            """
-            CREATE TABLE IF NOT EXISTS Person (
-                person_id VARCHAR(100) PRIMARY KEY,
-                sex VARCHAR(1), 
-                birth VARCHAR(10),
-                name_record_id INTEGER,
-                given_speech_id VARCHAR(100),
-                FOREIGN KEY (name_record_id)
-                    REFERENCES persName (name_id),
-                FOREIGN KEY (given_speech_id)
-                    REFERENCES speech (speech_id)
+                named_entity_count INTEGER,
+                author_id SERIAL,
+                FOREIGN KEY (author_id)
+                    REFERENCES Person (id)
             )
             """,
             """
             CREATE TABLE IF NOT EXISTS organisation (
-                organisation_id VARCHAR(100) PRIMARY KEY, 
+                id SERIAL PRIMARY KEY,
+                organisation_id VARCHAR(100), 
                 role VARCHAR(100),
                 name VARCHAR(100)
             )
@@ -58,12 +61,12 @@ def create_tables():
                 since VARCHAR(10),
                 until VARCHAR(10),
                 role VARCHAR(100),
-                person_id VARCHAR(100),
-                organisation_id VARCHAR(100),
+                person_id SERIAL,
+                organisation_id SERIAL,
                 FOREIGN KEY (person_id)
-                    REFERENCES Person (person_id),
+                    REFERENCES Person (id),
                 FOREIGN KEY (organisation_id)
-                    REFERENCES organisation (organisation_id)
+                    REFERENCES organisation (id)
             )
             """,
             ]
@@ -71,13 +74,7 @@ def create_tables():
         config = load_configuration()
         with psycopg2.connect(**config) as connection:
             with connection.cursor() as cursor:
-                for command in commands[:2]:
-                    cursor.execute(command)
-                    print(command)
-                    print("done")
-        with psycopg2.connect(**config) as connection:
-            with connection.cursor() as cursor:
-                for command in commands[2:]:
+                for command in commands:
                     cursor.execute(command)
                     print(command)
                     print("done")
