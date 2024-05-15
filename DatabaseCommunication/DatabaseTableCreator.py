@@ -28,8 +28,7 @@ class DatabaseTableCreator(DatabaseOperator):
         commands = [
                 """
                 CREATE TABLE IF NOT EXISTS Person (
-                    id SERIAL PRIMARY KEY,
-                    person_id VARCHAR(100),
+                    person_id VARCHAR(100) PRIMARY KEY,
                     sex VARCHAR(1),
                     birth VARCHAR(20)
                 )
@@ -42,9 +41,9 @@ class DatabaseTableCreator(DatabaseOperator):
                     surname VARCHAR(100),
                     forename VARCHAR(100),
                     addname VARCHAR(100),
-                    person_id SERIAL,
+                    person_id VARCHAR(100),
                     FOREIGN KEY (person_id)
-                        REFERENCES Person (id)
+                        REFERENCES Person (person_id)
                 )
                 """,
                 """
@@ -55,15 +54,14 @@ class DatabaseTableCreator(DatabaseOperator):
                     token_count INTEGER, 
                     sentence_count INTEGER,
                     named_entity_count INTEGER,
-                    author_id SERIAL, 
+                    author_id VARCHAR(100), 
                     FOREIGN KEY (author_id)
-                        REFERENCES Person (id)
+                        REFERENCES Person (person_id)
                 )
                 """,
                 """
                 CREATE TABLE IF NOT EXISTS organisation (
-                    id SERIAL PRIMARY KEY,
-                    organisation_id VARCHAR(100),
+                    organisation_id VARCHAR(100) PRIMARY KEY,
                     role VARCHAR(100),
                     name VARCHAR(100)
                 )
@@ -74,12 +72,12 @@ class DatabaseTableCreator(DatabaseOperator):
                     since VARCHAR(10),
                     until VARCHAR(10),
                     role VARCHAR(100),
-                    person_id SERIAL,
-                    organisation_id SERIAL, 
+                    person_id VARCHAR(100),
+                    organisation_id VARCHAR(100), 
                     FOREIGN KEY (person_id)
-                        REFERENCES Person (id),
+                        REFERENCES Person (person_id),
                     FOREIGN KEY (organisation_id)
-                        REFERENCES organisation (id)
+                        REFERENCES organisation (organisation_id)
                 )
                 """
                 ]

@@ -31,6 +31,14 @@ class DatabaseInserter(DatabaseOperator):
                     p.sex = 'U'
                 if len(p.birth) > 10:
                     p.birth= 'Unknown'
-                cursor.execute(PersonCommands.INSERT_ALL, (p.personID, p.sex, p.birth,))
+                cursor.execute(PersonCommands.INSERT_ALL,(p.personID, p.sex, p.birth,))
+                for name_record in p.name_records:
+                    print(name_record)
+                    cursor.execute(PersonCommands.INSERT_NAME_RECORD,(name_record.since,
+                                                                      name_record.to,
+                                                                      name_record.surname,
+                                                                      name_record.forename,
+                                                                      name_record.addname,
+                                                                      p.personID,))
             self.connection.commit()
 

@@ -12,7 +12,7 @@ class DatabaseOperator:
     database.
     """
     def __init__(self, config_path="database.ini"):
-        config = self.__load_configuration(config_path,)
+        config = self.__load_configuration(config_path)
         self.connection = self.__establish_connection(config)
 
     def __load_configuration(self, config_path="database.ini", section="postgresql"):

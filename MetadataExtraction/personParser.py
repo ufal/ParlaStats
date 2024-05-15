@@ -47,9 +47,10 @@ class PersonName:
     surname = str()
     forename = str()
     addname = str()
-    def __init__(self, since=None, to=None, surname=None, forename=None, addname=None):
+    def __init__(self,id=None, since=None, to=None, surname=None, forename=None, addname=None):
+        self.id = id
         self.since = since
-        self. to = to
+        self.to = to
         self. surname = surname
         self.forename = forename
         self.addname = addname
@@ -127,13 +128,13 @@ class Person:
 
 class personParser:
     source_dir = str()
-
     persons_dict = dict()
+    
     def __init__(self, source, country_code):
         self.source = source
         self.persons_dict = {}
         self.country_code = country_code   
-    
+        self.name_id = 0
     def __extractSex(self, person):
         """
         A helper method for finding the information on sex of the 
@@ -171,7 +172,7 @@ class personParser:
         """
         personBirth = person.getElementsByTagName('birth')
         if len(personBirth) < 1:
-            return "Missing information on birth."
+            return "Unknown"
         return personBirth[0].getAttribute('when')
     
     def __extractNameRecords(self, person):
@@ -195,11 +196,14 @@ class personParser:
             surname = name_record.getElementsByTagName("surname")[0].childNodes[0].nodeValue
             forename = name_record.getElementsByTagName("forename")[0].childNodes[0].nodeValue
             addname = name_record.getElementsByTagName("addName")
+            if not to:
+                to = "Present"
             if len(addname) > 0:
                 addname = addname[0].childNodes[0].nodeValue
             else: addname = ''
-            name = PersonName(since, to, surname, forename, addname)
+            name = PersonName(self.name_id, since, to, surname, forename, addname)
             names.append(name)
+            self.name_id += 1
         return names
 
     def __extractAffiliationRecords(self, person):
