@@ -154,7 +154,7 @@ class organisationParser:
         domtree = xml.dom.minidom.parse(self.source)
         listOrg = domtree.documentElement
         organisations = listOrg.getElementsByTagName('org')
-        
+        print(len(organisations))
         for organisation in tqdm.tqdm(organisations, leave=False, desc="Iterating through organisations"):
             orgID = organisation.getAttribute("xml:id")
             role = organisation.getAttribute("role")

@@ -77,7 +77,7 @@ class speechParser:
 
         return tokens_count, sentences_count, named_entity_refferences_count
     
-    def __process_file(self, filePath):
+    def process_file(self, filePath):
         """
         A method for extracting speech information from singular file.
         
