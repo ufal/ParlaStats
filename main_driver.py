@@ -21,16 +21,22 @@ args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/", hel
 class mainDriver:
     def __init__(self, args):
         self.source = args.root 
-        
+        self.databaseInserter = DatabaseInserter()
+    
     def __parse_speech_files(self):
         speech_parser = speechParser(self.source)
-        speech_parser.parseSpeeches()
-
+        teiCorpus = xml.dom.minidom.parse(self.source+"ParCzech.ana.xml")
+        transcript_files = teiCorpus.getElementsByTagName('xi:include')
+        for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
+            ref = elem.getAttribute("href")
+            if ref[0:2] == "ps":
+                filePath = self.source + ref
+                contents = speech_parser.process_file(filePath)
+                self.databaseInserter.insert_speeches(contents)
+                
     def __parse_persons_file(self, file, country_code):
         person_parser = personParser(file, country_code)
         persons = person_parser.extractMetadata()
-        db_inserter = DatabaseInserter()
-        db_inserter.insert_persons(persons)
         return persons
 
     def __parse_orgs_file(self, file, country_code):
@@ -67,10 +73,16 @@ class mainDriver:
         
         persons_file = self.source + includes[1].getAttribute("href")
         organisations_file = self.source + includes[0].getAttribute("href")
-
         persons = self.__parse_persons_file(persons_file, country_code)
         organisations = self.__parse_orgs_file(organisations_file, country_code)
-        #self.__parse_speech_files()
+        
+        # Insert the information into database
+        self.databaseInserter.insert_persons(persons)
+        self.databaseInserter.insert_organisations(organisations)
+        for person in persons:
+            self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
+
+        self.__parse_speech_files()
 
         return persons, organisations
 
