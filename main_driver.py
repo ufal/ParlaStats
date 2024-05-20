@@ -13,7 +13,7 @@ from MetadataExtraction.speechParser import speechParser
 
 from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
-
+from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/", help="Path to the corpus root file.")
@@ -75,15 +75,22 @@ class mainDriver:
         organisations_file = self.source + includes[0].getAttribute("href")
         persons = self.__parse_persons_file(persons_file, country_code)
         organisations = self.__parse_orgs_file(organisations_file, country_code)
-        
-        # Insert the information into database
-        self.databaseInserter.insert_persons(persons)
-        self.databaseInserter.insert_organisations(organisations)
-        for person in persons:
-            self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
+        try:
+            # Insert the information into database
+            self.databaseInserter.insert_persons(persons)
+            self.databaseInserter.insert_organisations(organisations)
+            for person in persons:
+                self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
 
-        self.__parse_speech_files()
+            self.__parse_speech_files()
 
+        except (Exception):
+            print("Database already exists skipping to querying part.")
+            pass
+        # After loading the information ito database, try some querries.
+        dq = DatabaseQuerrier("DatabaseCommunication/database.ini")
+        dq.main_loop()
+    
         return persons, organisations
 
 def main(args):
