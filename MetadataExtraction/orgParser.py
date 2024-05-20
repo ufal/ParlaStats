@@ -29,7 +29,7 @@ class Organisation:
 
     Contains the information aobut name of the political party, xml:id for reference,
     the role of the political organisation, and possibly, but not mandatory information
-    on political orientation (changes) through its existence
+    on political orientation (changes) through its existence.
     """
     name = {}
     ID = str()
@@ -154,7 +154,6 @@ class organisationParser:
         domtree = xml.dom.minidom.parse(self.source)
         listOrg = domtree.documentElement
         organisations = listOrg.getElementsByTagName('org')
-        print(len(organisations))
         for organisation in tqdm.tqdm(organisations, leave=False, desc="Iterating through organisations"):
             orgID = organisation.getAttribute("xml:id")
             role = organisation.getAttribute("role")

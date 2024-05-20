@@ -114,6 +114,11 @@ class speechParser:
         return result
     
     def __dump_contents(self, contents):
+        """
+        FOR DEBUG PURPOSES, TECHNICALLY NO LONGER NEEDED.
+
+        Method for dumping the extracted speech information into the text file.
+        """
         for key in contents.keys():
             with open(f"speeches_{key}.txt", 'a') as output:
                 for speech in contents[key]:
@@ -123,6 +128,8 @@ class speechParser:
 
     def parseSpeeches(self):
         """
+        FOR DEBUG PURPOSES, TECHNICALLY NO LONGER NEEDED. 
+
         Main method for iterating through .xml files of ParCzech corpus
         and extracting information about individual speeches.
 

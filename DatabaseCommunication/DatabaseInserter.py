@@ -39,7 +39,16 @@ class DatabaseInserter(DatabaseOperator):
     
     def __insert_name_records(self, name_records, personID, cursor):
         """
-        A method for inserting name records of a person
+        A method for inserting name records of a person.
+
+        Parameters:
+        -----------
+            name_records - list
+                list of name records for given personID (see MetadataExtraction.personParser)
+            personID - str
+                ID of the person (see MetadataExtraction.personParser)
+            cursor 
+                A tool for passing commands to the database.
         """
         for name_record in name_records:
             cursor.execute(PersonCommands.INSERT_NAME_RECORD,(name_record.since,
@@ -59,6 +68,8 @@ class DatabaseInserter(DatabaseOperator):
                 A dictionary containing infromation about the person-party affiliations.
                 For information on how this dictionary is made and what it contains 
                 see MetadataExtraction/personParser.py
+            personID - str
+                ID of the person (see MetadataExtraction.personParser)
         """
         with self.connection.cursor() as cursor:
             for affiliation_record in affiliations:

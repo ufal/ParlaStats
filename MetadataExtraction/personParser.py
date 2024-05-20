@@ -263,7 +263,6 @@ class personParser:
         domtree = xml.dom.minidom.parse(self.source)
         listPerson = domtree.documentElement
         persons = listPerson.getElementsByTagName('person')
-        print(len(persons))
         for person in tqdm.tqdm(persons, leave=False, desc="Iterating through Persons"):
             personID = person.getAttribute("xml:id")
                 

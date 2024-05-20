@@ -19,7 +19,7 @@ class DatabaseTableCreator(DatabaseOperator):
         """
         Method for creating tables in the database.
 
-        Current commands are somethong like tables so far, I know they may
+        Current commands are something like tables so far, I know they may
         be wrong or but for now I want to see if they at least somehow create
         the tables.
 
