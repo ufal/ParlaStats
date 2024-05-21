@@ -17,12 +17,14 @@ from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/", help="Path to the corpus root file.")
+args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
 
 class mainDriver:
     def __init__(self, args):
         self.source = args.root 
         self.databaseInserter = DatabaseInserter()
-    
+        self.query_file = args.query_file
+
     def __parse_speech_files(self):
         speech_parser = speechParser(self.source)
         teiCorpus = xml.dom.minidom.parse(self.source+"ParCzech.ana.xml")
@@ -44,8 +46,27 @@ class mainDriver:
         organisations = org_parser.extractMetadata()
         
         return organisations
-    
+
+    def __process_example_queries(self):
+        """
+        Exaple query loading method.
+
+        Reads example querries from a text file.
+        """
+        relevant_lines = []
+        with open(self.query_file, 'r') as q_in:
+            lines = q_in.readlines()
+            for line in lines:
+                if line[0] == 'S':
+                    relevant_lines.append(line)
+        return relevant_lines
+
     def __initialize_database(self):
+        """
+        Database initialisation method.
+
+        Creates the tables in database.
+        """
         db_table_creator = DatabaseTableCreator("DatabaseCommunication/database.ini")
         db_table_creator.create_tables()
 
@@ -60,8 +81,6 @@ class mainDriver:
         For further information on this process see the scripts
         in MetadataExtraction directory.
         """
-        # Create the database tables if they are not created yet.
-        self.__initialize_database()
 
         domtree = xml.dom.minidom.parse(self.source + "ParCzech.ana.xml")
         teiCorpus = domtree.documentElement
@@ -75,21 +94,23 @@ class mainDriver:
         organisations_file = self.source + includes[0].getAttribute("href")
         persons = self.__parse_persons_file(persons_file, country_code)
         organisations = self.__parse_orgs_file(organisations_file, country_code)
-        try:
-            # Insert the information into database
-            self.databaseInserter.insert_persons(persons)
-            self.databaseInserter.insert_organisations(organisations)
-            for person in persons:
-                self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
+        
+        # Create the database tables if they are not created yet.
+        self.__initialize_database()
+        # Insert the information into database
+        self.databaseInserter.insert_persons(persons)
+        self.databaseInserter.insert_organisations(organisations)
+        for person in persons:
+            self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
 
-            self.__parse_speech_files()
-
-        except (Exception):
-            print("Database already exists skipping to querying part.")
-            pass
+        self.__parse_speech_files()
+        
         # After loading the information ito database, try some querries.
         dq = DatabaseQuerrier("DatabaseCommunication/database.ini")
-        dq.main_loop()
+        if (self.query_file != None):
+            dq.process_querries(self.__process_example_queries())
+        else:
+            dq.main_loop()
     
         return persons, organisations
 

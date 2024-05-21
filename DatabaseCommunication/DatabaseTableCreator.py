@@ -36,8 +36,8 @@ class DatabaseTableCreator(DatabaseOperator):
                 """
                 CREATE TABLE IF NOT EXISTS persName (
                     id SERIAL PRIMARY KEY,
-                    since VARCHAR(10),
-                    until VARCHAR(10),
+                    since DATE,
+                    until DATE,
                     surname VARCHAR(100),
                     forename VARCHAR(100),
                     addname VARCHAR(100),
@@ -49,7 +49,7 @@ class DatabaseTableCreator(DatabaseOperator):
                 """
                 CREATE TABLE IF NOT EXISTS speech (
                     id SERIAL PRIMARY KEY,
-                    date VARCHAR(10),
+                    date DATE,
                     token_count INTEGER, 
                     sentence_count INTEGER,
                     named_entity_count INTEGER,
@@ -68,8 +68,8 @@ class DatabaseTableCreator(DatabaseOperator):
                 """
                 CREATE TABLE IF NOT EXISTS affiliation (
                     aff_id SERIAL PRIMARY KEY,
-                    since VARCHAR(20),
-                    until VARCHAR(20),
+                    since DATE,
+                    until DATE,
                     role VARCHAR(100),
                     person_id VARCHAR(100),
                     organisation_id VARCHAR(100), 

@@ -114,7 +114,7 @@ class Person:
         """
         for affiliation in affiliations:
             if affiliation.to == '':
-                affiliation.to = "present"
+                affiliation.to = None             
             self.affiliation_records.append(affiliation)
 
     def __str__(self):
@@ -172,7 +172,7 @@ class personParser:
         """
         personBirth = person.getElementsByTagName('birth')
         if len(personBirth) < 1:
-            return "Unknown"
+            return None         
         return personBirth[0].getAttribute('when')
     
     def __extractNameRecords(self, person):
@@ -197,7 +197,7 @@ class personParser:
             forename = name_record.getElementsByTagName("forename")[0].childNodes[0].nodeValue
             addname = name_record.getElementsByTagName("addName")
             if not to:
-                to = "Present"
+                to = None
             if len(addname) > 0:
                 addname = addname[0].childNodes[0].nodeValue
             else: addname = ''

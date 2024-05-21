@@ -16,9 +16,30 @@ class DatabaseQuerrier(DatabaseOperator):
 
     def __load_query(self):
         """
-        Method for loading the 
+        Method for loading the query from user. 
         """
         return input("Please enter the PostgreSQL format query or enter END to end the querying: \n")
+    
+    def process_querries(self, querries):
+        """
+        Method for processing example querries.
+
+        Parameters:
+            querries - [str]
+                list of querries to be executed.
+        """
+        try:
+            with self.connection.cursor() as cursor:
+                for q in querries:
+                    cursor.execute(q)
+                    print(f"Number of entries {cursor.rowcount}")
+                    row = cursor.fetchone()
+                    while row is not None:
+                        print(row)
+                        row = cursor.fetchone()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            
 
     def main_loop(self):
         """

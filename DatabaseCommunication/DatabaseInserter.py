@@ -31,8 +31,7 @@ class DatabaseInserter(DatabaseOperator):
                 p = persons[person][0]
                 if len(p.sex) > 1:
                     p.sex = 'U'
-                if len(p.birth) > 10:
-                    p.birth= 'Unknown'
+                
                 cursor.execute(PersonCommands.INSERT_ALL,(p.personID, p.sex, p.birth,))
                 self.__insert_name_records(p.name_records,p.personID, cursor)
             self.connection.commit()
@@ -81,7 +80,7 @@ class DatabaseInserter(DatabaseOperator):
             
             self.connection.commit()
     
-    def insert_organisations(self, organisations):
+    def insert_organisations(self,organisations):
         """
         A method for inserting organisations into database.
 
