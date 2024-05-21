@@ -1,0 +1,21 @@
+SELECT SUM(token_count) FROM (speech INNER JOIN person ON speech.author_id = person.person_id) WHERE sex = 'F';
+	-> 5886777 tokens in speeches given by Female politicians.
+
+SELECT SUM(token_count) FROM (speech INNER JOIN person ON speech.author_id = person.person_id) WHERE Sex = 'M';
+	-> 25218671 tokens in speeches given by Male politicians.
+
+SELECT SUM(named_entity_count) FROM (speech INNER JOIN person ON speech.author_id = person.person_id) WHERE sex='F';
+	-> 183101 named entities refered in speeches given by Female politicians.
+
+SELECT SUM(named_entity_count) FROM (speech INNER JOIN person ON speech.author_id = person.person_id) WHERE sex='M';
+	-> 922292 named entities refered in speeches given by Male politicians.
+
+SELECT p.person_id, SUM(s.token_count) AS total_tokens FROM person p JOIN speech s ON p.person_id = s.author_id GROUP BY p.person_id ORDER BY total_tokens DESC;
+	-> Length of all speeches a politician has given for each politician.
+
+	- NOTE this can be modified to comparison for certain specific politicians by adding something like:
+	  WHERE person_id in (ids of politicians selected for comparison)
+
+SELECT o.organisation_id, o.name, SUM(token_count) AS total_tokens FROM organisation o JOIN affiliation a ON o.organisation_id = a.organisation_id JOIN person p ON p.person_id = a.person_id JOIN speech s ON p.person_id = s.author_id WHERE o.role = 'politicalParty' GROUP BY o.organisation_id, o.name ORDER BY total_tokens DESC;
+	-> Length of all speeches given by politicians belonging to a particular party for all parties
+
