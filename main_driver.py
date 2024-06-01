@@ -18,7 +18,8 @@ from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/", help="Path to the corpus root file.")
 args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
-
+args_parser.add_argument("--create_tables", action="store_true", help="Set this flag if the tables are not created yet.")
+args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
 class mainDriver:
     def __init__(self, args):
         self.source = args.root 
@@ -70,7 +71,7 @@ class mainDriver:
         db_table_creator = DatabaseTableCreator("DatabaseCommunication/database.ini")
         db_table_creator.create_tables()
 
-    def main(self):
+    def main(self, create_tables, query_mode):
         """
         Entry point for extracting te data.
         
@@ -92,37 +93,42 @@ class mainDriver:
         
         persons_file = self.source + includes[1].getAttribute("href")
         organisations_file = self.source + includes[0].getAttribute("href")
-        persons = self.__parse_persons_file(persons_file, country_code)
-        organisations = self.__parse_orgs_file(organisations_file, country_code)
-        
-        # Create the database tables if they are not created yet.
-        self.__initialize_database()
-        # Insert the information into database
-        self.databaseInserter.insert_persons(persons)
-        self.databaseInserter.insert_organisations(organisations)
-        for person in persons:
-            self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
+        persons = None
+        organisations = None
+        if create_tables:
+            persons = self.__parse_persons_file(persons_file, country_code)
+            organisations = self.__parse_orgs_file(organisations_file, country_code)
+            # Create the database tables if they are not created yet.
+            self.__initialize_database()
+            # Insert the information into database
+            self.databaseInserter.insert_persons(persons)
+            self.databaseInserter.insert_organisations(organisations)
+            for person in persons:
+                self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
 
-        self.__parse_speech_files()
+            self.__parse_speech_files()
         
         # After loading the information ito database, try some querries.
-        dq = DatabaseQuerrier("DatabaseCommunication/database.ini")
-        if (self.query_file != None):
-            dq.process_querries(self.__process_example_queries())
-        else:
-            dq.main_loop()
-    
+        if query_mode:
+            dq = DatabaseQuerrier("DatabaseCommunication/database.ini")
+            if (self.query_file != None):
+                dq.process_querries(self.__process_example_queries())
+            else:
+                dq.main_loop()
+        
         return persons, organisations
 
 def main(args):
     d = mainDriver(args)
-    p,o = d.main()
+    p,o = d.main(args.create_tables, args.query_mode)
+    # Uncomment below for debugging purposes
+    """
     with open("Persons.txt", 'w') as out:
         for key in p.keys():
             print(p[key][0], file=out)
     with open("Organisations.txt", 'w') as out:
         for key in o.keys():
             print(o[key][0], file=out)
-
+    """
 if __name__ == "__main__":
     main(args_parser.parse_args())

@@ -1,6 +1,12 @@
-#!usr/bin/bash
+#!/bin/bash
 
-# Script for creating a PostgreSQL database
-# Extremely simple so far, open for improvement
-createdb -U $1 $2
+DB_NAME=$1
+
+USER_NAME=$(whoami)
+
+createdb $DB_NAME
+
+psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $USER_NAME;"
+
+echo "Database $DB_NAME created succesfully and all privileges granted to user $USER_NAME"
 
