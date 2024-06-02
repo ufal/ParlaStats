@@ -69,8 +69,93 @@ def get_comparison_male_vs_female():
 
     return send_file(img, mimetype='image/png')
 
+@app.route('/api/custom_query', methods=['POST'])
+def custom_query():
+    data = request.get_json()
+    query_type = data.get('query_type')
+    parameters = data.get('parameters', {})
+    
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    ############################################################################################
+    # SECTION 1 - gender statistics                                                            #
+    ############################################################################################
+
+    # NON-COMPARISON
+    ############################################################################################
+    if query_type == 'non_comparison_genders':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        gender = parameters.get('gender')
+        cursor.execute("""SELECT {}(s.{}) FROM speech s JOIN person p ON s.author_id = p.person_id
+                       WHERE p.sex='{}';""".format(what, target_data, gender))
+        result = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        return jsonify({f'{what} of {target_data} for gender {gender}': result})
+
+    # COMPARISON
+    ############################################################################################
+    if query_type == 'comparison_genders':
+        what_to_compare = parameters.get('what')
+        column = parameters.get('column')
+        cursor.execute("""SELECT p.sex, {}(s.{}) FROM speech s JOIN person p
+                       ON s.author_id = p.person_id GROUP BY p.sex;""".format(what_to_compare, column))
+
+        result = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        genders = [row[0] for row in result]
+        data = [row[1] for row in result]
+        plt.figure(figsize=(8,6))
+        plt.bar(genders, data, color=['pink', 'blue', 'grey'])
+        plt.xlabel("Gender")
+        plt.ylabel(f"{what_to_compare} of {column}")
+        plt.title(f"{what_to_compare} of {column} by genders")
+
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        plt.close()
+
+        return send_file(img, mimetype='image/png')
 
 
+    # TIME FRAME NON-COMPARISON
+    ############################################################################################
+    if query_type == 'non_comparison_genders_tf':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        gender = parameters.get('gender')
+        since = parameters.get('since')
+        to = parameters.get('to')
+        cursor.execute("""SELECT {}(s.{}) FROM speech s JOIN person p
+                       ON s.author_id = p.person_id
+                       WHERE p.sex = '{}' AND s.date > '{}' AND s.date < '{}';""".format(what, target_data, gender, since, to))
+        result = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        return jsonify({'result': result})
+    # TIME FRAME COMPARISON
+    ############################################################################################
+
+
+    ############################################################################################
+    # SECTION 2 - individual politicians statistics                                            #
+    ############################################################################################
+    elif query_type == 'speeches_by_member':
+        member_id = parameters.get('member_id')
+        
+        cursor.execute("""SELECT * FROM person WHERE person_id = %s""",(member_id,))
+        result = cursor.fetchall()
+        cursor.close()
+        connection.close()
+
+        return jsonify({'speeches':result})
+
+    cursor.close()
+    connection.close()
+    return jsonify({'error':'Unknown query type'}), 400
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
