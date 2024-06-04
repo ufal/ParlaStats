@@ -43,3 +43,29 @@ python3 main_driver.py --query_mode
 	- For obvious reasons I am not including my `database.ini` file into this
 	  repository
 	- If any trouble arises with this file please let me know.
+## 4. Querying using the api
+- Other way how to query the database is via api.
+- This api tries to make querying easier for non-technical user.
+- Custom queries are typed and so far only these are possible:
+	- **Time framed queries**(`tf` in their type) - allow the user to specify a time window for speeches.
+	- **Comparison queries**(`comp` in their type) - allow the user to compare multiple politicians or genders (so far)
+### 4.1 How to run the api
+- Navigate to the `ParlaStats/api` directory
+- Then launch the flask server by invoking `python3 api.py`
+- Once that is up and running, launch the client by invoking `python3 client.py`
+- Now when bouth are successfuly running, continue to querying.
+### 4.2 How to query
+- Upon launch and until terminated the client will ask you to specify desired query type
+- So far the available query types are:
+	- `genders` - single gender
+	- `genders_tf` - single gender time framed
+	- `comp_genders` - comparison based on genders
+	- `comp_genders_tf` - time framed comparison based on genders
+	- `specific_speaker` - specific politician
+	- `specific_speaker_tf` - specific politician time framed
+	- `comp_specific_speakers` - comparison of specific speakers, **>= 2**
+	- `comp_specific_speakers_tf` - time framed comparison of specific speakers **>= 2**
+- Upon entering one of these query types, the client will then ask you for all specifics it needs.
+### 4.3 Results of the query
+- Non-comparison querries return numerical value based on the query.
+- Comparison queries return bar charts for compared items.
