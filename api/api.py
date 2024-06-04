@@ -83,7 +83,7 @@ def custom_query():
 
     # NON-COMPARISON
     ############################################################################################
-    if query_type == 'non_comparison_genders':
+    if query_type == 'genders':
         what = parameters.get('what')
         target_data = parameters.get('target_data')
         gender = parameters.get('gender')
@@ -96,7 +96,7 @@ def custom_query():
 
     # COMPARISON
     ############################################################################################
-    if query_type == 'comparison_genders':
+    if query_type == 'comp_genders':
         what_to_compare = parameters.get('what')
         column = parameters.get('column')
         cursor.execute("""SELECT p.sex, {}(s.{}) FROM speech s JOIN person p
@@ -120,10 +120,9 @@ def custom_query():
 
         return send_file(img, mimetype='image/png')
 
-
     # TIME FRAME NON-COMPARISON
     ############################################################################################
-    if query_type == 'non_comparison_genders_tf':
+    if query_type == 'genders_tf':
         what = parameters.get('what')
         target_data = parameters.get('target_data')
         gender = parameters.get('gender')
@@ -136,22 +135,144 @@ def custom_query():
         cursor.close()
         connection.close()
         return jsonify({'result': result})
+
     # TIME FRAME COMPARISON
     ############################################################################################
+    if query_type == 'comp_genders_tf':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        since = parameters.get('since')
+        to = parameters.get('to')
+        cursor.execute("""SELECT p.sex, {}(s.{}) FROM speech s JOIN person p
+                       ON s.author_id = p.person_id 
+                       WHERE s.date > '{}' AND s.date < '{}'
+                       GROUP BY p.sex;""".format(what, target_data, since, to))
+
+        result= cursor.fetchall()
+        cursor.close()
+        connection.close()
+        print(result)
+        genders = [row[0] for row in result]
+        values = [row[1] for row in result]
+        plt.figure(figsize=(8,6))
+        plt.bar(genders, values, color=["pink", "blue", "grey"])
+        plt.xlabel('Gender')
+        plt.ylabel(f"{what} of {target_data}")
+        plt.title(f"{what} of {target_data} in time frame {since} - {to}")
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        plt.close()
+        
+        return send_file(img, mimetype='image/png')
 
 
     ############################################################################################
     # SECTION 2 - individual politicians statistics                                            #
     ############################################################################################
-    elif query_type == 'speeches_by_member':
-        member_id = parameters.get('member_id')
-        
-        cursor.execute("""SELECT * FROM person WHERE person_id = %s""",(member_id,))
-        result = cursor.fetchall()
+    
+    # NON-COMPARISON SPECIFIC SPEKER
+    ############################################################################################
+    elif query_type == 'specific_speaker':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        name = parameters.get('name')
+        name = name.split()
+        cursor.execute("""SELECT {}(s.{}) FROM speech s  
+                       JOIN persName n ON s.author_id = n.person_id 
+                       WHERE n.forename = '{}' AND n.surname = '{}';""".format(what, target_data, name[0], name[1]))
+
+        result = cursor.fetchone()
         cursor.close()
         connection.close()
 
-        return jsonify({'speeches':result})
+        return jsonify({'result':result})
+    
+    # NON-COMPARISON SPECIFIC SPEAKER TIME FRAME
+    ############################################################################################
+    elif query_type == 'specific_speaker_tf':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        name = parameters.get('name')
+        since = parameters.get('since')
+        to = parameters.get('to')
+        name = name.split()
+        cursor.execute("""SELECT {}(s.{}) FROM speech s 
+                       JOIN persName n ON s.author_id = n.person_id
+                       WHERE n.forename = '{}' AND n.surname = '{}'
+                       AND s.date > '{}' AND s.date < '{}';""".format(what, target_data, name[0],
+                                                                       name[1], since, to))
+        result = cursor.fetchone()
+        cursor.close()
+        connection.close()
+        return jsonify({'result':result})
+
+    # COMPARISON SPECIFIC SPEAKERS
+    ############################################################################################
+    elif query_type == 'comp_specific_speakers':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        names = parameters.get('names')
+        names = names.split(',')
+        person_ids = []
+        
+        for name in names:
+            name = name.split()
+            cursor.execute("""SELECT person_id FROM persName WHERE forename='{}' AND surname='{}'""".format(name[0], name[1]))
+            person_ids.append(cursor.fetchone()[0])
+        
+        cursor.execute("""SELECT {}(s.{}) FROM speech s JOIN persName p on s.author_id = p.person_id  
+                       WHERE s.author_id IN {} GROUP BY s.author_id""".format(what, target_data,tuple(person_ids)))
+        
+        result = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        values = [row[0] for row in result]
+        
+        plt.figure(figsize=(10,6))
+        plt.bar(names, values)
+        plt.xlabel("Speakers")
+        plt.ylabel(f"{what} of {target_data}")
+        plt.title(f"Comprison of {what} of {target_data} for specific politicians")
+        plt.xticks(rotation=45)
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        return send_file(img, mimetype='image/png')
+            
+    # COMPARISON SPECIFIC SPEAKERS TIME FRAME
+    ############################################################################################
+    elif query_type == 'comp_specific_speakers_tf':
+        what = parameters.get('what')
+        target_data = parameters.get('target_data')
+        names = parameters.get('names')
+        names = names.split(',')
+        since = parameters.get('since')
+        to = parameters.get('to')
+        person_ids = []
+        for name in names:
+            name = name.split()
+            cursor.execute("""SELECT person_id FROM persName WHERE forename='{}' AND surname='{}'""".format(name[0], name[1]))
+            person_ids.append(cursor.fetchone()[0])
+
+        cursor.execute("""SELECT {}(s.{}) FROM speech s JOIN persName p ON s.author_id = p.person_id
+                       WHERE s.author_id IN {} AND s.date > '{}' and s.date < '{}' GROUP BY s.author_id""".format(what, target_data, tuple(person_ids), since, to))
+
+        result = cursor.fetchall()
+        cursor.close()
+        connection.close()
+        values = [row[0] for row in result]
+
+        plt.figure(figsize=(10,6))
+        plt.bar(names, values)
+        plt.xlabel("Speakers")
+        plt.ylabel(f"{what} of {target_data}")
+        plt.title(f"Comparison of {what} of {target_data} for specific politicoans from {since} to {to}")
+        plt.xticks(rotation=45)
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        return send_file(img, mimetype="image/png")
 
     cursor.close()
     connection.close()
