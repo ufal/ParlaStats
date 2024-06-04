@@ -274,6 +274,52 @@ def custom_query():
         img.seek(0)
         return send_file(img, mimetype="image/png")
 
+    # RANKING SPEAKERS
+    #############################################################################################
+    elif query_type == 'rank_speakers':
+        criterion_q = None
+        names = []
+        gender = None
+        criterion = parameters.get("criterion")
+        if criterion.lower() == 'total speeches':
+            criterion_q = "COUNT(*)"
+        elif criterion.lower() == 'total length':
+            criterion_q = "SUM(s.token_count)"
+        number = parameters.get('number')
+        ordering = parameters.get('ordering')
+        if 'gender' in parameters.keys():
+            gender = parameters.get('gender')
+        if gender:
+            cursor.execute("""SELECT s.author_id, {} AS criterion FROM speech s JOIN person p ON s.author_id = p.person_id
+                           WHERE p.sex = '{}'
+                           GROUP BY s.author_id
+                           ORDER BY criterion {} LIMIT {}""".format(criterion_q, gender, ordering, number))
+        else:
+            cursor.execute("""SELECT s.author_id, {} AS criterion FROM speech s JOIN person p ON s.author_id = p.person_id
+                           GROUP BY s.author_id
+                           ORDER BY criterion {} LIMIT {}""".format(criterion_q, ordering, number))
+        
+        result = cursor.fetchall()
+        person_ids = [row[0] for row in result]
+        for person_id in person_ids:
+            cursor.execute("""SELECT forename, surname FROM persName
+                           WHERE person_id ='{}'""".format(person_id))
+            names.append(" ".join(cursor.fetchone()))
+        values = [row[1] for row in result]
+        cursor.close()
+        connection.close()
+        plt.figure(figsize=(20,20))
+        plt.bar(names, values)
+        plt.xlabel("Speakers")
+        plt.ylabel(f"Criterion")
+        plt.title(f"Ranking of speakers based on {criterion}")
+        plt.xticks(rotation=45, ha='right',fontsize=10)
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        img.seek(0)
+        return send_file(img, mimetype="image/png")
+        
+
     cursor.close()
     connection.close()
     return jsonify({'error':'Unknown query type'}), 400

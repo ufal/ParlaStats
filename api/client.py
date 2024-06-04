@@ -104,6 +104,24 @@ def main():
                                            'names':names,
                                            'since':since,
                                            'to':to})
-
+        if query_type == 'rank_speakers':
+            criterion = input("Please enter the ranking criterion:\n")
+            number = input("Please enter the number of politicians to display:\n")
+            ordering = input("Please select the ordering (top/bottom):\n")
+            gender = input("Please enter the gender you are interseted in(F-female, M-male, U-unknown), if none enter N:\n")
+            if ordering.lower() == 'top':
+                ordering = 'DESC'
+            else:
+                ordering = 'ASC'
+            
+            if gender == 'N':
+                send_custom_query(query_type, {'criterion':criterion,
+                                               'number':number,
+                                               'ordering':ordering})
+            else:
+                send_custom_query(query_type, {'criterion':criterion,
+                                               'number':number,
+                                               'ordering':ordering,
+                                               'gender':gender})
 if __name__ == "__main__":
     main()
