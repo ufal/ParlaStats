@@ -43,7 +43,7 @@ python3 main_driver.py --query_mode
 	- For obvious reasons I am not including my `database.ini` file into this
 	  repository
 	- If any trouble arises with this file please let me know.
-## 4. Querying using the api
+## 4. Querying using the api (OLD VERSION, SEE SECITON 5)
 - Other way how to query the database is via api.
 - This api tries to make querying easier for non-technical user.
 - Custom queries are typed and so far only these are possible:
@@ -69,3 +69,13 @@ python3 main_driver.py --query_mode
 ### 4.3 Results of the query
 - Non-comparison querries return numerical value based on the query.
 - Comparison queries return bar charts for compared items.
+
+## 5. Querying using the new JSON dirven client-server api
+- Navigate to `ParlaStats/api` directiory
+- Then launch the flask server by invoking `python3 Server2.py`
+- Once that is up and running, launch the client by invoking `python3 client2.py`
+- The new `client2` uses `json` files to describe the information need, which is then converted to appropriate `SQL` query by the `Server2`
+- For now, the `client2` takes queries from `api/example_queries` directory.
+- This directory always contains the information need in form of sentence in natural language as well as its `json` representation
+	- I will add more complex soon
+- The `api` directory also contains `json_query_Structure.md` file which describes the structure of the `json` queries which `Server2` currently assumes.
