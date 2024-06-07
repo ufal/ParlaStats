@@ -1,0 +1,20 @@
+{
+	"aggregation":{
+		"tables": ["speech", "person"],
+		"joins": [
+			{
+				"type":"INNER",
+				"left_table":"speech",
+				"left_column":"author_id",
+				"right_table":"person",
+				"right_column":"person_id"
+			}
+		],
+		"group_by":["person.sex"],
+		"order_by":[]
+	},
+	"filtering": {
+		"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
+		"conditions":[]
+	}
+}

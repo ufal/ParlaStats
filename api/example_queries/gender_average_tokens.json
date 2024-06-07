@@ -1,0 +1,20 @@
+{
+	"aggregation": {
+		"tables":["speech", "person"],
+		"joins": [
+			{
+				"type":"inner",
+				"left_table":"speech",
+				"left_column":"author_id",
+				"right_table":"person",
+				"right_column":"person_id"
+			}
+		],
+		"group_by":["person.sex"],
+		"order_by":[]
+	},
+	"filtering": {
+		"columns":["person.sex","AVG(speech.token_count) AS avg_tokens"],
+		"conditions":[]
+	}
+}
