@@ -1,4 +1,6 @@
 {
+	"graph":"N",
+	"description":"How many total sentences are in speeches by female speakers ?",
 	"aggregation": {
 		"tables":["speech", "person"],
 		"joins": [
@@ -19,8 +21,9 @@
 			{
 				"column":"person.sex",
 				"operator":"=",
-				"value":"F"
+				"value":"'F'"
 			}
-		]
+		],
+		"limit":""
 	}
 }

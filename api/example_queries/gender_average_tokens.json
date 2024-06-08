@@ -1,4 +1,6 @@
 {
+	"graph":"N",
+	"description":"How many tokens has average speech for each gender?",
 	"aggregation": {
 		"tables":["speech", "person"],
 		"joins": [
@@ -15,6 +17,7 @@
 	},
 	"filtering": {
 		"columns":["person.sex","AVG(speech.token_count) AS avg_tokens"],
-		"conditions":[]
+		"conditions":[],
+		"limit":""
 	}
 }

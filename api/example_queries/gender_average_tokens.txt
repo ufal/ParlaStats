@@ -1,1 +1,0 @@
-How many tokens has average speech for each gender?
