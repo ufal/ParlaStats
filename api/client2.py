@@ -4,6 +4,9 @@ import json
 import os
 
 import argparse
+from prettytable import PrettyTable
+import matplotlib.pyplot as plt
+
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--query_source", type=str, default="example_queries/", help="Path to query jsons which are to be processed.")
@@ -19,20 +22,41 @@ class Client2():
         with open(query_file, 'r') as file:
             query = json.load(file)
         response = requests.post(self.URL, json=query)
-        return response.json()
+        return query['graph'], query['description'], response.json()
     
+    def __adjust_results(self, result):
+        if result:
+            table = PrettyTable()
+            table.field_names = result[0].keys()
+        
+            for r in result:
+                table.add_row(r.values())
+            
+            print(table)
+        else:
+            print("Nothing to print")
+
+    def __graph_results(self, result):
+        # TODO: finish
+        if result:
+            print(result)
+        else:
+            print("Nothing to graph.")
+
     def run(self):
-        #TODO: Iterate over directory with json queries:
-        # 1. Send json query to server
-        # 2. Display table / graph of the json response received.
         for filename in os.listdir(self.QueryDir):
             if filename.endswith(".json"):
                 query_file = os.path.join(self.QueryDir, filename)
                 print(f"Processing {query_file} ...")
-                result = self.__process_query(query_file)
+                graph, description, result = self.__process_query(query_file)
                 print(f"Result for {query_file}:")
-                print(json.dumps(result, indent=2))
-                print("\n")
+                print(description)
+                if graph == 'N':
+                    self.__adjust_results(result)
+                    #print(json.dumps(result, indent=2))
+                    print("\n")
+                else:
+                    self.__graph_results(result)
 
 
 if __name__ == "__main__":

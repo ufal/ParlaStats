@@ -38,23 +38,30 @@ def SQLBuilder(json_query):
     # CONDITIONS
     conditions = json_query["filtering"]["conditions"]
     if conditions:
-        where_clause = "WHERE " + "AND ".join([f"{cond['column']} {cond['operator']} '{cond['value']}'" for cond in conditions])
+        where_clause = "WHERE " + " AND ".join([f"{cond['column']} {cond['operator']} {cond['value']}" for cond in conditions])
         sql_query += where_clause
     
     # GROUP BY
     group_by = json_query["aggregation"]["group_by"]
     if group_by:
-        group_clause = "GROUP BY " + ", ".join(group_by)
+        group_clause = " GROUP BY " + ", ".join(group_by)
         sql_query += group_clause
     
     # ORDER BY
     order_by = json_query["aggregation"]["order_by"]
     if order_by:
-        order_clause = "ORDER BY " + ", ".join([f"{ob['column']} {ob['direction']}" for ob in order_by])
+        order_clause = " ORDER BY " + ", ".join([f"{ob['column']} {ob['direction']}" for ob in order_by])
         sql_query += order_clause
+    
+    # LIMIT
+    limit = json_query["filtering"]["limit"]
+    if limit:
+        limit_clause = f" LIMIT {limit}"
+        sql_query += limit_clause
 
     return sql_query, [cond['value'] for cond in conditions]
-
+    
+    
 @app.route('/query', methods=['POST'])
 def query():
     json_query = request.json
