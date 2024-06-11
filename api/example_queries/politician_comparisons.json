@@ -1,0 +1,41 @@
+{
+	"graph":"N",
+	"description":"Comparison of total speeches by Adam Kalous and Adam Rykala",
+	"aggregation": {
+		"tables":["person", "persName", "speech"],
+		"joins": [
+			{
+				"type":"INNER",
+				"left_table":"person",
+				"left_column":"person_id",
+				"right_table":"persName",
+				"right_column":"person_id"
+			},
+			{
+				"type":"INNER",
+				"left_table":"person",
+				"left_column":"person_id",
+				"right_table":"speech",
+				"right_column":"author_id"
+			}
+		],
+		"group_by":["persName.forename", "persName.surname","person.person_id"],
+		"order_by":[]
+	},
+	"filtering": {
+		"columns":["persName.forename", "persName.surname", "COUNT(speech.id) AS total_speeches"],
+		"conditions": [
+			{
+				"column":"persName.forename",
+				"operator":" IN ",
+				"value":"('Adam')"
+			},
+			{
+				"column":"persName.surname",
+				"operator":" IN ",
+				"value": "('Kalous', 'Rykala')"
+			}
+		],
+		"limit":""
+	}
+}
