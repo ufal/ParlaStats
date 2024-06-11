@@ -1,6 +1,7 @@
 #!usr/bin/python3
 import os
 import argparse
+from typing_extensions import deprecated
 import tqdm
 
 from lxml import etree
@@ -13,18 +14,20 @@ from MetadataExtraction.speechParser import speechParser
 
 from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
-from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
+#from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
 
 args_parser = argparse.ArgumentParser()
-args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/", help="Path to the corpus root file.")
+args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/ParCzech.ana.xml", help="Path to the corpus root file.")
 args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
-args_parser.add_argument("--create_tables", action="store_true", help="Set this flag if the tables are not created yet.")
 args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
+args_parser.add_argument("--database", type=str, default="DatabaseCommunication/database.ini", help="File with target database details")
+
 class mainDriver:
     def __init__(self, args):
         self.source = args.root 
-        self.databaseInserter = DatabaseInserter()
+        self.databaseInserter = DatabaseInserter(args.database)
         self.query_file = args.query_file
+        self.database_config = args.database
 
     def __parse_speech_files(self):
         speech_parser = speechParser(self.source)
@@ -47,7 +50,8 @@ class mainDriver:
         organisations = org_parser.extractMetadata()
         
         return organisations
-
+    
+    @deprecated
     def __process_example_queries(self):
         """
         Exaple query loading method.
@@ -68,10 +72,10 @@ class mainDriver:
 
         Creates the tables in database.
         """
-        db_table_creator = DatabaseTableCreator("DatabaseCommunication/database.ini")
+        db_table_creator = DatabaseTableCreator(self.database_config)
         db_table_creator.create_tables()
 
-    def main(self, create_tables, query_mode):
+    def main(self, create_tables):
         """
         Entry point for extracting te data.
         
@@ -83,7 +87,7 @@ class mainDriver:
         in MetadataExtraction directory.
         """
 
-        domtree = xml.dom.minidom.parse(self.source + "ParCzech.ana.xml")
+        domtree = xml.dom.minidom.parse(self.source)
         teiCorpus = domtree.documentElement
         country_code = teiCorpus.getAttribute('xml:lang')
         teiHeader = domtree.getElementsByTagName('teiHeader')[0]
@@ -109,13 +113,15 @@ class mainDriver:
             self.__parse_speech_files()
         
         # After loading the information ito database, try some querries.
+        # DEPRECATED
+        """
         if query_mode:
             dq = DatabaseQuerrier("DatabaseCommunication/database.ini")
             if (self.query_file != None):
                 dq.process_querries(self.__process_example_queries())
             else:
                 dq.main_loop()
-        
+        """
         return persons, organisations
 
 def main(args):
