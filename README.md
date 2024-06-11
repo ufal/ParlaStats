@@ -40,7 +40,7 @@ python3 main_driver.py --query_mode
 	user=<user as who you wish to access the database>
 	password=<password associated with the user>
 	```
-	- For obvious reasons I am not including my `database.ini` file into this
+	- For obvious reasons I am not including my `database.ini` file into t
 	  repository
 	- If any trouble arises with this file please let me know.
 ## 4. Querying using the api (OLD VERSION, SEE SECITON 5)
@@ -54,7 +54,7 @@ python3 main_driver.py --query_mode
 - Then launch the flask server by invoking `python3 api.py`
 - Once that is up and running, launch the client by invoking `python3 client.py`
 - Now when bouth are successfuly running, continue to querying.
-### 4.2 How to query
+### 4.2 How to query 
 - Upon launch and until terminated the client will ask you to specify desired query type
 - So far the available query types are:
 	- `genders` - single gender
@@ -77,5 +77,9 @@ python3 main_driver.py --query_mode
 - The new `client2` uses `json` files to describe the information need, which is then converted to appropriate `SQL` query by the `Server2`
 - For now, the `client2` takes queries from `api/example_queries` directory.
 - This directory always contains the information need in form of sentence in natural language as well as its `json` representation
-	- I will add more complex soon
+	- I will add more complex soon (done?)
 - The `api` directory also contains `json_query_Structure.md` file which describes the structure of the `json` queries which `Server2` currently assumes.
+- There are two options what to do with the results so far.
+	- First one is that they can be printed in terminal in form of tables for that `--dir` commandline argument should not be used
+	- Second one is that they can be stored as text files containing both the json format result and the table for visualization. If this is desired set the `--dir` when running `client2.py` to desired directory
+	- Example text file outputs can be found in `api/example_queries/example_results/` directory
