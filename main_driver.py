@@ -1,7 +1,6 @@
 #!usr/bin/python3
 import os
 import argparse
-from typing_extensions import deprecated
 import tqdm
 
 from lxml import etree
@@ -17,27 +16,30 @@ from DatabaseCommunication.DatabaseInserter import DatabaseInserter
 #from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
 
 args_parser = argparse.ArgumentParser()
-args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/ParCzech.ana.xml", help="Path to the corpus root file.")
+args_parser.add_argument("--root", type=str, default="ParCzech.ana.xml", help="Path to the corpus root file.")
+args_parser.add_argument("--root_dir", type=str, default="../ParCzech.TEI.ana/")
 args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
 args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
 args_parser.add_argument("--database", type=str, default="DatabaseCommunication/database.ini", help="File with target database details")
+args_parser.add_argument("--create_tables", action="store_true", help="Set thos f;ag to create database tables.")
 
 class mainDriver:
     def __init__(self, args):
-        self.source = args.root 
+        self.source = args.root_dir
+        self.corpus_root = args.root
         self.databaseInserter = DatabaseInserter(args.database)
         self.query_file = args.query_file
         self.database_config = args.database
 
     def __parse_speech_files(self):
         speech_parser = speechParser(self.source)
-        teiCorpus = xml.dom.minidom.parse(self.source+"ParCzech.ana.xml")
+        teiCorpus = xml.dom.minidom.parse(self.source + self.corpus_root)
         transcript_files = teiCorpus.getElementsByTagName('xi:include')
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
-            if ref[0:2] == "ps":
-                filePath = self.source + ref
-                contents = speech_parser.process_file(filePath)
+            filePath = self.source + ref
+            contents = speech_parser.process_file(filePath)
+            if contents:
                 self.databaseInserter.insert_speeches(contents)
                 
     def __parse_persons_file(self, file, country_code):
@@ -51,7 +53,7 @@ class mainDriver:
         
         return organisations
     
-    @deprecated
+    #deprecated
     def __process_example_queries(self):
         """
         Exaple query loading method.
@@ -74,7 +76,7 @@ class mainDriver:
         """
         db_table_creator = DatabaseTableCreator(self.database_config)
         db_table_creator.create_tables()
-
+    
     def main(self, create_tables):
         """
         Entry point for extracting te data.
@@ -87,7 +89,7 @@ class mainDriver:
         in MetadataExtraction directory.
         """
 
-        domtree = xml.dom.minidom.parse(self.source)
+        domtree = xml.dom.minidom.parse(self.source + self.corpus_root)
         teiCorpus = domtree.documentElement
         country_code = teiCorpus.getAttribute('xml:lang')
         teiHeader = domtree.getElementsByTagName('teiHeader')[0]
@@ -126,7 +128,7 @@ class mainDriver:
 
 def main(args):
     d = mainDriver(args)
-    p,o = d.main(args.create_tables, args.query_mode)
+    p,o = d.main(args.create_tables)
     # Uncomment below for debugging purposes
     """
     with open("Persons.txt", 'w') as out:

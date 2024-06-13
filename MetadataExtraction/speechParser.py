@@ -92,26 +92,29 @@ class speechParser:
         # Extract the information on hwen the speech was given
         result = defaultdict()
         root = (etree.parse(filePath)).getroot()
-        date = root.find('.//teiHeader/profileDesc/settingDesc/setting/date', root.nsmap)
-        when = date.get('when')
-
-        
-        # Extract other information
-        utterances = root.findall(".//text/body/div/u", root.nsmap)
-        
-        for u in utterances:
-            speaker = u.get('who')
-            utterance_id = u.get('{http://www.w3.org/XML/1998/namespace}id', root.nsmap)
+        namespace = '{'+str(list(root.nsmap.values())[0])+'}'
+        if root.tag == f"{namespace}TEI":
+            date = root.find('.//teiHeader/profileDesc/settingDesc/setting/date', root.nsmap)
+            when = date.get('when')
             
-            tokens_count, sentences_count, named_entities_count = self.__get_relevant_tags_count(u)
-
-            ut = Speech(tokens_count, sentences_count, named_entities_count, utterance_id, speaker, when)
-            if not speaker in result.keys():
-                result[speaker] = [ut]
-            else:
-                result[speaker].append(ut)
+            
+            # Extract other information
+            utterances = root.findall(".//text/body/div/u", root.nsmap)
         
-        return result
+            for u in utterances:
+                speaker = u.get('who')
+                utterance_id = u.get('{http://www.w3.org/XML/1998/namespace}id', root.nsmap)
+            
+                tokens_count, sentences_count, named_entities_count = self.__get_relevant_tags_count(u)
+
+                ut = Speech(tokens_count, sentences_count, named_entities_count, utterance_id, speaker, when)
+                if not speaker in result.keys():
+                    result[speaker] = [ut]
+                else:
+                    result[speaker].append(ut)
+        
+            return result
+        return None
     
     def __dump_contents(self, contents):
         """

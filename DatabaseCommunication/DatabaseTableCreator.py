@@ -53,8 +53,8 @@ class DatabaseTableCreator(DatabaseOperator):
                     token_count INTEGER, 
                     sentence_count INTEGER,
                     named_entity_count INTEGER,
-                    author_id VARCHAR(100), 
-                    FOREIGN KEY (author_id)
+                    person_id VARCHAR(100), 
+                    FOREIGN KEY (person_id)
                         REFERENCES Person (person_id)
                 )
                 """,

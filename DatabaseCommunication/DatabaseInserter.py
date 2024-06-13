@@ -94,9 +94,10 @@ class DatabaseInserter(DatabaseOperator):
         with self.connection.cursor() as cursor:
             for org in organisations:
                 o = organisations[org][0]
+                name_forms = list(o.name.keys())
                 cursor.execute(OrganisationCommands.INSERT_ALL, (o.ID,
                                                                  o.role,
-                                                                 o.name['cs']))
+                                                                 o.name[name_forms[0]]))
             self.connection.commit()
 
     def insert_speeches(self, speeches):
