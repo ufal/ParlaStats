@@ -1,9 +1,0 @@
-[{'person.sex': 'F', 'total_speeches': 34247}, {'person.sex': 'M', 'total_speeches': 161845}, {'person.sex': 'U', 'total_speeches': 93}]
-
-+------------+----------------+
-| person.sex | total_speeches |
-+------------+----------------+
-|     F      |     34247      |
-|     M      |     161845     |
-|     U      |       93       |
-+------------+----------------+

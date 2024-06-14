@@ -1,0 +1,16 @@
+[{'persName.forename': 'Gundars', 'persname.surname': 'Daudze', 'total_speeches': 5301}, {'persName.forename': 'Mārtiņš', 'persname.surname': 'Bondars', 'total_speeches': 3584}, {'persName.forename': 'Kārlis', 'persname.surname': 'Šadurskis', 'total_speeches': 2969}, {'persName.forename': 'Jānis', 'persname.surname': 'Vucāns', 'total_speeches': 2075}, {'persName.forename': 'Viktors', 'persname.surname': 'Valainis', 'total_speeches': 1861}, {'persName.forename': 'Mārtiņš', 'persname.surname': 'Šteins', 'total_speeches': 1786}, {'persName.forename': 'Gaidis', 'persname.surname': 'Bērziņš', 'total_speeches': 1666}, {'persName.forename': 'Aldis', 'persname.surname': 'Gobzems', 'total_speeches': 1654}, {'persName.forename': 'Ivars', 'persname.surname': 'Zariņš', 'total_speeches': 1653}, {'persName.forename': 'Edvards', 'persname.surname': 'Smiltēns', 'total_speeches': 1619}]
+
++-------------------+------------------+----------------+
+| persName.forename | persname.surname | total_speeches |
++-------------------+------------------+----------------+
+|      Gundars      |      Daudze      |      5301      |
+|      Mārtiņš      |     Bondars      |      3584      |
+|       Kārlis      |    Šadurskis     |      2969      |
+|       Jānis       |      Vucāns      |      2075      |
+|      Viktors      |     Valainis     |      1861      |
+|      Mārtiņš      |      Šteins      |      1786      |
+|       Gaidis      |     Bērziņš      |      1666      |
+|       Aldis       |     Gobzems      |      1654      |
+|       Ivars       |      Zariņš      |      1653      |
+|      Edvards      |     Smiltēns     |      1619      |
++-------------------+------------------+----------------+

@@ -1,17 +1,12 @@
 {
-	"graph":"N",
-	"description": "How many speeches dit male politicians give between 1.1.2019 and 1.1.2020?",
+	"description": "How many speeches did male politicians give between 1.1.2019 and 1.1.2020?",
 	"aggregation": {
-		"tables": ["speech", "person"],
-		"joins": [
+		"right_joins": [
 			{
-				"type":"INNER",
-				"left_table":"speech",
-				"left_column":"author_id",
-				"right_table":"person",
-				"right_column":"person_id"
+				"table":"speech"
 			}
 		],
+		"left_joins": [],
 		"group_by":["person.sex"],
 		"order_by":[]
 	},
@@ -19,6 +14,7 @@
 		"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
 		"conditions":[
 			{
+
 				"column":"person.sex",
 				"operator":"=",
 				"value":"'M'"

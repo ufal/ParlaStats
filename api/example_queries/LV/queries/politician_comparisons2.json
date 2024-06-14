@@ -1,0 +1,33 @@
+{
+	"description":"Comparison of total speeches by Andris Kazinovskis and Inese Ikstena",
+	"aggregation": {
+		"right_joins": [
+			{
+				"table":"speech"
+			},
+			{
+				"table":"persName"
+			}
+			
+		],
+		"left_joins":[],
+		"group_by":["persName.forename", "persName.surname", "person.person_id"],
+		"order_by":[]
+	},
+	"filtering": {
+		"columns":["persName.forename", "persName.surname", "COUNT(speech.id) AS total_speeches"],
+		"conditions": [
+			{
+				"column":"persName.forename",
+				"operator":" IN ",
+				"value":"('Andris', 'Inese')"
+			},
+			{
+				"column":"persName.surname",
+				"operator": " IN ",
+				"value":"('Kazinovskis', 'Ikstena')"
+			}
+		],
+		"limit":""
+	}
+}

@@ -1,7 +1,7 @@
-[{'avg_tokens': '171.8917569422139165', 'person.sex': 'F'}, {'avg_tokens': '155.8198955791034632', 'person.sex': 'M'}, {'avg_tokens': '479.8064516129032258', 'person.sex': 'U'}]
+[{'average_tokens': '171.8917569422139165', 'person.sex': 'F'}, {'average_tokens': '155.8198955791034632', 'person.sex': 'M'}, {'average_tokens': '479.8064516129032258', 'person.sex': 'U'}]
 
 +----------------------+------------+
-|      avg_tokens      | person.sex |
+|    average_tokens    | person.sex |
 +----------------------+------------+
 | 171.8917569422139165 |     F      |
 | 155.8198955791034632 |     M      |

@@ -1,0 +1,37 @@
+{
+	"description":"How many speeches were given by members of each political party / group",
+	"aggregation": {
+		"right_joins": [
+			{
+				"table":"organisation"
+			},
+			{
+				"table":"speech"
+			}
+		],
+		"left_joins":[],
+		"group_by":["organisation.role", "organisation.name"],
+		"order_by":[]
+	},
+	"filtering": {
+		"columns":["organisation.name", "COUNT(speech.id) AS total_speeches"],
+		"conditions":[
+			{
+				"column":"organisation.role",
+				"operator":" IN ",
+				"value":"('politicalParty', 'parlimentaryGroup')"
+			},
+			{
+				"column":"speech.date",
+				"operator": ">=",
+				"value":"affiliation.since"
+			},
+			{
+				"column":"speech.date",
+				"operator":"<=",
+				"value":"affiliation.until"
+			}
+		],
+		"limit":""
+	}
+}

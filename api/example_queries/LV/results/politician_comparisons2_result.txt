@@ -1,0 +1,8 @@
+[{'persName.forename': 'Andris', 'persName.surname': 'Kazinovskis', 'total_speeches': 168}, {'persName.forename': 'Inese', 'persName.surname': 'Ikstena', 'total_speeches': 50}]
+
++-------------------+------------------+----------------+
+| persName.forename | persName.surname | total_speeches |
++-------------------+------------------+----------------+
+|       Andris      |   Kazinovskis    |      168       |
+|       Inese       |     Ikstena      |       50       |
++-------------------+------------------+----------------+
