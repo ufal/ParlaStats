@@ -71,15 +71,25 @@ python3 main_driver.py --query_mode
 - Comparison queries return bar charts for compared items.
 
 ## 5. Querying using the new JSON dirven client-server api
-- Navigate to `ParlaStats/api` directiory
-- Then launch the flask server by invoking `python3 Server2.py`
-- Once that is up and running, launch the client by invoking `python3 client2.py`
-- The new `client2` uses `json` files to describe the information need, which is then converted to appropriate `SQL` query by the `Server2`
-- For now, the `client2` takes queries from `api/example_queries` directory.
-- This directory always contains the information need in form of sentence in natural language as well as its `json` representation
-	- I will add more complex soon (done?)
-- The `api` directory also contains `json_query_Structure.md` file which describes the structure of the `json` queries which `Server2` currently assumes.
-- There are two options what to do with the results so far.
-	- First one is that they can be printed in terminal in form of tables for that `--dir` commandline argument should not be used
-	- Second one is that they can be stored as text files containing both the json format result and the table for visualization. If this is desired set the `--dir` when running `client2.py` to desired directory
-	- Example text file outputs can be found in `api/example_queries/example_results/` directory
+- Navigate to `api` directory
+- Once there, first start the server by invoking `python3 Server2_1.py`
+- `Server2_1.py` now takes one optional argument `--db` which should be the `database.ini` - database connection
+  configuration file for given database we wish it to connect to
+	- For example `../DatabaseCommunication/databaseLV.ini` assuming there is a `databaseLV` created 
+	  with postgres via the `create_database.sh` script.
+	- Default value of this argument points to `.ini` file for czech database.
+- When server succesfuly connects, to query use the `client2.py`.
+	- It takes 4 optional arguments
+	- `--query_source`
+		- Path to directory containing json queries.
+		- Default value is `example_queries/CS/queries`
+	- `--URL`
+		- Addres on which the server is running (from `.ini` files)
+		- Default is `http://127.0.0.1:5000/query`
+	- `--dir`
+		- Directory to write results of the queries to.
+		- Default is `None` and results are printed in terminal.
+	- `--specific_query`
+		- Defaultly `None`
+		- If you want to execute just one query this argument takes path to its `.json` file.
+
