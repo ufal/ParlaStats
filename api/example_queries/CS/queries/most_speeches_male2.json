@@ -10,7 +10,7 @@
 				"table":"persName"
 			}
 		],
-		"group_by":["persName.forename", "persName.surname"],
+		"group_by":["persName.forename", "persName.surname", "person.person_id"],
 		"order_by":[
 			{
 				"column":"total_speeches",
@@ -19,7 +19,7 @@
 		]
 	},
 	"filtering": {
-		"columns":["persName.forename", "persname.surname", "COUNT(speech.id) AS total_speeches"],
+		"columns":["person.person_id","persName.forename", "persname.surname", "COUNT(speech.id) AS total_speeches"],
 		"conditions": [
 			{
 				"column":"person.sex",

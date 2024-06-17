@@ -7,11 +7,11 @@
 			}
 		],
 		"left_joins": [],
-		"group_by":[],
+		"group_by":["person.sex"],
 		"order_by":[]
 	},
 	"filtering": {
-		"columns":["SUM(speech.sentence_count) AS total_sentences"],
+		"columns":["person.sex","SUM(speech.sentence_count) AS total_sentences"],
 		"conditions": [
 			{
 				"column":"person.sex",

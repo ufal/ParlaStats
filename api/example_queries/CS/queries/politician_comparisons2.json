@@ -15,7 +15,7 @@
 		"order_by":[]
 	},
 	"filtering": {
-		"columns":["persName.forename", "persName.surname", "COUNT(speech.id) AS total_speeches"],
+		"columns":["person.person_id","persName.forename", "persName.surname", "COUNT(speech.id) AS total_speeches"],
 		"conditions": [
 			{
 				"column":"persName.forename",
