@@ -1,12 +1,6 @@
 {
-	"description":"How many total sentences are in speeches given by female speakers",
+	"description":"How many total sentences are in speeches given by female politicians",
 	"aggregation": {
-		"right_joins": [
-			{
-				"table":"speech"
-			}
-		],
-		"left_joins": [],
 		"group_by":[],
 		"order_by":[]
 	},

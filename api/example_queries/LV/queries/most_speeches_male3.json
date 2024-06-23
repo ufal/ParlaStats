@@ -1,15 +1,6 @@
 {
-	"description":"TOP 10 male speakers with most speeches",
+	"description":"TOP 10 male speakers with most_speeches",
 	"aggregation": {
-		"left_joins": [],
-		"right_joins": [
-			{
-				"table":"speech"
-			},
-			{
-				"table":"persName"
-			}
-		],
 		"group_by":["persName.forename", "persName.surname"],
 		"order_by":[
 			{
@@ -19,7 +10,7 @@
 		]
 	},
 	"filtering": {
-		"columns":["persName.forename", "persname.surname", "COUNT(speech.id) AS total_speeches"],
+		"columns":["persName.forename", "persName.surname", "COUNT(speech.id) AS total_speeches"],
 		"conditions": [
 			{
 				"column":"person.sex",

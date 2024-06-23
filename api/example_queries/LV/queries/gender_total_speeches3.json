@@ -1,19 +1,11 @@
 {
 	"description":"How many speeches were given by each gender?",
 	"aggregation": {
-		"right_joins": [
-			
-		],
-		"left_joins":[
-			{
-				"table":"speech"
-			}
-		],
 		"group_by":["person.sex"],
 		"order_by":[]
 	},
 	"filtering": {
-		"columns":["person.sex","COUNT(speech.id) AS total_speeches"],
+		"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
 		"conditions":[],
 		"limit":""
 	}

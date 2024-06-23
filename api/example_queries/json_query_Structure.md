@@ -4,15 +4,9 @@
 - Contains a sentence in natural language describing the purpose of the query.
 ## 2. Aggregation part
 - Here, all the aggregation specifics are described
-### 2.1 right joins
-- List of right joins to the `person` table.
-- Each join has one `table` key which specifies which table should be joined.
-### 2.2 left joins
-- List of left joins to the `person` table.
-- Each join has on `table` key which specifies which table should be joined.
-### 2.3 group by
+### 2.1 group by
 - contains on columns based on which the result is to be grouped by.
-### 2.4 order by
+### 2.2 order by
 - contains the list of ordering entries
 - each ordering entry consists of:
 	- **column** - specifies based on which column should the results be ordered by
