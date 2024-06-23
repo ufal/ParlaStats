@@ -21,7 +21,7 @@ args_parser.add_argument("--root_dir", type=str, default="../ParCzech.TEI.ana/")
 args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
 args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
 args_parser.add_argument("--database", type=str, default="DatabaseCommunication/database.ini", help="File with target database details")
-args_parser.add_argument("--create_tables", action="store_true", help="Set thos f;ag to create database tables.")
+args_parser.add_argument("--create_tables", action="store_true", help="Set this flag to create database tables.")
 
 class mainDriver:
     def __init__(self, args):

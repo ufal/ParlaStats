@@ -13,7 +13,6 @@ class OrganisationCommands(StrEnum):
 
 class SpeechCommands(StrEnum):
     INSERT_ALL = """
-                 INSERT INTO speech(date, token_count, sentence_count, named_entity_count, person_id)
-                 VALUES(%s, %s, %s, %s, %s)
-                 
+                 INSERT INTO speech(date, token_count, sentence_count, named_entity_count, role, person_id)
+                 VALUES(%s, %s, %s, %s, %s, %s)
                  """

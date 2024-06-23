@@ -118,6 +118,7 @@ class DatabaseInserter(DatabaseOperator):
                                                                str(s.tokens),
                                                                str(s.sentences),
                                                                str(s.named_entity_refferences),
+                                                               s.role[1:],
                                                                s.speakerID[1:]))
 
             self.connection.commit()

@@ -26,11 +26,13 @@ class Speech:
     named_entity_refferences = int()
     speakerID = str()
     when = str()
-    
-    def __init__(self, tokens, sentences, NE_refs, speech_id, speaker, when):
+    total_duration = int()
+
+    def __init__(self, tokens, sentences, NE_refs, role, speech_id, speaker, when):
         self.tokens = tokens
         self.sentences = sentences
         self.named_entity_refferences = NE_refs
+        self.role = role
         self.speechID = speech_id
         self.speakerID = speaker
         self.when = when
@@ -69,7 +71,9 @@ class speechParser:
         for segment in segments:
             sentences = segment.findall('.//s', speech.nsmap)
             sentences_count += len(sentences)
+
             for sentence in sentences:
+                anchors = sentence.findall('.//anchor')
                 tokens = sentence.findall('.//w', speech.nsmap)
                 named_entities = sentence.findall('.//name', speech.nsmap)
                 tokens_count += len(tokens)
@@ -89,7 +93,7 @@ class speechParser:
         --------
             result - dictionary where keys are IDs of speakers and values are lists of speeches
         """
-        # Extract the information on hwen the speech was given
+        # Extract the information on when the speech was given
         result = defaultdict()
         root = (etree.parse(filePath)).getroot()
         namespace = '{'+str(list(root.nsmap.values())[0])+'}'
@@ -100,14 +104,15 @@ class speechParser:
             
             # Extract other information
             utterances = root.findall(".//text/body/div/u", root.nsmap)
-        
-            for u in utterances:
+            for u in utterances:    
+                                 
                 speaker = u.get('who')
+                role = u.get('ana')
                 utterance_id = u.get('{http://www.w3.org/XML/1998/namespace}id', root.nsmap)
             
                 tokens_count, sentences_count, named_entities_count = self.__get_relevant_tags_count(u)
 
-                ut = Speech(tokens_count, sentences_count, named_entities_count, utterance_id, speaker, when)
+                ut = Speech(tokens_count, sentences_count, named_entities_count, role, utterance_id, speaker, when)
                 if not speaker in result.keys():
                     result[speaker] = [ut]
                 else:
@@ -153,7 +158,7 @@ class speechParser:
             ref = elem.getAttribute('href')
             if ref[0:2] == "ps":
                 filePath = self.source_dir + elem.getAttribute('href')
-                contents = self.__process_file(filePath)
+                contents = self.process_file(filePath)
                 self.__dump_contents(contents)
 
 def main(args):
