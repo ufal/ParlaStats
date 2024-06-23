@@ -1,0 +1,12 @@
+{
+	"description":"How many speeches were given by each gener?",
+	"aggregation": {
+		"group_by":["person.sex"],
+		"order_by":[]
+	},
+	"filtering": {
+		"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
+		"conditions":[],
+		"limit":""
+	}
+}

@@ -1,15 +1,6 @@
 {
-	"description":"How many speeches were given by members of each political party / group",
+	"description":"How many speeches were given by members of each political party",
 	"aggregation": {
-		"right_joins": [
-			{
-				"table":"organisation"
-			},
-			{
-				"table":"speech"
-			}
-		],
-		"left_joins":[],
 		"group_by":["organisation.role", "organisation.name"],
 		"order_by":[]
 	},
@@ -18,7 +9,7 @@
 		"conditions":[
 			{
 				"column":"organisation.role",
-				"operator":" IN ",
+				"operator": "IN",
 				"value":"('politicalParty', 'parlimentaryGroup')"
 			},
 			{

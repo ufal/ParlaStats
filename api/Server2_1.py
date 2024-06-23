@@ -11,8 +11,48 @@ args_parser = ArgumentParser()
 
 args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/database.ini", help="connection parameters")
     
-
 args = args_parser.parse_args()
+
+TABLE_MATCHING = {
+    "person":[],
+    "persName":["person"],
+    "organisation":[],
+    "affiliation":["person", "organisation"],
+    "speech":["person"]
+}
+
+TABLE_JOIN_CONDITIONS = {
+    ("person", "persName") : ("person_id", "person_id"),
+    ("person", "affiliation") : ("person_id", "person_id"),
+    ("person", "speech") : ("person_id", "person_id"),
+    ("affiliation", "organisation") : ("organisation_id", "organisation_id")
+}
+
+def determine_joins(columns):
+    """
+    Determine the necessary joins to perform to satisfy the filtering part of
+    the json queries.
+    """
+    required = set()
+    cols = ", ".join(columns)
+    tables = TABLE_MATCHING.keys()
+    for table in tables:
+        if table in cols:
+            required.add(table)
+    
+    joins = []
+    if "person" in required:
+        required.remove("person")
+    for table in required:
+        if table in TABLE_MATCHING and "person" in TABLE_MATCHING[table]:
+            joins.append(("person", table))
+        elif table == "organisation":
+            joins.append(("person", "affiliation"))
+            joins.append(("affiliation", table))
+        else:
+            raise ValueError(f"Unsuported table join: person -> {table}")
+    return joins
+
 
 def connect_to_database(db_ini_path=args.db):
     parser = ConfigParser()
@@ -33,35 +73,15 @@ def connect_to_database(db_ini_path=args.db):
 def SQLBuilder(json_query):
     # SELECT CLAUSE
     columns = ', '.join(json_query['filtering']['columns'])
-    sql_query = f"SELECT {columns} FROM "
+    sql_query = f"SELECT {columns} FROM person "
 
     # FROM AND JOIN CLAUSES
-    #tables = json_query['aggregation']['tables']
-    right_joins = json_query['aggregation']['right_joins']
-    left_joins = json_query['aggregation']['left_joins']
-    #joins = json_query['aggregation']['joins']
-    #from_clause = tables[0]
-    from_clause = "person"
+    joins = determine_joins(json_query['filtering']['columns'])
+    print(joins)
+    for left_table, right_table in joins:
+        left_column, right_column = TABLE_JOIN_CONDITIONS[(left_table, right_table)]
+        sql_query += f"LEFT JOIN {right_table} ON {left_table}.{left_column} = {right_table}.{right_column} "
     
-    for join in right_joins:
-        # special handling of the organisation table
-        if join['table'] == 'organisation':
-            from_clause += f" RIGHT JOIN affiliation ON affiliation.person_id = person.person_id "
-            from_clause += f" RIGHT JOIN {join['table']} ON {join['table']}.organisation_id = affiliation.organisation_id "
-        else:  
-            from_clause += f" RIGHT JOIN {join['table']} ON person.person_id = {join['table']}.person_id "
-    
-    for join in left_joins:
-        # special handling of the organisation table
-        if join['table'] == 'organisation':
-            from_clause += f" LEFT JOIN affiliation ON affiliation.person_id = person.person_id "
-            from_clause += f" LEFT JOIN {join['table']} ON {join['table']}.organisation_id = affiliation.organisation_id "
-        else:
-            from_clause += f" LEFT JOIN {join['table']} ON person.person_id = {join['table']}.person_id "
-    #for join in joins:
-    #    from_clause += f" {join['type']} JOIN {join['right_table']} ON {join['left_table']}.{join['left_column']} = {join['right_table']}.{join['right_column']} "
-    sql_query += from_clause
-
     # CONDITIONS
     conditions = json_query["filtering"]["conditions"]
     if conditions:
@@ -85,7 +105,7 @@ def SQLBuilder(json_query):
     if limit:
         limit_clause = f" LIMIT {limit}"
         sql_query += limit_clause
-
+    
     return sql_query, [cond['value'] for cond in conditions]
     
     
@@ -103,7 +123,7 @@ def query():
 
     columns = [col.split(' AS ')[-1] for col in json_query["filtering"]["columns"]]
     response = [dict(zip(columns, row)) for row in results]
-
+    # kluc result dalsie veci
     return jsonify(response)
 
 if __name__ == "__main__":

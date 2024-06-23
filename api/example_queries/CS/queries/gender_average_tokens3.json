@@ -1,13 +1,7 @@
 {
 	"description":"How many tokens has average speech for each gender?",
 	"aggregation": {
-		"right_joins": [
-			{
-				"table":"speech"	
-			}
-		],
-		"left_joins": [],
-		"group_by": ["person.sex"],
+		"group_by":["person.sex"],
 		"order_by":[]
 	},
 	"filtering": {
