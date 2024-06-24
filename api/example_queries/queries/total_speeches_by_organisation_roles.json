@@ -1,0 +1,29 @@
+{
+	"target_databases":["databaseLV","databaseCS"],
+	"description":"Total speeches for each organisation role.",
+	"aggregation": {
+		"group_by":["organisation.role"],
+		"order_by":[
+			{
+				"column":"total_speeches",
+				"direction":"DESC"
+			}
+		]
+	},
+	"filtering": {
+		"columns":["organisation.role", "COUNT(speech.id) as total_speeches"],
+		"conditions":[
+			{
+				"column":"speech.date",
+				"operator":">=",
+				"value":"affiliation.since"
+			},
+			{
+				"column":"speech.date",
+				"operator":"<=",
+				"value":"affiliation.until"
+			}
+		],
+		"limit":""
+	}
+}

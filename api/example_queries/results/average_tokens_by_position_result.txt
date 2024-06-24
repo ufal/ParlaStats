@@ -1,0 +1,19 @@
+[{'speech.role': 'chair', 'total_speeches': '18.2419333211434144'}, {'speech.role': 'guest', 'total_speeches': '239.0322580645161290'}, {'speech.role': 'regular', 'total_speeches': '91.2305016314767086'}]
+
++-------------+----------------------+
+| speech.role |    total_speeches    |
++-------------+----------------------+
+|    chair    | 18.2419333211434144  |
+|    guest    | 239.0322580645161290 |
+|   regular   | 91.2305016314767086  |
++-------------+----------------------+
+[{'speech.role': 'guest', 'total_speeches': '452.1521328803322008'}, {'speech.role': 'regular', 'total_speeches': '266.9352142475180768'}, {'speech.role': None, 'total_speeches': None}, {'speech.role': 'chair', 'total_speeches': '55.2354646450197873'}]
+
++-------------+----------------------+
+| speech.role |    total_speeches    |
++-------------+----------------------+
+|    guest    | 452.1521328803322008 |
+|   regular   | 266.9352142475180768 |
+|     None    |         None         |
+|    chair    | 55.2354646450197873  |
++-------------+----------------------+

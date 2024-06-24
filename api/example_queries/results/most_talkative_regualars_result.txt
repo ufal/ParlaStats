@@ -1,0 +1,32 @@
+[{'persName.forename': 'Viktors', 'persName.surname': 'Valainis', 'total_tokens': 478548}, {'persName.forename': 'Ivars', 'persName.surname': 'Zariņš', 'total_tokens': 401503}, {'persName.forename': 'Aldis', 'persName.surname': 'Gobzems', 'total_tokens': 387697}, {'persName.forename': 'Jūlija', 'persName.surname': 'Stepaņenko', 'total_tokens': 328579}, {'persName.forename': 'Vjačeslavs', 'persName.surname': 'Dombrovskis', 'total_tokens': 214573}, {'persName.forename': 'Artuss', 'persName.surname': 'Kaimiņš', 'total_tokens': 156942}, {'persName.forename': 'Dana', 'persName.surname': 'Reizniece-Ozola', 'total_tokens': 150102}, {'persName.forename': 'Aleksandrs', 'persName.surname': 'Kiršteins', 'total_tokens': 146705}, {'persName.forename': 'Igors', 'persName.surname': 'Pimenovs', 'total_tokens': 136344}, {'persName.forename': 'Evija', 'persName.surname': 'Papule', 'total_tokens': 122739}]
+
++-------------------+------------------+--------------+
+| persName.forename | persName.surname | total_tokens |
++-------------------+------------------+--------------+
+|      Viktors      |     Valainis     |    478548    |
+|       Ivars       |      Zariņš      |    401503    |
+|       Aldis       |     Gobzems      |    387697    |
+|       Jūlija      |    Stepaņenko    |    328579    |
+|     Vjačeslavs    |   Dombrovskis    |    214573    |
+|       Artuss      |     Kaimiņš      |    156942    |
+|        Dana       | Reizniece-Ozola  |    150102    |
+|     Aleksandrs    |    Kiršteins     |    146705    |
+|       Igors       |     Pimenovs     |    136344    |
+|       Evija       |      Papule      |    122739    |
++-------------------+------------------+--------------+
+[{'persName.forename': 'Zbyněk', 'persName.surname': 'Stanjura', 'total_tokens': 4289088}, {'persName.forename': 'Tomio', 'persName.surname': 'Okamura', 'total_tokens': 2382057}, {'persName.forename': 'Miroslav', 'persName.surname': 'Kalousek', 'total_tokens': 1783113}, {'persName.forename': 'Alena', 'persName.surname': 'Schillerová', 'total_tokens': 1249572}, {'persName.forename': 'Martin', 'persName.surname': 'Kolovratník', 'total_tokens': 1146291}, {'persName.forename': 'Marian', 'persName.surname': 'Jurečka', 'total_tokens': 1059117}, {'persName.forename': 'Jana', 'persName.surname': 'Černochová', 'total_tokens': 1010244}, {'persName.forename': 'Andrej', 'persName.surname': 'Babiš', 'total_tokens': 974025}, {'persName.forename': 'Petr', 'persName.surname': 'Bendl', 'total_tokens': 864768}, {'persName.forename': 'Marek', 'persName.surname': 'Benda', 'total_tokens': 856110}]
+
++-------------------+------------------+--------------+
+| persName.forename | persName.surname | total_tokens |
++-------------------+------------------+--------------+
+|       Zbyněk      |     Stanjura     |   4289088    |
+|       Tomio       |     Okamura      |   2382057    |
+|      Miroslav     |     Kalousek     |   1783113    |
+|       Alena       |   Schillerová    |   1249572    |
+|       Martin      |   Kolovratník    |   1146291    |
+|       Marian      |     Jurečka      |   1059117    |
+|        Jana       |    Černochová    |   1010244    |
+|       Andrej      |      Babiš       |    974025    |
+|        Petr       |      Bendl       |    864768    |
+|       Marek       |      Benda       |    856110    |
++-------------------+------------------+--------------+
