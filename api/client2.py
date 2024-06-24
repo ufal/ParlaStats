@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 args_parser = argparse.ArgumentParser()
-args_parser.add_argument("--query_source", type=str, default="example_queries/CS/queries", help="Path to query jsons which are to be processed.")
+args_parser.add_argument("--query_source", type=str, default="example_queries/queries", help="Path to query jsons which are to be processed.")
 args_parser.add_argument("--URL", type=str, default="http://127.0.0.1:5000/query", help="Where is the flask server running.")
 args_parser.add_argument("--dir", type=str, default=None, help="Directory to write output to:")
 args_parser.add_argument("--specific_query", type=str, default=None,help="Help specific query to execute")
@@ -28,6 +28,7 @@ class Client2():
         with open(query_file, 'r') as file:
             query = json.load(file)
         response = requests.post(self.URL, json=query)
+        
         return query['description'], response.json()
     
     def __adjust_results(self, result):
@@ -68,8 +69,9 @@ class Client2():
         description, result = self.__process_query(specific_query)
         print(f"Result for {specific_query}:")
         print(description)
-        res = self.__adjust_results(result)
-        print(res)
+        for res in result:
+            res = self.__adjust_results(res)
+            print(res)
         
 
     def run(self):
@@ -77,25 +79,27 @@ class Client2():
             if filename.endswith(".json"):
                 query_file = os.path.join(self.QueryDir, filename)
                 print(f"Processing {query_file} ...")
-                description, result = self.__process_query(query_file)
-                
-                if self.interactive:
-                    graph = input("Would you like to graph the results?(Y/n)")
-                    if graph == 'Y':
-                        self.__graph_results(description, result)
+                description, results = self.__process_query(query_file)
+                for result in results:
+                    
+                    if self.interactive:
+                        graph = input("Would you like to graph the results?(Y/n)")
+                        if graph == 'Y':
+                            self.__graph_results(description, result)
+                        else:
+                            print(f"Result for {query_file}:")
+                            print("here")
+                            print(self.__adjust_results(result))
+                    
                     else:
                         print(f"Result for {query_file}:")
                         print(self.__adjust_results(result))
-                else:
-                    print(f"Result for {query_file}:")
-                    
-                    print(self.__adjust_results(result))
-                if self.target_dir:
-                    with open(f"{self.target_dir}{filename[:-5]}_result.txt", 'w') as file:
-                        print(result, file=file)
-                        print(file=file)
-                        res = self.__adjust_results(result)
-                        print(str(res), file=file)
+                    if self.target_dir:
+                        with open(f"{self.target_dir}{filename[:-5]}_result.txt", 'a') as file:
+                            print(result, file=file)
+                            print(file=file)
+                            res = self.__adjust_results(result)
+                            print(str(res), file=file)
                 #else:
                 #    res = self.__adjust_results(result)
                 #    print(res)

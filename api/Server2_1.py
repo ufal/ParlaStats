@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 args_parser = ArgumentParser()
 
-args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/database.ini", help="connection parameters")
+args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/databaseCS.ini", help="connection parameters")
     
 args = args_parser.parse_args()
 
@@ -56,6 +56,7 @@ def determine_joins(columns):
 
 def connect_to_database(db_ini_path=args.db):
     parser = ConfigParser()
+    print(db_ini_path)
     parser.read(db_ini_path)
     config = {}
     if parser.has_section("postgresql"):
@@ -77,7 +78,6 @@ def SQLBuilder(json_query):
 
     # FROM AND JOIN CLAUSES
     joins = determine_joins(json_query['filtering']['columns'])
-    print(joins)
     for left_table, right_table in joins:
         left_column, right_column = TABLE_JOIN_CONDITIONS[(left_table, right_table)]
         sql_query += f"LEFT JOIN {right_table} ON {left_table}.{left_column} = {right_table}.{right_column} "
@@ -112,19 +112,23 @@ def SQLBuilder(json_query):
 @app.route('/query', methods=['POST'])
 def query():
     json_query = request.json
-    sql_query, params = SQLBuilder(json_query)
-    print(sql_query)
-    connection = connect_to_database()
-    cursor = connection.cursor()
-    cursor.execute(sql_query, params)
-    results = cursor.fetchall()
-    cursor.close()
-    connection.close()
+    target_databases = json_query["target_databases"]
+    res = []
+    for database in target_databases:
+        sql_query, params = SQLBuilder(json_query)
+        connection = connect_to_database(f"../DatabaseCommunication/{database}.ini")
+        cursor = connection.cursor()
+        cursor.execute(sql_query, params)
+        results = cursor.fetchall()
+        cursor.close()
+        connection.close()
 
-    columns = [col.split(' AS ')[-1] for col in json_query["filtering"]["columns"]]
-    response = [dict(zip(columns, row)) for row in results]
-    # kluc result dalsie veci
-    return jsonify(response)
-
+        columns = [col.split(' AS ')[-1] for col in json_query["filtering"]["columns"]]
+        response = [dict(zip(columns, row)) for row in results]
+        # kluc result dalsie veci
+       
+        res.append(response)
+    
+    return jsonify(res)
 if __name__ == "__main__":
     app.run(debug=True)
