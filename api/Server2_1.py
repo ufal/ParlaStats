@@ -28,17 +28,28 @@ TABLE_JOIN_CONDITIONS = {
     ("affiliation", "organisation") : ("organisation_id", "organisation_id")
 }
 
-def determine_joins(columns):
+def determine_joins(columns, conditions, group_by):
     """
     Determine the necessary joins to perform to satisfy the filtering part of
     the json queries.
     """
     required = set()
     cols = ", ".join(columns)
+    gb = ", ".join(group_by)
     tables = TABLE_MATCHING.keys()
+
     for table in tables:
-        if table in cols:
+        if (table in cols or table in gb) and (table not in required):
+            print(table)
             required.add(table)
+    
+    for cond in conditions:
+        for table in tables:
+            if (table in cond["column"]) and (table not in required):
+                required.add(table)
+
+
+
     
     joins = []
     if "person" in required:
@@ -77,7 +88,9 @@ def SQLBuilder(json_query):
     sql_query = f"SELECT {columns} FROM person "
 
     # FROM AND JOIN CLAUSES
-    joins = determine_joins(json_query['filtering']['columns'])
+    joins = determine_joins(json_query['filtering']['columns'],
+                            json_query['filtering']['conditions'],
+                            json_query['aggregation']['group_by'])
     for left_table, right_table in joins:
         left_column, right_column = TABLE_JOIN_CONDITIONS[(left_table, right_table)]
         sql_query += f"LEFT JOIN {right_table} ON {left_table}.{left_column} = {right_table}.{right_column} "
