@@ -11,7 +11,7 @@ class DatabaseQuerrier(DatabaseOperator):
     So far does so by reading correct PostgreSQL querries from
     standard input.
     """
-    def __init__(self, config_path="database.ini"):
+    def __init__(self, config_path="databaseCS.ini"):
         super().__init__(config_path)
 
     def __load_query(self):

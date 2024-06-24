@@ -1,4 +1,5 @@
 {
+	"target_databases":["databaseCS","databaseLV"],
 	"description":"How many total sentences are in speeches given by female politicians",
 	"aggregation": {
 		"group_by":["person.sex"],

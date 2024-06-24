@@ -1,5 +1,6 @@
 {
-	"description":"How many speeches were given by each gender?",
+	"target_databases":["databaseLV", "databaseCS"],
+	"description":"How many speeches were given by each gener?",
 	"aggregation": {
 		"group_by":["person.sex"],
 		"order_by":[]

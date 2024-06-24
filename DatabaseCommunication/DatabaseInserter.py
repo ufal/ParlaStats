@@ -12,7 +12,7 @@ class DatabaseInserter(DatabaseOperator):
     A class responsible for inserting data into database.
     """
     
-    def __init__(self, config_path="DatabaseCommunication/database.ini", section="postgresql"):
+    def __init__(self, config_path="DatabaseCommunication/databaseCS.ini", section="postgresql"):
         super().__init__(config_path)
 
     def insert_persons(self, persons):

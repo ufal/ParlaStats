@@ -1,4 +1,5 @@
 {
+	"target_databases":["databaseLV", "databaseCS"],
 	"description":"How many speeches were given by members of each political party",
 	"aggregation": {
 		"group_by":["organisation.role", "organisation.name"],
@@ -10,7 +11,7 @@
 			{
 				"column":"organisation.role",
 				"operator": "IN",
-				"value":"('politicalParty', 'parlimentaryGroup')"
+				"value":"('politicalParty', 'parliamentaryGroup')"
 			},
 			{
 				"column":"speech.date",

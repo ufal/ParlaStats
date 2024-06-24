@@ -11,7 +11,7 @@ class DatabaseTableCreator(DatabaseOperator):
 
     Inherits from DatabaseOperator, for more information see DatabaseOperator.
     """
-    def __init__(self, config_path="database.ini", log=False):
+    def __init__(self, config_path="databaseCS.ini", log=False):
         super().__init__(config_path)
         print("Database table creator connected succesfully.")
         self.log = log

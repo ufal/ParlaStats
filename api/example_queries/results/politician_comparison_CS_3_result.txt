@@ -1,0 +1,8 @@
+[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'person.person_id': 'AdamKalous.1979', 'total_speeches': 237}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'person.person_id': 'AdamRykala.1986', 'total_speeches': 87}]
+
++-------------------+------------------+------------------+----------------+
+| persName.forename | persName.surname | person.person_id | total_speeches |
++-------------------+------------------+------------------+----------------+
+|        Adam       |      Kalous      | AdamKalous.1979  |      237       |
+|        Adam       |      Rykala      | AdamRykala.1986  |       87       |
++-------------------+------------------+------------------+----------------+

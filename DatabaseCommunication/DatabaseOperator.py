@@ -11,11 +11,11 @@ class DatabaseOperator:
     might appreciate like loading the configuration and connecting to the 
     database.
     """
-    def __init__(self, config_path="database.ini"):
+    def __init__(self, config_path="databaseCS.ini"):
         config = self.__load_configuration(config_path)
         self.connection = self.__establish_connection(config)
 
-    def __load_configuration(self, config_path="database.ini", section="postgresql"):
+    def __load_configuration(self, config_path="databaseCS.ini", section="postgresql"):
         """
         Method for loading the database connection configuration.
 

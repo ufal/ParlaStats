@@ -1,4 +1,5 @@
 {
+	"target_databases":["databaseLV"],
 	"description":"Comparison of total speeches by Andris Kazinovskis and Inese Ikstena",
 	"aggregation": {
 		"group_by":["persName.forename", "persName.surname", "person.person_id"],

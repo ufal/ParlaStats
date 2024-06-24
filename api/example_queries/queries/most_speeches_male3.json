@@ -1,4 +1,5 @@
 {
+	"target_databases":["databaseLV", "databaseCS"],
 	"description":"TOP 10 male speakers with most speeches",
 	"aggregation": {
 		"group_by":["persName.forename", "persName.surname", "person.person_id"],
