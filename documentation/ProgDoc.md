@@ -15,7 +15,14 @@
         - Document
         - Speech
         - speechParser
-
+- **Database implementation**
+    - commands
+    - create_database
+    - DatabaseOperator
+    - DatabaseTableCreator
+    - DatabaseInserter
+    - DatabaseQuerrier
+    - MainDriver
 ## 1. Metadata Extraction
 ### 1.1 Organisation parser (orgParser.py)
 - This file contains 3 classes (`PoliticalOrientation`, `Organisation`, `organisationParser`)
@@ -80,10 +87,10 @@
             - *returns*
                 - `organisations` - `orgParser`'s own attribute. 
 
-## 1.2 Person parser(personParser.py) 
+### 1.2 Person parser(personParser.py) 
 - This file contains 4 classes (`Affiliation`, `PersonName`, `Person`, `personParser`)
 - Classes `Affiliation`, `PersonName`, `Person` are used to store the extracted metadata and class `personParser` is used to extract the metadata.
-- ### 1.2.1 Affiliation
+- #### 1.2.1 Affiliation
     - `Affiliation(since : str = None, to : str = None, role : str = None, party : str = None)`
     - A class used to store the information about affiliation record extracted from the corpus `xml` files.
     - Contains information on since when to when the speaker was affiliated with given party and what role did they hold there.
@@ -96,7 +103,7 @@
     - **Methods:**
         - `__str__()`
             - Modified conversion of objects to strings for debugging purposes.
-- ### 1.2.2 PersonName
+- #### 1.2.2 PersonName
     - `PersonName(id:str=None, since:str=None, to:str=None, surname:str=None, addname:str=None)`
     - A class for grouping the information about name record of a speaker.
     - Contains information on forename, surname (those two mandatory), addname and since when to when the speaker was named like this (May ahve changed due to marriage etc.)
@@ -110,7 +117,7 @@
     - **Methods:**
         - `__str__()`
             - Modified conversion of objects to strings for debugging purposes.
-- ### 1.2.3 Person
+- #### 1.2.3 Person
     - `Person(personID:str, sex:str, birth:str)`
     - A class for grouping information about speakers.
     - Contains information on person ID (mandatory) gender (may be missing), birth (may be missing).
@@ -133,7 +140,7 @@
                 - `affiliations` - affiliations to be added (`[Affiliation]`)
         - `__str__()`
             - Modified conversion of objects to strings for debugging purposes.
-- ### 1.2.4 personParser
+- #### 1.2.4 personParser
     - `personParser(source:str, country_code:str)`
     - A class responsible for extracting the above described emtadata about speakers from the corpus `lisPerson` `xml` files.
     - **Attributes:**
@@ -181,16 +188,16 @@
             - Uses the `xml.dom.minidom` parser to aprse the xml source file and rperesent it as a Tree.
             - *returns:*
                 - `person_dict` dictionary.
-## 1.3 Speech Parser (speechParser.py)
+### 1.3 Speech Parser (speechParser.py)
 - This file contains 3 classes `Document`, `Speech` and `speechParser`.
 - `Document` and `Speech` classes are used to store the information extracted by the `speechParser` file.
-- ### 1.3.1 Document
+- #### 1.3.1 Document
     - `Document(flieName:str, country_code:str)`
     - A class for grouping the information about the file from which the speech transcript was extracted.
     - **Attributes:** 
         - `fileName` - name of the source file (`string`)
         - `country_code` - Code of the country (`string`)
-- ### 1.3.2 Speech
+- #### 1.3.2 Speech
     - `Speech(tokens:int, sentences:int, NE_refs:int role:str, speech_id:str, speaker:str, when:str)`
     - A class for grouping and storing the relevant information extracted from transcripts.
     - Contains information on number of tokens, sentences, named entitiy references in the transcripts as well as the date the speech was given, speaker and their position (chair, regular, guest)
@@ -205,7 +212,7 @@
     - **Methods:**
         - `__str__()`
             - Modified conversion of objects to strings for debugging purposes.
-- ### 1.3.3 speechParser
+- #### 1.3.3 speechParser
     - `speechParser(source_dir:str)`
     - A class responsible for the extraction of metadata about the speeches.
     - **Attributes:**
@@ -243,3 +250,209 @@
             - For debugging purposes.
             - Iterates over all transcript files, processes them and prints the extracted information to a file using the `__dump_contents()` method.
             - This functionality was later moved to the `main_driver.py`.
+
+## 2. Database Communicaiton
+- This directory contains all scripts and tools for creating and working with the PostgreSQL database locally.
+### 2.0 Database creation (create_database.sh)
+- A simple shell script which creates the database on the PostgreSQL server and grants all privilages to the user creating it.
+- Takes one command line argument - the name of the database.
+- `./create_database.sh parlastatsCS` for example creates the database parlastatsCS on the PostgreSQL server.
+### 2.1 commands (commands.py)
+- Contains multiple enum classes storing commands for inserting data to individual tables.
+- The commands are named strings containing PostgreSQL INSERT commands.
+- To these strings then appropriate metadata extracted by metadata extraction scripts are formatted using pythons string formatting.
+- All the commands are designed in such a way, so that they insert each organisation and person only once and if they are not already there.
+- #### 2.1.1 PersonCommands
+    - Enum class grouping commands for inserting the information about speakers into database tables.
+    - **Commands:**
+        - `INSERT_ALL` - command for inserting person ID, sex, and birth.
+        - `INSERT_NAME_RECORD` - command for inserting the name reocrds into database.
+        - `INSERT_AFFILIATION_RECORD` - command for inserting the affiliation record into database.
+- #### 2.1.2 OrganisationCommands
+    - Enum class grouping commands for inserting information about organisations into database.
+    - **Commands:**
+        - `INSERT_ALL` - command for inserting organisation ID, role and name.
+- #### 2.1.3 SpeechCommands
+    - Enum class grouping commands for inserting the information extracted from speeches into database tables.
+    - **Commands:**
+        - `INSERT_ALL` - command for inserting all information about speech.
+### 2.2 DatabaseOperator(DatabaseOperator.py)
+- #### 2.2.1 DatabaseOperator
+    - `DatabaseOperator(config_path:str="databaseCS.ini")`
+    - A mother class for all classes which somehow work with the database, namely creating the database and inserting data into it.
+    - Contains basic functionality needed to successfuly connect to a PostgreSQL database.
+    - The connection to the database is established upon creating an object of this class.
+    - Uses python module `psycopg2`to communicate with PorstgreSQL server.
+    - **Attributes:**
+        - `connection` - object representing connection to PostgreSQL database.
+    - **Methods:**
+        - **`__load_configuration(config_path, section)`**
+            - Method responsible for loading and reading th database connection cofiguration files.
+            - Reads the **`.ini`** files which should have following format:
+                - $1.$ Database server adress (for now localhost).
+                - $2.$ Database to which we are trying to connect.
+                - $3.$ Username
+                - $4.$ Password
+            - *parameters:*
+                - `config_path` - Path to the connection cofiguration `.ini` file (`string`).
+                    - **default:** `databaseCS.ini`
+                - `section` - Which section of the config file should be read (`string`).
+                    - **default:** `postgresql`
+            - *returns:*
+                - Python dictionary with parameters of connection as keys and their values as values
+                - `{parameter:parameter_value}`
+        - **`__establish_connection(config)`**
+            - A method responsible for establishing the connection to the PostgrSQL server.
+            - *parameters:*
+                - `config` - Python dictionary, essentialy the return of  the `__load_configuration()` method
+                - `{parameter:parameter_value}`
+            - *returns:*
+                - `connection` - object representing the established connection to the database.
+
+### 2.3 Database Table Creator (DatabaseTableCreator.py)
+- #### 2.3.1 DatabaseTableCreator
+    - `DatabaseTableCreator(config_path:str=databaseCS.ini, log:bool=False)`
+    - A class responsible for creating the tables in the PostgreSQL database.
+    - Inherits for the `DatabaseOperator` class.
+    - **Attributes:**
+        - `log` - a flag determining whether to log or not (`bool`)
+    - **Methods:**
+        - **`create_tables()`**
+            - Method responsible for creating the tables in the database.
+            - Executes the CREATE TABLE PostgreSQL commands using `psycopg2.cursor` class to create the following tables:
+                - **Person(person_id, sex, birth)** 
+                    - `person_id` being primary key.
+                - **persName(id, since, until, surname, forename, addname person_id)**
+                    - `id` being the primary key.
+                    - `person_id` being the foreign key referencing the `Person.person_id`
+                - **speech(id, date, token_count, sentence_count, named_entity_count, role, person_id)**
+                    - `id` being the primary key
+                    - `person_id` being the foreign key referencing the `Person.person_id`
+                - **organisation(organisation_id, role, name)**
+                    - `organisation_id` being the primary key
+                - **affiliation(aff_id, since, until, role, person_id, organisation_id)**
+                    - `aff_id` being the primary key.
+                    - `person_id` being the foreign key referencing the `Person.person_id`
+                    - `organisation_id` being the foreign key referencing the `Organisation.organisation_id`
+
+### 2.4 Database Inserter(DatabaseInserter.py)
+- #### 2.4.1 DatabaseInserter
+    - `DatabaseInserter(config_path:str="DatabaseCommunication/databaseCS.ini",section:str="postgresql")`
+    - A class responsible for inserting data into PostgreSQL database.
+    - Inherits form **`DatabaseOperator`**.
+    - All methods use the commands in the section **2.1** for inserting the data into database.
+    - **Attributes**
+        - `connection` - An object representing established connection to the PostgreSQL server.
+    - **Methods:**
+        - **`insert_persons()`**
+            - A method for inserting the information about speakers.
+            - Uses the `connection` attribute to write to the database which the inserter is connected to.
+            - *parameters:*
+                - `persons` - A dictionary returned by `MetadataExtraction.personParser.extractMetadata()` method.
+                    - `{Person.ID:(Person, lang)}`
+        - **`insert_name_records()`**
+            - A method for inserting the name records of the speakers.
+            - *parameters:*
+                - `name_records` - a list of speaker name records (`[MetadataExtraction.personParser.PersonName]`)
+                - `personID` - Id of the person to whom the name records belong. (`MetadataExtraction.personParser.Person.personID`)
+                - `cursor` - A tool for writing to the database (`psycopg2.cursor`)
+        - **`insert_affiliation_records()`**
+            - A method for inserting affiliation records of the speakers.
+            - *parameters:*
+                - `affiliations` - a list of speaker affiliation records (`[MetadataExtraction.personParser.Affilation]`)
+                - `personID` - Id of the person to whom the afifliation records belong.
+        - **`insert_organisations()`**
+            - A method for inserting organisation information into the database tables.
+            - *parameters:*
+                - `organisations` - A dictionary containing the extracted organisations.
+                    - Expected the same format as the output of the `MetadataExtraction.orgParser.extractMetadata()`
+                    - `{Organisation.ID:(Organisation, country_code)}`
+        - **`insert_speeches()`**
+            - A method for inserting extracted speech information into the database tables.
+            - *parameters:*
+                - `speeches` - A dictionary containing the extracted speeches.
+                    - Expects the same format as the output of the `MetadataExtraction.speechParser.process_file()`
+                    - `{Person.personID:Speech}`
+### 2.5 Database Querier(DatabaseQuerrier.py)
+- #### 2.5.1 DatabaseQuerrier
+    - `DatabaseQuerrier(config_path:str=databaseCS.ini)`
+    - A class which is no longer really used.
+    - Its purpose was to query the database using PostgreSQL queries to see if the data was extracted and stored corectly.
+    - Inherits from DatabaseOperator.
+    - **Attributes:**
+        - `connection` - An object representing the established connection to the PostgresQL server.
+    - **Methods:**
+        - **`__Load_query()`**
+            - Method that loads the PostgreSQL query from the user or `END` to end the querying loop.
+        - **`process_queries()`**
+            - Method for processing the test querries.
+            - *parameters*
+                - `querries` - A list of string SQL queries. (`[str]`)
+        - **`main_loop()`**
+            - A main querying loop.
+            - Asks for SQL queries from standard input until we input `END` and forwards the query to the database server.
+            - Upon succesful execution of the query, prints results.
+### 2.6 Main Driver (ParlaStats/main_driver.py)
+- The main_driver script takes several command line arguments:
+    - `--root` - Name of the corpus root file
+        - **default**: `ParCzech.ana.xml`
+    - `--root_dir` - Path to the directory, where the corpus source files are stored.
+        - **default**: `../ParCzech.TEI.ana`
+    - `--query_file` - Path to the file with debug PostgresQL queries to run.
+        - Debugging purposes.
+        - **default**: - `None`
+    - `--query_mode` - Boolean flag which tells the main driver to skip the data extraction phase and go straight to debug querying.
+        - Debugging purposes.
+        - **default**: `False`
+    - `--database` - A path to the database connection configuration file.
+        - **default**: `DatabaseCommunication/databaseCS.ini`
+    - `--create_tables` - A boolean flag which tells the main driver script that the tables need to be created within the database before inserting extracted data.
+        - **default**: `False`
+- When running the main_driver script first time, make sure to set the `--create_tables` command line flag to `True`.
+- This flag tells the `main_driver` that even if the database is created already on the PostgreSQL server, but does not have any tables, and hence, they need to be created before storing the data.
+
+- #### 2.6.1 mainDriver
+    - `mainDriver(args)`
+    - A class connecting the extraction of information from the corpora `.xml` files and storing it into the database.
+    - Uses classes and tools from both **MetadataExtraction** and **DatabaseCommunication**.
+    - Takes arguments in the form of `argparse.ArgumentParser.parse_args()` methods return value.
+    - The arguments are passed from command line when running the `main_driver` script, then parsed by pythons `argparse.ArgumentParser()`, and forwarded to the `mainDriver` instance upon creation to serve as its attributes.
+    - **Attributes:**
+        - `source` - A path to the dricetory where corpus source files are stored (`str`)
+        - `corpus_root` - A name of the corpus root file (`str`)
+        - `databaseInserter` - An instance of the `DatabaseInserter` class.
+            - Upon construction, `args.database` a path to database connection configuration file is passed to the `databaseInserter`.
+        - `query_file` - No longer needed, path to the file with test SQL queries (`str`).
+            - Used to pass test queries to `DatabaseQuerrier`
+            - Now only for debug purposes.
+        - `databas_config` - the path to the database connection configuration file (`str`)
+    - **Methods:**
+        - **`__parse_speech_files()`**
+            - A method responsible for extracting the information about speeches from the corpus source `.xml` files and their subsequent storing in the database.
+            - Iterates through all files referenced in the corpus root and forwards them to `MetadataExtraction.speechParser` which then processes them if they are transcript files.
+            - Uses `MetadataExtraction.speechParser` to extract the information and `DatabaseCommunication.DatabaseInserter` to then pusht the extracted information inot the database.
+        - **`__parse_persons_file()`**
+            - A method responsible for extracting the information about individual speakers.
+            - Uses the `MetadataExtraction.personParser` to extract the information.
+            - *parameters:*
+                - `file` - A path to the `listPerson.xml` file (`str`).
+                - `country_code` - A code of the country of which the data is being extracted.
+        - **`__parse_orgs_file()`**
+            - A method responsible for extracting the information about individual speakers.
+            - Uses the `MetadataExtraction.orgParser` to extract the information.
+            - *parameters:*
+                - `file` - A path to the `listOrganisation.xml` file (`str`).
+                - `country_code` - A code of the country of which the data is being extracted.
+        - **`__process_example_queries()`**
+            - This method is no longer used.
+            - It iterates thorught the `query_file` executing the debugging queries and printingtheir results.
+        - **`__initialize_database()`**
+            - Method which creates the tables within database if the `--create_tables` flag is set.
+            - Uses the `DatabaseCommunication.DatabaseTableCreator` to do so.
+        - **`main()`**
+            - Main method of the mainDriver class.
+            - Uses `xml.dom.minidom` to parse the Corpus root and represent it as tree like data structure.
+            - Then finds references to relevant files, from which the information should be extracted.
+            - Uses above described methods to extract the information about speakers, organisations and speeches and `databaseInserter` to store the extracted data to the database.
+            - *parameters:*
+                - `create_tables` - `bool` flag signalizing the need to create tables before inserting the information.
