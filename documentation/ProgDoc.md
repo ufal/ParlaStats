@@ -15,7 +15,7 @@
         - Document
         - Speech
         - speechParser
-- **Database implementation**
+- **Database implementation and communication**
     - commands
     - create_database
     - DatabaseOperator
@@ -23,6 +23,12 @@
     - DatabaseInserter
     - DatabaseQuerrier
     - MainDriver
+- **Api**
+    - Client
+    - Server
+- **Used external tools**
+    - Database tools
+    - Python libraries
 ## 1. Metadata Extraction
 ### 1.1 Organisation parser (orgParser.py)
 - This file contains 3 classes (`PoliticalOrientation`, `Organisation`, `organisationParser`)
@@ -251,7 +257,7 @@
             - Iterates over all transcript files, processes them and prints the extracted information to a file using the `__dump_contents()` method.
             - This functionality was later moved to the `main_driver.py`.
 
-## 2. Database Communicaiton
+## 2. Database Communication (and database implementation)
 - This directory contains all scripts and tools for creating and working with the PostgreSQL database locally.
 ### 2.0 Database creation (create_database.sh)
 - A simple shell script which creates the database on the PostgreSQL server and grants all privilages to the user creating it.
@@ -456,3 +462,138 @@
             - Uses above described methods to extract the information about speakers, organisations and speeches and `databaseInserter` to store the extracted data to the database.
             - *parameters:*
                 - `create_tables` - `bool` flag signalizing the need to create tables before inserting the information.
+## 3. Api
+- A command line interface between the database and user.
+- Implemented in the form of client-server.
+- Client and Server communicate with each other using `json` queries and responses.
+- For how the json queris should be structured, please see the <a href="https://github.com/ufal/ParlaStats/blob/main/api/example_queries/json_query_Structure.md">query structure</a> documentation.
+- The query structure is designed in such a way that it is easy to target multiple databases (multiple corpora) with the same query, eliminating the need to make the same query multiple times for each database.
+- Some of them however have to be targeted for singular databases (Queries asking about specific politicians)
+### 3.1 Server (Server2_1.py)
+- A script implementing the functionality of the server.
+- Main purpose is to serve as "middle station" between the client and PostgreSQL database server:
+    - **1.** Receive the json query from a client.
+    - **2.** Construct the SQL query from the JSON query with respect to predefined join criterions.
+    - **3.** Forward the SQL query to the PostgreSQL server.
+    - **4.** Get the response(s) from PostgresSQL server.
+    - **5.** Jsonify the response(s) and send them back to client
+    - **Note:** If the query targets more databases (corpora) at once, forward it iteratively and return the response in format `[JSON, JSON, ...]`
+- #### 3.1.1 TABLE_MATCHING
+    - A dictionary describing which tables can be joind to which tables.
+    - Predefined table joining to avoid forwarding impossible or simply illogical joins to the PostgreSQL server.
+    - Contains key-value pairs where:
+        - **Key:** Database table.
+        - **Value:** List of tables that **Key** tabel can be joined to.
+- #### 3.1.2 TABLE_JOINS_CONDITIONS
+    - A dictionary describing on which columns should the tables be joined.
+    - Again, the idea here is to avoid forwarding wrongly constructed queries to the PostgreSQL server, which also makes writing json queries for users easier as they do not need to know how to join specific tables of the database, this script does it for them instead.
+    - Contains key-value pairs where:
+        - **Key:** is a tuple of tables in database, specifying tables of the join.
+        - **Value:** is a tuple of columns from respective join tables, specifying on which columns should they be joined.
+- #### 3.1.3 determine_joins
+    - `determine_joins(columns, conditions, group_by)`
+    - A function for determining which joins are necessary for a query.
+    - Searches for tables mentioned in the queries `columns`, `conditions`, `group_by` sections to find the needed tables, stores them into `required` set.
+    - Then forms pairs of the `required` tables to specify joins needed with respect to `TABLE_MATCING` and `TABLE_JOINS_CONDITIONS`.
+    - *parameters:*
+        - `columns` - `columns` section of the JSON query. (`[string]`)
+        - `conditions` - `conditions` section of the JSON query. (`[{"column":str, "operator":str, "value":str}]`)
+        - `group_by` - `group_by` section of the JSON query. (`[string]`)
+    - *returns:*
+        - A list of table pairs specifying joins (`[(str, str)]`)
+- #### 3.1.4 connect_to_database
+    - `connect_to_database(db_ini_path:str="../DatabaseCommunication/databaseCS.ini")`
+    - A function for connecting to PostgreSQL database.
+    - *parameters:*
+        - `db_ini_path` - Path to the database connection configuration `.ini` file. (`str`)
+    - *returns:*
+        - `connection` - Object representing established connection (`psycopg2.connection`) if connecting was successful.
+- #### 3.1.5 SQLBuilder
+    - `SQLBuilder(json_query)`
+    - A function for building SQL queries from JSON queries received from client.
+    - Separates the SQL query into 6 sections, builds them separately and finally concatenates them to form a valid SQL query.
+        - **1.** `SELECT_CLAUSE` - SELECT \<columns from JSON query concatenated using `", "`> FROM persson
+        - **2.** `FROM AND JOIN PART`
+            - calls the `determine_joins()` function and left joins all tables to `person` table according to the results of `determine_joins()` function.
+        - **3.** `CONDITIONS` - Specifies, which tables to select and builds the `WHERE` part of the SQL query from the `conditions` section of the JSON query.
+        - **4.** `GROUP BY` - Builds the `GROUP_BY` part of the SQL query from the `group_by` section of the JSON query.
+        - **5.** `ORDER BY` - Builds the `ORDER_BY` part of the SQL query from the `order_by` section of the JSON query.
+        - **6.** `LIMIT` - Adds a limit to the SQL query specifying how many rows of the response do we want.
+    - *parameters:*
+        - `json_query` - A structure representing the JSON query received from the client.
+    - *returns:*
+        - SQL query (`string`)
+        - values from conditions (`[string]`)
+- #### 3.1.6 Query
+    - Query function which recieves the json from client.
+    - Uses the above described functions to form an SQL query, forward it to the PostgreSQL server.
+    - Jsonfifies the PostgreSQL response and sends it to the client.
+    - *returns:*
+        - a jsonified list of PostgreSQL responses.
+### 3.2 Client(client2.py)
+- A script containing the client functionality.
+- When being run, takes some command_line arguments:
+    - **1.** `--query_source` - Path to the directory with JSON query files.
+        - **default:** `example_queries/queries`
+    - **2.** `--URL` - URL to the api server.
+        - **default:** `http://127.0.0.1:5000/query`
+    - **3.** `--dir` - Path to directory where to store the results of the queries ran.
+        - **default:** `None`
+    - **4.** `--specific_query` - A path to a specific query to run.
+        - **default:** `None`
+    - **5.** `--interactive` - A boolean flag to enable the interactive mode of the client, for details on the interactive mode, see <a href="">user documentation</a>.
+- #### 3.2.1 Client
+    - A class grouping the functionality of a client.
+    - Reads JSON queries, forwards them to the server and displays (or stores) the results.
+    - **Attributes:**
+        - `URL` - URL address of the server (`[str]`)
+        - `QueryDir` - Path to the directory containing queries. (`str`)
+        - `target_dir` - Path to directory where the results of the queries should be stored. (`str`)
+        - `interactive` - A flag specifying whether the clinet is in interactive or default mode. (`Bool`)
+    - **Methods:**
+        - **`__process_query()`**
+            - A method for processing the singular JSON query.
+            - Reads the file, posts the request to server and catches response from server.
+            - *parameters:*
+                - `query_file` - A path to the query JSON file (`str`)
+            - *returns:*
+                - Description of the query - `description` section of the JSON query.
+                - json part of the response received from server.
+        - **`__adjust_results()`**
+            - Method responsible for better formating of the json response, more apporopriate for displaying.
+            - Uses `prettytable` python library to construct a table from the retrieved information, which is better for printing.
+            - *parameters:*
+                - `result` - a singular json result.
+            - *result:*
+                - `table` - A string representation of the table constructed from `result` JSON.
+        - **`__qraph_results()`**
+            - A method for constructing a bar chart from json response.
+            - Only used by clinet in interactive mode.
+            - Uses `matplotlib.pyplot` to construct the bar chart.
+            - *parameters:*
+                - `description` - A description section of the query, that produced the results being graphed.
+                - `result` - the json result obtained from the server.
+        - **`run_specific()`**
+            - A method for running a singular specific query.
+            - Uses `__process_query()` method to obtain the results for the specific query and `__adjust_results()` method to fomrat it for printing.
+            - *parameters:*
+                - `specific_query` - Path to the specific query JSON file (`str`)
+        - **`run()`**
+            - A main method of the Client.
+            - Iterates over all json files in the `QueryDir` directory and processes each query file one at a time.
+            - Then, based on the `interactive` flag, prints the table formed from the JSON response obtained from the server or offers user the option of constructing the bar chart from the obtained results using the `__graph_resuts()` method.
+            - Also capable of storing the results to text files if the `target_dir` is set.
+## 4. Used external tools
+### 4.1 Database tools
+- **`PostgreSQL`**
+### 4.2 Python libraries
+- **`psycopg2`** - for communication with PostgreSQL server.
+- **`xml`** - python library for working with the XML files.
+- **`lxml`** - another python library for working with XML files.
+- **`Flask`** - python module for client-server communication.
+- **`matplotlib.pyplot`** - python module for constructing graphs and charts.
+- **`json`** - python module for working with json files.
+- **`argparse`** - python module for easy parsing of command-line argument.
+- **`requests`** - python module for sneding HTTP requests.
+- **`configparser`** - python module for parsing configuration files.
+- **`tqdm`** - python module for dispalying progress bars in the console.  
