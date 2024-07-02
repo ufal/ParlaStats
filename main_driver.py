@@ -24,14 +24,15 @@ args_parser.add_argument("--create_tables", action="store_true", help="Set this 
 
 class mainDriver:
     def __init__(self, args):
-        self.source = args.root
+        self.corpus_root = args.root
+        self.source = os.path.dirname(self.corpus_root)
         self.databaseInserter = DatabaseInserter(args.database)
         self.query_file = args.query_file
         self.database_config = args.database
-
+        
     def __parse_speech_files(self):
         speech_parser = speechParser(self.source)
-        teiCorpus = xml.dom.minidom.parse(self.source)
+        teiCorpus = xml.dom.minidom.parse(self.source + self.corpus_root)
         transcript_files = teiCorpus.getElementsByTagName('xi:include')
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
@@ -87,7 +88,7 @@ class mainDriver:
         in MetadataExtraction directory.
         """
 
-        domtree = xml.dom.minidom.parse(self.source)
+        domtree = xml.dom.minidom.parse(self.source + self.corpus_root)
         teiCorpus = domtree.documentElement
         country_code = teiCorpus.getAttribute('xml:lang')
         teiHeader = domtree.getElementsByTagName('teiHeader')[0]
