@@ -40,7 +40,6 @@ def determine_joins(columns, conditions, group_by):
 
     for table in tables:
         if (table in cols or table in gb) and (table not in required):
-            print(table)
             required.add(table)
     
     for cond in conditions:
@@ -48,9 +47,6 @@ def determine_joins(columns, conditions, group_by):
             if (table in cond["column"]) and (table not in required):
                 required.add(table)
 
-
-
-    
     joins = []
     if "person" in required:
         required.remove("person")
@@ -67,7 +63,6 @@ def determine_joins(columns, conditions, group_by):
 
 def connect_to_database(db_ini_path=args.db):
     parser = ConfigParser()
-    print(db_ini_path)
     parser.read(db_ini_path)
     config = {}
     if parser.has_section("postgresql"):
