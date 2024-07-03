@@ -57,9 +57,12 @@ class Client2():
             
             plt.figure(figsize=(8,6))
             plt.bar(labels, values)
+            plt.grid(True)
             plt.xlabel(label_x)
             plt.ylabel(label_y)
+            plt.xticks(rotation=45, ha='right')
             plt.title(description)
+            plt.tight_layout()
             plt.show()
         else:
             print("Nothing to graph.")
@@ -69,9 +72,15 @@ class Client2():
         description, result = self.__process_query(specific_query)
         print(f"Result for {specific_query}:")
         print(description)
-        for res in result:
-            res = self.__adjust_results(res)
-            print(res)
+        if self.interactive:
+            graph = input("Would you like to graph the results?(Y/n)")
+            if graph == 'Y':
+                for res in result:
+                    self.__graph_results(description, res)
+            else:
+                for res in result:
+                    res = self.__adjust_results(res)
+                    print(res)
         
 
     def run(self):
