@@ -1,11 +1,11 @@
-# Parlastats - Programmer documentation
+# ParlaStats - Programmer Documentation
 
 ## Contents
 - **Metadata Extraction**
     - orgParser
         - PoliticalOrientation
-        - Organisation
-        - organisationParser
+        - Organization
+        - organizationParser
     - personParser
         - Affiliation
         - PersonName
@@ -30,68 +30,68 @@
     - Database tools
     - Python libraries
 ## 1. Metadata Extraction
-### 1.1 Organisation parser (orgParser.py)
-- This file contains 3 classes (`PoliticalOrientation`, `Organisation`, `organisationParser`)
-- `PoliticalOrientation` and `Organisation` are used to store the metadata about political organisations extracted by `organisationParser`
+### 1.1 Organization parser (orgParser.py)
+- This file contains 3 classes (`PoliticalOrientation`, `Organization`, `organizationParser`)
+- `PoliticalOrientation` and `Organization` are used to store the metadata about political organizations extracted by `organizationParser`
 - #### 1.1.1 PoliticalOrientation
     - `PoliticalOrientation(orientation : str)`
-    - Class for storing the information about political orientation record of some political organisation.
+    - Class for storing the information about political orientation record of some political organization.
     - Contains short description of political orientation
     - **Attributes**:
         - `orientation` - Short description of the political orientation (`string`)
     - **Methods**:
         - `__str__()`
             - Modified conversion of the class to string for debugging purposes.
-- #### 1.1.2 Organisation
-    - `Organisation(ID : str, role : str)`
-    - Class for storing the information about political organisation.
-    - Contains the information about name of thepolitical party, xml:id (from .xml source) for the reference, the role of political organisation.
+- #### 1.1.2 Organization
+    - `Organization(ID : str, role : str)`
+    - Class for storing the information about political organization.
+    - Contains the information about name of the political party, xml:id (from .xml source) for the reference and the role of political organization.
     - **Attributes:**
-        - `name` - List of name records of the organisation in english and native language + abbreviation (`dict(str:str)`)
-        - `ID` - ID of the organisation (`string`)
-        - `role` - Role of the organisation within parliament (`string`)
-        - `orientation_records` - List of orientation political orientations (`[PoliticalOrientation]`)
+        - `name` - List of name records of the organization in english and native language + abbreviation (`dict(str:str)`)
+        - `ID` - ID of the organization (`string`)
+        - `role` - Role of the organization within parliament (`string`)
+        - `orientation_records` - List of political orientation records (`[PoliticalOrientation]`)
     - **Methods**:
         - `__str__()`
             - Modified conversion of the class to string for debugging purposes.
-- #### 1.1.3 organisationParser
-    - `organisationParser(source : str, country_code : str)`
-    - A class responsible for extracting the organisation metdata from corpus xml files.
+- #### 1.1.3 organizationParser
+    - `organizationParser(source : str, country_code : str)`
+    - A class responsible for extracting the organization metadata from corpus xml files.
     - **Attributes**:
         - `source` - a path to the xml file which is to be parsed (`string`)
-        - `country_code` - a conde of the country from the source `xml` file (`string`)
-        - `organisations` - Dictionary for storing the extracted organisations.
-            - `dict(ID:(Organisation, country_code))`
+        - `country_code` - a code of the country from the source `xml` file (`string`)
+        - `organizations` - Dictionary for storing the extracted organizations.
+            - `dict(ID:(Organization, country_code))`
         - `parser` - a `xml` file parser (`lxml.etree.XMLParser`)
     - **Methods:**
-        - **`__extractNameRecords(organisation)`**
-            - A helper method for extracting the name record(s) of a give organisation
+        - **`__extractNameRecords(organization)`**
+            - A helper method for extracting the name record(s) of a given organization
             - Name si extracted in both native and english if present, and an abbreviation is extracted as well if present.
             - *parameters*:
-                - `organisation` - an 'org' xml element of the ParlaMint format.
+                - `organization` - an 'org' xml element of the ParlaMint format.
             - *returns*:
-                - A dictionary containing the name record(s) with the informationon the language the name is written in or an abbreviation.
+                - A dictionary containing the name record(s) with the information about the language the name is written in or an abbreviation.
                 - `dict(str:str)`
-        - **`__extractOrientationRecords(organisation)`**
+        - **`__extractOrientationRecords(organization)`**
             - A helper method for extracting information on political orientation.
             - If the information is present extracts it, if not warns about its absence.
             - *parameters*
-                - `orgainsation` - an xml element of ParlaMint format.
+                - `organization` - an xml element of ParlaMint format.
             - *returns*
                 - `orientation_records` - a list of `PoliticalOrientation` records.
         - **`extractMetadata()`**
-            - A method for extracting the metadata about organisations from `.xml`files.
-            - Reads all instances of the `orgName` tag and stores extracted inforamtion into `Organisation.name` dictionary in a following way:
+            - A method for extracting the metadata about organizations from `.xml`files.
+            - Reads all instances of the `orgName` tag and stores extracted information into `Organization.name` dictionary in a following way:
                 - if `orgName.full` is `yes`  then key-value pair (`nameLang`, `name`) is stored
                 - if `orgName.full` is `abb` then key-value pair (`"abb"`, `name`) is stored
             - Political orientation records are extracted in following way:
-                - Try to find the `state` tag within the `org` tag whose type is `politicalOrientation`
+                - Try to find the `state` tag within the `org` tag which has type `politicalOrientation`
                 - If found try to find the `ana` attribute.
-                - If found, store it as `PoliticalOrientation` record into the `Organisation.orientation_records` list
-            - Uses the `xml.dom.minidom` to parse the `xml` file (path in `source` attribute) and represent it using the Tree data structure.
-            - Then finds all `org` tags within the `xml` file and iterates over them, calling the `__extractNameRecords()` and `__extractOrientationRecords()` for each `org` tag and stores the output of these helper methods into the `Organisation` object appropriately.z
+                - If found, store it as `PoliticalOrientation` record into the `Organization.orientation_records` list
+            - Uses the `xml.dom.minidom` to parse the `xml` file (path in `source` attribute) and represent it using a tree data structure.
+            - Then finds all `org` tags within the `xml` file and iterates over them, calling the `__extractNameRecords()` and `__extractOrientationRecords()` for each `org` tag and stores the output of these helper methods into the `Organization` object appropriately.
             - *returns*
-                - `organisations` - `orgParser`'s own attribute. 
+                - `organizations` - `orgParser`s' own attribute. 
 
 ### 1.2 Person parser(personParser.py) 
 - This file contains 4 classes (`Affiliation`, `PersonName`, `Person`, `personParser`)
@@ -100,26 +100,26 @@
     - `Affiliation(since : str = None, to : str = None, role : str = None, party : str = None)`
     - A class used to store the information about affiliation record extracted from the corpus `xml` files.
     - Contains information on since when to when the speaker was affiliated with given party and what role did they hold there.
-    - All values of the class's attributes are the values of attributes within the \<affiliation\> tag in the ParlaMint `listPeroson` files.
+    - All values of the class's attributes are the values of attributes within the \<affiliation\> tag in the ParlaMint `listPerson` files.
     - **Attributes:**
         - `since` - Beginning of the affiliation (`string`) YYYY-MM-DD.
         - `to`  - End of the affiliation (`string`) YYYY-MM-DD.
-        - `role` - The role of the person within the organisation during the affiliation (`string`)
-        - `party` - Organisation the speaker was affiliated to (`string` `Organisation.ID`)
+        - `role` - The role of the person within the organization during the affiliation (`string`)
+        - `party` - Organization the speaker was affiliated to (`string` `Organization.ID`)
     - **Methods:**
         - `__str__()`
             - Modified conversion of objects to strings for debugging purposes.
 - #### 1.2.2 PersonName
     - `PersonName(id:str=None, since:str=None, to:str=None, surname:str=None, addname:str=None)`
     - A class for grouping the information about name record of a speaker.
-    - Contains information on forename, surname (those two mandatory), addname and since when to when the speaker was named like this (May ahve changed due to marriage etc.)
+    - Contains information on forename, surname (those two mandatory), addname and since when to when the speaker was named like this (May have changed due to marriage etc.)
     - **Attributes:**
         - `id` - Id of the person to whom the name record belongs (`string`).
         - `to` - End of the name record validity (`string`) YYYY-MM-DD.
         - `since` - Beginning of the name record validity (`string`) YYYY-MM-DD.
         - `forename` - Forename (`string`).
         - `addname` - Addname (`string`).
-        - `surname` - Surname (`satring`).
+        - `surname` - Surname (`string`).
     - **Methods:**
         - `__str__()`
             - Modified conversion of objects to strings for debugging purposes.
@@ -148,10 +148,10 @@
             - Modified conversion of objects to strings for debugging purposes.
 - #### 1.2.4 personParser
     - `personParser(source:str, country_code:str)`
-    - A class responsible for extracting the above described emtadata about speakers from the corpus `lisPerson` `xml` files.
+    - A class responsible for extracting the above described metadata about speakers from the corpus `lisPerson` `xml` files.
     - **Attributes:**
         - `source` - Path to the `listperson` file (`string`).
-        - `persons_dict` - A dirctionary for storing the extracted metadata in the form of key-value pairs `(Person.personID:(Person, country_code))`
+        - `persons_dict` - A dictionary for storing the extracted metadata in the form of key-value pairs `(Person.personID:(Person, country_code))`
         - `country_code` - Code of the country (`string`)
     - **Methods:**
         - **`__extractSex(person)`**
@@ -161,7 +161,7 @@
             - *returns:*
                 - Value attribute of the 'sex' sub element of the person element according to the ParlaMint format (`string`).
                 - If the `sex` sub-element is not present, informs about its absence.
-        - **`__extractBirth(perosn)`**
+        - **`__extractBirth(person)`**
             - A helper method for extracting the information about birth date of a given speaker.
             - *parameters:*
                 - `person` - xml element in the ParlaMint format
@@ -177,7 +177,7 @@
         - **`__extractAffiliationRecords(person)`**
             - A helper method for extracting the affiliation records of given speaker.
             - *parameters:*
-                - `person` - xml element i the ParlaMint format.
+                - `person` - xml element in the ParlaMint format.
             - *returns*
                 - List of affiliation records for given person (`[Affiliation]`)
         - **`extractMetadata()`**
@@ -191,14 +191,14 @@
                 - $4.$ Find all instances of the `persName` tag and extract `surname`, `forename` and `addname` tags text values.
                 - $5.$ Find all instances of the `affiliation` tag and extract the relevant information from them.
             - The processed persons are then stored in the `person_dict`.
-            - Uses the `xml.dom.minidom` parser to aprse the xml source file and rperesent it as a Tree.
+            - Uses the `xml.dom.minidom` parser to parse the xml source file and represent it as a Tree.
             - *returns:*
                 - `person_dict` dictionary.
 ### 1.3 Speech Parser (speechParser.py)
 - This file contains 3 classes `Document`, `Speech` and `speechParser`.
 - `Document` and `Speech` classes are used to store the information extracted by the `speechParser` file.
 - #### 1.3.1 Document
-    - `Document(flieName:str, country_code:str)`
+    - `Document(fileName:str, country_code:str)`
     - A class for grouping the information about the file from which the speech transcript was extracted.
     - **Attributes:** 
         - `fileName` - name of the source file (`string`)
@@ -206,7 +206,7 @@
 - #### 1.3.2 Speech
     - `Speech(tokens:int, sentences:int, NE_refs:int role:str, speech_id:str, speaker:str, when:str)`
     - A class for grouping and storing the relevant information extracted from transcripts.
-    - Contains information on number of tokens, sentences, named entitiy references in the transcripts as well as the date the speech was given, speaker and their position (chair, regular, guest)
+    - Contains information on number of tokens, sentences, named entity references in the transcripts as well as the date the speech was given, speaker and their position (chair, regular, guest)
     - **Attributes:**
         - `tokens` - number of tokens in the speech (`int`)
         - `sentences` - number of sentences in the speech (`int`)
@@ -225,7 +225,7 @@
         - `source_dir` - a directory where the entire corpus is stored (`string`).
         - `current_file` - a file currently being processed (`string`).
         - `corpus_root` - path to the corpus root file (`string`)
-            - Defaultly ParCzech corpus root for debug purposes.
+            - By default ParCzech corpus root for debug purposes.
     - **Methods:**
         - **`__get_relevant_tags_count(speech)`**
             - Method for extracting the count of tokens, sentences, and named entity references for given utterance.
@@ -238,7 +238,7 @@
                 - count of the \<s> tags within the utterance.
                 - count of the \<name> tags within the utterance.
         - **`process_file(filePath)`**
-            - Uses `lxml.etree` parser to parse the .xml file and reperesent it as a Tree data structure.
+            - Uses `lxml.etree` parser to parse the .xml file and represent it as a Tree data structure.
             - A method for extracting the speech information from a singular file.
             - First looks at the root tag of the file, if it is `TEI` then considers the file to be a transcript file and proceeds to extract information from it.
             - Finds all instances of the \<u> tag and iterates over them, extracting the values of the utterances `who` and `ana` attributes to extract the author and their position.
@@ -251,7 +251,7 @@
             - Method for printing the extracted information to a file.
             - For debugging purposes.
             - *parameters:*
-                - `contents` - extracted information about the speech. Dictionary containing th ekey-value pairs `(speakerID:Speech)`
+                - `contents` - extracted information about the speech. Dictionary containing the key-value pairs `(speakerID:Speech)`
         - **`parseSpeeches()`**
             - For debugging purposes.
             - Iterates over all transcript files, processes them and prints the extracted information to a file using the `__dump_contents()` method.
@@ -260,7 +260,7 @@
 ## 2. Database Communication (and database implementation)
 - This directory contains all scripts and tools for creating and working with the PostgreSQL database locally.
 ### 2.0 Database creation (create_database.sh)
-- A simple shell script which creates the database on the PostgreSQL server and grants all privilages to the user creating it.
+- A simple shell script which creates the database on the PostgreSQL server and grants all privileges to the user creating it.
 - Takes one command line argument - the name of the database.
 - `./create_database.sh parlastatsCS` for example creates the database parlastatsCS on the PostgreSQL server.
 ### 2.1 commands (commands.py)
@@ -272,7 +272,7 @@
     - Enum class grouping commands for inserting the information about speakers into database tables.
     - **Commands:**
         - `INSERT_ALL` - command for inserting person ID, sex, and birth.
-        - `INSERT_NAME_RECORD` - command for inserting the name reocrds into database.
+        - `INSERT_NAME_RECORD` - command for inserting the name records into database.
         - `INSERT_AFFILIATION_RECORD` - command for inserting the affiliation record into database.
 - #### 2.1.2 OrganisationCommands
     - Enum class grouping commands for inserting information about organisations into database.
@@ -286,21 +286,21 @@
 - #### 2.2.1 DatabaseOperator
     - `DatabaseOperator(config_path:str="databaseCS.ini")`
     - A mother class for all classes which somehow work with the database, namely creating the database and inserting data into it.
-    - Contains basic functionality needed to successfuly connect to a PostgreSQL database.
+    - Contains basic functionality needed to successfully connect to a PostgreSQL database.
     - The connection to the database is established upon creating an object of this class.
-    - Uses python module `psycopg2`to communicate with PorstgreSQL server.
+    - Uses python module `psycopg2`to communicate with PostgreSQL server.
     - **Attributes:**
         - `connection` - object representing connection to PostgreSQL database.
     - **Methods:**
         - **`__load_configuration(config_path, section)`**
-            - Method responsible for loading and reading th database connection cofiguration files.
+            - Method responsible for loading and reading th database connection configuration files.
             - Reads the **`.ini`** files which should have following format:
-                - $1.$ Database server adress (for now localhost).
+                - $1.$ Database server address (for now localhost).
                 - $2.$ Database to which we are trying to connect.
                 - $3.$ Username
                 - $4.$ Password
             - *parameters:*
-                - `config_path` - Path to the connection cofiguration `.ini` file (`string`).
+                - `config_path` - Path to the connection configuration `.ini` file (`string`).
                     - **default:** `databaseCS.ini`
                 - `section` - Which section of the config file should be read (`string`).
                     - **default:** `postgresql`
@@ -308,9 +308,9 @@
                 - Python dictionary with parameters of connection as keys and their values as values
                 - `{parameter:parameter_value}`
         - **`__establish_connection(config)`**
-            - A method responsible for establishing the connection to the PostgrSQL server.
+            - A method responsible for establishing the connection to the PostgreSQL server.
             - *parameters:*
-                - `config` - Python dictionary, essentialy the return of  the `__load_configuration()` method
+                - `config` - Python dictionary, essentially the return of  the `__load_configuration()` method
                 - `{parameter:parameter_value}`
             - *returns:*
                 - `connection` - object representing the established connection to the database.
@@ -365,8 +365,8 @@
         - **`insert_affiliation_records()`**
             - A method for inserting affiliation records of the speakers.
             - *parameters:*
-                - `affiliations` - a list of speaker affiliation records (`[MetadataExtraction.personParser.Affilation]`)
-                - `personID` - Id of the person to whom the afifliation records belong.
+                - `affiliations` - a list of speaker affiliation records (`[MetadataExtraction.personParser.Affiliation]`)
+                - `personID` - Id of the person to whom the affiliation records belong.
         - **`insert_organisations()`**
             - A method for inserting organisation information into the database tables.
             - *parameters:*
@@ -383,7 +383,7 @@
 - #### 2.5.1 DatabaseQuerrier
     - `DatabaseQuerrier(config_path:str=databaseCS.ini)`
     - A class which is no longer really used.
-    - Its purpose was to query the database using PostgreSQL queries to see if the data was extracted and stored corectly.
+    - Its purpose was to query the database using PostgreSQL queries to see if the data was extracted and stored correctly.
     - Inherits from DatabaseOperator.
     - **Attributes:**
         - `connection` - An object representing the established connection to the PostgresQL server.
@@ -391,13 +391,13 @@
         - **`__Load_query()`**
             - Method that loads the PostgreSQL query from the user or `END` to end the querying loop.
         - **`process_queries()`**
-            - Method for processing the test querries.
+            - Method for processing the test queries.
             - *parameters*
                 - `querries` - A list of string SQL queries. (`[str]`)
         - **`main_loop()`**
             - A main querying loop.
             - Asks for SQL queries from standard input until we input `END` and forwards the query to the database server.
-            - Upon succesful execution of the query, prints results.
+            - Upon successful execution of the query, prints results.
 ### 2.6 Main Driver (ParlaStats/main_driver.py)
 - The main_driver script takes several command line arguments:
     - `--root` - Name of the corpus root file
@@ -424,19 +424,19 @@
     - Takes arguments in the form of `argparse.ArgumentParser.parse_args()` methods return value.
     - The arguments are passed from command line when running the `main_driver` script, then parsed by pythons `argparse.ArgumentParser()`, and forwarded to the `mainDriver` instance upon creation to serve as its attributes.
     - **Attributes:**
-        - `source` - A path to the dricetory where corpus source files are stored (`str`)
+        - `source` - A path to the directory where corpus source files are stored (`str`)
         - `corpus_root` - A name of the corpus root file (`str`)
         - `databaseInserter` - An instance of the `DatabaseInserter` class.
             - Upon construction, `args.database` a path to database connection configuration file is passed to the `databaseInserter`.
         - `query_file` - No longer needed, path to the file with test SQL queries (`str`).
             - Used to pass test queries to `DatabaseQuerrier`
             - Now only for debug purposes.
-        - `databas_config` - the path to the database connection configuration file (`str`)
+        - `database_config` - the path to the database connection configuration file (`str`)
     - **Methods:**
         - **`__parse_speech_files()`**
             - A method responsible for extracting the information about speeches from the corpus source `.xml` files and their subsequent storing in the database.
             - Iterates through all files referenced in the corpus root and forwards them to `MetadataExtraction.speechParser` which then processes them if they are transcript files.
-            - Uses `MetadataExtraction.speechParser` to extract the information and `DatabaseCommunication.DatabaseInserter` to then pusht the extracted information inot the database.
+            - Uses `MetadataExtraction.speechParser` to extract the information and `DatabaseCommunication.DatabaseInserter` to then push the extracted information into the database.
         - **`__parse_persons_file()`**
             - A method responsible for extracting the information about individual speakers.
             - Uses the `MetadataExtraction.personParser` to extract the information.
@@ -451,7 +451,7 @@
                 - `country_code` - A code of the country of which the data is being extracted.
         - **`__process_example_queries()`**
             - This method is no longer used.
-            - It iterates thorught the `query_file` executing the debugging queries and printingtheir results.
+            - It iterates through the `query_file` executing the debugging queries and printing their results.
         - **`__initialize_database()`**
             - Method which creates the tables within database if the `--create_tables` flag is set.
             - Uses the `DatabaseCommunication.DatabaseTableCreator` to do so.
@@ -466,7 +466,7 @@
 - A command line interface between the database and user.
 - Implemented in the form of client-server.
 - Client and Server communicate with each other using `json` queries and responses.
-- For how the json queris should be structured, please see the <a href="https://github.com/ufal/ParlaStats/blob/main/api/example_queries/json_query_Structure.md">query structure</a> documentation.
+- For how the json queries should be structured, please see the <a href="https://github.com/ufal/ParlaStats/blob/main/api/example_queries/json_query_Structure.md">query structure</a> documentation.
 - The query structure is designed in such a way that it is easy to target multiple databases (multiple corpora) with the same query, eliminating the need to make the same query multiple times for each database.
 - Some of them however have to be targeted for singular databases (Queries asking about specific politicians)
 ### 3.1 Server (Server2_1.py)
@@ -476,14 +476,14 @@
     - **2.** Construct the SQL query from the JSON query with respect to predefined join criterions.
     - **3.** Forward the SQL query to the PostgreSQL server.
     - **4.** Get the response(s) from PostgresSQL server.
-    - **5.** Jsonify the response(s) and send them back to client
+    - **5.** JSON-ify the response(s) and send them back to client
     - **Note:** If the query targets more databases (corpora) at once, forward it iteratively and return the response in format `[JSON, JSON, ...]`
 - #### 3.1.1 TABLE_MATCHING
-    - A dictionary describing which tables can be joind to which tables.
+    - A dictionary describing which tables can be joined to which tables.
     - Predefined table joining to avoid forwarding impossible or simply illogical joins to the PostgreSQL server.
     - Contains key-value pairs where:
         - **Key:** Database table.
-        - **Value:** List of tables that **Key** tabel can be joined to.
+        - **Value:** List of tables that **Key** table can be joined to.
 - #### 3.1.2 TABLE_JOINS_CONDITIONS
     - A dictionary describing on which columns should the tables be joined.
     - Again, the idea here is to avoid forwarding wrongly constructed queries to the PostgreSQL server, which also makes writing json queries for users easier as they do not need to know how to join specific tables of the database, this script does it for them instead.
@@ -494,7 +494,7 @@
     - `determine_joins(columns, conditions, group_by)`
     - A function for determining which joins are necessary for a query.
     - Searches for tables mentioned in the queries `columns`, `conditions`, `group_by` sections to find the needed tables, stores them into `required` set.
-    - Then forms pairs of the `required` tables to specify joins needed with respect to `TABLE_MATCING` and `TABLE_JOINS_CONDITIONS`.
+    - Then forms pairs of the `required` tables to specify joins needed with respect to `TABLE_MATCHING` and `TABLE_JOINS_CONDITIONS`.
     - *parameters:*
         - `columns` - `columns` section of the JSON query. (`[string]`)
         - `conditions` - `conditions` section of the JSON query. (`[{"column":str, "operator":str, "value":str}]`)
@@ -512,7 +512,7 @@
     - `SQLBuilder(json_query)`
     - A function for building SQL queries from JSON queries received from client.
     - Separates the SQL query into 6 sections, builds them separately and finally concatenates them to form a valid SQL query.
-        - **1.** `SELECT_CLAUSE` - SELECT \<columns from JSON query concatenated using `", "`> FROM persson
+        - **1.** `SELECT_CLAUSE` - SELECT \<columns from JSON query concatenated using `", "`> FROM person
         - **2.** `FROM AND JOIN PART`
             - calls the `determine_joins()` function and left joins all tables to `person` table according to the results of `determine_joins()` function.
         - **3.** `CONDITIONS` - Specifies, which tables to select and builds the `WHERE` part of the SQL query from the `conditions` section of the JSON query.
@@ -525,11 +525,11 @@
         - SQL query (`string`)
         - values from conditions (`[string]`)
 - #### 3.1.6 Query
-    - Query function which recieves the json from client.
+    - Query function which receives the json from client.
     - Uses the above described functions to form an SQL query, forward it to the PostgreSQL server.
-    - Jsonfifies the PostgreSQL response and sends it to the client.
+    - JSON-ifies the PostgreSQL response and sends it to the client.
     - *returns:*
-        - a jsonified list of PostgreSQL responses.
+        - a JSON-ified list of PostgreSQL responses.
 ### 3.2 Client(client2.py)
 - A script containing the client functionality.
 - When being run, takes some command_line arguments:
@@ -549,7 +549,7 @@
         - `URL` - URL address of the server (`[str]`)
         - `QueryDir` - Path to the directory containing queries. (`str`)
         - `target_dir` - Path to directory where the results of the queries should be stored. (`str`)
-        - `interactive` - A flag specifying whether the clinet is in interactive or default mode. (`Bool`)
+        - `interactive` - A flag specifying whether the client is in interactive or default mode. (`Bool`)
     - **Methods:**
         - **`__process_query()`**
             - A method for processing the singular JSON query.
@@ -560,7 +560,7 @@
                 - Description of the query - `description` section of the JSON query.
                 - json part of the response received from server.
         - **`__adjust_results()`**
-            - Method responsible for better formating of the json response, more apporopriate for displaying.
+            - Method responsible for better formatting of the json response, more appropriate for displaying.
             - Uses `prettytable` python library to construct a table from the retrieved information, which is better for printing.
             - *parameters:*
                 - `result` - a singular json result.
@@ -568,20 +568,20 @@
                 - `table` - A string representation of the table constructed from `result` JSON.
         - **`__qraph_results()`**
             - A method for constructing a bar chart from json response.
-            - Only used by clinet in interactive mode.
+            - Only used by client in interactive mode.
             - Uses `matplotlib.pyplot` to construct the bar chart.
             - *parameters:*
                 - `description` - A description section of the query, that produced the results being graphed.
                 - `result` - the json result obtained from the server.
         - **`run_specific()`**
             - A method for running a singular specific query.
-            - Uses `__process_query()` method to obtain the results for the specific query and `__adjust_results()` method to fomrat it for printing.
+            - Uses `__process_query()` method to obtain the results for the specific query and `__adjust_results()` method to format it for printing.
             - *parameters:*
                 - `specific_query` - Path to the specific query JSON file (`str`)
         - **`run()`**
             - A main method of the Client.
             - Iterates over all json files in the `QueryDir` directory and processes each query file one at a time.
-            - Then, based on the `interactive` flag, prints the table formed from the JSON response obtained from the server or offers user the option of constructing the bar chart from the obtained results using the `__graph_resuts()` method.
+            - Then, based on the `interactive` flag, prints the table formed from the JSON response obtained from the server or offers user the option of constructing the bar chart from the obtained results using the `__graph_results()` method.
             - Also capable of storing the results to text files if the `target_dir` is set.
 ## 4. Used external tools
 ### 4.1 Database tools
@@ -594,6 +594,6 @@
 - **`matplotlib.pyplot`** - python module for constructing graphs and charts.
 - **`json`** - python module for working with json files.
 - **`argparse`** - python module for easy parsing of command-line argument.
-- **`requests`** - python module for sneding HTTP requests.
+- **`requests`** - python module for sending HTTP requests.
 - **`configparser`** - python module for parsing configuration files.
-- **`tqdm`** - python module for dispalying progress bars in the console.  
+- **`tqdm`** - python module for displaying progress bars in the console.  
