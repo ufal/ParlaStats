@@ -44,7 +44,6 @@ class Client2():
             print("Nothing to print")
 
     def __graph_results(self, description, result):
-        # TODO: finish
         labels = []
         values = []
         label_x = list(result[0].keys())[0]
@@ -81,6 +80,10 @@ class Client2():
                 for res in result:
                     res = self.__adjust_results(res)
                     print(res)
+        else:
+            for res in result:
+                res = self.__adjust_results(res)
+                print(res)
         
 
     def run(self):

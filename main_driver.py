@@ -31,23 +31,23 @@ class mainDriver:
         self.database_config = args.database
         
     def __parse_speech_files(self):
-        speech_parser = speechParser(self.source)
-        teiCorpus = xml.dom.minidom.parse(self.source + self.corpus_root)
+        speech_parser = speechParser(self.source + '/')
+        teiCorpus = xml.dom.minidom.parse(self.corpus_root)
         transcript_files = teiCorpus.getElementsByTagName('xi:include')
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
-            filePath = self.source + ref
+            filePath = self.source + '/' + ref
             contents = speech_parser.process_file(filePath)
             if contents:
                 self.databaseInserter.insert_speeches(contents)
                 
-    def __parse_persons_file(self, file, country_code):
-        person_parser = personParser(file, country_code)
+    def __parse_persons_file(self, file, source_corpus):
+        person_parser = personParser(file, source_corpus)
         persons = person_parser.extractMetadata()
         return persons
 
-    def __parse_orgs_file(self, file, country_code):
-        org_parser = organisationParser(file, country_code)
+    def __parse_orgs_file(self, file, source_corpus):
+        org_parser = organisationParser(file, source_corpus)
         organisations = org_parser.extractMetadata()
         
         return organisations
@@ -88,21 +88,24 @@ class mainDriver:
         in MetadataExtraction directory.
         """
 
-        domtree = xml.dom.minidom.parse(self.source + self.corpus_root)
+        domtree = xml.dom.minidom.parse(self.corpus_root)
         teiCorpus = domtree.documentElement
-        country_code = teiCorpus.getAttribute('xml:lang')
+        print(self.source)
+        source_corpus = self.source[self.source.rfind('/')+1:]
+        source_corpus = source_corpus[:source_corpus.index('.')]
+        print(source_corpus)
         teiHeader = domtree.getElementsByTagName('teiHeader')[0]
         profileDesc = teiHeader.getElementsByTagName('profileDesc')[0]
         particDesc = profileDesc.getElementsByTagName('particDesc')[0]
         includes = particDesc.getElementsByTagName('xi:include')
         
-        persons_file = self.source + includes[1].getAttribute("href")
-        organisations_file = self.source + includes[0].getAttribute("href")
+        persons_file = self.source + '/' + includes[1].getAttribute("href")
+        organisations_file = self.source + '/' + includes[0].getAttribute("href")
         persons = None
         organisations = None
         if create_tables:
-            persons = self.__parse_persons_file(persons_file, country_code)
-            organisations = self.__parse_orgs_file(organisations_file, country_code)
+            persons = self.__parse_persons_file(persons_file, source_corpus)
+            organisations = self.__parse_orgs_file(organisations_file, source_corpus) 
             # Create the database tables if they are not created yet.
             self.__initialize_database()
             # Insert the information into database
