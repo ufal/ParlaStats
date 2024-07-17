@@ -1,8 +1,0 @@
-[{'persName.forename': 'Andris', 'persName.surname': 'Kazinovskis', 'person.person_id': 'KazinovskisAndris'}, {'persName.forename': 'Inese', 'persName.surname': 'Ikstena', 'person.person_id': 'IkstenaInese'}]
-
-+-------------------+------------------+-------------------+
-| persName.forename | persName.surname |  person.person_id |
-+-------------------+------------------+-------------------+
-|       Andris      |   Kazinovskis    | KazinovskisAndris |
-|       Inese       |     Ikstena      |    IkstenaInese   |
-+-------------------+------------------+-------------------+

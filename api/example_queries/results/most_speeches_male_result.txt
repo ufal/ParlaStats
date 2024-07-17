@@ -1,0 +1,32 @@
+[{'person.person_id': 'DaudzeGundars', 'total_speeches': 5301}, {'person.person_id': 'BondarsMārtiņš', 'total_speeches': 3584}, {'person.person_id': 'ŠadurskisKārlis', 'total_speeches': 2969}, {'person.person_id': 'VucānsJānis', 'total_speeches': 2075}, {'person.person_id': 'ValainisViktors', 'total_speeches': 1861}, {'person.person_id': 'ŠteinsMārtiņš', 'total_speeches': 1786}, {'person.person_id': 'BērziņšGaidis', 'total_speeches': 1666}, {'person.person_id': 'GobzemsAldis', 'total_speeches': 1654}, {'person.person_id': 'ZariņšIvars', 'total_speeches': 1653}, {'person.person_id': 'SmiltēnsEdvards', 'total_speeches': 1619}]
+
++------------------+----------------+
+| person.person_id | total_speeches |
++------------------+----------------+
+|  DaudzeGundars   |      5301      |
+|  BondarsMārtiņš  |      3584      |
+| ŠadurskisKārlis  |      2969      |
+|   VucānsJānis    |      2075      |
+| ValainisViktors  |      1861      |
+|  ŠteinsMārtiņš   |      1786      |
+|  BērziņšGaidis   |      1666      |
+|   GobzemsAldis   |      1654      |
+|   ZariņšIvars    |      1653      |
+| SmiltēnsEdvards  |      1619      |
++------------------+----------------+
+[{'person.person_id': 'VojtechFilip.1955', 'total_speeches': 18681}, {'person.person_id': 'JanBartosek.1971', 'total_speeches': 11598}, {'person.person_id': 'PetrGazdik.1974', 'total_speeches': 10010}, {'person.person_id': 'RadekVondracek.1973', 'total_speeches': 9423}, {'person.person_id': 'TomioOkamura.1972', 'total_speeches': 8665}, {'person.person_id': 'PetrFiala.1964', 'total_speeches': 7939}, {'person.person_id': 'VojtechPikal.1987', 'total_speeches': 7874}, {'person.person_id': 'JanHamacek.1978', 'total_speeches': 7812}, {'person.person_id': 'TomasHanzel.1975', 'total_speeches': 5134}, {'person.person_id': 'ZbynekStanjura.1964', 'total_speeches': 3842}]
+
++---------------------+----------------+
+|   person.person_id  | total_speeches |
++---------------------+----------------+
+|  VojtechFilip.1955  |     18681      |
+|   JanBartosek.1971  |     11598      |
+|   PetrGazdik.1974   |     10010      |
+| RadekVondracek.1973 |      9423      |
+|  TomioOkamura.1972  |      8665      |
+|    PetrFiala.1964   |      7939      |
+|  VojtechPikal.1987  |      7874      |
+|   JanHamacek.1978   |      7812      |
+|   TomasHanzel.1975  |      5134      |
+| ZbynekStanjura.1964 |      3842      |
++---------------------+----------------+

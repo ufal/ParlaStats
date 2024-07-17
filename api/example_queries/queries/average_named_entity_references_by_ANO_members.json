@@ -1,34 +1,58 @@
 {
 	"target_databases":["databaseCS"],
-	"description":"Average named entity references by ANO members",
-	"aggregation": {
-		"group_by":["person.person_id","organisation.organisation_id", "persName.forename", "persName.surname"],
-		"order_by":[
-			{
-				"column":"average_named_entities",
-				"direction":"DESC"
-			}
-		]
-	},
-	"filtering": {
-		"columns":["persName.forename","persName.surname","AVG(speech.named_entity_count) AS average_named_entities"],
-		"conditions":[
-			{
-				"column":"organisation.organisation_id",
-				"operator":" LIKE ",
-				"value":"'%%ANO%%'"
+	"description":"Average named_entity references by ANO members.",
+	"steps":[
+		{
+			"goal":"get_ano_members",
+			"aggregation": {
+				"group_by":["person.person_id","organisation.organisation_id"],
+				"order_by":[]
 			},
-			{
-				"column":"speech.date",
-				"operator":">=",
-				"value":"affiliation.since"
-			},
-			{
-				"column":"speech.date",
-				"operator":"<=",
-				"value":"affiliation.until"
+			"filtering":{
+				"columns":["person.person_id"],
+				"conditions":[
+					{
+						"column":"organisation.organisation_id",
+						"operator":" LIKE ",
+						"value":"'%%ANO%%'"
+					}
+				],
+				"limit":""
 			}
-		],
-		"limit":""
-	}
+			
+		},
+		{
+			"goal":"main",
+			"aggregation":{
+				"group_by":["affiliation.person_id"],
+				"order_by":[
+					{
+						"column":"average_named_entity_references",
+						"direction":"DESC"
+					}
+				]
+			},
+			"filtering":{
+				"columns":["affiliation.person_id", "AVG(speech.named_entity_count) AS average_named_entity_references"],
+				"conditions": [
+					{
+						"column":"affiliation.person_id",
+						"operator":"IN",
+						"value":"step_result.get_ano_members.affiliation.person_id"
+					},
+					{
+						"column":"speech.date",
+						"operator":"<=",
+						"value":"affiliation.until"
+					},
+					{
+						"column":"speech.date",
+						"operator":">=",
+						"value":"affiliation.until"
+					}
+				],
+				"limit":""
+			}
+		}
+	]
 }

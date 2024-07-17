@@ -1,0 +1,18 @@
+[{'affiliation.role': 'deputyHead', 'average_sentence_count': 6.296012975911273}, {'affiliation.role': 'member', 'average_sentence_count': 6.277422307657101}, {'affiliation.role': 'representative', 'average_sentence_count': 6.305979337294578}, {'affiliation.role': 'verifier', 'average_sentence_count': 6.327535906642729}, {'affiliation.role': 'head', 'average_sentence_count': 6.295505125733812}]
+
++------------------+------------------------+
+| affiliation.role | average_sentence_count |
++------------------+------------------------+
+|    deputyHead    |   6.296012975911273    |
+|      member      |   6.277422307657101    |
+|  representative  |   6.305979337294578    |
+|     verifier     |   6.327535906642729    |
+|       head       |   6.295505125733812    |
++------------------+------------------------+
+[{'affiliation.role': 'member', 'average_sentence_count': 3.258727368606082}]
+
++------------------+------------------------+
+| affiliation.role | average_sentence_count |
++------------------+------------------------+
+|      member      |   3.258727368606082    |
++------------------+------------------------+
