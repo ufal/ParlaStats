@@ -259,6 +259,9 @@
 
 ## 2. Database Communication (and database implementation)
 - This directory contains all scripts and tools for creating and working with the PostgreSQL database locally.
+- PostgreSQL
+- Current structure fo the PostgreSQL database:
+    ![PostgreSQL database structure](actual_structure.png)
 ### 2.0 Database creation (create_database.sh)
 - A simple shell script which creates the database on the PostgreSQL server and grants all privileges to the user creating it.
 - Takes one command line argument - the name of the database.
