@@ -87,7 +87,7 @@
             - Political orientation records are extracted in the following way:
                 - Try to find the `state` tag within the `org` tag which has the type `politicalOrientation`
                 - If found try to find the `ana` attribute.
-                - If found, store it as `politicalOrientation` record in the `Organization`.orientation_records` list
+                - If found, store it as `politicalOrientation` record in the `Organization.orientation_records` list
             - Uses the `xml.dom.minidom` to parse the XML file (path in `source` attribute) and represent it using a tree data structure.
             - Then finds all `org` tags within the XML file and iterates over them, calling the `__extractNameRecords()` and `__extractOrientationRecords()` for each `org` tag and stores the output of these helper methods into the `Organization` object appropriately.
             - *returns*
@@ -191,7 +191,7 @@
                 - $4.$ Find all instances of the `persName` tag and extract `surname`, `forename` and `addname` tag text values.
                 - $5.$ Find all instances of the `affiliation` tag and extract the relevant information from them.
             - The processed persons are then stored in the `person_dict`.
-            - Uses the `xml.dom.minidom` parser to parse the xml source file and represent it as a Tree.
+            - Uses the `xml.dom.minidom` parser to parse the XML source file and represent it as a Tree.
             - *returns:*
                 - `person_dict` dictionary.
 ### 1.3 Speech Parser (speechParser.py)
@@ -529,7 +529,7 @@
         - values from conditions (`[string]`)
 - #### 3.1.6 Query
     - Query function which receives the JSON from a client.
-    - Uses the above-described functions to form an SQL query, forward it to the PostgreSQL server.
+    - Uses the above-described functions to form an SQL query, and forward it to the PostgreSQL server.
     - JSON-ifies the PostgreSQL response and sends it to the client.
     - *returns:*
         - a JSON-ified list of PostgreSQL responses.
@@ -583,7 +583,7 @@
                 - `specific_query` - Path to the specific query JSON file (`str`)
         - **`run()`**
             - A main method of the Client.
-            - Iterates over all JSON files in the `QueryDir` directory and processes each query file one at a time.
+            - Iterate over all JSON files in the `QueryDir` directory and process each query file one at a time.
             - Then, based on the `interactive` flag, prints the table formed from the JSON response obtained from the server or offers the user the option of constructing the bar chart from the obtained results using the `__graph_results()` method.
             - Also capable of storing the results in text files if the `target_dir` is set.
 ## 4. Used external tools
