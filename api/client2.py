@@ -112,14 +112,7 @@ class Client2():
                             print(file=file)
                             res = self.__adjust_results(result)
                             print(str(res), file=file)
-                #else:
-                #    res = self.__adjust_results(result)
-                #    print(res)
-                #    print("\n")
-                #else:
-                #    self.__graph_results(result)
-
-
+               
 if __name__ == "__main__":
     args = args_parser.parse_args()
     client = Client2(args)

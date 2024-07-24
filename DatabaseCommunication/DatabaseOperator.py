@@ -49,6 +49,7 @@ class DatabaseOperator:
         else:
             raise Exception(f"Section {section} not found in the file {config_path}")
         return config
+    
     def __establish_connection(self, config):
         """
         A method responsible for establishing connection to the database

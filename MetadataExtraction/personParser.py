@@ -290,9 +290,11 @@ class personParser:
         
 
 def main(args):
+    # Uncomment for debugging
     # this no longer works - will take care later
-    pp = personParser(args.source)
-    pp.extractMetadata()
+    # pp = personParser(args.source)
+    # pp.extractMetadata()
+    pass
 
 if __name__ == "__main__":
     main(args_parser.parse_args())

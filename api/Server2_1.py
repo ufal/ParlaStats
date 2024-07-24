@@ -35,7 +35,6 @@ def determine_joins(columns, conditions, group_by):
     """
     required = set()
     tables = TABLE_MATCHING.keys()
-    print(columns)
     for table in tables:
         for col in columns:
             if table in col and table not in required:
@@ -50,7 +49,6 @@ def determine_joins(columns, conditions, group_by):
                 required.add(table)
 
     joins = []
-    print(required)
     if "person" in required:
         required.remove("person")
     for table in required:
@@ -86,7 +84,7 @@ def connect_to_database(db_ini_path=args.db):
 def SQLBuilder(json_query, step_results):
     columns = ", ".join(json_query["filtering"]["columns"])
     sql_query = f"SELECT {columns} FROM person "
-    #print(step_results)
+    
     # Get necessary joins
     joins = determine_joins(json_query["filtering"]["columns"],
                             json_query["filtering"]["conditions"],
@@ -158,7 +156,6 @@ def query():
     json_query = request.json
     target_databases = json_query["target_databases"]
     res = []
-    #print(target_databases)
     for database in target_databases:
         step_results = {}
         connection = connect_to_database(f"../DatabaseCommunication/{database}.ini")
@@ -168,7 +165,6 @@ def query():
                 sql_query, params = SQLBuilder(step, step_results)
                 cursor.execute(sql_query, params)
                 step_results[step['goal']] = cursor.fetchall()
-                #print(step_results[step['goal']])
         except ValueError as e:
             return jsonify({"error": str(e)}), 400
         cursor.close()
@@ -177,7 +173,6 @@ def query():
         results = step_results[final_step_name]
         columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['filtering']['columns']]
         response = [dict(zip(columns, row)) for row in results]
-        # kluc result dalsie veci
        
         res.append(format_output(response))
     return jsonify(res)

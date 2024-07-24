@@ -13,7 +13,6 @@ from MetadataExtraction.speechParser import speechParser
 
 from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
-#from DatabaseCommunication.DatabaseQuerrier import DatabaseQuerrier
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/ParCzech.ana.xml", help="Path to the corpus root file.")
@@ -90,10 +89,10 @@ class mainDriver:
 
         domtree = xml.dom.minidom.parse(self.corpus_root)
         teiCorpus = domtree.documentElement
-        print(self.source)
+        
         source_corpus = self.source[self.source.rfind('/')+1:]
         source_corpus = source_corpus[:source_corpus.index('.')]
-        print(source_corpus)
+        
         teiHeader = domtree.getElementsByTagName('teiHeader')[0]
         profileDesc = teiHeader.getElementsByTagName('profileDesc')[0]
         particDesc = profileDesc.getElementsByTagName('particDesc')[0]
@@ -116,16 +115,6 @@ class mainDriver:
 
             self.__parse_speech_files()
         
-        # After loading the information ito database, try some querries.
-        # DEPRECATED
-        """
-        if query_mode:
-            dq = DatabaseQuerrier("DatabaseCommunication/databaseCS.ini")
-            if (self.query_file != None):
-                dq.process_querries(self.__process_example_queries())
-            else:
-                dq.main_loop()
-        """
         return persons, organisations
 
 def main(args):
