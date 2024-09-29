@@ -14,12 +14,12 @@
 	<!-- ID - of the speaker if the type is 'S' or of the token if the Type is 'T' -->
 	<!-- begin - marks the beginning of the token in audio -->
 	<!-- end - marks the end of the token in audion-->
-		<xsl:text>Type,ID,begin,end&#10;</xsl:text>
-		<xsl:apply-templates select="tei:text/tei:body/tei:div/tei:u"/>
+		<xsl:text>Type,ID,Speech,begin,end&#10;</xsl:text>
+		<xsl:apply-templates select="tei:text/tei:body/tei:div/tei:u" />
 		<xsl:for-each select="//tei:w">
 			<xsl:call-template name="word" />
 		</xsl:for-each>
-
+		
 	
 	</xsl:template>
 
@@ -36,6 +36,9 @@
 		<!-- Get the ID of the token -->
 		<xsl:text>T,</xsl:text>
 		<xsl:value-of select="@xml:id" />
+		<xsl:text>,</xsl:text>
+		<!-- Get the utterance the tag belongs to -->
+		<xsl:value-of select="substring-before(substring-after(@xml:id, 'u'), '.p')" />
 		<xsl:text>,</xsl:text>
 		<!-- Get the start timestamp of the tag -->
 		<xsl:variable name="startSynch" select="preceding-sibling::tei:anchor[1]/@synch" />
