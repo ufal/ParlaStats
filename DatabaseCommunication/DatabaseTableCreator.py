@@ -54,7 +54,10 @@ class DatabaseTableCreator(DatabaseOperator):
                     sentence_count INTEGER,
                     named_entity_count INTEGER,
                     role VARCHAR(100),
-                    person_id VARCHAR(100), 
+                    person_id VARCHAR(100),
+                    total_duration REAL,
+                    earliest_timestamp VARCHAR(100),
+                    latest_timestamp VARCHAR(100),
                     FOREIGN KEY (person_id)
                         REFERENCES Person (person_id)
                 )
