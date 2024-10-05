@@ -46,7 +46,7 @@ class timestampsExtractor:
         with open("TokensMissingAnchors.csv", 'a') as f:
             f.write("ID\n")
 
-    def transformFileCSV(self, filepath):
+    def __transformFileCSV(self, filepath):
         
         xml_file = filepath
         xml_tree = etree.parse(xml_file)
@@ -54,6 +54,7 @@ class timestampsExtractor:
         with open("transformedCSV.csv", 'wb') as f:
             f.write(result)
 
+    
     def extractTimestamps(self):
         """
         Pass through each transcript file and extract the timestamps
@@ -64,9 +65,9 @@ class timestampsExtractor:
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterating thorugh transcript files."):
             ref = elem.getAttribute("href")
             filepath = self.corpus_dir + "/" + ref
-            self.transformFileCSV(filepath)
+            self.__transformFileCSV(filepath)
 
-    def process_speeches(self, file_out):
+    def __process_file(self, file_out):
         """
         Method for separating the timestamps of different speeches in the output of the 
         transformation XSLT script.
@@ -112,20 +113,27 @@ class timestampsExtractor:
                                 f.write(row['ID'] + ',\n')
 
                     else:
-                        self.speakers[speakers_in_file[current_speech]] += self.__get_total_duration(intervals)
+                        # self.speakers[speakers_in_file[current_speech]] += self.__get_total_duration(intervals)
                         
-                        if (len(times) != 1):
+                        if (len(times) >= 1):
                             results.append([times[0], times[-1], self.__get_total_duration(intervals)])
                         else:
-                            results.append([times[0], times[0], self.__get_total_duration(intervals)])
-                        
+                            results.append([None, None, self.__get_total_duration(intervals)])
                         current_speech += 1
                         intervals = []
                         times = [actual_timeline]
                 
-            # print(self.speakers)
+            # Store the leftovers
+            # print(times)
+            if (len(times) >= 1):
+                results.append([times[0], times[-1], self.__get_total_duration(intervals)])
+                        
+                current_speech += 1
+                intervals = []
+                times = [actual_timeline]
+                
             return results 
-   
+
     def __get_total_duration(self,  speech_timestamps):
         """
         Method responsible for getiing the total duration of the given speech
@@ -140,14 +148,17 @@ class timestampsExtractor:
         -----------
         speech_timestamps - timestamps for the currently examined speech (CSV file or raw, not decided yet)
         """
-        # print(speech_timestamps)
+        if (len(speech_timestamps)) < 1:
+            return 0
         return abs(float(speech_timestamps[-1]) - float(speech_timestamps[0]))
-
+    
+    def pipeline(self, filepath):
+        self.__transformFileCSV(filepath)
+        return self.__process_file("transformedCSV.csv")
 
 def main(args):
     tsExtractor = timestampsExtractor(args.corpus_root, args.script)
-    tsExtractor.transformFileCSV(f"../../ParCzech.TEI.ana/ps2013-001/{args.specific_file}")
-    print(tsExtractor.process_speeches("transformedCSV.csv"))
+    print(tsExtractor.pipeline(f"../../ParCzech.TEI.ana/ps2013-001/{args.specific_file}"))
     # tsExtractor.extractTimestamps()
     # print(args.script)
     print("Done!")

@@ -55,5 +55,4 @@
 		<xsl:value-of select="key('whenByID', substring($sinceRef, 2))/@absolute" />
 		<xsl:text>&#10;</xsl:text>
 	</xsl:template>
-	
 </xsl:stylesheet>

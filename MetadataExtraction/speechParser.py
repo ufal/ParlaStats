@@ -4,6 +4,8 @@ import os
 import argparse
 import tqdm
 
+from timestampsExtractor import timestampsExtractor
+
 from collections import defaultdict
 from lxml import etree
 import xml.etree.ElementTree as ET 
@@ -27,6 +29,8 @@ class Speech:
     speakerID = str()
     when = str()
     total_duration = int()
+    earliest_timeline = str()
+    latest_timeline = str()
 
     def __init__(self, tokens, sentences, NE_refs, role, speech_id, speaker, when):
         self.tokens = tokens
@@ -36,9 +40,12 @@ class Speech:
         self.speechID = speech_id
         self.speakerID = speaker
         self.when = when
+        self.total_duration = None
+        self.earliest_timeline = None
+        self.latest_timeline = None 
 
     def __str__(self):
-        result = f"***\nSpeech {self.speechID} given by {self.speakerID} at {self.when}\ntokens: {self.tokens}\nsentences: {self.sentences}\nnamed entity refferences: {self.named_entity_refferences}\n***\n"
+        result = f"***\nSpeech {self.speechID} given by {self.speakerID} at {self.when}\ntokens: {self.tokens}\nsentences: {self.sentences}\nnamed entity refferences: {self.named_entity_refferences}\ntotal_duration: {self.total_duration}\nearliest_timeline: {self.earliest_timeline}\nlatest_timeline: {self.latest_timeline}\n***\n"
         return result
 
 class speechParser:
@@ -94,13 +101,15 @@ class speechParser:
             result - dictionary where keys are IDs of speakers and values are lists of speeches
         """
         # Extract the information on when the speech was given
+        te = timestampsExtractor(self.corpus_root, "timestampsCSV.xslt")
         result = defaultdict()
         root = (etree.parse(filePath)).getroot()
+        timestampsInfo = te.pipeline(filePath)
+        current_speech = 0
         namespace = '{'+str(list(root.nsmap.values())[0])+'}'
         if root.tag == f"{namespace}TEI":
             date = root.find('.//teiHeader/profileDesc/settingDesc/setting/date', root.nsmap)
             when = date.get('when')
-            
             
             # Extract other information
             utterances = root.findall(".//text/body/div/u", root.nsmap)
@@ -113,11 +122,16 @@ class speechParser:
                 tokens_count, sentences_count, named_entities_count = self.__get_relevant_tags_count(u)
 
                 ut = Speech(tokens_count, sentences_count, named_entities_count, role, utterance_id, speaker, when)
+                
+                if (len(timestampsInfo) > 0):
+                    ut.earliest_timeline = timestampsInfo[current_speech][0]
+                    ut.latest_timeline = timestampsInfo[current_speech][1]
+                    ut.total_duration = timestampsInfo[current_speech][2]
                 if not speaker in result.keys():
                     result[speaker] = [ut]
                 else:
                     result[speaker].append(ut)
-        
+                current_speech+=1
             return result
         return None
     
