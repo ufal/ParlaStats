@@ -35,10 +35,11 @@ class mainDriver:
         transcript_files = teiCorpus.getElementsByTagName('xi:include')
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
-            filePath = self.source + '/' + ref
-            contents = speech_parser.process_file(filePath)
-            if contents:
-                self.databaseInserter.insert_speeches(contents)
+            if ref[0:2] == "ps":
+                filePath = self.source + '/' + ref
+                contents = speech_parser.process_file(filePath)
+                if contents:
+                    self.databaseInserter.insert_speeches(contents)
                 
     def __parse_persons_file(self, file, source_corpus):
         person_parser = personParser(file, source_corpus)

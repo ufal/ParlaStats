@@ -51,7 +51,7 @@ class timestampsExtractor:
         xml_file = filepath
         xml_tree = etree.parse(xml_file)
         result = self.apply_script(xml_tree)
-        with open("transformedCSV.csv", 'wb') as f:
+        with open("MetadataExtraction/transformedCSV.csv", 'wb') as f:
             f.write(result)
 
     
@@ -154,7 +154,7 @@ class timestampsExtractor:
     
     def pipeline(self, filepath):
         self.__transformFileCSV(filepath)
-        return self.__process_file("transformedCSV.csv")
+        return self.__process_file("MetadataExtraction/transformedCSV.csv")
 
 def main(args):
     tsExtractor = timestampsExtractor(args.corpus_root, args.script)

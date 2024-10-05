@@ -4,7 +4,7 @@ import os
 import argparse
 import tqdm
 
-from timestampsExtractor import timestampsExtractor
+from MetadataExtraction.timestampsExtractor import timestampsExtractor
 
 from collections import defaultdict
 from lxml import etree
@@ -101,7 +101,7 @@ class speechParser:
             result - dictionary where keys are IDs of speakers and values are lists of speeches
         """
         # Extract the information on when the speech was given
-        te = timestampsExtractor(self.corpus_root, "timestampsCSV.xslt")
+        te = timestampsExtractor(self.corpus_root, "MetadataExtraction/timestampsCSV.xslt")
         result = defaultdict()
         root = (etree.parse(filePath)).getroot()
         timestampsInfo = te.pipeline(filePath)
