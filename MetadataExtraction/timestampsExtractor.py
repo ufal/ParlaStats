@@ -10,7 +10,7 @@ import csv
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--script", type=str, default="timestampsCSV.xslt", help="XSLT script to be applied")
 args_parser.add_argument("--corpus_root", type=str, default="../../ParCzech.TEI.ana/ParCzech.ana.xml", help="Path to the directory containing the xml source.")
-args_parser.add_argument("--specific_file", type=str, default="ps2013-001-01-000-999.ana.xml", help="Specific file to be transformed")
+args_parser.add_argument("--specific_file", type=str, default="ps2013-001-01-002-002.ana.xml", help="Specific file to be transformed")
 
 
 class timestampsExtractor:
@@ -78,19 +78,25 @@ class timestampsExtractor:
         -----------
         file_out - output of the @transformFileCSV method.
         """
-        
+        results = []
         with open(file_out, 'r', encoding="utf-8")as csvfile:
             reader = csv.DictReader(csvfile)
 
             current_speech=1      # Make bunch of variables, which
-            start_time=None       # will serve as temporary storage
-            end_time=None         # for current speech number, speakers
+                                  # will serve as temporary storage
+                                  # for current speech number, speakers
             speakers_in_file = [] # encountered in a singular transcript file
             rows=list(reader)     # etc.
             intervals = []
-
+            times = []
+            actual_timeline=None
             for row in rows:
                 # Extract the list of speakers
+                if (actual_timeline != row['Time']):
+                    if (row['Time'] != ''):
+                        actual_timeline = row['Time']
+                        times.append(actual_timeline)
+                    
                 if (row['Type'] == 'S'):
                     if row['ID'] not in speakers_in_file:
                         speakers_in_file.append(row['ID'][1:])
@@ -98,20 +104,28 @@ class timestampsExtractor:
                 elif(row['Type'] == 'T'):                        # If the entry is representing
                     if (int(row['Speech']) == current_speech):   # a token in a current speech,
                                                                  #store the token's timestamps.
-                        if (row['begin'] and row['end']):        # If a token misses one or both
-                            intervals.append(row['begin'])       # timestamps, report it to the
-                            intervals.append(row['end'])         # log file.
+                        if (row['Begin'] and row['End']):        # If a token misses one or both
+                            intervals.append(row['Begin'])       # timestamps, report it to the
+                            intervals.append(row['End'])         # log file.
                         else:
                             with open(self.missing_timestamps_file, 'a') as f:
                                 f.write(row['ID'] + ',\n')
 
                     else:
                         self.speakers[speakers_in_file[current_speech]] += self.__get_total_duration(intervals)
+                        
+                        if (len(times) != 1):
+                            results.append([times[0], times[-1], self.__get_total_duration(intervals)])
+                        else:
+                            results.append([times[0], times[0], self.__get_total_duration(intervals)])
+                        
                         current_speech += 1
                         intervals = []
+                        times = [actual_timeline]
                 
-            print(self.speakers)
-
+            # print(self.speakers)
+            return results 
+   
     def __get_total_duration(self,  speech_timestamps):
         """
         Method responsible for getiing the total duration of the given speech
@@ -133,7 +147,7 @@ class timestampsExtractor:
 def main(args):
     tsExtractor = timestampsExtractor(args.corpus_root, args.script)
     tsExtractor.transformFileCSV(f"../../ParCzech.TEI.ana/ps2013-001/{args.specific_file}")
-    tsExtractor.process_speeches("transformedCSV.csv")
+    print(tsExtractor.process_speeches("transformedCSV.csv"))
     # tsExtractor.extractTimestamps()
     # print(args.script)
     print("Done!")

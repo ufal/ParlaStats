@@ -14,13 +14,11 @@
 	<!-- ID - of the speaker if the type is 'S' or of the token if the Type is 'T' -->
 	<!-- begin - marks the beginning of the token in audio -->
 	<!-- end - marks the end of the token in audion-->
-		<xsl:text>Type,ID,Speech,begin,end&#10;</xsl:text>
+		<xsl:text>Type,ID,Speech,Begin,End,Time&#10;</xsl:text>
 		<xsl:apply-templates select="tei:text/tei:body/tei:div/tei:u" />
 		<xsl:for-each select="//tei:w">
 			<xsl:call-template name="word" />
 		</xsl:for-each>
-		
-	
 	</xsl:template>
 
 
@@ -37,16 +35,24 @@
 		<xsl:text>T,</xsl:text>
 		<xsl:value-of select="@xml:id" />
 		<xsl:text>,</xsl:text>
+		
 		<!-- Get the utterance the tag belongs to -->
 		<xsl:value-of select="substring-before(substring-after(@xml:id, 'u'), '.p')" />
 		<xsl:text>,</xsl:text>
-		<!-- Get the start timestamp of the tag -->
+		
+		<!-- Get the start timestamp of the tag -->		
 		<xsl:variable name="startSynch" select="preceding-sibling::tei:anchor[1]/@synch" />
 		<xsl:value-of select="key('whenByID', substring($startSynch, 2))/@interval" />
 		<xsl:text>,</xsl:text>
+		
 		<!-- Get the end timestamp of the tag -->
 		<xsl:variable name="endSynch" select="following-sibling::tei:anchor[1]/@synch" />
 		<xsl:value-of select="key('whenByID', substring($endSynch, 2))/@interval" />
+		<xsl:text>,</xsl:text>
+		
+		<!-- Get the time the speech was given-->
+		<xsl:variable name="sinceRef" select="key('whenByID', substring($startSynch, 2))/@since" />
+		<xsl:value-of select="key('whenByID', substring($sinceRef, 2))/@absolute" />
 		<xsl:text>&#10;</xsl:text>
 	</xsl:template>
 	
