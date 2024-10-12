@@ -10,6 +10,7 @@ import xml.dom.minidom
 from MetadataExtraction.personParser import personParser
 from MetadataExtraction.orgParser import organisationParser
 from MetadataExtraction.speechParser import speechParser
+from MetadataExtraction.personParser2 import personParser2
 
 from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
@@ -42,8 +43,11 @@ class mainDriver:
                     self.databaseInserter.insert_speeches(contents)
                 
     def __parse_persons_file(self, file, source_corpus):
-        person_parser = personParser(file, source_corpus)
-        persons = person_parser.extractMetadata()
+        # person_parser = personParser(file, source_corpus)
+        # persons = person_parser.extractMetadata()
+        print(source_corpus)
+        person_parser = personParser2(file, source_corpus)
+        persons = person_parser.pipeline()
         return persons
 
     def __parse_orgs_file(self, file, source_corpus):
