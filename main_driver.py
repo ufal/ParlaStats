@@ -11,6 +11,7 @@ from MetadataExtraction.personParser import personParser
 from MetadataExtraction.orgParser import organisationParser
 from MetadataExtraction.speechParser import speechParser
 from MetadataExtraction.personParser2 import personParser2
+from MetadataExtraction.orgParser2 import orgParser2
 
 from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
@@ -21,6 +22,7 @@ args_parser.add_argument("--query_file", type=str, default=None, help="Path to t
 args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
 args_parser.add_argument("--database", type=str, default="DatabaseCommunication/databaseCS.ini", help="File with target database details")
 args_parser.add_argument("--create_tables", action="store_true", help="Set this flag to create database tables.")
+args_parser.add_argument("--legacy", action="store_true", help="Set this flag to use legacy (non-XSLT) metadata extraction")
 
 class mainDriver:
     def __init__(self, args):
@@ -29,7 +31,8 @@ class mainDriver:
         self.databaseInserter = DatabaseInserter(args.database)
         self.query_file = args.query_file
         self.database_config = args.database
-        
+        self.legacy = args.legacy
+
     def __parse_speech_files(self):
         speech_parser = speechParser(self.source + '/')
         teiCorpus = xml.dom.minidom.parse(self.corpus_root)
@@ -43,16 +46,28 @@ class mainDriver:
                     self.databaseInserter.insert_speeches(contents)
                 
     def __parse_persons_file(self, file, source_corpus):
-        # person_parser = personParser(file, source_corpus)
-        # persons = person_parser.extractMetadata()
-        print(source_corpus)
-        person_parser = personParser2(file, source_corpus)
-        persons = person_parser.pipeline()
+        persons = None
+        
+        if self.legacy:
+            person_parser = personParser(file, source_corpus)
+            persons = person_parser.extractMetadata()
+        
+        else:
+            person_parser = personParser2(file, source_corpus)
+            persons = person_parser.pipeline()
+        
         return persons
 
     def __parse_orgs_file(self, file, source_corpus):
-        org_parser = organisationParser(file, source_corpus)
-        organisations = org_parser.extractMetadata()
+        organisations = None
+        
+        if self.legacy:
+            org_parser = organisationParser(file, source_corpus)
+            organisations = org_parser.extractMetadata()
+        
+        else:
+            org_parser = orgParser2(file, source_corpus)
+            organisations = org_parser.pipeline()
         
         return organisations
     
