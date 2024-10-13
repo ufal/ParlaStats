@@ -174,6 +174,7 @@ class personParser2:
         """
         A main method for extracting all information about speakers.
         """
+        print("---Extracting persons---")
         for i in range(len(self.transformations)):
             self.__transformFileToCSV(self.transformations[i], self.out_files[i])
             
@@ -183,7 +184,7 @@ class personParser2:
         
         for key in self.person_dictionary.keys():
             self.person_dictionary[key] = [self.person_dictionary[key], self.corpus]
-
+        print("---DONE---")
         return self.person_dictionary
         
 def main(args):
