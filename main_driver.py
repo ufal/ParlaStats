@@ -7,12 +7,15 @@ from lxml import etree
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
+# LEGACY METADATA EXTRACTION
 from MetadataExtraction.personParser import personParser
 from MetadataExtraction.orgParser import organisationParser
 from MetadataExtraction.speechParser import speechParser
+
+# NEW METADATA EXTRACTION
 from MetadataExtraction.personParser2 import personParser2
 from MetadataExtraction.orgParser2 import orgParser2
-
+from MetadataExtraction.speechParser2 import speechParser2
 from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
 
@@ -34,16 +37,27 @@ class mainDriver:
         self.legacy = args.legacy
 
     def __parse_speech_files(self):
-        speech_parser = speechParser(self.source + '/')
+        speech_parser = None
+        
+        if self.legacy:
+            speech_parser = speechParser(self.source + '/')
+        else: 
+            speech_parser = speechParser2()
+
         teiCorpus = xml.dom.minidom.parse(self.corpus_root)
         transcript_files = teiCorpus.getElementsByTagName('xi:include')
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
             if ref[0:2] == "ps":
                 filePath = self.source + '/' + ref
-                contents = speech_parser.process_file(filePath)
+
+                contents = None
+                if self.legacy:
+                    contents = speech_parser.process_file(filePath)
+                else:
+                    contents = speech_parser.pipeline(filePath)
                 if contents:
-                    self.databaseInserter.insert_speeches(contents)
+                    self.databaseInserter.insert_speeches(contents)            
                 
     def __parse_persons_file(self, file, source_corpus):
         persons = None
