@@ -32,7 +32,7 @@ class DatabaseInserter(DatabaseOperator):
                 if len(p.sex) > 1:
                     p.sex = 'U'
                 
-                cursor.execute(PersonCommands.INSERT_ALL,(p.personID, p.sex, p.birth,))
+                cursor.execute(PersonCommands.INSERT_ALL,(p.personID, p.sex, p.birth))
                 self.__insert_name_records(p.name_records,p.personID, cursor)
             self.connection.commit()
     
@@ -114,7 +114,8 @@ class DatabaseInserter(DatabaseOperator):
         with self.connection.cursor() as cursor:
             for author in speeches:
                 for s in speeches[author]:
-                    cursor.execute(SpeechCommands.INSERT_ALL, (s.when,
+                    cursor.execute(SpeechCommands.INSERT_ALL, (s.speechID,
+                                                               s.when,
                                                                str(s.tokens),
                                                                str(s.sentences),
                                                                str(s.named_entity_refferences),
@@ -122,6 +123,10 @@ class DatabaseInserter(DatabaseOperator):
                                                                s.speakerID[1:],
                                                                s.total_duration,
                                                                s.earliest_timeline,
-                                                               s.latest_timeline))
+                                                               s.latest_timeline,
+                                                               s.unaligned_tokens,
+                                                               s.time_spoken,
+                                                               s.time_silent,
+                                                               s.time_unknown))
 
             self.connection.commit()

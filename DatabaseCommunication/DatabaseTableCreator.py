@@ -48,7 +48,7 @@ class DatabaseTableCreator(DatabaseOperator):
                 """,
                 """
                 CREATE TABLE IF NOT EXISTS speech (
-                    id SERIAL PRIMARY KEY,
+                    id VARCHAR(100) PRIMARY KEY,
                     date DATE,
                     token_count INTEGER, 
                     sentence_count INTEGER,
@@ -58,6 +58,10 @@ class DatabaseTableCreator(DatabaseOperator):
                     total_duration REAL,
                     earliest_timestamp VARCHAR(100),
                     latest_timestamp VARCHAR(100),
+                    unaligned_tokens INTEGER,
+                    time_spoken REAL,
+                    time_silent REAL,
+                    time_unknown REAL,
                     FOREIGN KEY (person_id)
                         REFERENCES Person (person_id)
                 )
