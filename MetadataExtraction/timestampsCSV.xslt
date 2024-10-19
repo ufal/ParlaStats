@@ -14,7 +14,7 @@
 	<!-- ID - of the speaker if the type is 'S' or of the token if the Type is 'T' -->
 	<!-- begin - marks the beginning of the token in audio -->
 	<!-- end - marks the end of the token in audion-->
-		<xsl:text>Type,ID,Begin,End,Duration,Time&#10;</xsl:text>
+		<xsl:text>Type,ID,Begin,End,Time&#10;</xsl:text>
 		<xsl:apply-templates select="tei:text/tei:body/tei:div/tei:u" />
 
 		<!-- Artificially insert one "speaker" row so that the information about last speech is stored.-->
@@ -41,24 +41,40 @@
 		<xsl:value-of select="@xml:id" />
 		<xsl:text>,</xsl:text>
 		
-		<!-- Get the start timestamp of the tag -->		
-		<xsl:variable name="startSynch" select="preceding-sibling::tei:anchor[1]/@synch" />
-		<xsl:value-of select="key('whenByID', substring($startSynch, 2))/@interval" />
-		<xsl:text>,</xsl:text>
+		<xsl:variable name="startSynch" select ="preceding-sibling::tei:anchor[1]/@synch" />
+		<xsl:variable name="endSynch" select="following-sibling::tei:anchor[1]/@synch" />
+		<!-- Get the start timestamp of the tag -->
+		<xsl:choose>
+			<xsl:when test="$startSynch and contains($startSynch, concat('#', @xml:id))">
+				<xsl:value-of select="key('whenByID', substring($startSynch, 2))/@interval" />
+				<xsl:text>,</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>,</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+
 		
 		<!-- Get the end timestamp of the tag -->
-		<xsl:variable name="endSynch" select="following-sibling::tei:anchor[1]/@synch" />
-		<xsl:value-of select="key('whenByID', substring($endSynch, 2))/@interval" />
-		<xsl:text>,</xsl:text>
-
-		<!-- Get the duration of the tag -->
-		<xsl:variable name="first" select="key('whenByID', substring($endSynch, 2))/@interval " />
-		<xsl:variable name="second" select="key('whenByID', substring($startSynch, 2))/@interval " />
-		<xsl:value-of select="$first - $second" /> 
-		<xsl:text>,</xsl:text>
+		<xsl:choose>
+			<xsl:when test="$endSynch and contains($endSynch, concat('#', @xml:id))">	
+				<xsl:value-of select="key('whenByID', substring($endSynch, 2))/@interval" />
+				<xsl:text>,</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>,</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
 		<!-- Get the time the speech was given-->
-		<xsl:variable name="sinceRef" select="key('whenByID', substring($startSynch, 2))/@since" />
-		<xsl:value-of select="key('whenByID', substring($sinceRef, 2))/@absolute" />
-		<xsl:text>&#10;</xsl:text>
+		<xsl:choose>
+			<xsl:when test="$startSynch and contains($startSynch, concat('#', @xml:id))">
+				<xsl:variable name="sinceRef" select="key('whenByID', substring($startSynch, 2))/@since" />
+				<xsl:value-of select="key('whenByID', substring($sinceRef, 2))/@absolute" />
+				<xsl:text>&#10;</xsl:text>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>&#10;</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 </xsl:stylesheet>
