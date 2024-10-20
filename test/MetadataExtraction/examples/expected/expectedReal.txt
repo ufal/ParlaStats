@@ -1,0 +1,16 @@
+---SPEECH---
+ID: ps2013-001-01-000-999.u1
+author: #MiroslavaNemcova.1952
+role: #chair
+when: 2013-11-25
+tokens: 175
+sentences: 12
+named entity refferences: 18
+total duration: 190520.0
+total spoken: 75000.0
+time silent: -26850.0
+time unknown: 142370.0
+unaligned tokens: 14
+earliest timeline: 2013-11-25T13:58:00
+latest timeline: 2013-11-25T13:58:00
+
