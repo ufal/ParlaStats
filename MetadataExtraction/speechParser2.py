@@ -49,15 +49,21 @@ class Speech:
         self.time_unknown = max(0,self.total_duration - self.time_spoken - self.time_silent)
     
     def __str__(self):
-        result ="\n---SPPECH---\n"
+        result ="---SPEECH---\n"
         result += f"ID: {self.speechID}\n"
         result += f"author: {self.speakerID}\n"
+        result += f"role: {self.role}\n"
+        result += f"when: {self.when}\n"
+        result += f"tokens: {self.tokens}\n"
+        result += f"sentences: {self.sentences}\n"
+        result += f"named entity refferences: {self.named_entity_refferences}\n"
         result += f"total duration: {self.total_duration}\n"
         result += f"total spoken: {self.time_spoken}\n"
         result += f"time silent: {self.time_silent}\n"
+        result += f"time unknown: {self.time_unknown}\n"
         result += f"unaligned tokens: {self.unaligned_tokens}\n"
         result += f"earliest timeline: {self.earliest_timeline}\n"
-        result += f"latest_timeline: {self.latest_timeline}"
+        result += f"latest timeline: {self.latest_timeline}\n"
         return result
 
 class speechParser2:
@@ -171,10 +177,13 @@ class speechParser2:
         return result
 
 def main(args):
+    out = ""
+    # print(args.file)
     sp = speechParser2(args.wd)
     res = sp.pipeline(args.file)
     for r in res.keys():
         for s in res[r]:
-            print(s)
+            out += str(s)
+    return out
 if __name__ == "__main__":
-    main(args_parser.parse_args())
+    print(main(args_parser.parse_args()))
