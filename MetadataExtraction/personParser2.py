@@ -7,8 +7,9 @@ import csv
 
 args_parser=argparse.ArgumentParser()
 # args_parser.add_argument("--script", type=str, help="XSLT script to be applied")
-args_parser.add_argument("--source", type=str, default="../../ParCzech.TEI.ana/ParCzech-listPerson.xml", 
+args_parser.add_argument("--file", type=str, default="../../ParCzech.TEI.ana/ParCzech-listPerson.xml", 
                          help="Path to the listPerson file")
+args_parser.add_argument("--wd", type=str, default="./MetadataExtraction", help="Directory, where to look for the XSLT scripts and CSV byproducts.")
 
 class Affiliation:
     """
@@ -80,6 +81,24 @@ class Person:
         self.birth=birth
         self.name_records=[]
         self.affiliation_records=[]
+    
+    def __str__(self):
+        result="---PERSON---\n"
+        result += f"ID: {self.personID}\n"
+        result += f"sex: {self.sex}\n"
+        result += f"birth: {self.birth}\n"
+        for name in self.name_records:
+            result+="NAME\n"
+            result+=f"    surname: {name.surname}\n"
+            result+=f"    addname: {name.addname}\n"
+            result+=f"    forename: {name.forename}\n"
+        for affiliation in self.affiliation_records:
+            result+="AFFILIATION\n"
+            result+=f"    since: {affiliation.since}\n"
+            result+=f"    to: {affiliation.to}\n"
+            result+=f"    party: {affiliation.party}\n"
+            result+=f"    role: {affiliation.role}\n"
+        return result
 
     def add_name_record(self,name):
         """
@@ -117,21 +136,23 @@ class personParser2:
     An improved(?) version of the foremr personParser.
     Major change is that this personParser uses XSLT scripts to extract the metadata about speakers.
     """
-    def __init__(self, source, corpus):
+    def __init__(self, file, wd, corpus="ParCzech"):
         """
         Parameters:
         -----------
             source(str) - path to the listPerson file.
         """
-        self.source_tree = etree.parse(source)
         
-        self.transformations = [ etree.XSLT(etree.parse("MetadataExtraction/personGeneral.xslt")),
-                                 etree.XSLT(etree.parse("MetadataExtraction/personNameRecords.xslt")),
-                                 etree.XSLT(etree.parse("MetadataExtraction/personAffiliations.xslt")) ]
+        self.source_tree = etree.parse(file)
+        self.wd = wd
+
+        self.transformations = [ etree.XSLT(etree.parse(f"{self.wd}/personGeneral.xslt")),
+                                 etree.XSLT(etree.parse(f"{self.wd}/personNameRecords.xslt")),
+                                 etree.XSLT(etree.parse(f"{self.wd}/personAffiliations.xslt")) ]
         
-        self.out_files = ["MetadataExtraction/personGeneral.csv",
-                          "MetadataExtraction/personNameRecords.csv",
-                          "MetadataExtraction/personAffiliations.csv"]
+        self.out_files = [f"{self.wd}/personGeneral.csv",
+                          f"{self.wd}/personNameRecords.csv",
+                          f"{self.wd}/personAffiliations.csv"]
 
         self.person_dictionary = {}
         self.name_id = 0
@@ -174,7 +195,6 @@ class personParser2:
         """
         A main method for extracting all information about speakers.
         """
-        print("---Extracting persons---")
         for i in range(len(self.transformations)):
             self.__transformFileToCSV(self.transformations[i], self.out_files[i])
             
@@ -184,12 +204,15 @@ class personParser2:
         
         for key in self.person_dictionary.keys():
             self.person_dictionary[key] = [self.person_dictionary[key], self.corpus]
-        print("---DONE---")
         return self.person_dictionary
         
 def main(args):
-    person_parser = personParser2(args.source)
-    person_parser.pipeline()
+    out = ""
+    person_parser = personParser2(args.file, args.wd)
+    res = person_parser.pipeline()
+    for r in res.keys():
+        print(res[r][0])
+        out += str(res[r][0])
 
 if __name__ == "__main__":
     main(args_parser.parse_args())
