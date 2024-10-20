@@ -1,0 +1,124 @@
+---PERSON---
+ID: AdamKalous.1979
+sex: M
+birth: 1979-10-06
+NAME
+    surname: Kalous
+    addname: None
+    forename: Adam
+AFFILIATION
+    since: 2020-06-04T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #subcommittee.PD
+    role: member
+AFFILIATION
+    since: 2019-11-28T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.BH
+    role: member
+AFFILIATION
+    since: 2019-10-02T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #subcommittee.PMRVZ
+    role: member
+AFFILIATION
+    since: 2019-09-05T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #subcommittee.PCR
+    role: member
+AFFILIATION
+    since: 2019-05-09T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.QA
+    role: member
+AFFILIATION
+    since: 2018-09-10T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.SK
+    role: member
+AFFILIATION
+    since: 2018-06-26T00:00:00
+    to: 2019-10-31T00:00:00
+    party: #interparliamentaryFriendshipGroup.BG
+    role: member
+AFFILIATION
+    since: 2018-05-22T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.KW
+    role: member
+AFFILIATION
+    since: 2018-04-10T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.USA
+    role: member
+AFFILIATION
+    since: 2018-04-10T00:00:00
+    to: 2018-09-10T00:00:00
+    party: #interparliamentaryFriendshipGroup.OMN
+    role: member
+AFFILIATION
+    since: 2018-04-10T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.IL
+    role: member
+AFFILIATION
+    since: 2018-04-10T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #interparliamentaryFriendshipGroup.ARE
+    role: member
+AFFILIATION
+    since: 2018-03-14T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #subcommittee.PEFPS
+    role: member
+AFFILIATION
+    since: 2018-03-14T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #subcommittee.PEFPS
+    role: head
+AFFILIATION
+    since: 2017-12-12T00:00:00
+    to: 2019-07-10T12:00:00
+    party: #commission.SKVZ
+    role: member
+AFFILIATION
+    since: 2017-12-12T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #commission.SKBIS
+    role: member
+AFFILIATION
+    since: 2017-12-06T16:00:00
+    to: 2021-10-20T00:00:00
+    party: #committee.VSR
+    role: deputyHead
+AFFILIATION
+    since: 2017-11-29T16:00:00
+    to: 2021-10-20T00:00:00
+    party: #committee.VEZ
+    role: verifier
+AFFILIATION
+    since: 2017-11-28T16:00:00
+    to: 2021-10-20T00:00:00
+    party: #committee.VSR
+    role: member
+AFFILIATION
+    since: 2017-11-28T16:00:00
+    to: 2021-10-20T00:00:00
+    party: #committee.VEZ
+    role: member
+AFFILIATION
+    since: 2017-10-24T00:00:00
+    to: 2021-10-20T00:00:00
+    party: #parliamentaryGroup.ANO
+    role: member
+AFFILIATION
+    since: 2017-10-21T14:00:00
+    to: 2021-10-20T00:00:00
+    party: #parliament.PSP
+    role: member
+AFFILIATION
+    since: 2017-10-21
+    to: 2021-10-20
+    party: #politicalParty.ANO2011
+    role: representative
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listPerson xmlns="http://www.tei-c.org/ns/1.0" xml:id="ParCzech-listPerson" xml:lang="cs">
+   <person xml:id="AdamKalous.1979">
+      <persName>
+         <surname>Kalous</surname>
+         <forename>Adam</forename>
+      </persName>
+      <sex value="M"/>
+      <birth when="1979-10-06"/>
+      <idno type="URI" subtype="parliament">https://www.psp.cz/sqw/detail.sqw?id=6497</idno>
+      <figure>
+         <graphic url="https://www.psp.cz/eknih/cdrom/2017ps/eknih/2017ps/poslanci/i6497.jpg"/>
+      </figure>
+      <affiliation ref="#subcommittee.PD" role="member" from="2020-06-04T00:00:00" to="2021-10-20T00:00:00" ana="#subcommittee.PD.1340"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.BH" role="member" from="2019-11-28T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.BH.1514"/>
+      <affiliation ref="#subcommittee.PMRVZ" role="member" from="2019-10-02T00:00:00" to="2021-10-20T00:00:00" ana="#subcommittee.PMRVZCH.1376"/>
+      <affiliation ref="#subcommittee.PCR" role="member" from="2019-09-05T00:00:00" to="2021-10-20T00:00:00" ana="#subcommittee.PCR.1391"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.QA" role="member" from="2019-05-09T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.QA.1509"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.SK" role="member" from="2018-09-10T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.SK.1443"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.BG" role="member" from="2018-06-26T00:00:00" to="2019-10-31T00:00:00" ana="#interparliamentaryFriendshipGroup.BG.1439"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.KW" role="member" from="2018-05-22T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.KW.1464"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.USA" role="member" from="2018-04-10T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.USA.1445"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.OMN" role="member" from="2018-04-10T00:00:00" to="2018-09-10T00:00:00" ana="#interparliamentaryFriendshipGroup.OMN.1448"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.IL" role="member" from="2018-04-10T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.ISR.1447"/>
+      <affiliation ref="#interparliamentaryFriendshipGroup.ARE" role="member" from="2018-04-10T00:00:00" to="2021-10-20T00:00:00" ana="#interparliamentaryFriendshipGroup.ARE.1446"/>
+      <affiliation ref="#subcommittee.PEFPS" role="member" from="2018-03-14T00:00:00" to="2021-10-20T00:00:00" ana="#subcommittee.PEFPS.1414"/>
+      <affiliation ref="#subcommittee.PEFPS" role="head" from="2018-03-14T00:00:00" to="2021-10-20T00:00:00" ana="#subcommittee.PEFPS.1414">
+         <roleName xml:lang="cs">Předseda</roleName>
+         <roleName xml:lang="en">Head</roleName>
+      </affiliation>
+      <affiliation ref="#commission.SKVZ" role="member" from="2017-12-12T00:00:00" to="2019-07-10T12:00:00" ana="#commission.SKVZ.1328"/>
+      <affiliation ref="#commission.SKBIS" role="member" from="2017-12-12T00:00:00" to="2021-10-20T00:00:00" ana="#commission.SKBIS.1326"/>
+      <affiliation ref="#committee.VSR" role="deputyHead" from="2017-12-06T16:00:00" to="2021-10-20T00:00:00" ana="#committee.VSR.1315">
+         <roleName xml:lang="cs">Místopředseda</roleName>
+         <roleName xml:lang="en">Deputy Head</roleName>
+      </affiliation>
+      <affiliation ref="#committee.VEZ" role="verifier" from="2017-11-29T16:00:00" to="2021-10-20T00:00:00" ana="#committee.VEZ.1308">
+         <roleName xml:lang="cs">Ověřovatel výboru</roleName>
+         <roleName xml:lang="en">Verifier</roleName>
+      </affiliation>
+      <affiliation ref="#committee.VSR" role="member" from="2017-11-28T16:00:00" to="2021-10-20T00:00:00" ana="#committee.VSR.1315"/>
+      <affiliation ref="#committee.VEZ" role="member" from="2017-11-28T16:00:00" to="2021-10-20T00:00:00" ana="#committee.VEZ.1308"/>
+      <affiliation ref="#parliamentaryGroup.ANO" role="member" from="2017-10-24T00:00:00" to="2021-10-20T00:00:00" ana="#parliamentaryGroup.ANO.1292"/>
+      <affiliation ref="#parliament.PSP" role="member" from="2017-10-21T14:00:00" to="2021-10-20T00:00:00" ana="#parliament.PSP8"/>
+      <affiliation ref="#politicalParty.ANO2011" role="representative" from="2017-10-21" to="2021-10-20">
+         <roleName xml:lang="cs">Reprezentant</roleName>
+         <roleName xml:lang="en">Representative</roleName>
+      </affiliation>
+   </person>
+   </listPerson>
+

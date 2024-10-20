@@ -1,0 +1,9 @@
+---PERSON---
+ID: AdamKalous.1979
+sex: M
+birth: None
+NAME
+    surname: Kalous
+    addname: None
+    forename: Adam
+

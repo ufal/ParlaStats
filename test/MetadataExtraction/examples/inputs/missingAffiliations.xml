@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listPerson xmlns="http://www.tei-c.org/ns/1.0" xml:id="ParCzech-listPerson" xml:lang="cs">
+   <person xml:id="AdamKalous.1979">
+      <persName>
+         <surname>Kalous</surname>
+         <forename>Adam</forename>
+      </persName>
+      <sex value="M"/>
+      <birth when="1979-10-06"/>
+      <idno type="URI" subtype="parliament">https://www.psp.cz/sqw/detail.sqw?id=6497</idno>
+      <figure>
+         <graphic url="https://www.psp.cz/eknih/cdrom/2017ps/eknih/2017ps/poslanci/i6497.jpg"/>
+      </figure>
+   </person>
+</listPerson>
+
