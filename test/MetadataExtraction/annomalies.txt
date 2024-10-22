@@ -1,0 +1,31 @@
+
+@ SPEECH ps2013-001-01-002-002.u1
+
+================
+WEIRD TIMESTAMPS
+================
+	T,ps2013-001-01-002-002.u1.p5.s1.w17,742960.0,743250.0,2013-11-25T13:58:00
+	T,ps2013-001-01-002-002.u1.p5.s1.w18,612760.0,612910.0,2013-11-25T13:58:00
+	T,ps2013-001-01-002-002.u1.p5.s1.w19,612950.0,613380.0,2013-11-25T13:58:00
+	T,ps2013-001-01-002-002.u1.p5.s2.w1,743820.0,744040.0,2013-11-25T13:58:00
+
+Why is the 18th word of one sentence earlier than 17th word of the same sentence?
+	The anchors have the same @since atrribute, so they refer to the same timeline
+
+===============
+XML SNIPPETS
+===============
+
+<when xml:id="ps2013-001-01-002-002.u1.p5.s1.w18.ab"
+      interval="612760.0"
+      since="#ps2013-001-01-002-002.audio1.origin"/>
+<when xml:id="ps2013-001-01-002-002.u1.p5.s1.w18.ae"
+      interval="612910.0"
+	  since="#ps2013-001-01-002-002.audio1.origin"/>
+
+<when xml:id="ps2013-001-01-002-002.u1.p5.s1.w17.ab"
+      interval="742960.0"
+      since="#ps2013-001-01-002-002.audio1.origin"/>
+<when xml:id="ps2013-001-01-002-002.u1.p5.s1.w17.ae"
+      interval="743250.0"
+      since="#ps2013-001-01-002-002.audio1.origin"/>
