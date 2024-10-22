@@ -1,0 +1,16 @@
+---SPEECH---
+ID: timestampsMissingAnchors.u1
+author: #personX
+role: #roleX
+when: 2013-11-25
+tokens: 13
+sentences: 1
+named entity refferences: 0
+total duration: 1040.0
+total spoken: 650.0
+time silent: 290.0
+time unknown: 100.0
+unaligned tokens: 1
+earliest timeline: 2024-10-21T14:49:00
+latest timeline: 2024-10-21T14:49:00
+
