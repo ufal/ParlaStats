@@ -8,13 +8,11 @@ args_parser.add_argument("--s",action="store_true", help="Set this flag to test 
 args_parser.add_argument("--p",action="store_true", help="Set this flag to test persons")
 
 test_cases_speeches = [
-    # ("REAL","--file=examples/inputs/real.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedReal.txt"),
-    # ("MISSING TIMESTAMPS","--file=examples/inputs/missingTimestamps.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedMissingTimestamps.txt"),
-    # ("ENCAPSULATED WORDS","--file=examples/inputs/encapsulatedWords.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedEncapsulatedWords.txt"),
-    # ("MULTIPLE SPEECHES", "--file=examples/inputs/multipleSpeeches.xml",  "--wd=../../MetadataExtraction", "examples/expected/expectedMultipleSpeeches.txt"),    
     ("SIMPLE TIMESTAMPS", "--file=examples/inputs/timestampsSimple.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsSimple.txt"),    
     ("MULTIPLE TIMELINES", "--file=examples/inputs/timestampsMultipleTimelines.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleTimelines.txt"),
     ("NAMES AND DATES", "--file=examples/inputs/timestampsNamesAndDates.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsNamesAndDates.txt"),
+    ("MISSING ANCHORS", "--file=examples/inputs/timestampsMissngAnchors.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMissngAnchors.txt"),
+    ("MULTIPLE SPEECHES", "--file=examples/inputs/timestampsMultipleSpeeches.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleSpeeces.txt"),
     ]
 
 test_cases_persons = [
@@ -36,7 +34,10 @@ def test(what, test_cases):
         print(error)
         with open(expected_output, 'r') as f:
             expected = f.read().strip()
-    
+        
+        with open(f"examples/actual/actual{expected_output[26:]}", 'w') as f:
+            f.write(actual_output)
+
         if (actual_output == expected):
             print(f"Test {test_name}: PASSED!")
         else:
