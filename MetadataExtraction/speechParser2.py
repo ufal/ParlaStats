@@ -122,8 +122,8 @@ class speechParser2:
                     if current_speaker == None:
                         current_speaker = row['ID'][1:]
                     else: 
-                        if len(intervals) > 0:
-                            total_duration += self.__get_total_duration_ms(intervals)
+                        # if len(intervals) > 0:
+                        #     total_duration += self.__get_total_duration_ms(intervals)
                         # if Timelines are missing
                         if len(times) < 1:
                             results.append([None, None, total_duration, unaligned_tokens, 
