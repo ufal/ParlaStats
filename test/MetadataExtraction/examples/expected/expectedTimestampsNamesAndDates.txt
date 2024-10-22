@@ -1,0 +1,16 @@
+---SPEECH---
+ID: timestampsNamesAndDates.u1
+author: #personX
+role: #roleX
+when: 2013-11-25
+tokens: 13
+sentences: 1
+named entity refferences: 2
+total duration: 1040.0
+total spoken: 700.0
+time silent: 340.0
+time unknown: 0
+unaligned tokens: 0
+earliest timeline: 2024-10-21T14:49:00
+latest timeline: 2024-10-21T14:49:00
+

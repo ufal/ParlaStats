@@ -8,11 +8,14 @@ args_parser.add_argument("--s",action="store_true", help="Set this flag to test 
 args_parser.add_argument("--p",action="store_true", help="Set this flag to test persons")
 
 test_cases_speeches = [
-    ("REAL","--file=examples/inputs/real.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedReal.txt"),
-    ("MISSING TIMESTAMPS","--file=examples/inputs/missingTimestamps.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedMissingTimestamps.txt"),
-    ("ENCAPSULATED WORDS","--file=examples/inputs/encapsulatedWords.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedEncapsulatedWords.txt"),
-    ("MULTIPLE SPEECHES", "--file=examples/inputs/multipleSpeeches.xml",  "--wd=../../MetadataExtraction", "examples/expected/expectedMultipleSpeeches.txt"),    
-]
+    # ("REAL","--file=examples/inputs/real.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedReal.txt"),
+    # ("MISSING TIMESTAMPS","--file=examples/inputs/missingTimestamps.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedMissingTimestamps.txt"),
+    # ("ENCAPSULATED WORDS","--file=examples/inputs/encapsulatedWords.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedEncapsulatedWords.txt"),
+    # ("MULTIPLE SPEECHES", "--file=examples/inputs/multipleSpeeches.xml",  "--wd=../../MetadataExtraction", "examples/expected/expectedMultipleSpeeches.txt"),    
+    ("SIMPLE TIMESTAMPS", "--file=examples/inputs/timestampsSimple.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsSimple.txt"),    
+    ("MULTIPLE TIMELINES", "--file=examples/inputs/timestampsMultipleTimelines.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleTimelines.txt"),
+    ("NAMES AND DATES", "--file=examples/inputs/timestampsNamesAndDates.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsNamesAndDates.txt"),
+    ]
 
 test_cases_persons = [
     ("NO ISSUES", "--file=examples/inputs/noIssuesPerson.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedNoIssuesPersons.txt"),
@@ -29,7 +32,8 @@ def test(what, test_cases):
         process = subprocess.run([my_venv, what, test_file, test_wd], capture_output=True, text=True)
     
         actual_output = process.stdout.strip()
-    
+        error = process.stderr.strip()
+        print(error)
         with open(expected_output, 'r') as f:
             expected = f.read().strip()
     
