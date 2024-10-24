@@ -13,6 +13,8 @@ test_cases_speeches = [
     ("NAMES AND DATES", "--file=examples/inputs/timestampsNamesAndDates.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsNamesAndDates.txt"),
     ("MISSING ANCHORS", "--file=examples/inputs/timestampsMissngAnchors.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMissngAnchors.txt"),
     ("MULTIPLE SPEECHES", "--file=examples/inputs/timestampsMultipleSpeeches.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleSpeeces.txt"),
+    ("MESSY SPEECH", "--file=examples/inputs/timestampsValidInvalid.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsValidInvalid.txt"),
+    ("MESSY SPEECH MULTIPLE TIMELINES", "--file=examples/inputs/timestampsMultipleTimelinesInvalid.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleTimelinesInvalid.txt"),
     ]
 
 test_cases_persons = [

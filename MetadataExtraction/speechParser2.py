@@ -77,7 +77,7 @@ class speechParser2:
         with open(transformation[1], "wb") as f:
             f.write(result)
     
-    def __processSpeechesCSV(self):
+    def __processSpeechesCSV(self, invalid_speeches):
         result = defaultdict()
         timestamps_info = self.__processTimestampsCSV()
         current_speech = 0
@@ -93,16 +93,69 @@ class speechParser2:
                                    row["personID"],
                                    row["date"])
                 
-                if (len(timestamps_info) > 0):
-                    utterance.loadTimestampsInfo(timestamps_info[current_speech])
-                    
-                if (not row["personID"] in result):
-                    result[row["personID"]] = [utterance]
-                else:
-                    result[row["personID"]].append(utterance)
+                if row['ID'] not in invalid_speeches:
+                    if (len(timestamps_info) > 0):
+                        utterance.loadTimestampsInfo(timestamps_info[current_speech])    
+                    if (not row["personID"] in result):
+                        result[row["personID"]] = [utterance]
+                    else:
+                        result[row["personID"]].append(utterance)
+                
                 current_speech += 1
         return result
 
+    def __validateData(self):
+        """
+        Method for validating speech data and finding speeches (so far, later maybe just sentences)
+        with malformed timelines.
+        """
+        
+        valid_speeches = []
+        invalid_speeches = []
+        with open(self.transformations[1][1], 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            rows = list(reader)
+            current_speech = None
+            current_timeline = None
+            intervals = []
+            times = []
+            valid = True
+            for row in rows:
+                if row['Type'] == 'S':
+                    if current_speech == None:
+                        current_speech = row['Begin']
+                    else:
+                        if len(times) <= 1:
+                            if all(x <= y for x,y in zip(intervals, intervals[1:])):
+                                valid_speeches.append(current_speech)
+                            else:
+                                invalid_speeches.append(current_speech)
+                        else:
+                            if len(intervals) > 0:
+                                valid = all(x <= y for x, y in zip(intervals, intervals[1:]))
+                            if valid:
+                                valid_speeches.append(current_speech)
+                            else: 
+                                invalid_speeches.append(current_speech)
+                    intervals = []
+                    times = []
+                    current_speech = row['Begin']
+                elif row['Type'] == 'T':
+                    
+                    if (row['Time'] != current_timeline) and (row['Time'] != ''):
+                        current_timeline = row['Time']
+                        times.append(current_timeline)
+                        
+                        valid = all(x <= y for x,y in zip(intervals, intervals[1:]))
+                        
+                        intervals = []
+
+                    if (row['Begin'] and row['End']):
+                        intervals.append(row['Begin'])
+                        intervals.append(row['End'])
+        
+        return invalid_speeches
+        
     def __processTimestampsCSV(self):        
         results = []
         with open(self.transformations[1][1], 'r', encoding="utf-8") as csvfile:
@@ -171,9 +224,13 @@ class speechParser2:
 
 
     def pipeline(self, file):
+        invalid = []
         for transformation in self.transformations:
             self.__transformFileToCSV(transformation, file)
-        result = self.__processSpeechesCSV()
+        for invalid_speech in self.__validateData():
+            invalid.append(invalid_speech)
+
+        result = self.__processSpeechesCSV(invalid)
         return result
 
 def main(args):
