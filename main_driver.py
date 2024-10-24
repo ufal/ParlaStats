@@ -67,7 +67,7 @@ class mainDriver:
             persons = person_parser.extractMetadata()
         
         else:
-            person_parser = personParser2(file, source_corpus)
+            person_parser = personParser2(file,"MetadataExtraction", source_corpus)
             persons = person_parser.pipeline()
         
         return persons
