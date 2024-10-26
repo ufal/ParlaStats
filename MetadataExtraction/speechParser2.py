@@ -126,13 +126,14 @@ class speechParser2:
                         current_speech = row['Begin']
                     else:
                         if len(times) <= 1:
-                            if all(x <= y for x,y in zip(intervals, intervals[1:])):
+                           
+                            if all(float(x) <= float(y) for x,y in zip(intervals, intervals[1:])):
                                 valid_speeches.append(current_speech)
                             else:
                                 invalid_speeches.append(current_speech)
                         else:
                             if len(intervals) > 0:
-                                valid = all(x <= y for x, y in zip(intervals, intervals[1:]))
+                                valid = valid and all(float(x) <= float(y) for x, y in zip(intervals, intervals[1:]))
                             if valid:
                                 valid_speeches.append(current_speech)
                             else: 
@@ -140,13 +141,13 @@ class speechParser2:
                     intervals = []
                     times = []
                     current_speech = row['Begin']
+                    current_timeline = None
                 elif row['Type'] == 'T':
-                    
-                    if (row['Time'] != current_timeline) and (row['Time'] != ''):
+                    if ((row['Time'] != current_timeline) and (row['Time'] != '')):
                         current_timeline = row['Time']
                         times.append(current_timeline)
                         
-                        valid = all(x <= y for x,y in zip(intervals, intervals[1:]))
+                        valid = all(float(x) <= float(y) for x,y in zip(intervals, intervals[1:]))
                         
                         intervals = []
 
@@ -179,12 +180,15 @@ class speechParser2:
                         #     total_duration += self.__get_total_duration_ms(intervals)
                         # if Timelines are missing
                         if len(times) < 1:
+                            if len(intervals) > 0:
+                                total_duration += self.__get_total_duration_ms(intervals)
                             results.append([None, None, total_duration, unaligned_tokens, 
                                             total_spoken, time_silent])
                         else:
                             leftovers = self.__get_total_duration_ms(intervals)
-                            if (leftovers > 0 and len(times) >= 1):
+                            if (leftovers > 0):
                                 total_duration += leftovers
+                            
                             results.append([times[0], times[-1], total_duration,unaligned_tokens, 
                                             total_spoken, time_silent])
                         total_spoken = 0
@@ -229,7 +233,7 @@ class speechParser2:
             self.__transformFileToCSV(transformation, file)
         for invalid_speech in self.__validateData():
             invalid.append(invalid_speech)
-
+        # print(invalid)
         result = self.__processSpeechesCSV(invalid)
         return result
 
@@ -243,4 +247,5 @@ def main(args):
             out += str(s)
     return out
 if __name__ == "__main__":
+    # main(args_parser.parse_args())
     print(main(args_parser.parse_args()))
