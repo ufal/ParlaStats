@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xml:id="ps2013-001-01-000-999.ana"
+     xml:lang="cs"
+     ana="#parla.agenda">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="cs">Český parlamentní korpus, Poslanecká sněmovna, 2013-11-25 ps2013-001-01-000-999 [ParCzech.ana]</title>
+            <title type="main" xml:lang="en">Czech parliamentary corpus, Chamber of Deputies, 2013-11-25 ps2013-001-01-000-999 [ParCzech.ana]</title>
+            <title type="sub" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna, 2013-11-25, Začátek schůze Poslanecké sněmovny 25. listopadu 2013 ve 14.05 hodin Přítomno: 199 poslanců</title>
+            <title type="sub" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies, 2013-11-25</title>
+            <title xml:lang="cs" type="short">Začátek schůze Poslanecké sněmovny 25. listopadu 2013 ve 14.05 hodin Přítomno: 199 poslanců</title>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP7" n="ps2013">ps2013</meeting>
+            <meeting ana="#parla.meeting #parla.lower" n="ps2013/001">ps2013/001</meeting>
+            <meeting ana="#parla.sitting #parla.lower" n="ps2013/001/01">ps2013/001/01</meeting>
+            <meeting ana="#parla.agenda #parla.lower" n="ps2013/001/999">ps2013/001/999</meeting>
+            <respStmt>
+               <persName ref="https://orcid.org/0000-0001-7953-8783">Matyáš Kopp</persName>
+               <resp xml:lang="en">Data retrieval</resp>
+               <resp xml:lang="en">TEI XML corpus encoding</resp>
+               <resp xml:lang="en">Linguistic annotation</resp>
+            </respStmt>
+            <funder>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+            </funder>
+         </titleStmt>
+         <editionStmt>
+            <edition>4.0</edition>
+         </editionStmt>
+         <extent>
+            <measure unit="speeches" quantity="1" xml:lang="cs">1 promluv</measure>
+            <measure unit="speeches" quantity="1" xml:lang="en">1 speeches</measure>
+            <measure unit="words" quantity="173" xml:lang="cs">173 slov</measure>
+            <measure unit="words" quantity="173" xml:lang="en">173 words</measure>
+         </extent>
+         <publicationStmt>
+            <publisher>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+               <ref target="https://www.lindat.cz">www.lindat.cz</ref>
+            </publisher>
+            <idno type="URI" subtype="handle">http://hdl.handle.net/11234/1-5360</idno>
+            <availability status="free">
+               <licence>https://creativecommons.org/publicdomain/zero/1.0/</licence>
+               <p xml:lang="en">This work is licensed under the <ref target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</ref>.</p>
+            </availability>
+            <date when="2024-01-26">2024-01-26</date>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title type="main" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna</title>
+               <title type="main" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies</title>
+               <idno type="URI" subtype="parliament">https://www.psp.cz/eknih/2013ps/stenprot/001schuz/s001001.htm</idno>
+               <date when="2013-11-25">25.11.2013</date>
+            </bibl>
+            <recordingStmt>
+               <recording type="audio">
+                  <media xml:id="ps2013-001-01-000-999.audio1"
+                         mimeType="audio/mp3"
+                         source="https://www.psp.cz/eknih/2013ps/audio/2013/11/25/2013112513581412.mp3"
+                         url="audio/psp/2013/11/25/2013112513581412.mp3"/>
+               </recording>
+            </recordingStmt>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p xml:lang="en">
+               <ref target="https://ufal.mff.cuni.cz/parczech">ParCzech</ref> is a project on compiling Czech parliamentary data into annotated corpora. It mostly follows the <ref target="https://www.clarin.eu/parlamint">ParlaMint project's</ref> recommendation, but the data are slightly extended in several ways. Texts contain links to original voting and prints. Except for the 4-class named entities classification, it also includes a more detailed CNEC hierarchical classification. The text in the annotated version is aligned with audio on the token level. And morphological annotation contains pdt tagsed besides UD PoS and features.</p>
+         </projectDesc>
+         <tagsDecl>
+            <namespace name="http://www.tei-c.org/ns/1.0">
+               <tagUsage gi="anchor" occurs="322"/>
+               <tagUsage gi="body" occurs="1"/>
+               <tagUsage gi="date" occurs="8"/>
+               <tagUsage gi="div" occurs="1"/>
+               <tagUsage gi="link" occurs="198"/>
+               <tagUsage gi="linkGrp" occurs="12"/>
+               <tagUsage gi="name" occurs="18"/>
+               <tagUsage gi="note" occurs="5"/>
+               <tagUsage gi="num" occurs="3"/>
+               <tagUsage gi="pb" occurs="1"/>
+               <tagUsage gi="pc" occurs="24"/>
+               <tagUsage gi="s" occurs="12"/>
+               <tagUsage gi="seg" occurs="6"/>
+               <tagUsage gi="text" occurs="1"/>
+               <tagUsage gi="timeline" occurs="1"/>
+               <tagUsage gi="u" occurs="1"/>
+               <tagUsage gi="w" occurs="175"/>
+               <tagUsage gi="when" occurs="323"/>
+            </namespace>
+         </tagsDecl>
+		</encodingDesc>
+		<profileDesc>
+			<settingDesc>
+				<setting>
+					<name type="org">Parlament České republiky - Poslanecká sněmovna</name>
+					<name type="address">Sněmovní 176/4</name>
+					<name type="city">Praha</name>
+					<name key="CZ" type="country">Czech Republic</name>
+					<date when="2013-11-25" ana="#parla.sitting">2013-11-25</date>
+				</setting>
+			</settingDesc>
+		</profileDesc>
+	</teiHeader>
+	<text>
+		<body>
+			<div>
+				<u who="#personX"
+				   ana="#roleX"
+				   xml:id="timestampsSimple.u1">
+					<seg xml:id="timestampsSimple.u1.p1">
+						<s xml:id="timestampsSimple.u1.p1.s1">
+							<anchor synch="#timestampsSimple.u1.p1.s1.w1.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w1">Lorem</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w1.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w2.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w2">Ipsum</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w2.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w3.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w3">dolor</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w3.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w4.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w4">sit</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w4.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w5.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w5">amet</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w5.ae"/>
+							<pc xml:id="timestampsSimple.u1.p1.s1.w6">,</pc>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w7.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w7">consecteur</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w7.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w8.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w8">adipiscing</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w8.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w9.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w9">elit</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w9.ae"/>
+							<pc xml:id="timestampsSimple.u1.p1.s1.w10"></pc>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w11.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w11">sed</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w11.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w12.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w12">do</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w12.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w13.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w13">eiusmod</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w13.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w14.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w14">tempor</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w14.ae"/>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w15.ab"/>
+							<w xml:id="timestampsSimple.u1.p1.s1.w15">incididunt</w>
+							<anchor synch="#timestampsSimple.u1.p1.s1.w15.ae"/>
+						</s>
+					</seg>
+				</u>
+			</div>
+			<timeline unit="ms"
+					  origin="#timestampsSimple.audio1.origin"
+					  corresp="#timestampsSimple.audio1"
+					  cert="0">
+				<when xml:id="timestampsSimple.audio1.origin"
+					  absolute="2024-10-21T14:49:00"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w1.ab"
+					  interval="100000.0"
+					  since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w1.ae"
+					  interval="100050.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w2.ab"
+					  interval="100090.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w2.ae"
+					  interval="100140.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w3.ab"
+					  interval="100150.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w3.ae"
+					  interval="100200.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w4.ab"
+					  interval="100230.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w4.ae"
+					  interval="100260.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w5.ab"
+					  interval="100310.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w5.ae"
+					  interval="100350.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w7.ab"
+					  interval="100390.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w7.ae"
+					  interval="100500.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w8.ab"
+					  interval="100510.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w8.ae"
+					  interval="100610.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w9.ab"
+					  interval="100610.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w9.ae"
+					  interval="100660.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w11.ab"
+					  interval="100700.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w11.ae"
+					  interval="100730.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w12.ab"
+					  interval="100750.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w12.ae"
+					  interval="100770.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w13.ab"
+					  interval="100780.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w13.ae"
+					  interval="100850.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w14.ab"
+					  interval="100900.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w14.ae"
+					  interval="100960.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w15.ab"
+					  interval="10000.0"
+					since="#timestampsSimple.audio1.origin"/>
+				<when xml:id="timestampsSimple.u1.p1.s1.w15.ae"
+					  interval="10040.0"
+					since="#timestampsSimple.audio1.origin"/>
+			</timeline>
+		</body>
+	</text>
+</TEI>

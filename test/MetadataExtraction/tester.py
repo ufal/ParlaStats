@@ -15,6 +15,7 @@ test_cases_speeches = [
     ("MULTIPLE SPEECHES", "--file=examples/inputs/timestampsMultipleSpeeches.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleSpeeces.txt"),
     ("MESSY SPEECH", "--file=examples/inputs/timestampsValidInvalid.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsValidInvalid.txt"),
     ("MESSY SPEECH MULTIPLE TIMELINES", "--file=examples/inputs/timestampsMultipleTimelinesInvalid.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsMultipleTimelinesInvalid.txt"),
+    ("CORRECT ORDER WRONG INTERVALS", "--file=examples/inputs/timestampsLastWord.xml", "--wd=../../MetadataExtraction", "examples/expected/expectedTimestampsLastWord.txt"),
     ]
 
 test_cases_persons = [
