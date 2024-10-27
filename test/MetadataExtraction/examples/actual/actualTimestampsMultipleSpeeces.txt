@@ -11,9 +11,10 @@ total spoken: 700.0
 time silent: 340.0
 time unknown: 0
 unaligned tokens: 0
-earliest timeline: 2024-10-21T14:49:00
-latest timeline: 2024-10-21T14:49:00
----SPEECH---
+earliest timeline: 14:49:00
+latest timeline: 14:49:00
+time start: 14:50:40
+time end: 14:50:41---SPEECH---
 ID: timestampsMultipleSpeeches.u2
 author: #personY
 role: #roleY
@@ -26,5 +27,7 @@ total spoken: 650.0
 time silent: 290.0
 time unknown: 100.0
 unaligned tokens: 1
-earliest timeline: 2024-10-21T14:49:00
-latest timeline: 2024-10-21T14:49:00
+earliest timeline: 14:49:00
+latest timeline: 14:49:00
+time start: 14:50:40
+time end: 14:50:41

@@ -11,5 +11,7 @@ total spoken: 700.0
 time silent: 330.0
 time unknown: 0
 unaligned tokens: 0
-earliest timeline: 2024-10-21T14:49:00
-latest timeline: 2024-10-21T15:09:00
+earliest timeline: 14:49:00
+latest timeline: 15:09:00
+time start: 14:50:40
+time end: 15:10:41
