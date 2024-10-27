@@ -127,6 +127,8 @@ class DatabaseInserter(DatabaseOperator):
                                                                s.unaligned_tokens,
                                                                s.time_spoken,
                                                                s.time_silent,
-                                                               s.time_unknown))
+                                                               s.time_unknown,
+                                                               s.time_start,
+                                                               s.time_end))
 
             self.connection.commit()

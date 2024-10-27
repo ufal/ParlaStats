@@ -8,6 +8,8 @@ from lxml import etree
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 import csv
+from datetime import datetime, timedelta
+
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--file", type=str, default="../../ParCzech.TEI.ana/ps2013-001/ps2013-001-01-000-999.ana.xml")
@@ -38,16 +40,38 @@ class Speech:
         self.time_spoken = None
         self.time_silent = None
         self.time_unknown = None
+        self.time_start = None
+        self.time_end = None
 
     def loadTimestampsInfo(self, timestamps_info):
-        self.earliest_timeline = timestamps_info[0]
-        self.latest_timeline = timestamps_info[1]
+        if timestamps_info[0] and timestamps_info[1]:
+            self.earliest_timeline = timestamps_info[0][0]
+            self.latest_timeline = timestamps_info[1][0]
+        
         self.total_duration = timestamps_info[2]
         self.unaligned_tokens = timestamps_info[3]
         self.time_spoken = timestamps_info[4]
         self.time_silent = timestamps_info[5]
         self.time_unknown = max(0,self.total_duration - self.time_spoken - self.time_silent)
-    
+        
+        if self.earliest_timeline and self.latest_timeline:
+            
+            begin_offset = float(timestamps_info[0][1]) / 1000
+            end_offset = float(timestamps_info[1][1]) / 1000
+
+            dt_earliest = datetime.strptime(self.earliest_timeline, "%Y-%m-%dT%H:%M:%S")
+            dt_latest = datetime.strptime(self.latest_timeline, "%Y-%m-%dT%H:%M:%S")
+
+            dt_earliest_offset = dt_earliest + timedelta(seconds=begin_offset)
+            dt_latest_offset = dt_latest + timedelta(seconds=end_offset)
+
+            self.time_start = dt_earliest_offset.strftime("%H:%M:%S")
+            self.time_end = dt_latest_offset.strftime("%H:%M:%S")
+
+            self.earliest_timeline = dt_earliest.strftime("%H:%M:%S")
+            self.latest_timeline = dt_latest.strftime("%H:%M:%S")
+
+
     def __str__(self):
         result ="---SPEECH---\n"
         result += f"ID: {self.speechID}\n"
@@ -64,6 +88,8 @@ class Speech:
         result += f"unaligned tokens: {self.unaligned_tokens}\n"
         result += f"earliest timeline: {self.earliest_timeline}\n"
         result += f"latest timeline: {self.latest_timeline}\n"
+        result += f"time start: {self.time_start}\n"
+        result += f"time end: {self.time_end}"
         return result
 
 class speechParser2:
@@ -169,6 +195,8 @@ class speechParser2:
             unaligned_tokens = 0
             time_silent = 0
             rows = list(reader)
+            first_interval = None
+            last_interval = None
             actual_timeline = None
             previous_end = None
             for row in rows:
@@ -187,9 +215,10 @@ class speechParser2:
                         else:
                             leftovers = self.__get_total_duration_ms(intervals)
                             if (leftovers > 0):
+                                last_interval = intervals[-1]
                                 total_duration += leftovers
                             
-                            results.append([times[0], times[-1], total_duration,unaligned_tokens, 
+                            results.append([(times[0],first_interval), (times[-1], last_interval), total_duration,unaligned_tokens, 
                                             total_spoken, time_silent])
                         total_spoken = 0
                         intervals = []
@@ -199,6 +228,7 @@ class speechParser2:
                         total_duration = 0
                         time_silent = 0
                         previous_end = None
+                        first_interval, last_interval = None, None
                 elif row['Type'] == 'T':
                     if ((row['Time'] != actual_timeline) and (row['Time'] != '')):
                         actual_timeline = row['Time']
@@ -210,6 +240,10 @@ class speechParser2:
                     if (row['Begin'] and row['End']):
                         if previous_end != None:
                             time_silent += float(row['Begin']) - float(previous_end)
+                        
+                        if (first_interval == None):
+                            first_interval = row["Begin"]
+
                         intervals.append(row['Begin'])
                         intervals.append(row['End'])
                         total_spoken += float(row['End']) - float(row['Begin'])
@@ -218,7 +252,7 @@ class speechParser2:
                         unaligned_tokens += 1
                         previous_end = None
                                 
-            
+                    
         return results
 
     def __get_total_duration_ms(self, speech_timestamps):

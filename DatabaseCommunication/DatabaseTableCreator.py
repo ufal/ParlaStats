@@ -56,12 +56,15 @@ class DatabaseTableCreator(DatabaseOperator):
                     role VARCHAR(100),
                     person_id VARCHAR(100),
                     total_duration REAL,
-                    earliest_timestamp VARCHAR(100),
-                    latest_timestamp VARCHAR(100),
+                    earliest_timestamp TIME,
+                    latest_timestamp TIME,
                     unaligned_tokens INTEGER,
                     time_spoken REAL,
                     time_silent REAL,
                     time_unknown REAL,
+                    time_start TIME,
+                    time_end TIME,
+
                     FOREIGN KEY (person_id)
                         REFERENCES Person (person_id)
                 )

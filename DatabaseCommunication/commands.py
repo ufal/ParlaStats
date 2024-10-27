@@ -13,6 +13,6 @@ class OrganisationCommands(StrEnum):
 
 class SpeechCommands(StrEnum):
     INSERT_ALL = """
-                 INSERT INTO speech(id, date, token_count, sentence_count, named_entity_count, role, person_id, total_duration, earliest_timestamp, latest_timestamp, unaligned_tokens, time_spoken, time_silent, time_unknown)
-                 VALUES(%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING
+                 INSERT INTO speech(id, date, token_count, sentence_count, named_entity_count, role, person_id, total_duration, earliest_timestamp, latest_timestamp, unaligned_tokens, time_spoken, time_silent, time_unknown, time_start, time_end)
+                 VALUES(%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING
                  """
