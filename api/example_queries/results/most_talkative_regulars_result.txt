@@ -1,32 +1,16 @@
-[{'persName.forename': 'Aigars', 'persName.surname': 'Bikše', 'total_tokens': 7438}, {'persName.forename': 'Aija', 'persName.surname': 'Barča', 'total_tokens': 19336}, {'persName.forename': 'Ainars', 'persName.surname': 'Bašķis', 'total_tokens': 2632}, {'persName.forename': 'Ainars', 'persName.surname': 'Latkovskis', 'total_tokens': 12940}, {'persName.forename': 'Ainārs', 'persName.surname': 'Mežulis', 'total_tokens': 1760}, {'persName.forename': 'Ainārs', 'persName.surname': 'Vilciņš', 'total_tokens': 915}, {'persName.forename': 'Aivars', 'persName.surname': 'Geidāns', 'total_tokens': 9399}, {'persName.forename': 'Aivars', 'persName.surname': 'Meija', 'total_tokens': 1372}, {'persName.forename': 'Aldis', 'persName.surname': 'Adamovičs', 'total_tokens': 26010}, {'persName.forename': 'Aldis', 'persName.surname': 'Blumbergs', 'total_tokens': 1150}]
+[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'total_tokens': 15444}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'total_tokens': 3494}, {'persName.forename': 'Adam', 'persName.surname': 'Vojtěch', 'total_tokens': 178391}, {'persName.forename': 'Adolf', 'persName.surname': 'Beznoska', 'total_tokens': 41522}, {'persName.forename': 'Alena', 'persName.surname': 'Gajdůšková', 'total_tokens': 73099}, {'persName.forename': 'Alena', 'persName.surname': 'Nohavová', 'total_tokens': 17614}, {'persName.forename': 'Alena', 'persName.surname': 'Schillerová', 'total_tokens': 395970}, {'persName.forename': 'Aleš', 'persName.surname': 'Dufek', 'total_tokens': 4498}, {'persName.forename': 'Aleš', 'persName.surname': 'Juchelka', 'total_tokens': 129300}, {'persName.forename': 'Alexander', 'persName.surname': 'Černý', 'total_tokens': 20376}]
 
 +-------------------+------------------+--------------+
 | persName.forename | persName.surname | total_tokens |
 +-------------------+------------------+--------------+
-|       Aigars      |      Bikše       |     7438     |
-|        Aija       |      Barča       |    19336     |
-|       Ainars      |      Bašķis      |     2632     |
-|       Ainars      |    Latkovskis    |    12940     |
-|       Ainārs      |     Mežulis      |     1760     |
-|       Ainārs      |     Vilciņš      |     915      |
-|       Aivars      |     Geidāns      |     9399     |
-|       Aivars      |      Meija       |     1372     |
-|       Aldis       |    Adamovičs     |    26010     |
-|       Aldis       |    Blumbergs     |     1150     |
-+-------------------+------------------+--------------+
-[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'total_tokens': 15869}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'total_tokens': 3494}, {'persName.forename': 'Adam', 'persName.surname': 'Vojtěch', 'total_tokens': 187216}, {'persName.forename': 'Adolf', 'persName.surname': 'Beznoska', 'total_tokens': 41522}, {'persName.forename': 'Alena', 'persName.surname': 'Gajdůšková', 'total_tokens': 78796}, {'persName.forename': 'Alena', 'persName.surname': 'Nohavová', 'total_tokens': 17614}, {'persName.forename': 'Alena', 'persName.surname': 'Schillerová', 'total_tokens': 416524}, {'persName.forename': 'Aleš', 'persName.surname': 'Dufek', 'total_tokens': 4498}, {'persName.forename': 'Aleš', 'persName.surname': 'Juchelka', 'total_tokens': 134560}, {'persName.forename': 'Alexander', 'persName.surname': 'Černý', 'total_tokens': 20376}]
-
-+-------------------+------------------+--------------+
-| persName.forename | persName.surname | total_tokens |
-+-------------------+------------------+--------------+
-|        Adam       |      Kalous      |    15869     |
+|        Adam       |      Kalous      |    15444     |
 |        Adam       |      Rykala      |     3494     |
-|        Adam       |     Vojtěch      |    187216    |
+|        Adam       |     Vojtěch      |    178391    |
 |       Adolf       |     Beznoska     |    41522     |
-|       Alena       |    Gajdůšková    |    78796     |
+|       Alena       |    Gajdůšková    |    73099     |
 |       Alena       |     Nohavová     |    17614     |
-|       Alena       |   Schillerová    |    416524    |
+|       Alena       |   Schillerová    |    395970    |
 |        Aleš       |      Dufek       |     4498     |
-|        Aleš       |     Juchelka     |    134560    |
+|        Aleš       |     Juchelka     |    129300    |
 |     Alexander     |      Černý       |    20376     |
 +-------------------+------------------+--------------+

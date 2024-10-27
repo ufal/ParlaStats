@@ -1,8 +1,8 @@
-[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'person.person_id': 'AdamKalous.1979', 'total_speeches': 79}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'person.person_id': 'AdamRykala.1986', 'total_speeches': 29}]
+[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'person.person_id': 'AdamKalous.1979', 'total_speeches': 78}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'person.person_id': 'AdamRykala.1986', 'total_speeches': 29}]
 
 +-------------------+------------------+------------------+----------------+
 | persName.forename | persName.surname | person.person_id | total_speeches |
 +-------------------+------------------+------------------+----------------+
-|        Adam       |      Kalous      | AdamKalous.1979  |       79       |
+|        Adam       |      Kalous      | AdamKalous.1979  |       78       |
 |        Adam       |      Rykala      | AdamRykala.1986  |       29       |
 +-------------------+------------------+------------------+----------------+

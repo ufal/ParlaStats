@@ -1,18 +1,9 @@
-[{'average_tokens': 18.241933321143414, 'speech.role': 'chair'}, {'average_tokens': 239.03225806451613, 'speech.role': 'guest'}, {'average_tokens': 91.23050163147671, 'speech.role': 'regular'}]
+[{'average_tokens': 447.41302235179785, 'speech.role': 'guest'}, {'average_tokens': 262.9682086742366, 'speech.role': 'regular'}, {'average_tokens': 54.36446967652388, 'speech.role': 'chair'}]
 
 +--------------------+-------------+
 |   average_tokens   | speech.role |
 +--------------------+-------------+
-| 18.241933321143414 |    chair    |
-| 239.03225806451613 |    guest    |
-| 91.23050163147671  |   regular   |
+| 447.41302235179785 |    guest    |
+| 262.9682086742366  |   regular   |
+| 54.36446967652388  |    chair    |
 +--------------------+-------------+
-[{'average_tokens': 452.1521328803322, 'speech.role': 'guest'}, {'average_tokens': 266.9352142475181, 'speech.role': 'regular'}, {'average_tokens': 55.23546464501979, 'speech.role': 'chair'}]
-
-+-------------------+-------------+
-|   average_tokens  | speech.role |
-+-------------------+-------------+
-| 452.1521328803322 |    guest    |
-| 266.9352142475181 |   regular   |
-| 55.23546464501979 |    chair    |
-+-------------------+-------------+

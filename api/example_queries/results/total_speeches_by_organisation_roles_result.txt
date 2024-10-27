@@ -1,28 +1,19 @@
-[{'COUNT(speech.id) as total_speeches': 146603, 'organisation.role': 'parliament'}, {'COUNT(speech.id) as total_speeches': 146603, 'organisation.role': 'parliamentaryGroup'}, {'COUNT(speech.id) as total_speeches': 1056, 'organisation.role': 'government'}]
-
-+------------------------------------+--------------------+
-| COUNT(speech.id) as total_speeches | organisation.role  |
-+------------------------------------+--------------------+
-|               146603               |     parliament     |
-|               146603               | parliamentaryGroup |
-|                1056                |     government     |
-+------------------------------------+--------------------+
-[{'COUNT(speech.id) as total_speeches': 993377, 'organisation.role': 'interparliamentaryFriendshipGroup'}, {'COUNT(speech.id) as total_speeches': 407840, 'organisation.role': 'committee'}, {'COUNT(speech.id) as total_speeches': 311298, 'organisation.role': 'subcommittee'}, {'COUNT(speech.id) as total_speeches': 256168, 'organisation.role': 'parliament'}, {'COUNT(speech.id) as total_speeches': 194087, 'organisation.role': 'parliamentaryGroup'}, {'COUNT(speech.id) as total_speeches': 124599, 'organisation.role': 'politicalParty'}, {'COUNT(speech.id) as total_speeches': 123586, 'organisation.role': 'commission'}, {'COUNT(speech.id) as total_speeches': 28483, 'organisation.role': 'delegation'}, {'COUNT(speech.id) as total_speeches': 23395, 'organisation.role': 'government'}, {'COUNT(speech.id) as total_speeches': 8226, 'organisation.role': 'supervisoryBoard'}, {'COUNT(speech.id) as total_speeches': 3538, 'organisation.role': 'boardOfDirectors'}, {'COUNT(speech.id) as total_speeches': 75, 'organisation.role': 'institution'}, {'COUNT(speech.id) as total_speeches': 24, 'organisation.role': 'republic'}]
+[{'COUNT(speech.id) as total_speeches': 982430, 'organisation.role': 'interparliamentaryFriendshipGroup'}, {'COUNT(speech.id) as total_speeches': 402190, 'organisation.role': 'committee'}, {'COUNT(speech.id) as total_speeches': 305743, 'organisation.role': 'subcommittee'}, {'COUNT(speech.id) as total_speeches': 253301, 'organisation.role': 'parliament'}, {'COUNT(speech.id) as total_speeches': 191839, 'organisation.role': 'parliamentaryGroup'}, {'COUNT(speech.id) as total_speeches': 123225, 'organisation.role': 'politicalParty'}, {'COUNT(speech.id) as total_speeches': 121414, 'organisation.role': 'commission'}, {'COUNT(speech.id) as total_speeches': 28272, 'organisation.role': 'delegation'}, {'COUNT(speech.id) as total_speeches': 23025, 'organisation.role': 'government'}, {'COUNT(speech.id) as total_speeches': 8141, 'organisation.role': 'supervisoryBoard'}, {'COUNT(speech.id) as total_speeches': 3477, 'organisation.role': 'boardOfDirectors'}, {'COUNT(speech.id) as total_speeches': 71, 'organisation.role': 'institution'}, {'COUNT(speech.id) as total_speeches': 24, 'organisation.role': 'republic'}]
 
 +------------------------------------+-----------------------------------+
 | COUNT(speech.id) as total_speeches |         organisation.role         |
 +------------------------------------+-----------------------------------+
-|               993377               | interparliamentaryFriendshipGroup |
-|               407840               |             committee             |
-|               311298               |            subcommittee           |
-|               256168               |             parliament            |
-|               194087               |         parliamentaryGroup        |
-|               124599               |           politicalParty          |
-|               123586               |             commission            |
-|               28483                |             delegation            |
-|               23395                |             government            |
-|                8226                |          supervisoryBoard         |
-|                3538                |          boardOfDirectors         |
-|                 75                 |            institution            |
+|               982430               | interparliamentaryFriendshipGroup |
+|               402190               |             committee             |
+|               305743               |            subcommittee           |
+|               253301               |             parliament            |
+|               191839               |         parliamentaryGroup        |
+|               123225               |           politicalParty          |
+|               121414               |             commission            |
+|               28272                |             delegation            |
+|               23025                |             government            |
+|                8141                |          supervisoryBoard         |
+|                3477                |          boardOfDirectors         |
+|                 71                 |            institution            |
 |                 24                 |              republic             |
 +------------------------------------+-----------------------------------+

@@ -1,0 +1,34 @@
+[{'affiliation.person_id': 'PatrikNacher.1974', 'total_duration_ms': 2918040.0}, {'affiliation.person_id': 'VeraJourova.1964', 'total_duration_ms': 2329580.0}, {'affiliation.person_id': 'JosefKott.1970', 'total_duration_ms': 1763410.0}, {'affiliation.person_id': 'TatanaMala.1981', 'total_duration_ms': 1599290.0}, {'affiliation.person_id': 'KlaraDostalova.1971', 'total_duration_ms': 1540550.0}, {'affiliation.person_id': 'HelenaValkova.1951', 'total_duration_ms': 1401590.0}, {'affiliation.person_id': 'MonikaOborna.1989', 'total_duration_ms': 694250.0}, {'affiliation.person_id': 'JaroslavFaltynek.1962', 'total_duration_ms': 680770.0}, {'affiliation.person_id': 'MiloslavJanulik.1962', 'total_duration_ms': 650390.0}, {'affiliation.person_id': 'MilanHnilicka.1973', 'total_duration_ms': 645900.0}, {'affiliation.person_id': 'KristynaZelienkova.1974', 'total_duration_ms': 598810.0}, {'affiliation.person_id': 'DanTok.1959', 'total_duration_ms': 557780.0}, {'affiliation.person_id': 'BronislavSchwarz.1966', 'total_duration_ms': 506280.0}, {'affiliation.person_id': 'IvanPilny.1944', 'total_duration_ms': 473010.0}, {'affiliation.person_id': 'AlenaSchillerova.1964', 'total_duration_ms': 468780.0}, {'affiliation.person_id': 'JanaMrackovaVildumetzova.1973', 'total_duration_ms': 436170.0}, {'affiliation.person_id': 'RadekVondracek.1973', 'total_duration_ms': 321630.0}, {'affiliation.person_id': 'AndrejBabis.1954', 'total_duration_ms': 292960.0}, {'affiliation.person_id': 'JiriHlavaty.1948', 'total_duration_ms': 261000.0}, {'affiliation.person_id': 'JaroslavaPokornaJermanova.1970', 'total_duration_ms': 225160.0}, {'affiliation.person_id': 'JosefHajek.1956', 'total_duration_ms': 220690.0}, {'affiliation.person_id': 'RadimHolis.1975', 'total_duration_ms': 209080.0}, {'affiliation.person_id': 'BerenikaPestova.1971', 'total_duration_ms': 144780.0}, {'affiliation.person_id': 'PetrSadovsky.1969', 'total_duration_ms': 77520.0}, {'affiliation.person_id': 'RomanKubicek.1963', 'total_duration_ms': 73800.0}, {'affiliation.person_id': 'MilanBrazdil.1962', 'total_duration_ms': 52640.0}, {'affiliation.person_id': 'VeraAdamkova.1954', 'total_duration_ms': 36430.0}, {'affiliation.person_id': 'RadkaMaxova.1968', 'total_duration_ms': 7230.0}]
+
++--------------------------------+-------------------+
+|     affiliation.person_id      | total_duration_ms |
++--------------------------------+-------------------+
+|       PatrikNacher.1974        |     2918040.0     |
+|        VeraJourova.1964        |     2329580.0     |
+|         JosefKott.1970         |     1763410.0     |
+|        TatanaMala.1981         |     1599290.0     |
+|      KlaraDostalova.1971       |     1540550.0     |
+|       HelenaValkova.1951       |     1401590.0     |
+|       MonikaOborna.1989        |      694250.0     |
+|     JaroslavFaltynek.1962      |      680770.0     |
+|      MiloslavJanulik.1962      |      650390.0     |
+|       MilanHnilicka.1973       |      645900.0     |
+|    KristynaZelienkova.1974     |      598810.0     |
+|          DanTok.1959           |      557780.0     |
+|     BronislavSchwarz.1966      |      506280.0     |
+|         IvanPilny.1944         |      473010.0     |
+|     AlenaSchillerova.1964      |      468780.0     |
+| JanaMrackovaVildumetzova.1973  |      436170.0     |
+|      RadekVondracek.1973       |      321630.0     |
+|        AndrejBabis.1954        |      292960.0     |
+|        JiriHlavaty.1948        |      261000.0     |
+| JaroslavaPokornaJermanova.1970 |      225160.0     |
+|        JosefHajek.1956         |      220690.0     |
+|        RadimHolis.1975         |      209080.0     |
+|      BerenikaPestova.1971      |      144780.0     |
+|       PetrSadovsky.1969        |      77520.0      |
+|       RomanKubicek.1963        |      73800.0      |
+|       MilanBrazdil.1962        |      52640.0      |
+|       VeraAdamkova.1954        |      36430.0      |
+|        RadkaMaxova.1968        |       7230.0      |
++--------------------------------+-------------------+
