@@ -1,0 +1,19 @@
+[{'organisation.role': 'interparliamentaryFriendshipGroup', 'COUNT(speech.id) as total_speeches': 982430}, {'organisation.role': 'committee', 'COUNT(speech.id) as total_speeches': 402190}, {'organisation.role': 'subcommittee', 'COUNT(speech.id) as total_speeches': 305743}, {'organisation.role': 'parliament', 'COUNT(speech.id) as total_speeches': 253301}, {'organisation.role': 'parliamentaryGroup', 'COUNT(speech.id) as total_speeches': 191839}, {'organisation.role': 'politicalParty', 'COUNT(speech.id) as total_speeches': 123225}, {'organisation.role': 'commission', 'COUNT(speech.id) as total_speeches': 121414}, {'organisation.role': 'delegation', 'COUNT(speech.id) as total_speeches': 28272}, {'organisation.role': 'government', 'COUNT(speech.id) as total_speeches': 23025}, {'organisation.role': 'supervisoryBoard', 'COUNT(speech.id) as total_speeches': 8141}, {'organisation.role': 'boardOfDirectors', 'COUNT(speech.id) as total_speeches': 3477}, {'organisation.role': 'institution', 'COUNT(speech.id) as total_speeches': 71}, {'organisation.role': 'republic', 'COUNT(speech.id) as total_speeches': 24}]
+
++-----------------------------------+------------------------------------+
+|         organisation.role         | COUNT(speech.id) as total_speeches |
++-----------------------------------+------------------------------------+
+| interparliamentaryFriendshipGroup |               982430               |
+|             committee             |               402190               |
+|            subcommittee           |               305743               |
+|             parliament            |               253301               |
+|         parliamentaryGroup        |               191839               |
+|           politicalParty          |               123225               |
+|             commission            |               121414               |
+|             delegation            |               28272                |
+|             government            |               23025                |
+|          supervisoryBoard         |                8141                |
+|          boardOfDirectors         |                3477                |
+|            institution            |                 71                 |
+|              republic             |                 24                 |
++-----------------------------------+------------------------------------+

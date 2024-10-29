@@ -1,0 +1,9 @@
+[{'speech.role': 'guest', 'average_tokens': 447.41302235179785}, {'speech.role': 'regular', 'average_tokens': 262.9682086742366}, {'speech.role': 'chair', 'average_tokens': 54.36446967652388}]
+
++-------------+--------------------+
+| speech.role |   average_tokens   |
++-------------+--------------------+
+|    guest    | 447.41302235179785 |
+|   regular   | 262.9682086742366  |
+|    chair    | 54.36446967652388  |
++-------------+--------------------+

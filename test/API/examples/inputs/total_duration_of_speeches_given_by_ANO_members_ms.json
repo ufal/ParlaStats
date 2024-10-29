@@ -1,0 +1,57 @@
+{
+	"target_databases":["databaseCS"],
+	"description":"Total duration of members of ANO in miliseconds",
+	"steps": [
+		{
+			"goal":"get_ano_members",
+			"aggregation" : {
+				"group_by":["person.person_id", "organisation.organisation_id"],
+				"order_by":[]
+			},
+			"filtering": {
+				"columns":["person.person_id"],
+				"conditions": [
+					{
+						"column":"organisation.organisation_id",
+						"operator":"LIKE",
+						"value":"'%%ANO%%'"
+					}
+				],
+				"limit":""
+			}
+		},
+		{
+			"goal":"main",
+			"aggregation": {
+				"group_by":["affiliation.person_id"],
+				"order_by":[
+					{
+						"column":"total_duration_ms",
+						"direction":"DESC"
+					}
+				]
+			},
+			"filtering": {
+				"columns":["affiliation.person_id", "SUM(speech.total_duration) AS total_duration_ms"],
+				"conditions": [
+					{
+						"column":"affiliation.person_id",
+						"operator":"IN",
+						"value":"step_result.get_ano_members.affiliation.person_id"
+					},
+					{
+						"column":"speech.date",
+						"operator":"<=",
+						"value":"affiliation.until"
+					},
+					{
+						"column":"speech.date",
+						"operator":">=",
+						"value":"affiliation.until"
+					}
+				],
+				"limit":""
+			}
+		}
+	]
+}

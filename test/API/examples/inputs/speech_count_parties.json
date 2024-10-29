@@ -1,0 +1,34 @@
+{
+	"target_databases":["databaseLV", "databaseCS"],
+	"description":"How many speeches were given by members of each political party or parliamentary group",
+	"steps": [
+		{
+			"goal":"main",
+			"aggregation": {
+				"group_by":["organisation.role", "organisation.name"],
+				"order_by":[]
+			},
+			"filtering": {
+				"columns":["organisation.name", "COUNT(speech.id) AS total_speeches"],
+				"conditions":[
+					{
+						"column":"organisation.role",
+						"operator": " IN ",
+						"value":"('politicalParty','parliamentaryGroup')"
+					},
+					{
+						"column":"speech.date",
+						"operator":">=",
+						"value":"affiliation.since"
+					},
+					{
+						"column":"speech.date",
+						"operator":"<=",
+						"value":"affiliation.until"
+					}
+				],
+				"limit":""
+			}
+		}
+	]
+}

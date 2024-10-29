@@ -1,0 +1,11 @@
+[{'speech.earliest_timestamp': '09:58:00', 'average_wpm': 141.0}, {'speech.earliest_timestamp': '10:28:00', 'average_wpm': 245.0}, {'speech.earliest_timestamp': '11:48:00', 'average_wpm': 268.0}, {'speech.earliest_timestamp': '19:58:00', 'average_wpm': 209.0}, {'speech.earliest_timestamp': '21:38:00', 'average_wpm': 317.0}]
+
++---------------------------+-------------+
+| speech.earliest_timestamp | average_wpm |
++---------------------------+-------------+
+|          09:58:00         |    141.0    |
+|          10:28:00         |    245.0    |
+|          11:48:00         |    268.0    |
+|          19:58:00         |    209.0    |
+|          21:38:00         |    317.0    |
++---------------------------+-------------+

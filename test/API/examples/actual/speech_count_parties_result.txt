@@ -1,0 +1,27 @@
+[{'organisation.name': 'Poslanecký klub ANO 2011', 'total_speeches': 35787}, {'organisation.name': 'Poslanecký klub České pirátské strany', 'total_speeches': 14820}, {'organisation.name': 'Poslanecký klub České strany sociálně demokratické', 'total_speeches': 32808}, {'organisation.name': 'Poslanecký klub KDU-ČSL', 'total_speeches': 15887}, {'organisation.name': 'Poslanecký klub Komunistické strany Čech a Moravy', 'total_speeches': 27072}, {'organisation.name': 'Poslanecký klub Občanské demokratické strany', 'total_speeches': 26193}, {'organisation.name': 'Poslanecký klub Starostové a nezávislí', 'total_speeches': 4092}, {'organisation.name': 'Poslanecký klub Svoboda a přímá demokracie', 'total_speeches': 9600}, {'organisation.name': 'Poslanecký klub TOP 09', 'total_speeches': 3859}, {'organisation.name': 'Poslanecký klub TOP 09 a Starostové', 'total_speeches': 18965}, {'organisation.name': 'Poslanecký klub Úsvit - Národní Koalice', 'total_speeches': 2756}, {'organisation.name': 'ANO2011', 'total_speeches': 5185}, {'organisation.name': 'Česká pirátská strana', 'total_speeches': 12860}, {'organisation.name': 'Česká strana sociálně demokratická', 'total_speeches': 22732}, {'organisation.name': 'Komunistická strana Čech a Moravy', 'total_speeches': 25301}, {'organisation.name': 'Křesťanská a demokratická unie - Československá strana lidová', 'total_speeches': 14085}, {'organisation.name': 'Občanská demokratická strana', 'total_speeches': 19617}, {'organisation.name': 'Starostove a nezavisli', 'total_speeches': 1422}, {'organisation.name': 'Svoboda a prima demokracie - Tomio Okamura', 'total_speeches': 1088}, {'organisation.name': 'TOP 09', 'total_speeches': 18409}, {'organisation.name': 'Úsvit přímé demokracie Tomia Okamury', 'total_speeches': 2526}]
+
++---------------------------------------------------------------+----------------+
+|                       organisation.name                       | total_speeches |
++---------------------------------------------------------------+----------------+
+|                    Poslanecký klub ANO 2011                   |     35787      |
+|             Poslanecký klub České pirátské strany             |     14820      |
+|       Poslanecký klub České strany sociálně demokratické      |     32808      |
+|                    Poslanecký klub KDU-ČSL                    |     15887      |
+|       Poslanecký klub Komunistické strany Čech a Moravy       |     27072      |
+|          Poslanecký klub Občanské demokratické strany         |     26193      |
+|             Poslanecký klub Starostové a nezávislí            |      4092      |
+|           Poslanecký klub Svoboda a přímá demokracie          |      9600      |
+|                     Poslanecký klub TOP 09                    |      3859      |
+|              Poslanecký klub TOP 09 a Starostové              |     18965      |
+|            Poslanecký klub Úsvit - Národní Koalice            |      2756      |
+|                            ANO2011                            |      5185      |
+|                     Česká pirátská strana                     |     12860      |
+|               Česká strana sociálně demokratická              |     22732      |
+|               Komunistická strana Čech a Moravy               |     25301      |
+| Křesťanská a demokratická unie - Československá strana lidová |     14085      |
+|                  Občanská demokratická strana                 |     19617      |
+|                     Starostove a nezavisli                    |      1422      |
+|           Svoboda a prima demokracie - Tomio Okamura          |      1088      |
+|                             TOP 09                            |     18409      |
+|              Úsvit přímé demokracie Tomia Okamury             |      2526      |
++---------------------------------------------------------------+----------------+

@@ -1,0 +1,16 @@
+[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'total_tokens': 15444}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'total_tokens': 3494}, {'persName.forename': 'Adam', 'persName.surname': 'Vojtěch', 'total_tokens': 178391}, {'persName.forename': 'Adolf', 'persName.surname': 'Beznoska', 'total_tokens': 41522}, {'persName.forename': 'Alena', 'persName.surname': 'Gajdůšková', 'total_tokens': 73099}, {'persName.forename': 'Alena', 'persName.surname': 'Nohavová', 'total_tokens': 17614}, {'persName.forename': 'Alena', 'persName.surname': 'Schillerová', 'total_tokens': 395970}, {'persName.forename': 'Aleš', 'persName.surname': 'Dufek', 'total_tokens': 4498}, {'persName.forename': 'Aleš', 'persName.surname': 'Juchelka', 'total_tokens': 129300}, {'persName.forename': 'Alexander', 'persName.surname': 'Černý', 'total_tokens': 20376}]
+
++-------------------+------------------+--------------+
+| persName.forename | persName.surname | total_tokens |
++-------------------+------------------+--------------+
+|        Adam       |      Kalous      |    15444     |
+|        Adam       |      Rykala      |     3494     |
+|        Adam       |     Vojtěch      |    178391    |
+|       Adolf       |     Beznoska     |    41522     |
+|       Alena       |    Gajdůšková    |    73099     |
+|       Alena       |     Nohavová     |    17614     |
+|       Alena       |   Schillerová    |    395970    |
+|        Aleš       |      Dufek       |     4498     |
+|        Aleš       |     Juchelka     |    129300    |
+|     Alexander     |      Černý       |    20376     |
++-------------------+------------------+--------------+

@@ -1,0 +1,16 @@
+[{'person.person_id': 'VojtechFilip.1955', 'total_speeches': 18487}, {'person.person_id': 'JanBartosek.1971', 'total_speeches': 11528}, {'person.person_id': 'PetrGazdik.1974', 'total_speeches': 10009}, {'person.person_id': 'RadekVondracek.1973', 'total_speeches': 9250}, {'person.person_id': 'TomioOkamura.1972', 'total_speeches': 8501}, {'person.person_id': 'PetrFiala.1964', 'total_speeches': 7871}, {'person.person_id': 'JanHamacek.1978', 'total_speeches': 7792}, {'person.person_id': 'VojtechPikal.1987', 'total_speeches': 7677}, {'person.person_id': 'TomasHanzel.1975', 'total_speeches': 5071}, {'person.person_id': 'ZbynekStanjura.1964', 'total_speeches': 3815}]
+
++---------------------+----------------+
+|   person.person_id  | total_speeches |
++---------------------+----------------+
+|  VojtechFilip.1955  |     18487      |
+|   JanBartosek.1971  |     11528      |
+|   PetrGazdik.1974   |     10009      |
+| RadekVondracek.1973 |      9250      |
+|  TomioOkamura.1972  |      8501      |
+|    PetrFiala.1964   |      7871      |
+|   JanHamacek.1978   |      7792      |
+|  VojtechPikal.1987  |      7677      |
+|   TomasHanzel.1975  |      5071      |
+| ZbynekStanjura.1964 |      3815      |
++---------------------+----------------+

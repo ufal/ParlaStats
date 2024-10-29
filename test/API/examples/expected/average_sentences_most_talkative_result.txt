@@ -1,0 +1,11 @@
+[{'affiliation.role': 'deputyHead', 'average_sentence_count': 6.246553140472014}, {'affiliation.role': 'member', 'average_sentence_count': 6.239004233762873}, {'affiliation.role': 'representative', 'average_sentence_count': 6.265916590036242}, {'affiliation.role': 'verifier', 'average_sentence_count': 6.243060334939206}, {'affiliation.role': 'head', 'average_sentence_count': 6.244799432019879}]
+
++------------------+------------------------+
+| affiliation.role | average_sentence_count |
++------------------+------------------------+
+|    deputyHead    |   6.246553140472014    |
+|      member      |   6.239004233762873    |
+|  representative  |   6.265916590036242    |
+|     verifier     |   6.243060334939206    |
+|       head       |   6.244799432019879    |
++------------------+------------------------+

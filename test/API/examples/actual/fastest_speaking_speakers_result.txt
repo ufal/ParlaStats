@@ -1,0 +1,16 @@
+[{'speech.person_id': 'LukasVlcek.1982', 'average_wpm': 236.0}, {'speech.person_id': 'JiriHlavaty.1948', 'average_wpm': 233.0}, {'speech.person_id': 'PetrBratsky.1955', 'average_wpm': 232.0}, {'speech.person_id': 'JanPosvar.1985', 'average_wpm': 231.30769230769232}, {'speech.person_id': 'StanislavMackovik.1967', 'average_wpm': 224.91176470588235}, {'speech.person_id': 'MartinMajor.1979', 'average_wpm': 224.0}, {'speech.person_id': 'MartinDvorak.1956', 'average_wpm': 218.33333333333334}, {'speech.person_id': 'RadimHolis.1975', 'average_wpm': 217.0}, {'speech.person_id': 'MiladaVoborska.1972', 'average_wpm': 216.25}, {'speech.person_id': 'MichalKortys', 'average_wpm': 214.0}]
+
++------------------------+--------------------+
+|    speech.person_id    |    average_wpm     |
++------------------------+--------------------+
+|    LukasVlcek.1982     |       236.0        |
+|    JiriHlavaty.1948    |       233.0        |
+|    PetrBratsky.1955    |       232.0        |
+|     JanPosvar.1985     | 231.30769230769232 |
+| StanislavMackovik.1967 | 224.91176470588235 |
+|    MartinMajor.1979    |       224.0        |
+|   MartinDvorak.1956    | 218.33333333333334 |
+|    RadimHolis.1975     |       217.0        |
+|  MiladaVoborska.1972   |       216.25       |
+|      MichalKortys      |       214.0        |
++------------------------+--------------------+
