@@ -1,11 +1,39 @@
 #!usr/bin/python3
 
 from flask import Flask, request, jsonify
+from flask.json.provider import JSONProvider
 import psycopg2
 from configparser import ConfigParser
 from argparse import ArgumentParser
 import decimal
+from json import JSONEncoder
+import json
+from datetime import datetime, time, date
+import sys
+
+class CustomJSONifier(JSONEncoder):
+    """
+    A simple class overriding the default method of JSONEncoder, so it can 
+    encode types like TIME
+    """
+    def default(self, obj):
+        if isinstance(obj, (datetime, time, date)):
+            return obj.isoformat()
+        return super().default(obj)
+
+class CustomJSONProvider(JSONProvider):
+    """
+    Simple JSON provider modifications, that allow for usage of custom jsonifier.
+    """
+    def dumps(self, obj, **kwargs):
+        return json.dumps(obj, **kwargs, cls=CustomJSONifier)
+    def loads(self, s : str | bytes, **kwargs):
+        return json.loads(s, **kwargs)
+    
+
 app = Flask(__name__)
+app.json = CustomJSONProvider(app)
+
 
 args_parser = ArgumentParser()
 
@@ -27,6 +55,8 @@ TABLE_JOIN_CONDITIONS = {
     ("person", "speech") : ("person_id", "person_id"),
     ("affiliation", "organisation") : ("organisation_id", "organisation_id")
 }
+
+SPEECH_TIME_COLUMNS = ["time_start", "time_end", "earliest_timestamp", "latest_timestamp"]
 
 def determine_joins(columns, conditions, group_by):
     """
@@ -67,9 +97,11 @@ def determine_joins(columns, conditions, group_by):
 
 def connect_to_database(db_ini_path=args.db):
     parser = ConfigParser()
+    print(db_ini_path)
     parser.read(db_ini_path)
     config = {}
     if parser.has_section("postgresql"):
+        print("here")
         parameters = parser.items("postgresql")
         for parameter in parameters:
             config[parameter[0]] = parameter[1]
@@ -157,24 +189,25 @@ def query():
     target_databases = json_query["target_databases"]
     res = []
     for database in target_databases:
-        step_results = {}
-        connection = connect_to_database(f"../DatabaseCommunication/{database}.ini")
-        cursor = connection.cursor()
-        try:
-            for step in json_query['steps']:
-                sql_query, params = SQLBuilder(step, step_results)
-                cursor.execute(sql_query, params)
-                step_results[step['goal']] = cursor.fetchall()
-        except ValueError as e:
-            return jsonify({"error": str(e)}), 400
-        cursor.close()
-        connection.close()
-        final_step_name = json_query['steps'][-1]['goal']
-        results = step_results[final_step_name]
-        columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['filtering']['columns']]
-        response = [dict(zip(columns, row)) for row in results]
+        if (database) == "databaseCS":
+            step_results = {}
+            connection = connect_to_database(f"{args.db}{database}.ini")
+            cursor = connection.cursor()
+            try:
+                for step in json_query['steps']:
+                    sql_query, params = SQLBuilder(step, step_results)
+                    cursor.execute(sql_query, params)
+                    step_results[step['goal']] = cursor.fetchall()
+            except ValueError as e:
+                return jsonify({"error": str(e)}), 400
+            cursor.close()
+            connection.close()
+            final_step_name = json_query['steps'][-1]['goal']
+            results = step_results[final_step_name]
+            columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['filtering']['columns']]
+            response = [dict(zip(columns, row)) for row in results]
        
-        res.append(format_output(response))
+            res.append(format_output(response))
     return jsonify(res)
 if __name__ == "__main__":
     app.run(debug=True)

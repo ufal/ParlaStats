@@ -104,10 +104,10 @@ class Client2():
                             print(self.__adjust_results(result))
                     
                     else:
-                        print(f"Result for {query_file}:")
-                        print(self.__adjust_results(result))
+                        #print(f"Result for {query_file}:")
+                        #print(self.__adjust_results(result))
                     if self.target_dir:
-                        with open(f"{self.target_dir}{filename[:-5]}_result.txt", 'a') as file:
+                        with open(f"{self.target_dir}{filename[:-5]}_result.txt", 'w') as file:
                             print(result, file=file)
                             print(file=file)
                             res = self.__adjust_results(result)
