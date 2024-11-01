@@ -1,19 +1,19 @@
-[{'organisation.role': 'interparliamentaryFriendshipGroup', 'COUNT(speech.id) as total_speeches': 982430}, {'organisation.role': 'committee', 'COUNT(speech.id) as total_speeches': 402190}, {'organisation.role': 'subcommittee', 'COUNT(speech.id) as total_speeches': 305743}, {'organisation.role': 'parliament', 'COUNT(speech.id) as total_speeches': 253301}, {'organisation.role': 'parliamentaryGroup', 'COUNT(speech.id) as total_speeches': 191839}, {'organisation.role': 'politicalParty', 'COUNT(speech.id) as total_speeches': 123225}, {'organisation.role': 'commission', 'COUNT(speech.id) as total_speeches': 121414}, {'organisation.role': 'delegation', 'COUNT(speech.id) as total_speeches': 28272}, {'organisation.role': 'government', 'COUNT(speech.id) as total_speeches': 23025}, {'organisation.role': 'supervisoryBoard', 'COUNT(speech.id) as total_speeches': 8141}, {'organisation.role': 'boardOfDirectors', 'COUNT(speech.id) as total_speeches': 3477}, {'organisation.role': 'institution', 'COUNT(speech.id) as total_speeches': 71}, {'organisation.role': 'republic', 'COUNT(speech.id) as total_speeches': 24}]
+[{'organisation.role': 'interparliamentaryFriendshipGroup', 'COUNT(speech.id) as total_speeches': 993377}, {'organisation.role': 'committee', 'COUNT(speech.id) as total_speeches': 407840}, {'organisation.role': 'subcommittee', 'COUNT(speech.id) as total_speeches': 311298}, {'organisation.role': 'parliament', 'COUNT(speech.id) as total_speeches': 256168}, {'organisation.role': 'parliamentaryGroup', 'COUNT(speech.id) as total_speeches': 194087}, {'organisation.role': 'politicalParty', 'COUNT(speech.id) as total_speeches': 124599}, {'organisation.role': 'commission', 'COUNT(speech.id) as total_speeches': 123586}, {'organisation.role': 'delegation', 'COUNT(speech.id) as total_speeches': 28483}, {'organisation.role': 'government', 'COUNT(speech.id) as total_speeches': 23395}, {'organisation.role': 'supervisoryBoard', 'COUNT(speech.id) as total_speeches': 8226}, {'organisation.role': 'boardOfDirectors', 'COUNT(speech.id) as total_speeches': 3538}, {'organisation.role': 'institution', 'COUNT(speech.id) as total_speeches': 75}, {'organisation.role': 'republic', 'COUNT(speech.id) as total_speeches': 24}]
 
 +-----------------------------------+------------------------------------+
 |         organisation.role         | COUNT(speech.id) as total_speeches |
 +-----------------------------------+------------------------------------+
-| interparliamentaryFriendshipGroup |               982430               |
-|             committee             |               402190               |
-|            subcommittee           |               305743               |
-|             parliament            |               253301               |
-|         parliamentaryGroup        |               191839               |
-|           politicalParty          |               123225               |
-|             commission            |               121414               |
-|             delegation            |               28272                |
-|             government            |               23025                |
-|          supervisoryBoard         |                8141                |
-|          boardOfDirectors         |                3477                |
-|            institution            |                 71                 |
+| interparliamentaryFriendshipGroup |               993377               |
+|             committee             |               407840               |
+|            subcommittee           |               311298               |
+|             parliament            |               256168               |
+|         parliamentaryGroup        |               194087               |
+|           politicalParty          |               124599               |
+|             commission            |               123586               |
+|             delegation            |               28483                |
+|             government            |               23395                |
+|          supervisoryBoard         |                8226                |
+|          boardOfDirectors         |                3538                |
+|            institution            |                 75                 |
 |              republic             |                 24                 |
 +-----------------------------------+------------------------------------+

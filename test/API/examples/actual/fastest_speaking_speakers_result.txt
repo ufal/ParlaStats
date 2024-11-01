@@ -1,16 +1,16 @@
-[{'speech.person_id': 'LukasVlcek.1982', 'average_wpm': 236.0}, {'speech.person_id': 'JiriHlavaty.1948', 'average_wpm': 233.0}, {'speech.person_id': 'PetrBratsky.1955', 'average_wpm': 232.0}, {'speech.person_id': 'JanPosvar.1985', 'average_wpm': 231.30769230769232}, {'speech.person_id': 'StanislavMackovik.1967', 'average_wpm': 224.91176470588235}, {'speech.person_id': 'MartinMajor.1979', 'average_wpm': 224.0}, {'speech.person_id': 'MartinDvorak.1956', 'average_wpm': 218.33333333333334}, {'speech.person_id': 'RadimHolis.1975', 'average_wpm': 217.0}, {'speech.person_id': 'MiladaVoborska.1972', 'average_wpm': 216.25}, {'speech.person_id': 'MichalKortys', 'average_wpm': 214.0}]
+[{'speech.person_id': 'HubertLang.1969', 'average_wpm': 161.41698165379296}, {'speech.person_id': 'PavelBlazek.1969', 'average_wpm': 158.97911562369416}, {'speech.person_id': 'PetrDolinek.1981', 'average_wpm': 158.30039783796744}, {'speech.person_id': 'OndrejVesely.1976', 'average_wpm': 158.10500409292203}, {'speech.person_id': 'BronislavSchwarz.1966', 'average_wpm': 157.14088727252556}, {'speech.person_id': 'LukasWagenknecht', 'average_wpm': 155.23762539056077}, {'speech.person_id': 'JaroslavBzoch.1983', 'average_wpm': 152.54676361269722}, {'speech.person_id': 'IvanAdamec.1960', 'average_wpm': 151.1822576897536}, {'speech.person_id': 'MikulasPeksa.1986', 'average_wpm': 151.1454368990201}, {'speech.person_id': 'JaroslavMartinu.1959', 'average_wpm': 150.94729800606635}]
 
-+------------------------+--------------------+
-|    speech.person_id    |    average_wpm     |
-+------------------------+--------------------+
-|    LukasVlcek.1982     |       236.0        |
-|    JiriHlavaty.1948    |       233.0        |
-|    PetrBratsky.1955    |       232.0        |
-|     JanPosvar.1985     | 231.30769230769232 |
-| StanislavMackovik.1967 | 224.91176470588235 |
-|    MartinMajor.1979    |       224.0        |
-|   MartinDvorak.1956    | 218.33333333333334 |
-|    RadimHolis.1975     |       217.0        |
-|  MiladaVoborska.1972   |       216.25       |
-|      MichalKortys      |       214.0        |
-+------------------------+--------------------+
++-----------------------+--------------------+
+|    speech.person_id   |    average_wpm     |
++-----------------------+--------------------+
+|    HubertLang.1969    | 161.41698165379296 |
+|    PavelBlazek.1969   | 158.97911562369416 |
+|    PetrDolinek.1981   | 158.30039783796744 |
+|   OndrejVesely.1976   | 158.10500409292203 |
+| BronislavSchwarz.1966 | 157.14088727252556 |
+|    LukasWagenknecht   | 155.23762539056077 |
+|   JaroslavBzoch.1983  | 152.54676361269722 |
+|    IvanAdamec.1960    | 151.1822576897536  |
+|   MikulasPeksa.1986   | 151.1454368990201  |
+|  JaroslavMartinu.1959 | 150.94729800606635 |
++-----------------------+--------------------+

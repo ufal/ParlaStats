@@ -47,7 +47,7 @@
 					{
 						"column":"speech.date",
 						"operator":">=",
-						"value":"affiliation.until"
+						"value":"affiliation.since"
 					}
 				],
 				"limit":""
