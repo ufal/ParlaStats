@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teiCorpus xmlns="http://www.tei-c.org/ns/1.0"
+           xmlns:xi="http://www.w3.org/2001/XInclude"
+           xml:id="ParCzech.ana"
+           xml:lang="cs">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="cs">Český parlamentní korpus, Poslanecká sněmovna [ParCzech.ana]</title>
+            <title type="main" xml:lang="en">Czech parliamentary corpus, Chamber of Deputies [ParCzech.ana]</title>
+            <title type="sub" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna</title>
+            <title type="sub" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies</title>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP7" n="ps2013">ps2013</meeting>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP8" n="ps2017">ps2017</meeting>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP9" n="ps2021">ps2021</meeting>
+            <respStmt>
+               <persName ref="https://orcid.org/0000-0001-7953-8783">Matyáš Kopp</persName>
+               <resp xml:lang="en">Data retrieval</resp>
+               <resp xml:lang="en">TEI XML corpus encoding</resp>
+               <resp xml:lang="en">Linguistic annotation</resp>
+            </respStmt>
+            <funder>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+            </funder>
+         </titleStmt>
+         <editionStmt>
+            <edition>4.0</edition>
+         </editionStmt>
+         <extent>
+            <measure unit="speeches" quantity="196185" xml:lang="cs">196185 promluv</measure>
+            <measure unit="speeches" quantity="196185" xml:lang="en">196185 speeches</measure>
+            <measure unit="words" quantity="30774250" xml:lang="cs">30774250 slov</measure>
+            <measure unit="words" quantity="30774250" xml:lang="en">30774250 words</measure>
+         </extent>
+         <publicationStmt>
+            <publisher>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+               <ref target="https://www.lindat.cz">www.lindat.cz</ref>
+            </publisher>
+            <idno type="URI" subtype="handle">http://hdl.handle.net/11234/1-5360</idno>
+            <availability status="free">
+               <licence>https://creativecommons.org/publicdomain/zero/1.0/</licence>
+               <p xml:lang="en">This work is licensed under the <ref target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</ref>.</p>
+            </availability>
+            <date when="2024-01-26">2024-01-26</date>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title type="main" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna</title>
+               <title type="main" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies</title>
+               <idno type="URI" subtype="parliament">https://www.psp.cz/eknih/</idno>
+               <date from="2013-11-25" to="2023-07-26">2013-11-25 - 2023-07-26</date>
+            </bibl>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p xml:lang="en">
+               <ref target="https://ufal.mff.cuni.cz/parczech">ParCzech</ref> is a project on compiling Czech parliamentary data into annotated corpora. It mostly follows the <ref target="https://www.clarin.eu/parlamint">ParlaMint project's</ref> recommendation, but the data are slightly extended in several ways. Texts contain links to original voting and prints. Except for the 4-class named entities classification, it also includes a more detailed CNEC hierarchical classification. The text in the annotated version is aligned with audio on the token level. And morphological annotation contains pdt tagsed besides UD PoS and features.</p>
+         </projectDesc>
+         <editorialDecl>
+            <correction>
+               <p xml:lang="en">No correction of source texts was performed.</p>
+            </correction>
+            <normalization>
+               <p xml:lang="en">Text has not been normalised, except for spacing.</p>
+            </normalization>
+            <hyphenation>
+               <p xml:lang="en">No end-of-line hyphens were present in the source.</p>
+            </hyphenation>
+            <quotation>
+               <p xml:lang="en">Quotation marks have been left in the text and are not explicitly marked up.</p>
+            </quotation>
+            <segmentation>
+               <p xml:lang="en">The texts are segmented into utterances (speeches) and segments (corresponding to paragraphs in the source transcription).</p>
+            </segmentation>
+         </editorialDecl>
+         <tagsDecl>
+            <namespace name="http://www.tei-c.org/ns/1.0">
+               <tagUsage gi="anchor" occurs="53459612"/>
+               <tagUsage gi="body" occurs="6832"/>
+               <tagUsage gi="date" occurs="198299"/>
+               <tagUsage gi="desc" occurs="34441"/>
+               <tagUsage gi="div" occurs="6832"/>
+               <tagUsage gi="email" occurs="125"/>
+               <tagUsage gi="gap" occurs="1086"/>
+               <tagUsage gi="incident" occurs="180"/>
+               <tagUsage gi="kinesic" occurs="13625"/>
+               <tagUsage gi="link" occurs="36602688"/>
+               <tagUsage gi="linkGrp" occurs="1976928"/>
+               <tagUsage gi="name" occurs="1106592"/>
+               <tagUsage gi="note" occurs="243108"/>
+               <tagUsage gi="num" occurs="385069"/>
+               <tagUsage gi="pb" occurs="34185"/>
+               <tagUsage gi="pc" occurs="5640528"/>
+               <tagUsage gi="ref" occurs="45030"/>
+               <tagUsage gi="s" occurs="1976928"/>
+               <tagUsage gi="seg" occurs="519160"/>
+               <tagUsage gi="text" occurs="6832"/>
+               <tagUsage gi="time" occurs="60246"/>
+               <tagUsage gi="timeline" occurs="33275"/>
+               <tagUsage gi="u" occurs="196185"/>
+               <tagUsage gi="unit" occurs="3813"/>
+               <tagUsage gi="vocal" occurs="19550"/>
+               <tagUsage gi="w" occurs="31150070"/>
+               <tagUsage gi="when" occurs="53492887"/>
+            </namespace>
+         </tagsDecl>
+         <classDecl>
+            <xi:include href="ParCzech-taxonomy-NER.cnec2.0.ana.xml"/>
+            <xi:include href="ParCzech-taxonomy-meeting.parts.xml"/>
+            <xi:include href="ParCzech-taxonomy-parla.links.xml"/>
+            <xi:include href="ParlaMint-taxonomy-CHES.xml"/>
+            <xi:include href="ParlaMint-taxonomy-NER.ana.xml"/>
+            <xi:include href="ParlaMint-taxonomy-UD-SYN.ana.xml"/>
+            <xi:include href="ParlaMint-taxonomy-parla.legislature.xml"/>
+            <xi:include href="ParlaMint-taxonomy-politicalOrientation.xml"/>
+            <xi:include href="ParlaMint-taxonomy-speaker_types.xml"/>
+         </classDecl>
+         <listPrefixDef>
+            <prefixDef ident="ud-syn" matchPattern="(.+)" replacementPattern="#$1">
+               <p xml:lang="en">Private URIs with this prefix point to elements giving their name. In this document they are simply local references into the UD-SYN taxonomy categories in the corpus root TEI header.</p>
+            </prefixDef>
+            <prefixDef ident="pdt"
+                       matchPattern="(.+)"
+                       replacementPattern="pdt-fslib.xml#xpath(//fvLib/fs[./f/symbol/@value = '$1'])">
+               <p xml:lang="en">Feature-structure elements definition of the Czech Positional Tags</p>
+            </prefixDef>
+            <prefixDef ident="ne" matchPattern="(.+)" replacementPattern="#NER.cnec2.0.$1">
+               <p xml:lang="en">Taxonomy for named entities (cnec2.0)</p>
+            </prefixDef>
+         </listPrefixDef>
+         <appInfo>
+            <application ident="UDPipe" version="2">
+               <label>UDPipe 2 (czech-pdt-ud-2.10-220711 model)</label>
+               <desc xml:lang="en">POS tagging, lemmatization and dependency parsing done with UDPipe 2 (<ref target="http://ufal.mff.cuni.cz/udpipe/2">http://ufal.mff.cuni.cz/udpipe/2</ref>) with czech-pdt-ud-2.10-220711 model</desc>
+            </application>
+            <application ident="NameTag" version="2">
+               <label>NameTag 2 (czech-cnec2.0-200831 model)</label>
+               <desc xml:lang="en">Name entity recognition done with NameTag 2 (<ref target="http://ufal.mff.cuni.cz/nametag/2">http://ufal.mff.cuni.cz/nametag/2</ref>) with czech-cnec2.0-200831 model (<ref target="http://hdl.handle.net/11234/1-3443">http://hdl.handle.net/11234/1-3443</ref>). Posprocessing: nested named entities have been merged into four categories (PER, LOC, ORG, MISC).</desc>
+            </application>
+         </appInfo>
+      </encodingDesc>
+      <profileDesc>
+         <settingDesc>
+            <setting>
+               <name type="org">Parlament České republiky - Poslanecká sněmovna</name>
+               <name type="address">Sněmovní 176/4</name>
+               <name type="city">Praha</name>
+               <name key="CZ" type="country">Czech Republic</name>
+               <date from="2013-11-25" to="2023-07-26">2013-11-25 - 2023-07-26</date>
+            </setting>
+         </settingDesc>
+         <textClass>
+            <catRef scheme="#ParlaMint-taxonomy-parla.legislature"
+                    target="#parla.bi #parla.lower"/>
+         </textClass>
+         <particDesc>
+            <xi:include href="ParCzech-listOrg.xml"/>
+            <xi:include href="ParCzech-listPerson.xml"/>
+         </particDesc>
+         <langUsage>
+            <language ident="cs" xml:lang="cs">čeština</language>
+            <language ident="en" xml:lang="cs">angličtina</language>
+            <language ident="cs" xml:lang="en">Czech</language>
+            <language ident="en" xml:lang="en">English</language>
+         </langUsage>
+      </profileDesc>
+   </teiHeader>
+   <xi:include href="ps2013-001/ps2013-001-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-002/ps2013-002-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-003/ps2013-003-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-004/ps2013-004-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-005/ps2013-005-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-006/ps2013-006-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-007/ps2013-007-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-008/ps2013-008-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-010/ps2013-010-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-011/ps2013-011-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-012/ps2013-012-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-014/ps2013-014-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-015/ps2013-015-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-016/ps2013-016-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2013-017/ps2013-017-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-018/ps2013-018-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-019/ps2013-019-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-020/ps2013-020-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-021/ps2013-021-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-022/ps2013-022-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-023/ps2013-023-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-024/ps2013-024-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-025/ps2013-025-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-026/ps2013-026-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-027/ps2013-027-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-028/ps2013-028-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-029/ps2013-029-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-030/ps2013-030-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-031/ps2013-031-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-032/ps2013-032-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-033/ps2013-033-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-034/ps2013-034-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-035/ps2013-035-01-001-001.ana.xml"/>
+   
+   <xi:include href="ps2013-036/ps2013-036-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-037/ps2013-037-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-038/ps2013-038-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-039/ps2013-039-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-040/ps2013-040-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-041/ps2013-041-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-042/ps2013-042-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-043/ps2013-043-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-044/ps2013-044-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-045/ps2013-045-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-047/ps2013-047-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-048/ps2013-048-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-049/ps2013-049-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-050/ps2013-050-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-051/ps2013-051-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-052/ps2013-052-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-053/ps2013-053-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-054/ps2013-054-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-055/ps2013-055-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-056/ps2013-056-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-058/ps2013-058-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-057/ps2013-057-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-059/ps2013-059-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-060/ps2013-060-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2013-061/ps2013-061-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-001/ps2017-001-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-002/ps2017-002-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-003/ps2017-003-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-004/ps2017-004-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-005/ps2017-005-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-006/ps2017-006-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-007/ps2017-007-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-009/ps2017-009-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-008/ps2017-008-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-010/ps2017-010-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-011/ps2017-011-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-012/ps2017-012-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-013/ps2017-013-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-014/ps2017-014-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-015/ps2017-015-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-016/ps2017-016-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-017/ps2017-017-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-018/ps2017-018-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-019/ps2017-019-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-020/ps2017-020-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-021/ps2017-021-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-022/ps2017-022-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-023/ps2017-023-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-024/ps2017-024-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-025/ps2017-025-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-026/ps2017-026-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-027/ps2017-027-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-028/ps2017-028-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-029/ps2017-029-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-030/ps2017-030-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-031/ps2017-031-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-032/ps2017-032-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-033/ps2017-033-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-034/ps2017-034-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-035/ps2017-035-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-036/ps2017-036-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-037/ps2017-037-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-038/ps2017-038-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-039/ps2017-039-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-040/ps2017-040-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-041/ps2017-041-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-042/ps2017-042-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-043/ps2017-043-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-044/ps2017-044-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-046/ps2017-046-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-045/ps2017-045-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-048/ps2017-048-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-049/ps2017-049-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-050/ps2017-050-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-051/ps2017-051-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-052/ps2017-052-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-053/ps2017-053-01-001-001.ana.xml"/>
+   
+   <xi:include href="ps2017-054/ps2017-054-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-056/ps2017-056-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-055/ps2017-055-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-057/ps2017-057-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-059/ps2017-059-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-058/ps2017-058-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-061/ps2017-061-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-062/ps2017-062-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-063/ps2017-063-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-064/ps2017-064-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-065/ps2017-065-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-069/ps2017-069-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-070/ps2017-070-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-067/ps2017-067-01-001-001.ana.xml"/>
+   
+   <xi:include href="ps2017-073/ps2017-073-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-074/ps2017-074-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-076/ps2017-076-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-075/ps2017-075-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-077/ps2017-077-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-072/ps2017-072-05-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-078/ps2017-078-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-079/ps2017-079-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-080/ps2017-080-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-081/ps2017-081-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-082/ps2017-082-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-083/ps2017-083-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-086/ps2017-086-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-084/ps2017-084-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-085/ps2017-085-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-088/ps2017-088-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-087/ps2017-087-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-089/ps2017-089-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-090/ps2017-090-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-091/ps2017-091-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-092/ps2017-092-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-093/ps2017-093-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-094/ps2017-094-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-095/ps2017-095-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-096/ps2017-096-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-097/ps2017-097-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-098/ps2017-098-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-099/ps2017-099-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-100/ps2017-100-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-101/ps2017-101-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-102/ps2017-102-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-103/ps2017-103-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-104/ps2017-104-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-105/ps2017-105-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-106/ps2017-106-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-107/ps2017-107-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-108/ps2017-108-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-109/ps2017-109-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-110/ps2017-110-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-111/ps2017-111-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-112/ps2017-112-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-113/ps2017-113-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-114/ps2017-114-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-115/ps2017-115-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-116/ps2017-116-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-118/ps2017-118-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-119/ps2017-119-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2017-120/ps2017-120-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-001/ps2021-001-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-002/ps2021-002-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-003/ps2021-003-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-004/ps2021-004-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-005/ps2021-005-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-006/ps2021-006-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-007/ps2021-007-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-008/ps2021-008-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-009/ps2021-009-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-011/ps2021-011-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-012/ps2021-012-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-013/ps2021-013-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-014/ps2021-014-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-015/ps2021-015-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-016/ps2021-016-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-017/ps2021-017-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-018/ps2021-018-01-000-000.ana.xml"/>
+  
+   <xi:include href="ps2021-019/ps2021-019-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-020/ps2021-020-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-022/ps2021-022-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-021/ps2021-021-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-024/ps2021-024-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-025/ps2021-025-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-026/ps2021-026-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-000/ps2021-000-01-000-999.ana.xml"/>
+   
+   <xi:include href="ps2021-027/ps2021-027-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-028/ps2021-028-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-030/ps2021-030-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-031/ps2021-031-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-029/ps2021-029-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-032/ps2021-032-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-033/ps2021-033-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-034/ps2021-034-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-036/ps2021-036-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-035/ps2021-035-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-037/ps2021-037-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-038/ps2021-038-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-039/ps2021-039-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-040/ps2021-040-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-041/ps2021-041-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-042/ps2021-042-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-043/ps2021-043-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-044/ps2021-044-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-045/ps2021-045-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-046/ps2021-046-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-047/ps2021-047-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-048/ps2021-048-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-050/ps2021-050-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-051/ps2021-051-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-052/ps2021-052-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-053/ps2021-053-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-055/ps2021-055-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-056/ps2021-056-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-057/ps2021-057-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-058/ps2021-058-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-059/ps2021-059-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-060/ps2021-060-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-061/ps2021-061-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-063/ps2021-063-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-064/ps2021-064-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-065/ps2021-065-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-067/ps2021-067-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-066/ps2021-066-02-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-068/ps2021-068-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-069/ps2021-069-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-070/ps2021-070-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-071/ps2021-071-01-000-000.ana.xml"/>
+   
+   <xi:include href="ps2021-072/ps2021-072-01-000-000.ana.xml"/>
+   
+</teiCorpus>

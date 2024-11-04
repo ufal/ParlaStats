@@ -1,0 +1,1497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xml:id="ps2017-028-01-000-000.ana"
+     xml:lang="cs"
+     ana="#parla.agenda">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="cs">Český parlamentní korpus, Poslanecká sněmovna, 2019-04-16 ps2017-028-01-000-000 [ParCzech.ana]</title>
+            <title type="main" xml:lang="en">Czech parliamentary corpus, Chamber of Deputies, 2019-04-16 ps2017-028-01-000-000 [ParCzech.ana]</title>
+            <title type="sub" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna, 2019-04-16</title>
+            <title type="sub" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies, 2019-04-16</title>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP8" n="ps2017">ps2017</meeting>
+            <meeting ana="#parla.meeting #parla.lower" n="ps2017/028">ps2017/028</meeting>
+            <meeting ana="#parla.sitting #parla.lower" n="ps2017/028/01">ps2017/028/01</meeting>
+            <meeting ana="#parla.agenda #parla.lower" n="ps2017/028/000">ps2017/028/000</meeting>
+            <respStmt>
+               <persName ref="https://orcid.org/0000-0001-7953-8783">Matyáš Kopp</persName>
+               <resp xml:lang="en">Data retrieval</resp>
+               <resp xml:lang="en">TEI XML corpus encoding</resp>
+               <resp xml:lang="en">Linguistic annotation</resp>
+            </respStmt>
+            <funder>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+            </funder>
+         </titleStmt>
+         <editionStmt>
+            <edition>4.0</edition>
+         </editionStmt>
+         <extent>
+            <measure unit="speeches" quantity="1" xml:lang="cs">1 promluv</measure>
+            <measure unit="speeches" quantity="1" xml:lang="en">1 speeches</measure>
+            <measure unit="words" quantity="96" xml:lang="cs">96 slov</measure>
+            <measure unit="words" quantity="96" xml:lang="en">96 words</measure>
+         </extent>
+         <publicationStmt>
+            <publisher>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+               <ref target="https://www.lindat.cz">www.lindat.cz</ref>
+            </publisher>
+            <idno type="URI" subtype="handle">http://hdl.handle.net/11234/1-5360</idno>
+            <availability status="free">
+               <licence>https://creativecommons.org/publicdomain/zero/1.0/</licence>
+               <p xml:lang="en">This work is licensed under the <ref target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</ref>.</p>
+            </availability>
+            <date when="2024-01-26">2024-01-26</date>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title type="main" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna</title>
+               <title type="main" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies</title>
+               <idno type="URI" subtype="parliament">https://www.psp.cz/eknih/2017ps/stenprot/028schuz/s028001.htm</idno>
+               <date when="2019-04-16">16.04.2019</date>
+            </bibl>
+            <recordingStmt>
+               <recording type="audio">
+                  <media xml:id="ps2017-028-01-000-000.audio1"
+                         mimeType="audio/mp3"
+                         source="https://www.psp.cz/eknih/2017ps/audio/2019/04/16/2019041613581412.mp3"
+                         url="audio/psp/2019/04/16/2019041613581412.mp3"/>
+               </recording>
+            </recordingStmt>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p xml:lang="en">
+               <ref target="https://ufal.mff.cuni.cz/parczech">ParCzech</ref> is a project on compiling Czech parliamentary data into annotated corpora. It mostly follows the <ref target="https://www.clarin.eu/parlamint">ParlaMint project's</ref> recommendation, but the data are slightly extended in several ways. Texts contain links to original voting and prints. Except for the 4-class named entities classification, it also includes a more detailed CNEC hierarchical classification. The text in the annotated version is aligned with audio on the token level. And morphological annotation contains pdt tagsed besides UD PoS and features.</p>
+         </projectDesc>
+         <tagsDecl>
+            <namespace name="http://www.tei-c.org/ns/1.0">
+               <tagUsage gi="anchor" occurs="120"/>
+               <tagUsage gi="body" occurs="1"/>
+               <tagUsage gi="date" occurs="3"/>
+               <tagUsage gi="desc" occurs="1"/>
+               <tagUsage gi="div" occurs="1"/>
+               <tagUsage gi="link" occurs="117"/>
+               <tagUsage gi="linkGrp" occurs="6"/>
+               <tagUsage gi="name" occurs="3"/>
+               <tagUsage gi="note" occurs="2"/>
+               <tagUsage gi="num" occurs="3"/>
+               <tagUsage gi="pb" occurs="1"/>
+               <tagUsage gi="pc" occurs="18"/>
+               <tagUsage gi="s" occurs="6"/>
+               <tagUsage gi="seg" occurs="4"/>
+               <tagUsage gi="text" occurs="1"/>
+               <tagUsage gi="time" occurs="1"/>
+               <tagUsage gi="timeline" occurs="1"/>
+               <tagUsage gi="u" occurs="1"/>
+               <tagUsage gi="vocal" occurs="1"/>
+               <tagUsage gi="w" occurs="102"/>
+               <tagUsage gi="when" occurs="121"/>
+            </namespace>
+         </tagsDecl>
+      </encodingDesc>
+      <profileDesc>
+         <settingDesc>
+            <setting>
+               <name type="org">Parlament České republiky - Poslanecká sněmovna</name>
+               <name type="address">Sněmovní 176/4</name>
+               <name type="city">Praha</name>
+               <name key="CZ" type="country">Czech Republic</name>
+               <date when="2019-04-16" ana="#parla.sitting">2019-04-16</date>
+            </setting>
+         </settingDesc>
+      </profileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div type="debateSection">
+            <pb source="https://www.psp.cz/eknih/2017ps/stenprot/028schuz/s028001.htm"
+                n="1"
+                xml:id="ps2017-028-01-000-000.pb1"
+                corresp="#ps2017-028-01-000-000.audio1"/>
+            <note type="time">
+               <time when="2019-04-16T14:00:00">(Schůze zahájena ve 14.00 hodin.)</time>
+            </note>
+            <note type="speaker">Předseda PSP Radek Vondráček</note>
+            <u who="#RadekVondracek.1973"
+               ana="#chair"
+               xml:id="ps2017-028-01-000-000.u1"
+               source="https://www.psp.cz/eknih/2017ps/stenprot/028schuz/s028001.htm#r1">
+               <seg xml:id="ps2017-028-01-000-000.u1.p1">
+                  <s xml:id="ps2017-028-01-000-000.u1.p1.s1">
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w1.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w1"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAFP1----1A----">Vážené</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w1.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w2.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w2"
+                        lemma="paní"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Voc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS5-----A----">paní</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w2.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w3.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w3"
+                        lemma="poslankyně"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Voc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS5-----A----"
+                        join="right">poslankyně</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w3.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p1.s1.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w5.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w5"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAMP5----1A----">vážení</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w5.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w6.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w6"
+                        lemma="pán"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----">páni</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w6.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w7.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w7"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----"
+                        join="right">poslanci</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w7.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p1.s1.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w9.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w9"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAMP5----1A----">vážení</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w9.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w10.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w10"
+                        lemma="člen"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----">členové</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w10.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w11.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w11"
+                        lemma="vláda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">vlády</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p1.s1.w11.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p1.s1.w12"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w13"
+                        lemma="zahajovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1">zahajuji</w>
+                     <num ana="ne:no" xml:id="ps2017-028-01-000-000.ne1">
+                        <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w14"
+                           lemma="28"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">28</w>
+                        <pc xml:id="ps2017-028-01-000-000.u1.p1.s1.w15"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w16"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">schůzi</w>
+                     <name ana="ne:io" xml:id="ps2017-028-01-000-000.ne2" type="ORG">
+                        <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w17"
+                           lemma="poslanecký"
+                           pos="ADJ"
+                           msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:AAFS2----1A----">Poslanecké</w>
+                        <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w18"
+                           lemma="sněmovna"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----">sněmovny</w>
+                     </name>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w19"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w20"
+                        lemma="všechen"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Acc|Gender=Masc|Number=Plur|PronType=Tot"
+                        ana="pdt:PLYP4----------">všechny</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w21"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P4--2-------">vás</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p1.s1.w22"
+                        lemma="vítat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">vítám</w>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p1.s1.w23"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w3 #ps2017-028-01-000-000.u1.p1.s1.w1"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w3 #ps2017-028-01-000-000.u1.p1.s1.w2"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w13 #ps2017-028-01-000-000.u1.p1.s1.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w7 #ps2017-028-01-000-000.u1.p1.s1.w4"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w7 #ps2017-028-01-000-000.u1.p1.s1.w5"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w7 #ps2017-028-01-000-000.u1.p1.s1.w6"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w13 #ps2017-028-01-000-000.u1.p1.s1.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w10 #ps2017-028-01-000-000.u1.p1.s1.w8"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w10 #ps2017-028-01-000-000.u1.p1.s1.w9"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w3 #ps2017-028-01-000-000.u1.p1.s1.w10"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w10 #ps2017-028-01-000-000.u1.p1.s1.w11"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w13 #ps2017-028-01-000-000.u1.p1.s1.w12"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2017-028-01-000-000.u1.p1.s1 #ps2017-028-01-000-000.u1.p1.s1.w13"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w16 #ps2017-028-01-000-000.u1.p1.s1.w14"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w14 #ps2017-028-01-000-000.u1.p1.s1.w15"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w13 #ps2017-028-01-000-000.u1.p1.s1.w16"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w18 #ps2017-028-01-000-000.u1.p1.s1.w17"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w16 #ps2017-028-01-000-000.u1.p1.s1.w18"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w22 #ps2017-028-01-000-000.u1.p1.s1.w19"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w21 #ps2017-028-01-000-000.u1.p1.s1.w20"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w22 #ps2017-028-01-000-000.u1.p1.s1.w21"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w13 #ps2017-028-01-000-000.u1.p1.s1.w22"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p1.s1.w13 #ps2017-028-01-000-000.u1.p1.s1.w23"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2017-028-01-000-000.u1.p2">
+                  <s xml:id="ps2017-028-01-000-000.u1.p2.s1">
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w1">Aby<w xml:id="ps2017-028-01-000-000.u1.p2.s1.w2"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="Aby"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w3"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Person=3|VerbForm=Fin"
+                           ana="pdt:Vc-------------"
+                           norm="by"/>
+                     </w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w4"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">byla</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w5"
+                        lemma="zaznamenaný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Aspect=Perf|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---">zaznamenána</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w6"
+                        lemma="můj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Nom|Gender=Fem,Neut|Number=Sing|Number[psor]=Plur|Person=1|Poss=Yes|PronType=Prs"
+                        ana="pdt:PSHS1-P1-------">naše</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w7"
+                        lemma="účast"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----"
+                        join="right">účast</w>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p2.s1.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w9"
+                        lemma="nejprve"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">nejprve</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w10"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P4--2-------">vás</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w11"
+                        lemma="odhlásit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---">odhlásím</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w12"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w13"
+                        lemma="prosit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">prosím</w>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p2.s1.w14"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w15">abyste<w xml:id="ps2017-028-01-000-000.u1.p2.s1.w16"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w17"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=2|VerbForm=Fin"
+                           ana="pdt:Vc-P---2-------"
+                           norm="byste"/>
+                     </w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w18"
+                        lemma="se"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short"
+                        ana="pdt:P7-X4----------">se</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w19"
+                        lemma="všechen"
+                        pos="DET"
+                        msd="UPosTag=DET|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Tot"
+                        ana="pdt:PLMP1----------">všichni</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w20"
+                        lemma="přihlásit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">přihlásili</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w21"
+                        lemma="identifikační"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Ins|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAFP7----1A----">identifikačními</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w22"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP7-----A----">kartami</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w23"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w24"
+                        lemma="případně"
+                        pos="ADV"
+                        msd="UPosTag=ADV|Degree=Pos|Polarity=Pos"
+                        ana="pdt:Dg-------1A----">případně</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w25"
+                        lemma="já"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Sing|Person=1|PronType=Prs|Variant=Short"
+                        ana="pdt:PH-S3--1-------">mi</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w26"
+                        lemma="oznámit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---"
+                        join="right">oznámili</w>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p2.s1.w27"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w28"
+                        lemma="kdo"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Anim|Case=Nom|Gender=Masc|PronType=Int,Rel"
+                        ana="pdt:PKM-1----------">kdo</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w29"
+                        lemma="žádat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">žádá</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w30"
+                        lemma="o"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">o</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w31"
+                        lemma="vydání"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS4-----A----">vydání</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w32"
+                        lemma="náhradní"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAFS2----1A----">náhradní</w>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s1.w33"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">karty</w>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p2.s1.w34"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:mark"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w5 #ps2017-028-01-000-000.u1.p2.s1.w2"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w5 #ps2017-028-01-000-000.u1.p2.s1.w3"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w5 #ps2017-028-01-000-000.u1.p2.s1.w4"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w11 #ps2017-028-01-000-000.u1.p2.s1.w5"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w7 #ps2017-028-01-000-000.u1.p2.s1.w6"/>
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w5 #ps2017-028-01-000-000.u1.p2.s1.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w5 #ps2017-028-01-000-000.u1.p2.s1.w8"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w11 #ps2017-028-01-000-000.u1.p2.s1.w9"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w11 #ps2017-028-01-000-000.u1.p2.s1.w10"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2017-028-01-000-000.u1.p2.s1 #ps2017-028-01-000-000.u1.p2.s1.w11"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w13 #ps2017-028-01-000-000.u1.p2.s1.w12"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w11 #ps2017-028-01-000-000.u1.p2.s1.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w14"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w16"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w17"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w18"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w19"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w13 #ps2017-028-01-000-000.u1.p2.s1.w20"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w22 #ps2017-028-01-000-000.u1.p2.s1.w21"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w22"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w26 #ps2017-028-01-000-000.u1.p2.s1.w23"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w26 #ps2017-028-01-000-000.u1.p2.s1.w24"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w26 #ps2017-028-01-000-000.u1.p2.s1.w25"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w20 #ps2017-028-01-000-000.u1.p2.s1.w26"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w29 #ps2017-028-01-000-000.u1.p2.s1.w27"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w29 #ps2017-028-01-000-000.u1.p2.s1.w28"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w26 #ps2017-028-01-000-000.u1.p2.s1.w29"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w31 #ps2017-028-01-000-000.u1.p2.s1.w30"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w29 #ps2017-028-01-000-000.u1.p2.s1.w31"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w33 #ps2017-028-01-000-000.u1.p2.s1.w32"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w31 #ps2017-028-01-000-000.u1.p2.s1.w33"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p2.s1.w11 #ps2017-028-01-000-000.u1.p2.s1.w34"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2017-028-01-000-000.u1.p2.s2">
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w1.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w1"
+                        lemma="pan"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">Pan</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w1.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w2.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w2"
+                        lemma="místopředseda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">místopředseda</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w2.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w3.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w3"
+                        lemma="vláda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">vlády</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w3.ae"/>
+                     <name ana="ne:ps" xml:id="ps2017-028-01-000-000.ne3" type="PER">
+                        <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w4.ab"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w4"
+                           lemma="Brabec"
+                           pos="PROPN"
+                           msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNMS1-----A----">Brabec</w>
+                        <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w4.ae"/>
+                     </name>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w5.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w5"
+                        lemma="hlasovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">hlasuje</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w5.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w6.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w6"
+                        lemma="s"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Ins"
+                        ana="pdt:RR--7----------">s</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w6.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w7.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w7"
+                        lemma="náhradní"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Ins|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAFS7----1A----">náhradní</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w7.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w8.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w8"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS7-----A----">kartou</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w8.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w9.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w9"
+                        lemma="číslo"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNNS1-----A----">číslo</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w9.ae"/>
+                     <num ana="ne:n_" xml:id="ps2017-028-01-000-000.ne4">
+                        <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w10.ab"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p2.s2.w10"
+                           lemma="10"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">10</w>
+                        <anchor synch="#ps2017-028-01-000-000.u1.p2.s2.w10.ae"/>
+                     </num>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p2.s2.w11"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w2 #ps2017-028-01-000-000.u1.p2.s2.w1"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w5 #ps2017-028-01-000-000.u1.p2.s2.w2"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w2 #ps2017-028-01-000-000.u1.p2.s2.w3"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w2 #ps2017-028-01-000-000.u1.p2.s2.w4"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2017-028-01-000-000.u1.p2.s2 #ps2017-028-01-000-000.u1.p2.s2.w5"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w8 #ps2017-028-01-000-000.u1.p2.s2.w6"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w8 #ps2017-028-01-000-000.u1.p2.s2.w7"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w5 #ps2017-028-01-000-000.u1.p2.s2.w8"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w8 #ps2017-028-01-000-000.u1.p2.s2.w9"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w9 #ps2017-028-01-000-000.u1.p2.s2.w10"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p2.s2.w5 #ps2017-028-01-000-000.u1.p2.s2.w11"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2017-028-01-000-000.u1.p3">
+                  <s xml:id="ps2017-028-01-000-000.u1.p3.s1">
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w1.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w1"
+                        lemma="organizační"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS1----1A----">Organizační</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w1.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w2.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w2"
+                        lemma="výbor"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS1-----A----">výbor</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w2.ae"/>
+                     <name ana="ne:io" xml:id="ps2017-028-01-000-000.ne5" type="ORG">
+                        <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w3.ab"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w3"
+                           lemma="poslanecký"
+                           pos="ADJ"
+                           msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:AAFS2----1A----">Poslanecké</w>
+                        <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w3.ae"/>
+                        <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w4.ab"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w4"
+                           lemma="sněmovna"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----">sněmovny</w>
+                        <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w4.ae"/>
+                     </name>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w5.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w5"
+                        lemma="stanovit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">stanovil</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w5.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w6.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w6"
+                        lemma="návrh"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS4-----A----">návrh</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w6.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w7.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w7"
+                        lemma="pořad"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----">pořadu</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w7.ae"/>
+                     <num ana="ne:no" xml:id="ps2017-028-01-000-000.ne6">
+                        <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w8.ab"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w8"
+                           lemma="28"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">28</w>
+                        <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w8.ae"/>
+                        <pc xml:id="ps2017-028-01-000-000.u1.p3.s1.w9"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w10.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w10"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">schůze</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w10.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w11.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w11"
+                        lemma="den"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----">dne</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w11.ae"/>
+                     <date ana="ne:T" xml:id="ps2017-028-01-000-000.ne7">
+                        <date ana="ne:td" xml:id="ps2017-028-01-000-000.ne8">
+                           <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w12.ab"/>
+                           <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w12"
+                              lemma="4"
+                              pos="NUM"
+                              msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                              ana="pdt:C=-------------"
+                              join="right">4</w>
+                           <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w12.ae"/>
+                           <pc xml:id="ps2017-028-01-000-000.u1.p3.s1.w13"
+                               pos="PUNCT"
+                               msd="UPosTag=PUNCT"
+                               ana="pdt:Z:-------------">.</pc>
+                        </date>
+                        <date ana="ne:tm" xml:id="ps2017-028-01-000-000.ne9">
+                           <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w14.ab"/>
+                           <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w14"
+                              lemma="duben"
+                              pos="NOUN"
+                              msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNIS2-----A----">dubna</w>
+                           <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w14.ae"/>
+                        </date>
+                     </date>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w15.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w15"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Masc,Neut|Number=Sing|PronType=Dem"
+                        ana="pdt:PDZS2----------">tohoto</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w15.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w16.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s1.w16"
+                        lemma="rok"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A---1"
+                        join="right">roku</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s1.w16.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p3.s1.w17"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w2 #ps2017-028-01-000-000.u1.p3.s1.w1"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w5 #ps2017-028-01-000-000.u1.p3.s1.w2"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w4 #ps2017-028-01-000-000.u1.p3.s1.w3"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w2 #ps2017-028-01-000-000.u1.p3.s1.w4"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2017-028-01-000-000.u1.p3.s1 #ps2017-028-01-000-000.u1.p3.s1.w5"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w5 #ps2017-028-01-000-000.u1.p3.s1.w6"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w6 #ps2017-028-01-000-000.u1.p3.s1.w7"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w10 #ps2017-028-01-000-000.u1.p3.s1.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w8 #ps2017-028-01-000-000.u1.p3.s1.w9"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w7 #ps2017-028-01-000-000.u1.p3.s1.w10"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w5 #ps2017-028-01-000-000.u1.p3.s1.w11"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w14 #ps2017-028-01-000-000.u1.p3.s1.w12"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w12 #ps2017-028-01-000-000.u1.p3.s1.w13"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w11 #ps2017-028-01-000-000.u1.p3.s1.w14"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w16 #ps2017-028-01-000-000.u1.p3.s1.w15"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w14 #ps2017-028-01-000-000.u1.p3.s1.w16"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p3.s1.w5 #ps2017-028-01-000-000.u1.p3.s1.w17"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2017-028-01-000-000.u1.p3.s2">
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w1.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w1"
+                        lemma="pozvánka"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----">Pozvánka</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w1.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w2.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w2"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P3--2-------">vám</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w2.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w3.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w3"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">byla</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w3.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w4.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w4"
+                        lemma="rozeslaný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---">rozeslána</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w4.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w5.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w5"
+                        lemma="elektronický"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Ins|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAFS7----1A----">elektronickou</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w5.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w6.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w6"
+                        lemma="pošta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS7-----A----">poštou</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w6.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w7.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w7"
+                        lemma="týž"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Masc,Neut|Number=Sing|PronType=Dem"
+                        ana="pdt:PDZS2----------">téhož</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w7.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w8.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p3.s2.w8"
+                        lemma="den"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----"
+                        join="right">dne</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p3.s2.w8.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p3.s2.w9"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w4 #ps2017-028-01-000-000.u1.p3.s2.w1"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w4 #ps2017-028-01-000-000.u1.p3.s2.w2"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w4 #ps2017-028-01-000-000.u1.p3.s2.w3"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2017-028-01-000-000.u1.p3.s2 #ps2017-028-01-000-000.u1.p3.s2.w4"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w6 #ps2017-028-01-000-000.u1.p3.s2.w5"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w4 #ps2017-028-01-000-000.u1.p3.s2.w6"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w8 #ps2017-028-01-000-000.u1.p3.s2.w7"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w4 #ps2017-028-01-000-000.u1.p3.s2.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p3.s2.w4 #ps2017-028-01-000-000.u1.p3.s2.w9"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2017-028-01-000-000.u1.p4">
+                  <s xml:id="ps2017-028-01-000-000.u1.p4.s1">
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w1.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w1"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAFP1----1A----">Vážené</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w1.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w2.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w2"
+                        lemma="kolegyně"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP1-----A----">kolegyně</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w2.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w3.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w3"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w3.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w4.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w4"
+                        lemma="kolega"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----"
+                        join="right">kolegové</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w4.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p4.s1.w5"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w6.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w6"
+                        lemma="ještě"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">ještě</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w6.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w7.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w7"
+                        lemma="než"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">než</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w7.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w8.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w8"
+                        lemma="přikročit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---1P-AA---">přikročíme</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w8.ae"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w9"
+                        lemma="k"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Dat"
+                        ana="pdt:RR--3----------">k</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w10.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w10"
+                        lemma="určení"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Dat|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS3-----A----">určení</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w10.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w11.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w11"
+                        lemma="ověřovatel"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP2-----A----">ověřovatelů</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w11.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w12.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w12"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Fem|Number=Sing|PronType=Dem"
+                        ana="pdt:PDFS2----------">této</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w12.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w13.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w13"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">schůze</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w13.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p4.s1.w14"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w15.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w15"
+                        lemma="dovolit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Imp|Number=Plur|Person=2|Polarity=Pos|VerbForm=Fin"
+                        ana="pdt:Vi-P---2--A----"
+                        join="right">dovolte</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w15.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p4.s1.w16"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w17.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w17">abych<w xml:id="ps2017-028-01-000-000.u1.p4.s1.w18"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w19"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Sing|Person=1|VerbForm=Fin"
+                           ana="pdt:Vc-S---1-------"
+                           norm="bych"/>
+                     </w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w17.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w20.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w20"
+                        lemma="umožnit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">umožnil</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w20.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w21.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w21"
+                        lemma="nový"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Dat|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAMP3----1A----">novým</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w21.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w22.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w22"
+                        lemma="kolega"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Dat|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP3-----A----">kolegům</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w22.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w23.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w23"
+                        lemma="složit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Polarity=Pos|VerbForm=Inf"
+                        ana="pdt:Vf--------A----">složit</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w23.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w24.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w24"
+                        lemma="poslanecký"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Acc|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS4----1A----">poslanecký</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w24.ae"/>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w25.ab"/>
+                     <w xml:id="ps2017-028-01-000-000.u1.p4.s1.w25"
+                        lemma="slib"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS4-----A----"
+                        join="right">slib</w>
+                     <anchor synch="#ps2017-028-01-000-000.u1.p4.s1.w25.ae"/>
+                     <pc xml:id="ps2017-028-01-000-000.u1.p4.s1.w26"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w2 #ps2017-028-01-000-000.u1.p4.s1.w1"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w15 #ps2017-028-01-000-000.u1.p4.s1.w2"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w4 #ps2017-028-01-000-000.u1.p4.s1.w3"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w2 #ps2017-028-01-000-000.u1.p4.s1.w4"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w15 #ps2017-028-01-000-000.u1.p4.s1.w5"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w15 #ps2017-028-01-000-000.u1.p4.s1.w6"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w8 #ps2017-028-01-000-000.u1.p4.s1.w7"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w15 #ps2017-028-01-000-000.u1.p4.s1.w8"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w10 #ps2017-028-01-000-000.u1.p4.s1.w9"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w8 #ps2017-028-01-000-000.u1.p4.s1.w10"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w10 #ps2017-028-01-000-000.u1.p4.s1.w11"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w13 #ps2017-028-01-000-000.u1.p4.s1.w12"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w11 #ps2017-028-01-000-000.u1.p4.s1.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w8 #ps2017-028-01-000-000.u1.p4.s1.w14"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2017-028-01-000-000.u1.p4.s1 #ps2017-028-01-000-000.u1.p4.s1.w15"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w20 #ps2017-028-01-000-000.u1.p4.s1.w16"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w20 #ps2017-028-01-000-000.u1.p4.s1.w18"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w20 #ps2017-028-01-000-000.u1.p4.s1.w19"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w15 #ps2017-028-01-000-000.u1.p4.s1.w20"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w22 #ps2017-028-01-000-000.u1.p4.s1.w21"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w20 #ps2017-028-01-000-000.u1.p4.s1.w22"/>
+                        <link ana="ud-syn:xcomp"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w20 #ps2017-028-01-000-000.u1.p4.s1.w23"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w25 #ps2017-028-01-000-000.u1.p4.s1.w24"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w23 #ps2017-028-01-000-000.u1.p4.s1.w25"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2017-028-01-000-000.u1.p4.s1.w15 #ps2017-028-01-000-000.u1.p4.s1.w26"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+            </u>
+            <vocal type="noise">
+               <desc>(Hluk v sále.)</desc>
+            </vocal>
+         </div>
+         <timeline unit="ms"
+                   origin="#ps2017-028-01-000-000.audio1.origin"
+                   corresp="#ps2017-028-01-000-000.audio1"
+                   cert="0.83">
+            <when xml:id="ps2017-028-01-000-000.audio1.origin"
+                  absolute="2019-04-16T13:58:00"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w1.ab"
+                  interval="153740.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w1.ae"
+                  interval="154160.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w2.ab"
+                  interval="154170.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w2.ae"
+                  interval="154390.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w3.ab"
+                  interval="154400.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w3.ae"
+                  interval="155230.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w5.ab"
+                  interval="155610.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w5.ae"
+                  interval="156020.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w6.ab"
+                  interval="156030.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w6.ae"
+                  interval="156350.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w7.ab"
+                  interval="156360.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w7.ae"
+                  interval="157090.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w9.ab"
+                  interval="162950.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w9.ae"
+                  interval="163370.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w10.ab"
+                  interval="163380.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w10.ae"
+                  interval="164700.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w11.ab"
+                  interval="174970.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p1.s1.w11.ae"
+                  interval="177070.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w1.ab"
+                  interval="178530.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w1.ae"
+                  interval="178920.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w2.ab"
+                  interval="179080.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w2.ae"
+                  interval="179750.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w3.ab"
+                  interval="179760.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w3.ae"
+                  interval="179950.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w4.ab"
+                  interval="180190.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w4.ae"
+                  interval="180610.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w5.ab"
+                  interval="180620.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w5.ae"
+                  interval="180870.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w6.ab"
+                  interval="180880.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w6.ae"
+                  interval="181150.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w7.ab"
+                  interval="181160.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w7.ae"
+                  interval="181450.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w8.ab"
+                  interval="181460.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w8.ae"
+                  interval="181760.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w9.ab"
+                  interval="181770.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w9.ae"
+                  interval="182120.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w10.ab"
+                  interval="182130.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p2.s2.w10.ae"
+                  interval="182670.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w1.ab"
+                  interval="185420.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w1.ae"
+                  interval="185980.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w2.ab"
+                  interval="185990.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w2.ae"
+                  interval="186330.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w3.ab"
+                  interval="186340.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w3.ae"
+                  interval="186880.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w4.ab"
+                  interval="186890.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w4.ae"
+                  interval="187550.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w5.ab"
+                  interval="187600.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w5.ae"
+                  interval="188100.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w6.ab"
+                  interval="188110.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w6.ae"
+                  interval="188410.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w7.ab"
+                  interval="188420.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w7.ae"
+                  interval="188780.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w8.ab"
+                  interval="188790.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w8.ae"
+                  interval="189620.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w10.ab"
+                  interval="189630.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w10.ae"
+                  interval="190220.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w11.ab"
+                  interval="190230.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w11.ae"
+                  interval="190380.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w12.ab"
+                  interval="190390.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w12.ae"
+                  interval="190920.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w14.ab"
+                  interval="190930.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w14.ae"
+                  interval="191230.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w15.ab"
+                  interval="191240.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w15.ae"
+                  interval="191650.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w16.ab"
+                  interval="191660.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s1.w16.ae"
+                  interval="192150.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w1.ab"
+                  interval="192430.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w1.ae"
+                  interval="192940.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w2.ab"
+                  interval="192950.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w2.ae"
+                  interval="193120.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w3.ab"
+                  interval="193130.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w3.ae"
+                  interval="193430.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w4.ab"
+                  interval="193440.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w4.ae"
+                  interval="194090.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w5.ab"
+                  interval="194100.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w5.ae"
+                  interval="194730.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w6.ab"
+                  interval="194740.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w6.ae"
+                  interval="195250.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w7.ab"
+                  interval="195260.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w7.ae"
+                  interval="195690.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w8.ab"
+                  interval="195700.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p3.s2.w8.ae"
+                  interval="196070.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w1.ab"
+                  interval="196850.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w1.ae"
+                  interval="197210.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w2.ab"
+                  interval="197220.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w2.ae"
+                  interval="197650.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w3.ab"
+                  interval="197660.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w3.ae"
+                  interval="197700.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w4.ab"
+                  interval="197710.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w4.ae"
+                  interval="198460.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w6.ab"
+                  interval="198560.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w6.ae"
+                  interval="198840.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w7.ab"
+                  interval="198850.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w7.ae"
+                  interval="198960.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w8.ab"
+                  interval="198970.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w8.ae"
+                  interval="199670.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w10.ab"
+                  interval="200160.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w10.ae"
+                  interval="200600.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w11.ab"
+                  interval="200610.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w11.ae"
+                  interval="201350.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w12.ab"
+                  interval="201360.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w12.ae"
+                  interval="201660.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w13.ab"
+                  interval="201670.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w13.ae"
+                  interval="202110.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w15.ab"
+                  interval="202140.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w15.ae"
+                  interval="202670.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w17.ab"
+                  interval="202680.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w17.ae"
+                  interval="202970.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w20.ab"
+                  interval="202980.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w20.ae"
+                  interval="203410.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w21.ab"
+                  interval="203420.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w21.ae"
+                  interval="203750.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w22.ab"
+                  interval="203760.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w22.ae"
+                  interval="204340.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w23.ab"
+                  interval="204680.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w23.ae"
+                  interval="205220.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w24.ab"
+                  interval="205420.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w24.ae"
+                  interval="206050.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w25.ab"
+                  interval="206060.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+            <when xml:id="ps2017-028-01-000-000.u1.p4.s1.w25.ae"
+                  interval="206570.0"
+                  since="#ps2017-028-01-000-000.audio1.origin"/>
+         </timeline>
+      </body>
+   </text>
+</TEI>

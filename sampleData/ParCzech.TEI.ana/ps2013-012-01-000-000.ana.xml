@@ -1,0 +1,1895 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xml:id="ps2013-012-01-000-000.ana"
+     xml:lang="cs"
+     ana="#parla.agenda">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="cs">Český parlamentní korpus, Poslanecká sněmovna, 2014-07-15 ps2013-012-01-000-000 [ParCzech.ana]</title>
+            <title type="main" xml:lang="en">Czech parliamentary corpus, Chamber of Deputies, 2014-07-15 ps2013-012-01-000-000 [ParCzech.ana]</title>
+            <title type="sub" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna, 2014-07-15</title>
+            <title type="sub" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies, 2014-07-15</title>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP7" n="ps2013">ps2013</meeting>
+            <meeting ana="#parla.meeting #parla.lower" n="ps2013/012">ps2013/012</meeting>
+            <meeting ana="#parla.sitting #parla.lower" n="ps2013/012/01">ps2013/012/01</meeting>
+            <meeting ana="#parla.agenda #parla.lower" n="ps2013/012/000">ps2013/012/000</meeting>
+            <respStmt>
+               <persName ref="https://orcid.org/0000-0001-7953-8783">Matyáš Kopp</persName>
+               <resp xml:lang="en">Data retrieval</resp>
+               <resp xml:lang="en">TEI XML corpus encoding</resp>
+               <resp xml:lang="en">Linguistic annotation</resp>
+            </respStmt>
+            <funder>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+            </funder>
+         </titleStmt>
+         <editionStmt>
+            <edition>4.0</edition>
+         </editionStmt>
+         <extent>
+            <measure unit="speeches" quantity="1" xml:lang="cs">1 promluv</measure>
+            <measure unit="speeches" quantity="1" xml:lang="en">1 speeches</measure>
+            <measure unit="words" quantity="189" xml:lang="cs">189 slov</measure>
+            <measure unit="words" quantity="189" xml:lang="en">189 words</measure>
+         </extent>
+         <publicationStmt>
+            <publisher>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+               <ref target="https://www.lindat.cz">www.lindat.cz</ref>
+            </publisher>
+            <idno type="URI" subtype="handle">http://hdl.handle.net/11234/1-5360</idno>
+            <availability status="free">
+               <licence>https://creativecommons.org/publicdomain/zero/1.0/</licence>
+               <p xml:lang="en">This work is licensed under the <ref target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</ref>.</p>
+            </availability>
+            <date when="2024-01-26">2024-01-26</date>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title type="main" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna</title>
+               <title type="main" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies</title>
+               <idno type="URI" subtype="parliament">https://www.psp.cz/eknih/2013ps/stenprot/012schuz/s012001.htm</idno>
+               <date when="2014-07-15">15.07.2014</date>
+            </bibl>
+            <recordingStmt>
+               <recording type="audio">
+                  <media xml:id="ps2013-012-01-000-000.audio1"
+                         mimeType="audio/mp3"
+                         source="https://www.psp.cz/eknih/2013ps/audio/2014/07/15/2014071513581412.mp3"
+                         url="audio/psp/2014/07/15/2014071513581412.mp3"/>
+               </recording>
+            </recordingStmt>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p xml:lang="en">
+               <ref target="https://ufal.mff.cuni.cz/parczech">ParCzech</ref> is a project on compiling Czech parliamentary data into annotated corpora. It mostly follows the <ref target="https://www.clarin.eu/parlamint">ParlaMint project's</ref> recommendation, but the data are slightly extended in several ways. Texts contain links to original voting and prints. Except for the 4-class named entities classification, it also includes a more detailed CNEC hierarchical classification. The text in the annotated version is aligned with audio on the token level. And morphological annotation contains pdt tagsed besides UD PoS and features.</p>
+         </projectDesc>
+         <tagsDecl>
+            <namespace name="http://www.tei-c.org/ns/1.0">
+               <tagUsage gi="body" occurs="1"/>
+               <tagUsage gi="date" occurs="7"/>
+               <tagUsage gi="desc" occurs="1"/>
+               <tagUsage gi="div" occurs="1"/>
+               <tagUsage gi="link" occurs="231"/>
+               <tagUsage gi="linkGrp" occurs="12"/>
+               <tagUsage gi="name" occurs="23"/>
+               <tagUsage gi="note" occurs="2"/>
+               <tagUsage gi="num" occurs="9"/>
+               <tagUsage gi="pb" occurs="1"/>
+               <tagUsage gi="pc" occurs="38"/>
+               <tagUsage gi="s" occurs="12"/>
+               <tagUsage gi="seg" occurs="7"/>
+               <tagUsage gi="text" occurs="1"/>
+               <tagUsage gi="time" occurs="1"/>
+               <tagUsage gi="u" occurs="1"/>
+               <tagUsage gi="vocal" occurs="1"/>
+               <tagUsage gi="w" occurs="197"/>
+            </namespace>
+         </tagsDecl>
+      </encodingDesc>
+      <profileDesc>
+         <settingDesc>
+            <setting>
+               <name type="org">Parlament České republiky - Poslanecká sněmovna</name>
+               <name type="address">Sněmovní 176/4</name>
+               <name type="city">Praha</name>
+               <name key="CZ" type="country">Czech Republic</name>
+               <date when="2014-07-15" ana="#parla.sitting">2014-07-15</date>
+            </setting>
+         </settingDesc>
+      </profileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div type="debateSection">
+            <pb source="https://www.psp.cz/eknih/2013ps/stenprot/012schuz/s012001.htm"
+                n="1"
+                xml:id="ps2013-012-01-000-000.pb1"
+                corresp="#ps2013-012-01-000-000.audio1"/>
+            <note type="time">
+               <time when="2014-07-15T14:00:00">(Schůze zahájena ve 14.00 hodin.)</time>
+            </note>
+            <note type="speaker">Předseda PSP Jan Hamáček</note>
+            <u who="#JanHamacek.1978"
+               ana="#chair"
+               xml:id="ps2013-012-01-000-000.u1"
+               source="https://www.psp.cz/eknih/2013ps/stenprot/012schuz/s012001.htm#r1">
+               <seg xml:id="ps2013-012-01-000-000.u1.p1">
+                  <s xml:id="ps2013-012-01-000-000.u1.p1.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w1"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAFP1----1A----">Vážené</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w2"
+                        lemma="paní"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Voc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS5-----A----">paní</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w3"
+                        lemma="poslankyně"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Voc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS5-----A----"
+                        join="right">poslankyně</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p1.s1.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w5"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAMP5----1A----">vážení</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w6"
+                        lemma="pán"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----">páni</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w7"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----"
+                        join="right">poslanci</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p1.s1.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w9"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAMP1----1A----">vážení</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w10"
+                        lemma="člen"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----">členové</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w11"
+                        lemma="vláda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">vlády</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p1.s1.w12"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w13"
+                        lemma="zahajovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1">zahajuji</w>
+                     <num ana="ne:no" xml:id="ps2013-012-01-000-000.ne1">
+                        <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w14"
+                           lemma="12"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">12</w>
+                        <pc xml:id="ps2013-012-01-000-000.u1.p1.s1.w15"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w16"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">schůzi</w>
+                     <name ana="ne:io" xml:id="ps2013-012-01-000-000.ne2" type="ORG">
+                        <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w17"
+                           lemma="poslanecký"
+                           pos="ADJ"
+                           msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:AAFS2----1A----">Poslanecké</w>
+                        <w xml:id="ps2013-012-01-000-000.u1.p1.s1.w18"
+                           lemma="sněmovna"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----"
+                           join="right">sněmovny</w>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p1.s1.w19"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w3 #ps2013-012-01-000-000.u1.p1.s1.w1"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w3 #ps2013-012-01-000-000.u1.p1.s1.w2"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w13 #ps2013-012-01-000-000.u1.p1.s1.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w7 #ps2013-012-01-000-000.u1.p1.s1.w4"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w7 #ps2013-012-01-000-000.u1.p1.s1.w5"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w7 #ps2013-012-01-000-000.u1.p1.s1.w6"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w13 #ps2013-012-01-000-000.u1.p1.s1.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w10 #ps2013-012-01-000-000.u1.p1.s1.w8"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w10 #ps2013-012-01-000-000.u1.p1.s1.w9"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w3 #ps2013-012-01-000-000.u1.p1.s1.w10"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w10 #ps2013-012-01-000-000.u1.p1.s1.w11"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w13 #ps2013-012-01-000-000.u1.p1.s1.w12"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p1.s1 #ps2013-012-01-000-000.u1.p1.s1.w13"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w16 #ps2013-012-01-000-000.u1.p1.s1.w14"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w14 #ps2013-012-01-000-000.u1.p1.s1.w15"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w13 #ps2013-012-01-000-000.u1.p1.s1.w16"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w18 #ps2013-012-01-000-000.u1.p1.s1.w17"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w16 #ps2013-012-01-000-000.u1.p1.s1.w18"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s1.w13 #ps2013-012-01-000-000.u1.p1.s1.w19"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2013-012-01-000-000.u1.p1.s2">
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w1"
+                        lemma="prosit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">Prosím</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p1.s2.w2"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w3">abyste<w xml:id="ps2013-012-01-000-000.u1.p1.s2.w4"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w5"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=2|VerbForm=Fin"
+                           ana="pdt:Vc-P---2-------"
+                           norm="byste"/>
+                     </w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w6"
+                        lemma="se"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short"
+                        ana="pdt:P7-X4----------">se</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w7"
+                        lemma="usadit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">usadili</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w8"
+                        lemma="do"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Gen"
+                        ana="pdt:RR--2----------">do</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w9"
+                        lemma="svůj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Number=Plur|Poss=Yes|PronType=Prs|Reflex=Yes"
+                        ana="pdt:P8XP2----------">svých</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w10"
+                        lemma="lavice"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP2-----A----">lavic</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w11"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w12"
+                        lemma="věnovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Imp|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">věnovali</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w13"
+                        lemma="já"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Sing|Person=1|PronType=Prs|Variant=Short"
+                        ana="pdt:PH-S3--1-------">mi</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p1.s2.w14"
+                        lemma="pozornost"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----"
+                        join="right">pozornost</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p1.s2.w15"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p1.s2 #ps2013-012-01-000-000.u1.p1.s2.w1"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w7 #ps2013-012-01-000-000.u1.p1.s2.w2"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w7 #ps2013-012-01-000-000.u1.p1.s2.w4"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w7 #ps2013-012-01-000-000.u1.p1.s2.w5"/>
+                        <link ana="ud-syn:expl_pv"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w7 #ps2013-012-01-000-000.u1.p1.s2.w6"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w1 #ps2013-012-01-000-000.u1.p1.s2.w7"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w10 #ps2013-012-01-000-000.u1.p1.s2.w8"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w10 #ps2013-012-01-000-000.u1.p1.s2.w9"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w7 #ps2013-012-01-000-000.u1.p1.s2.w10"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w12 #ps2013-012-01-000-000.u1.p1.s2.w11"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w7 #ps2013-012-01-000-000.u1.p1.s2.w12"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w12 #ps2013-012-01-000-000.u1.p1.s2.w13"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w12 #ps2013-012-01-000-000.u1.p1.s2.w14"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p1.s2.w1 #ps2013-012-01-000-000.u1.p1.s2.w15"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2013-012-01-000-000.u1.p2">
+                  <s xml:id="ps2013-012-01-000-000.u1.p2.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w1"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">Schůzi</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w2"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---">jsem</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w3"
+                        lemma="svolat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">svolal</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w4"
+                        lemma="podle"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Gen"
+                        ana="pdt:RR--2----------">podle</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w5"
+                        lemma="§"
+                        pos="SYM"
+                        msd="UPosTag=SYM|Animacy=Inan|Gender=Masc|Polarity=Pos"
+                        ana="pdt:NNIXX-----A---1">§</w>
+                     <num ana="ne:nb" xml:id="ps2013-012-01-000-000.ne3">
+                        <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w6"
+                           lemma="51"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">51</w>
+                     </num>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w7"
+                        lemma="odstavec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Abbr=Yes|Animacy=Inan|Gender=Masc|Polarity=Pos"
+                        ana="pdt:NNIXX-----A---8"
+                        join="right">odst</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p2.s1.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <num ana="ne:nb" xml:id="ps2013-012-01-000-000.ne4">
+                        <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w9"
+                           lemma="4"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">4</w>
+                     </num>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w10"
+                        lemma="můj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Masc,Neut|Number=Sing|Number[psor]=Plur|Person=1|Poss=Yes|PronType=Prs"
+                        ana="pdt:PSZS2-P1-------">našeho</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w11"
+                        lemma="jednací"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Gen|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS2----1A----">jednacího</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w12"
+                        lemma="řád"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----">řádu</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w13"
+                        lemma="na"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">na</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w14"
+                        lemma="základ"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Loc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS6-----A----">základě</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w15"
+                        lemma="žádost"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">žádosti</w>
+                     <num ana="ne:nc" xml:id="ps2013-012-01-000-000.ne5">
+                        <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w16"
+                           lemma="67"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">67</w>
+                     </num>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w17"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP2-----A----">poslanců</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w18"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w19"
+                        lemma="pozvánka"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----">pozvánka</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w20"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P3--2-------">vám</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w21"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">byla</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w22"
+                        lemma="rozeslaný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---">rozeslána</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w23"
+                        lemma="v"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">v</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w24"
+                        lemma="úterý"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNNS4-----A----">úterý</w>
+                     <date ana="ne:T" xml:id="ps2013-012-01-000-000.ne6">
+                        <date ana="ne:td" xml:id="ps2013-012-01-000-000.ne7">
+                           <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w25"
+                              lemma="8"
+                              pos="NUM"
+                              msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                              ana="pdt:C=-------------"
+                              join="right">8</w>
+                           <pc xml:id="ps2013-012-01-000-000.u1.p2.s1.w26"
+                               pos="PUNCT"
+                               msd="UPosTag=PUNCT"
+                               ana="pdt:Z:-------------">.</pc>
+                        </date>
+                        <date ana="ne:tm" xml:id="ps2013-012-01-000-000.ne8">
+                           <w xml:id="ps2013-012-01-000-000.u1.p2.s1.w27"
+                              lemma="červenec"
+                              pos="NOUN"
+                              msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNIS2-----A----"
+                              join="right">července</w>
+                        </date>
+                     </date>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p2.s1.w28"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w3 #ps2013-012-01-000-000.u1.p2.s1.w1"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w3 #ps2013-012-01-000-000.u1.p2.s1.w2"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p2.s1 #ps2013-012-01-000-000.u1.p2.s1.w3"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w5 #ps2013-012-01-000-000.u1.p2.s1.w4"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w3 #ps2013-012-01-000-000.u1.p2.s1.w5"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w5 #ps2013-012-01-000-000.u1.p2.s1.w6"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w5 #ps2013-012-01-000-000.u1.p2.s1.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w7 #ps2013-012-01-000-000.u1.p2.s1.w8"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w7 #ps2013-012-01-000-000.u1.p2.s1.w9"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w12 #ps2013-012-01-000-000.u1.p2.s1.w10"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w12 #ps2013-012-01-000-000.u1.p2.s1.w11"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w5 #ps2013-012-01-000-000.u1.p2.s1.w12"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w15 #ps2013-012-01-000-000.u1.p2.s1.w13"/>
+                        <link ana="ud-syn:fixed"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w13 #ps2013-012-01-000-000.u1.p2.s1.w14"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w3 #ps2013-012-01-000-000.u1.p2.s1.w15"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w17 #ps2013-012-01-000-000.u1.p2.s1.w16"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w15 #ps2013-012-01-000-000.u1.p2.s1.w17"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w22 #ps2013-012-01-000-000.u1.p2.s1.w18"/>
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w22 #ps2013-012-01-000-000.u1.p2.s1.w19"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w22 #ps2013-012-01-000-000.u1.p2.s1.w20"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w22 #ps2013-012-01-000-000.u1.p2.s1.w21"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w3 #ps2013-012-01-000-000.u1.p2.s1.w22"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w24 #ps2013-012-01-000-000.u1.p2.s1.w23"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w22 #ps2013-012-01-000-000.u1.p2.s1.w24"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w27 #ps2013-012-01-000-000.u1.p2.s1.w25"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w25 #ps2013-012-01-000-000.u1.p2.s1.w26"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w24 #ps2013-012-01-000-000.u1.p2.s1.w27"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p2.s1.w3 #ps2013-012-01-000-000.u1.p2.s1.w28"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2013-012-01-000-000.u1.p3">
+                  <s xml:id="ps2013-012-01-000-000.u1.p3.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w1"
+                        lemma="předtím"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------"
+                        join="right">Předtím</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s1.w2"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w3"
+                        lemma="než"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">než</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w4"
+                        lemma="přistoupit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---1P-AA---">přistoupíme</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w5"
+                        lemma="k"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Dat"
+                        ana="pdt:RR--3----------">k</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w6"
+                        lemma="zbytný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Dat|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Neg"
+                        ana="pdt:AAIP3----1N----">nezbytným</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w7"
+                        lemma="úkon"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Dat|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNIP3-----A----">úkonům</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w8"
+                        lemma="na"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">na</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w9"
+                        lemma="zahájení"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS4-----A----">zahájení</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w10"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">schůze</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s1.w11"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w12"
+                        lemma="tak"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Dem"
+                        ana="pdt:Db-------------">tak</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w13"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Cnd|Number=Sing|Person=1|VerbForm=Fin"
+                        ana="pdt:Vc-S---1-------">bych</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w14"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P3--2-------">vám</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w15"
+                        lemma="chtít"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">chtěl</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w16"
+                        lemma="sdělit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Polarity=Pos|VerbForm=Inf"
+                        ana="pdt:Vf--------A----">sdělit</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w17"
+                        lemma="ten"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Acc|Gender=Neut|Number=Sing|PronType=Dem"
+                        ana="pdt:PDNS4----------"
+                        join="right">to</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s1.w18"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w19"
+                        lemma="co"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Inan|Case=Acc|PronType=Int,Rel"
+                        ana="pdt:PQ--4----------">co</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w20"
+                        lemma="všechen"
+                        pos="DET"
+                        msd="UPosTag=DET|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Tot"
+                        ana="pdt:PLMP1----------">všichni</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w21"
+                        lemma="dobře"
+                        pos="ADV"
+                        msd="UPosTag=ADV|Degree=Pos|Polarity=Pos"
+                        ana="pdt:Dg-------1A----">dobře</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s1.w22"
+                        lemma="vědět"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Mood=Ind|Number=Plur|Person=2|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---2P-AA---"
+                        join="right">víte</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s1.w23"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:advmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w15 #ps2013-012-01-000-000.u1.p3.s1.w1"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w4 #ps2013-012-01-000-000.u1.p3.s1.w2"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w4 #ps2013-012-01-000-000.u1.p3.s1.w3"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w15 #ps2013-012-01-000-000.u1.p3.s1.w4"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w7 #ps2013-012-01-000-000.u1.p3.s1.w5"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w7 #ps2013-012-01-000-000.u1.p3.s1.w6"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w4 #ps2013-012-01-000-000.u1.p3.s1.w7"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w9 #ps2013-012-01-000-000.u1.p3.s1.w8"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w7 #ps2013-012-01-000-000.u1.p3.s1.w9"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w9 #ps2013-012-01-000-000.u1.p3.s1.w10"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w4 #ps2013-012-01-000-000.u1.p3.s1.w11"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w15 #ps2013-012-01-000-000.u1.p3.s1.w12"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w15 #ps2013-012-01-000-000.u1.p3.s1.w13"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w16 #ps2013-012-01-000-000.u1.p3.s1.w14"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p3.s1 #ps2013-012-01-000-000.u1.p3.s1.w15"/>
+                        <link ana="ud-syn:xcomp"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w15 #ps2013-012-01-000-000.u1.p3.s1.w16"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w16 #ps2013-012-01-000-000.u1.p3.s1.w17"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w22 #ps2013-012-01-000-000.u1.p3.s1.w18"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w22 #ps2013-012-01-000-000.u1.p3.s1.w19"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w22 #ps2013-012-01-000-000.u1.p3.s1.w20"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w22 #ps2013-012-01-000-000.u1.p3.s1.w21"/>
+                        <link ana="ud-syn:acl_relcl"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w17 #ps2013-012-01-000-000.u1.p3.s1.w22"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s1.w15 #ps2013-012-01-000-000.u1.p3.s1.w23"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2013-012-01-000-000.u1.p3.s2">
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w1"
+                        lemma="osmý"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Gen|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS2----1A----">Osmého</w>
+                     <date ana="ne:tm" xml:id="ps2013-012-01-000-000.ne9">
+                        <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w2"
+                           lemma="červenec"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNIS2-----A----">července</w>
+                     </date>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w3"
+                        lemma="zemřít"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">zemřeli</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w4"
+                        lemma="v"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">v</w>
+                     <name ana="ne:gc" xml:id="ps2013-012-01-000-000.ne10" type="LOC">
+                        <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w5"
+                           lemma="Afghánistán"
+                           pos="PROPN"
+                           msd="UPosTag=PROPN|Animacy=Inan|Case=Loc|Gender=Masc|NameType=Geo|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNIS6-----A----">Afghánistánu</w>
+                     </name>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w6"
+                        lemma="v"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">v</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w7"
+                        lemma="důsledek"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Loc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS6-----A----">důsledku</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w8"
+                        lemma="útok"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----">útoku</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w9"
+                        lemma="sebevražedný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Gen|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAMS2----1A----">sebevražedného</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w10"
+                        lemma="atentátník"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS2-----A----">atentátníka</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w11"
+                        lemma="čtyři"
+                        pos="NUM"
+                        msd="UPosTag=NUM|Case=Nom|Number=Plur|NumForm=Word|NumType=Card|NumValue=1,2,3"
+                        ana="pdt:ClXP1----------">čtyři</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w12"
+                        lemma="příslušník"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP1-----A----">příslušníci</w>
+                     <num ana="ne:no" xml:id="ps2013-012-01-000-000.ne11">
+                        <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w13"
+                           lemma="4"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">4</w>
+                        <pc xml:id="ps2013-012-01-000-000.u1.p3.s2.w14"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w15"
+                        lemma="brigáda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">brigády</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w16"
+                        lemma="rychlý"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos"
+                        ana="pdt:AANS2----1A----">rychlého</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w17"
+                        lemma="nasazení"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS2-----A----">nasazení</w>
+                     <name ana="ne:io" xml:id="ps2013-012-01-000-000.ne12" type="ORG">
+                        <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w18"
+                           lemma="armáda"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----">Armády</w>
+                     </name>
+                     <name ana="ne:gc" xml:id="ps2013-012-01-000-000.ne13" type="LOC">
+                        <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w19"
+                           lemma="český"
+                           pos="ADJ"
+                           msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:AAFS2----1A----">České</w>
+                        <w xml:id="ps2013-012-01-000-000.u1.p3.s2.w20"
+                           lemma="republika"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----"
+                           join="right">republiky</w>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s2.w21"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w2 #ps2013-012-01-000-000.u1.p3.s2.w1"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w3 #ps2013-012-01-000-000.u1.p3.s2.w2"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p3.s2 #ps2013-012-01-000-000.u1.p3.s2.w3"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w5 #ps2013-012-01-000-000.u1.p3.s2.w4"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w3 #ps2013-012-01-000-000.u1.p3.s2.w5"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w8 #ps2013-012-01-000-000.u1.p3.s2.w6"/>
+                        <link ana="ud-syn:fixed"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w6 #ps2013-012-01-000-000.u1.p3.s2.w7"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w3 #ps2013-012-01-000-000.u1.p3.s2.w8"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w10 #ps2013-012-01-000-000.u1.p3.s2.w9"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w8 #ps2013-012-01-000-000.u1.p3.s2.w10"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w12 #ps2013-012-01-000-000.u1.p3.s2.w11"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w3 #ps2013-012-01-000-000.u1.p3.s2.w12"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w15 #ps2013-012-01-000-000.u1.p3.s2.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w13 #ps2013-012-01-000-000.u1.p3.s2.w14"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w12 #ps2013-012-01-000-000.u1.p3.s2.w15"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w17 #ps2013-012-01-000-000.u1.p3.s2.w16"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w15 #ps2013-012-01-000-000.u1.p3.s2.w17"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w15 #ps2013-012-01-000-000.u1.p3.s2.w18"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w20 #ps2013-012-01-000-000.u1.p3.s2.w19"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w18 #ps2013-012-01-000-000.u1.p3.s2.w20"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s2.w3 #ps2013-012-01-000-000.u1.p3.s2.w21"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2013-012-01-000-000.u1.p3.s3">
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w1"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">Byli</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w2"
+                        lemma="ten"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Nom|Gender=Neut|Number=Sing|PronType=Dem"
+                        ana="pdt:PDNS1----------">to</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w3"
+                        lemma="rotmistr"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">rotmistr</w>
+                     <name ana="ne:P" xml:id="ps2013-012-01-000-000.ne14" type="PER">
+                        <name ana="ne:pf" xml:id="ps2013-012-01-000-000.ne15">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w4"
+                              lemma="David"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">David</w>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne16">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w5"
+                              lemma="Beneš"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----"
+                              join="right">Beneš</w>
+                        </name>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s3.w6"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w7"
+                        lemma="četař"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">četař</w>
+                     <name ana="ne:P" xml:id="ps2013-012-01-000-000.ne17" type="PER">
+                        <name ana="ne:pf" xml:id="ps2013-012-01-000-000.ne18">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w8"
+                              lemma="Ivo"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">Ivo</w>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne19">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w9"
+                              lemma="klusák"
+                              pos="NOUN"
+                              msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----"
+                              join="right">Klusák</w>
+                        </name>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s3.w10"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w11"
+                        lemma="desátník"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">desátník</w>
+                     <name ana="ne:P" xml:id="ps2013-012-01-000-000.ne20" type="PER">
+                        <name ana="ne:pf" xml:id="ps2013-012-01-000-000.ne21">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w12"
+                              lemma="Libor"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">Libor</w>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne22">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w13"
+                              lemma="Ligač"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">Ligač</w>
+                        </name>
+                     </name>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w14"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w15"
+                        lemma="desátník"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">desátník</w>
+                     <name ana="ne:P" xml:id="ps2013-012-01-000-000.ne23" type="PER">
+                        <name ana="ne:pf" xml:id="ps2013-012-01-000-000.ne24">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w16"
+                              lemma="Jan"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">Jan</w>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne25">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s3.w17"
+                              lemma="Šenkýř"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----"
+                              join="right">Šenkýř</w>
+                        </name>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s3.w18"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:cop"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w1"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w2"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p3.s3 #ps2013-012-01-000-000.u1.p3.s3.w3"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w4"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w5"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w7 #ps2013-012-01-000-000.u1.p3.s3.w6"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w7"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w9 #ps2013-012-01-000-000.u1.p3.s3.w8"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w7 #ps2013-012-01-000-000.u1.p3.s3.w9"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w11 #ps2013-012-01-000-000.u1.p3.s3.w10"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w11"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w11 #ps2013-012-01-000-000.u1.p3.s3.w12"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w11 #ps2013-012-01-000-000.u1.p3.s3.w13"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w15 #ps2013-012-01-000-000.u1.p3.s3.w14"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w15"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w15 #ps2013-012-01-000-000.u1.p3.s3.w16"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w15 #ps2013-012-01-000-000.u1.p3.s3.w17"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s3.w3 #ps2013-012-01-000-000.u1.p3.s3.w18"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2013-012-01-000-000.u1.p3.s4">
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w1"
+                        lemma="rotmistr"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">Rotmistr</w>
+                     <name ana="ne:P" xml:id="ps2013-012-01-000-000.ne26" type="PER">
+                        <name ana="ne:pf" xml:id="ps2013-012-01-000-000.ne27">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w2"
+                              lemma="Jaroslav"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">Jaroslav</w>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne28">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w3"
+                              lemma="Lieskovan"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS1-----A----">Lieskovan</w>
+                        </name>
+                     </name>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w4"
+                        lemma="utrpět"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">utrpěl</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w5"
+                        lemma="těžký"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Acc|Degree=Pos|Gender=Neut|Number=Plur|Polarity=Pos"
+                        ana="pdt:AANP4----1A----">těžká</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w6"
+                        lemma="zranění"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Neut|Number=Plur|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNP4-----A----"
+                        join="right">zranění</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s4.w7"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w8"
+                        lemma="který"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Dat|Number=Plur|PronType=Int,Rel"
+                        ana="pdt:P4XP3----------">kterým</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w9"
+                        lemma="den"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----">dne</w>
+                     <date ana="ne:T" xml:id="ps2013-012-01-000-000.ne29">
+                        <date ana="ne:td" xml:id="ps2013-012-01-000-000.ne30">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w10"
+                              lemma="14"
+                              pos="NUM"
+                              msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                              ana="pdt:C=-------------"
+                              join="right">14</w>
+                           <pc xml:id="ps2013-012-01-000-000.u1.p3.s4.w11"
+                               pos="PUNCT"
+                               msd="UPosTag=PUNCT"
+                               ana="pdt:Z:-------------">.</pc>
+                        </date>
+                        <date ana="ne:tm" xml:id="ps2013-012-01-000-000.ne31">
+                           <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w12"
+                              lemma="červenec"
+                              pos="NOUN"
+                              msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNIS2-----A----">července</w>
+                        </date>
+                     </date>
+                     <w xml:id="ps2013-012-01-000-000.u1.p3.s4.w13"
+                        lemma="podlehnout"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA--1"
+                        join="right">podlehl</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p3.s4.w14"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w4 #ps2013-012-01-000-000.u1.p3.s4.w1"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w1 #ps2013-012-01-000-000.u1.p3.s4.w2"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w1 #ps2013-012-01-000-000.u1.p3.s4.w3"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p3.s4 #ps2013-012-01-000-000.u1.p3.s4.w4"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w6 #ps2013-012-01-000-000.u1.p3.s4.w5"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w4 #ps2013-012-01-000-000.u1.p3.s4.w6"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w13 #ps2013-012-01-000-000.u1.p3.s4.w7"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w13 #ps2013-012-01-000-000.u1.p3.s4.w8"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w13 #ps2013-012-01-000-000.u1.p3.s4.w9"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w12 #ps2013-012-01-000-000.u1.p3.s4.w10"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w10 #ps2013-012-01-000-000.u1.p3.s4.w11"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w9 #ps2013-012-01-000-000.u1.p3.s4.w12"/>
+                        <link ana="ud-syn:acl_relcl"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w6 #ps2013-012-01-000-000.u1.p3.s4.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p3.s4.w4 #ps2013-012-01-000-000.u1.p3.s4.w14"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2013-012-01-000-000.u1.p4">
+                  <s xml:id="ps2013-012-01-000-000.u1.p4.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w1"
+                        lemma="chtít"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">Chtěl</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w2"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Cnd|Number=Sing|Person=1|VerbForm=Fin"
+                        ana="pdt:Vc-S---1-------">bych</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w3"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P4--2-------">vás</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w4"
+                        lemma="požádat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Polarity=Pos|VerbForm=Inf"
+                        ana="pdt:Vf--------A----"
+                        join="right">požádat</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p4.s1.w5"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w6">abychom<w xml:id="ps2013-012-01-000-000.u1.p4.s1.w7"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w8"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=1|VerbForm=Fin"
+                           ana="pdt:Vc-P---1-------"
+                           norm="bychom"/>
+                     </w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w9"
+                        lemma="všechen"
+                        pos="DET"
+                        msd="UPosTag=DET|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Tot"
+                        ana="pdt:PLMP1----------">všichni</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w10"
+                        lemma="vzdát"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">vzdali</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w11"
+                        lemma="čest"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">čest</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w12"
+                        lemma="jeho"
+                        pos="DET"
+                        msd="UPosTag=DET|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs"
+                        ana="pdt:PSXXXXP3-------">jejich</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w13"
+                        lemma="památka"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Dat|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS3-----A----">památce</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w14"
+                        lemma="minuta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS7-----A----">minutou</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p4.s1.w15"
+                        lemma="ticho"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Neut|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNNS2-----A----"
+                        join="right">ticha</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p4.s1.w16"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p4.s1 #ps2013-012-01-000-000.u1.p4.s1.w1"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w1 #ps2013-012-01-000-000.u1.p4.s1.w2"/>
+                        <link ana="ud-syn:iobj"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w4 #ps2013-012-01-000-000.u1.p4.s1.w3"/>
+                        <link ana="ud-syn:xcomp"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w1 #ps2013-012-01-000-000.u1.p4.s1.w4"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w10 #ps2013-012-01-000-000.u1.p4.s1.w5"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w10 #ps2013-012-01-000-000.u1.p4.s1.w7"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w10 #ps2013-012-01-000-000.u1.p4.s1.w8"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w10 #ps2013-012-01-000-000.u1.p4.s1.w9"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w4 #ps2013-012-01-000-000.u1.p4.s1.w10"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w10 #ps2013-012-01-000-000.u1.p4.s1.w11"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w13 #ps2013-012-01-000-000.u1.p4.s1.w12"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w11 #ps2013-012-01-000-000.u1.p4.s1.w13"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w10 #ps2013-012-01-000-000.u1.p4.s1.w14"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w14 #ps2013-012-01-000-000.u1.p4.s1.w15"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p4.s1.w1 #ps2013-012-01-000-000.u1.p4.s1.w16"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <vocal type="noise">
+                  <desc>(Hluk v sále utichl a všichni přítomní povstali.)</desc>
+               </vocal>
+               <seg xml:id="ps2013-012-01-000-000.u1.p5">
+                  <s xml:id="ps2013-012-01-000-000.u1.p5.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p5.s1.w1"
+                        lemma="děkovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1"
+                        join="right">Děkuji</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p5.s1.w2"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p5.s1 #ps2013-012-01-000-000.u1.p5.s1.w1"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p5.s1.w1 #ps2013-012-01-000-000.u1.p5.s1.w2"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2013-012-01-000-000.u1.p6">
+                  <s xml:id="ps2013-012-01-000-000.u1.p6.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w1"
+                        lemma="prosit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">Prosím</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s1.w2"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w3">abyste<w xml:id="ps2013-012-01-000-000.u1.p6.s1.w4"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w5"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=2|VerbForm=Fin"
+                           ana="pdt:Vc-P---2-------"
+                           norm="byste"/>
+                     </w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w6"
+                        lemma="se"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short"
+                        ana="pdt:P7-X4----------">se</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w7"
+                        lemma="všechen"
+                        pos="DET"
+                        msd="UPosTag=DET|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Tot"
+                        ana="pdt:PLMP1----------">všichni</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w8"
+                        lemma="přihlásit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">přihlásili</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w9"
+                        lemma="svůj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Ins|Number=Plur|Poss=Yes|PronType=Prs|Reflex=Yes"
+                        ana="pdt:P8XP7----------">svými</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w10"
+                        lemma="identifikační"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Ins|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAFP7----1A----">identifikačními</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w11"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP7-----A----">kartami</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w12"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w13"
+                        lemma="případně"
+                        pos="ADV"
+                        msd="UPosTag=ADV|Degree=Pos|Polarity=Pos"
+                        ana="pdt:Dg-------1A----">případně</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w14"
+                        lemma="já"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Sing|Person=1|PronType=Prs|Variant=Short"
+                        ana="pdt:PH-S3--1-------">mi</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w15"
+                        lemma="oznámit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---"
+                        join="right">oznámili</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s1.w16"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w17"
+                        lemma="kdo"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Anim|Case=Nom|Gender=Masc|PronType=Int,Rel"
+                        ana="pdt:PKM-1----------">kdo</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w18"
+                        lemma="žádat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">žádá</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w19"
+                        lemma="o"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">o</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w20"
+                        lemma="vydání"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS4-----A----">vydání</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w21"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">karty</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s1.w22"
+                        lemma="náhradní"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAFS2----1A----"
+                        join="right">náhradní</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s1.w23"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p6.s1 #ps2013-012-01-000-000.u1.p6.s1.w1"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w2"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w4"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w5"/>
+                        <link ana="ud-syn:expl_pv"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w6"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w7"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w1 #ps2013-012-01-000-000.u1.p6.s1.w8"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w11 #ps2013-012-01-000-000.u1.p6.s1.w9"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w11 #ps2013-012-01-000-000.u1.p6.s1.w10"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w11"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w15 #ps2013-012-01-000-000.u1.p6.s1.w12"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w15 #ps2013-012-01-000-000.u1.p6.s1.w13"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w15 #ps2013-012-01-000-000.u1.p6.s1.w14"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w8 #ps2013-012-01-000-000.u1.p6.s1.w15"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w18 #ps2013-012-01-000-000.u1.p6.s1.w16"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w18 #ps2013-012-01-000-000.u1.p6.s1.w17"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w15 #ps2013-012-01-000-000.u1.p6.s1.w18"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w20 #ps2013-012-01-000-000.u1.p6.s1.w19"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w18 #ps2013-012-01-000-000.u1.p6.s1.w20"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w20 #ps2013-012-01-000-000.u1.p6.s1.w21"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w21 #ps2013-012-01-000-000.u1.p6.s1.w22"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s1.w1 #ps2013-012-01-000-000.u1.p6.s1.w23"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2013-012-01-000-000.u1.p6.s2">
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w1"
+                        lemma="zatím"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">Zatím</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w2"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P3--2-------">vám</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w3"
+                        lemma="sdělit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">sdělím</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w5"
+                        lemma="že"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">že</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w6"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">poslanec</w>
+                     <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne32" type="PER">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w7"
+                           lemma="Hamáček"
+                           pos="PROPN"
+                           msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNMS1-----A----">Hamáček</w>
+                     </name>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w8"
+                        lemma="hlasovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">hlasuje</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w9"
+                        lemma="s"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Ins"
+                        ana="pdt:RR--7----------">s</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w10"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS7-----A----">kartou</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w11"
+                        lemma="číslo"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNNS1-----A----">číslo</w>
+                     <num ana="ne:n_" xml:id="ps2013-012-01-000-000.ne33">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w12"
+                           lemma="1"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">1</w>
+                     </num>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w13"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w14"
+                        lemma="pan"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">pan</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w15"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">poslanec</w>
+                     <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne34" type="PER">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w16"
+                           lemma="Fiala"
+                           pos="PROPN"
+                           msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNMS1-----A----">Fiala</w>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w17"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">-</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w18"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----">karta</w>
+                     <num ana="ne:n_" xml:id="ps2013-012-01-000-000.ne35">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w19"
+                           lemma="9"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">9</w>
+                     </num>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w20"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w21"
+                        lemma="pan"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">pan</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w22"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">poslanec</w>
+                     <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne36" type="PER">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w23"
+                           lemma="Adam"
+                           pos="PROPN"
+                           msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNMS1-----A----">Adam</w>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w24"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">-</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w25"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----">karta</w>
+                     <num ana="ne:n_" xml:id="ps2013-012-01-000-000.ne37">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w26"
+                           lemma="12"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">12</w>
+                     </num>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w27"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w28"
+                        lemma="pan"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">pan</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w29"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS1-----A----">poslanec</w>
+                     <name ana="ne:ps" xml:id="ps2013-012-01-000-000.ne38" type="PER">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w30"
+                           lemma="Velebný"
+                           pos="PROPN"
+                           msd="UPosTag=PROPN|Animacy=Anim|Case=Nom|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNMS1-----A----">Velebný</w>
+                     </name>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w31"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">-</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w32"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----">karta</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w33"
+                        lemma="číslo"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNNS1-----A----">číslo</w>
+                     <num ana="ne:n_" xml:id="ps2013-012-01-000-000.ne39">
+                        <w xml:id="ps2013-012-01-000-000.u1.p6.s2.w34"
+                           lemma="13"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">13</w>
+                     </num>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p6.s2.w35"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:advmod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w3 #ps2013-012-01-000-000.u1.p6.s2.w1"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w3 #ps2013-012-01-000-000.u1.p6.s2.w2"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p6.s2 #ps2013-012-01-000-000.u1.p6.s2.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w8 #ps2013-012-01-000-000.u1.p6.s2.w4"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w8 #ps2013-012-01-000-000.u1.p6.s2.w5"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w8 #ps2013-012-01-000-000.u1.p6.s2.w6"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w6 #ps2013-012-01-000-000.u1.p6.s2.w7"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w3 #ps2013-012-01-000-000.u1.p6.s2.w8"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w10 #ps2013-012-01-000-000.u1.p6.s2.w9"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w8 #ps2013-012-01-000-000.u1.p6.s2.w10"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w10 #ps2013-012-01-000-000.u1.p6.s2.w11"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w11 #ps2013-012-01-000-000.u1.p6.s2.w12"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w13"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w8 #ps2013-012-01-000-000.u1.p6.s2.w14"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w15"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w16"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w17"/>
+                        <link ana="ud-syn:dep"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w18"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w18 #ps2013-012-01-000-000.u1.p6.s2.w19"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w20"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w22 #ps2013-012-01-000-000.u1.p6.s2.w21"/>
+                        <link ana="ud-syn:orphan"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w22"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w21 #ps2013-012-01-000-000.u1.p6.s2.w23"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w22 #ps2013-012-01-000-000.u1.p6.s2.w24"/>
+                        <link ana="ud-syn:dep"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w22 #ps2013-012-01-000-000.u1.p6.s2.w25"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w25 #ps2013-012-01-000-000.u1.p6.s2.w26"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w27"/>
+                        <link ana="ud-syn:orphan"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w14 #ps2013-012-01-000-000.u1.p6.s2.w28"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w28 #ps2013-012-01-000-000.u1.p6.s2.w29"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w28 #ps2013-012-01-000-000.u1.p6.s2.w30"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w28 #ps2013-012-01-000-000.u1.p6.s2.w31"/>
+                        <link ana="ud-syn:dep"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w28 #ps2013-012-01-000-000.u1.p6.s2.w32"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w32 #ps2013-012-01-000-000.u1.p6.s2.w33"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w33 #ps2013-012-01-000-000.u1.p6.s2.w34"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p6.s2.w3 #ps2013-012-01-000-000.u1.p6.s2.w35"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2013-012-01-000-000.u1.p7">
+                  <s xml:id="ps2013-012-01-000-000.u1.p7.s1">
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w1"
+                        lemma="ještě"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">Ještě</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w2"
+                        lemma="než"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">než</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w3"
+                        lemma="přistoupit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---1P-AA---">přistoupíme</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w4"
+                        lemma="k"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Dat"
+                        ana="pdt:RR--3----------">k</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w5"
+                        lemma="určení"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Dat|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS3-----A----">určení</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w6"
+                        lemma="ověřovatel"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP2-----A----">ověřovatelů</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w7"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Fem|Number=Sing|PronType=Dem"
+                        ana="pdt:PDFS2----------">této</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w8"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">schůze</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p7.s1.w9"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w10"
+                        lemma="dovolit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Imp|Number=Plur|Person=2|Polarity=Pos|VerbForm=Fin"
+                        ana="pdt:Vi-P---2--A----"
+                        join="right">dovolte</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p7.s1.w11"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w12">abychom<w xml:id="ps2013-012-01-000-000.u1.p7.s1.w13"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w14"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=1|VerbForm=Fin"
+                           ana="pdt:Vc-P---1-------"
+                           norm="bychom"/>
+                     </w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w15"
+                        lemma="umožnit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">umožnili</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w16"
+                        lemma="nový"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Dat|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAMP3----1A----">novým</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w17"
+                        lemma="kolega"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Dat|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP3-----A----">kolegům</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w18"
+                        lemma="složit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Polarity=Pos|VerbForm=Inf"
+                        ana="pdt:Vf--------A----">složit</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w19"
+                        lemma="poslanecký"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Acc|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS4----1A----">poslanecký</w>
+                     <w xml:id="ps2013-012-01-000-000.u1.p7.s1.w20"
+                        lemma="slib"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS4-----A----"
+                        join="right">slib</w>
+                     <pc xml:id="ps2013-012-01-000-000.u1.p7.s1.w21"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:advmod_emph"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w3 #ps2013-012-01-000-000.u1.p7.s1.w1"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w3 #ps2013-012-01-000-000.u1.p7.s1.w2"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w10 #ps2013-012-01-000-000.u1.p7.s1.w3"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w5 #ps2013-012-01-000-000.u1.p7.s1.w4"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w3 #ps2013-012-01-000-000.u1.p7.s1.w5"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w5 #ps2013-012-01-000-000.u1.p7.s1.w6"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w8 #ps2013-012-01-000-000.u1.p7.s1.w7"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w6 #ps2013-012-01-000-000.u1.p7.s1.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w3 #ps2013-012-01-000-000.u1.p7.s1.w9"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2013-012-01-000-000.u1.p7.s1 #ps2013-012-01-000-000.u1.p7.s1.w10"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w15 #ps2013-012-01-000-000.u1.p7.s1.w11"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w15 #ps2013-012-01-000-000.u1.p7.s1.w13"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w15 #ps2013-012-01-000-000.u1.p7.s1.w14"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w10 #ps2013-012-01-000-000.u1.p7.s1.w15"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w17 #ps2013-012-01-000-000.u1.p7.s1.w16"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w15 #ps2013-012-01-000-000.u1.p7.s1.w17"/>
+                        <link ana="ud-syn:xcomp"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w15 #ps2013-012-01-000-000.u1.p7.s1.w18"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w20 #ps2013-012-01-000-000.u1.p7.s1.w19"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w18 #ps2013-012-01-000-000.u1.p7.s1.w20"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2013-012-01-000-000.u1.p7.s1.w10 #ps2013-012-01-000-000.u1.p7.s1.w21"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+            </u>
+         </div>
+      </body>
+   </text>
+</TEI>

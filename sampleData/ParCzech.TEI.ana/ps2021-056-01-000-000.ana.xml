@@ -1,0 +1,3068 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+     xml:id="ps2021-056-01-000-000.ana"
+     xml:lang="cs"
+     ana="#parla.agenda">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main" xml:lang="cs">Český parlamentní korpus, Poslanecká sněmovna, 2023-03-04 ps2021-056-01-000-000 [ParCzech.ana]</title>
+            <title type="main" xml:lang="en">Czech parliamentary corpus, Chamber of Deputies, 2023-03-04 ps2021-056-01-000-000 [ParCzech.ana]</title>
+            <title type="sub" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna, 2023-03-04</title>
+            <title type="sub" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies, 2023-03-04</title>
+            <meeting ana="#parla.term #parla.lower #parliament.PSP9" n="ps2021">ps2021</meeting>
+            <meeting ana="#parla.meeting #parla.lower" n="ps2021/056">ps2021/056</meeting>
+            <meeting ana="#parla.sitting #parla.lower" n="ps2021/056/01">ps2021/056/01</meeting>
+            <meeting ana="#parla.agenda #parla.lower" n="ps2021/056/000">ps2021/056/000</meeting>
+            <respStmt>
+               <persName ref="https://orcid.org/0000-0001-7953-8783">Matyáš Kopp</persName>
+               <resp xml:lang="en">Data retrieval</resp>
+               <resp xml:lang="en">TEI XML corpus encoding</resp>
+               <resp xml:lang="en">Linguistic annotation</resp>
+            </respStmt>
+            <funder>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+            </funder>
+         </titleStmt>
+         <editionStmt>
+            <edition>4.0</edition>
+         </editionStmt>
+         <extent>
+            <measure unit="speeches" quantity="1" xml:lang="cs">1 promluv</measure>
+            <measure unit="speeches" quantity="1" xml:lang="en">1 speeches</measure>
+            <measure unit="words" quantity="176" xml:lang="cs">176 slov</measure>
+            <measure unit="words" quantity="176" xml:lang="en">176 words</measure>
+         </extent>
+         <publicationStmt>
+            <publisher>
+               <orgName xml:lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
+               <orgName xml:lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
+               <ref target="https://www.lindat.cz">www.lindat.cz</ref>
+            </publisher>
+            <idno type="URI" subtype="handle">http://hdl.handle.net/11234/1-5360</idno>
+            <availability status="free">
+               <licence>https://creativecommons.org/publicdomain/zero/1.0/</licence>
+               <p xml:lang="en">This work is licensed under the <ref target="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</ref>.</p>
+            </availability>
+            <date when="2024-01-26">2024-01-26</date>
+         </publicationStmt>
+         <sourceDesc>
+            <bibl>
+               <title type="main" xml:lang="cs">Parlament České republiky, Poslanecká sněmovna</title>
+               <title type="main" xml:lang="en">Parliament of the Czech Republic, Chamber of Deputies</title>
+               <idno type="URI" subtype="parliament">https://www.psp.cz/eknih/2021ps/stenprot/056schuz/s056001.htm</idno>
+               <date when="2023-03-04">04.03.2023</date>
+            </bibl>
+            <recordingStmt>
+               <recording type="audio">
+                  <media xml:id="ps2021-056-01-000-000.audio1"
+                         mimeType="audio/mp3"
+                         source="https://www.psp.cz/eknih/2021ps/audio/2023/03/04/2023030400080022.mp3"
+                         url="audio/psp/2023/03/04/2023030400080022.mp3"/>
+               </recording>
+            </recordingStmt>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <projectDesc>
+            <p xml:lang="en">
+               <ref target="https://ufal.mff.cuni.cz/parczech">ParCzech</ref> is a project on compiling Czech parliamentary data into annotated corpora. It mostly follows the <ref target="https://www.clarin.eu/parlamint">ParlaMint project's</ref> recommendation, but the data are slightly extended in several ways. Texts contain links to original voting and prints. Except for the 4-class named entities classification, it also includes a more detailed CNEC hierarchical classification. The text in the annotated version is aligned with audio on the token level. And morphological annotation contains pdt tagsed besides UD PoS and features.</p>
+         </projectDesc>
+         <tagsDecl>
+            <namespace name="http://www.tei-c.org/ns/1.0">
+               <tagUsage gi="anchor" occurs="316"/>
+               <tagUsage gi="body" occurs="1"/>
+               <tagUsage gi="date" occurs="3"/>
+               <tagUsage gi="div" occurs="1"/>
+               <tagUsage gi="link" occurs="217"/>
+               <tagUsage gi="linkGrp" occurs="15"/>
+               <tagUsage gi="name" occurs="14"/>
+               <tagUsage gi="note" occurs="3"/>
+               <tagUsage gi="num" occurs="11"/>
+               <tagUsage gi="pb" occurs="1"/>
+               <tagUsage gi="pc" occurs="38"/>
+               <tagUsage gi="ref" occurs="1"/>
+               <tagUsage gi="s" occurs="15"/>
+               <tagUsage gi="seg" occurs="9"/>
+               <tagUsage gi="text" occurs="1"/>
+               <tagUsage gi="time" occurs="2"/>
+               <tagUsage gi="timeline" occurs="1"/>
+               <tagUsage gi="u" occurs="1"/>
+               <tagUsage gi="w" occurs="182"/>
+               <tagUsage gi="when" occurs="317"/>
+            </namespace>
+         </tagsDecl>
+      </encodingDesc>
+      <profileDesc>
+         <settingDesc>
+            <setting>
+               <name type="org">Parlament České republiky - Poslanecká sněmovna</name>
+               <name type="address">Sněmovní 176/4</name>
+               <name type="city">Praha</name>
+               <name key="CZ" type="country">Czech Republic</name>
+               <date when="2023-03-04" ana="#parla.sitting">2023-03-04</date>
+            </setting>
+         </settingDesc>
+      </profileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div type="debateSection">
+            <pb source="https://www.psp.cz/eknih/2021ps/stenprot/056schuz/s056001.htm"
+                n="1"
+                xml:id="ps2021-056-01-000-000.pb1"
+                corresp="#ps2021-056-01-000-000.audio1"/>
+            <note type="time">
+               <time when="2023-03-04T00:18:00">(Schůze zahájena v 0.18 hodin.)</time>
+            </note>
+            <note type="speaker">Předsedkyně PSP Markéta Pekarová Adamová</note>
+            <u who="#MarketaPekarovaAdamova.1984"
+               ana="#chair"
+               xml:id="ps2021-056-01-000-000.u1"
+               source="https://www.psp.cz/eknih/2021ps/stenprot/056schuz/s056001.htm#r1">
+               <seg xml:id="ps2021-056-01-000-000.u1.p1">
+                  <s xml:id="ps2021-056-01-000-000.u1.p1.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w1"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAFP1----1A----">Vážené</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w2"
+                        lemma="paní"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Voc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS5-----A----">paní</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w3"
+                        lemma="poslankyně"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Voc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS5-----A----"
+                        join="right">poslankyně</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w3.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p1.s1.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w5"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAMP5----1A----">vážení</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w5.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w6"
+                        lemma="pán"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----">páni</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w6.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w7.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w7"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Voc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----"
+                        join="right">poslanci</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w7.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p1.s1.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w9.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w9"
+                        lemma="vážený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos|VerbForm=Part|Voice=Pass"
+                        ana="pdt:AAMP1----1A----">vážení</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w9.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w10"
+                        lemma="člen"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP5-----A----">členové</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w10.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w11"
+                        lemma="vláda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">vlády</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w11.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p1.s1.w12"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w13.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w13"
+                        lemma="zahajovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1">zahajuji</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w13.ae"/>
+                     <num ana="ne:no" xml:id="ps2021-056-01-000-000.ne1">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w14.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w14"
+                           lemma="56"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">56</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w14.ae"/>
+                        <pc xml:id="ps2021-056-01-000-000.u1.p1.s1.w15"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w16.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w16"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">schůzi</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w16.ae"/>
+                     <name ana="ne:io" xml:id="ps2021-056-01-000-000.ne2" type="ORG">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w17.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w17"
+                           lemma="poslanecký"
+                           pos="ADJ"
+                           msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:AAFS2----1A----">Poslanecké</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w17.ae"/>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w18.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p1.s1.w18"
+                           lemma="sněmovna"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----"
+                           join="right">sněmovny</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p1.s1.w18.ae"/>
+                     </name>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p1.s1.w19"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w3 #ps2021-056-01-000-000.u1.p1.s1.w1"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w3 #ps2021-056-01-000-000.u1.p1.s1.w2"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w13 #ps2021-056-01-000-000.u1.p1.s1.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w7 #ps2021-056-01-000-000.u1.p1.s1.w4"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w7 #ps2021-056-01-000-000.u1.p1.s1.w5"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w7 #ps2021-056-01-000-000.u1.p1.s1.w6"/>
+                        <link ana="ud-syn:vocative"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w13 #ps2021-056-01-000-000.u1.p1.s1.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w10 #ps2021-056-01-000-000.u1.p1.s1.w8"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w10 #ps2021-056-01-000-000.u1.p1.s1.w9"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w3 #ps2021-056-01-000-000.u1.p1.s1.w10"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w10 #ps2021-056-01-000-000.u1.p1.s1.w11"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w13 #ps2021-056-01-000-000.u1.p1.s1.w12"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p1.s1 #ps2021-056-01-000-000.u1.p1.s1.w13"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w16 #ps2021-056-01-000-000.u1.p1.s1.w14"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w14 #ps2021-056-01-000-000.u1.p1.s1.w15"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w13 #ps2021-056-01-000-000.u1.p1.s1.w16"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w18 #ps2021-056-01-000-000.u1.p1.s1.w17"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w16 #ps2021-056-01-000-000.u1.p1.s1.w18"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p1.s1.w13 #ps2021-056-01-000-000.u1.p1.s1.w19"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p2">
+                  <s xml:id="ps2021-056-01-000-000.u1.p2.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w1">Aby<w xml:id="ps2021-056-01-000-000.u1.p2.s1.w2"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="Aby"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w3"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Person=3|VerbForm=Fin"
+                           ana="pdt:Vc-------------"
+                           norm="by"/>
+                     </w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w4"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">byla</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w4.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w5"
+                        lemma="zaznamenaný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Aspect=Perf|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---">zaznamenána</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w5.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w6"
+                        lemma="můj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Nom|Gender=Fem,Neut|Number=Sing|Number[psor]=Plur|Person=1|Poss=Yes|PronType=Prs"
+                        ana="pdt:PSHS1-P1-------">naše</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w6.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w7.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w7"
+                        lemma="účast"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----"
+                        join="right">účast</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w7.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p2.s1.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w9.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w9"
+                        lemma="nejprve"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">nejprve</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w9.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w10"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---">jsem</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w10.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w11"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P4--2-------">vás</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w12"
+                        lemma="všechen"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Acc|Gender=Masc|Number=Plur|PronType=Tot"
+                        ana="pdt:PLYP4----------">všechny</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w12.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w13.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w13"
+                        lemma="odhlásit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">odhlásila</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w13.ae"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w14"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w15.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w15"
+                        lemma="prosit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">prosím</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w15.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p2.s1.w16"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w17.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w17">abyste<w xml:id="ps2021-056-01-000-000.u1.p2.s1.w18"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w19"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=2|VerbForm=Fin"
+                           ana="pdt:Vc-P---2-------"
+                           norm="byste"/>
+                     </w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w17.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w20.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w20"
+                        lemma="se"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short"
+                        ana="pdt:P7-X4----------">se</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w20.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w21.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w21"
+                        lemma="přihlásit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Aspect=Perf|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">přihlásili</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w21.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w22.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w22"
+                        lemma="svůj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Ins|Number=Plur|Poss=Yes|PronType=Prs|Reflex=Yes"
+                        ana="pdt:P8XP7----------">svými</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w22.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w23.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w23"
+                        lemma="identifikační"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Ins|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAFP7----1A----">identifikačními</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w23.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w24.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s1.w24"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP7-----A----"
+                        join="right">kartami</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s1.w24.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p2.s1.w25"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:mark"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w5 #ps2021-056-01-000-000.u1.p2.s1.w2"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w5 #ps2021-056-01-000-000.u1.p2.s1.w3"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w5 #ps2021-056-01-000-000.u1.p2.s1.w4"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w13 #ps2021-056-01-000-000.u1.p2.s1.w5"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w7 #ps2021-056-01-000-000.u1.p2.s1.w6"/>
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w5 #ps2021-056-01-000-000.u1.p2.s1.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w5 #ps2021-056-01-000-000.u1.p2.s1.w8"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w13 #ps2021-056-01-000-000.u1.p2.s1.w9"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w13 #ps2021-056-01-000-000.u1.p2.s1.w10"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w13 #ps2021-056-01-000-000.u1.p2.s1.w11"/>
+                        <link ana="ud-syn:xcomp"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w11 #ps2021-056-01-000-000.u1.p2.s1.w12"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p2.s1 #ps2021-056-01-000-000.u1.p2.s1.w13"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w15 #ps2021-056-01-000-000.u1.p2.s1.w14"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w13 #ps2021-056-01-000-000.u1.p2.s1.w15"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w21 #ps2021-056-01-000-000.u1.p2.s1.w16"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w21 #ps2021-056-01-000-000.u1.p2.s1.w18"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w21 #ps2021-056-01-000-000.u1.p2.s1.w19"/>
+                        <link ana="ud-syn:expl_pv"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w21 #ps2021-056-01-000-000.u1.p2.s1.w20"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w15 #ps2021-056-01-000-000.u1.p2.s1.w21"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w24 #ps2021-056-01-000-000.u1.p2.s1.w22"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w24 #ps2021-056-01-000-000.u1.p2.s1.w23"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w21 #ps2021-056-01-000-000.u1.p2.s1.w24"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s1.w13 #ps2021-056-01-000-000.u1.p2.s1.w25"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2021-056-01-000-000.u1.p2.s2">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w1"
+                        lemma="náhradní"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Nom|Degree=Pos|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAFP1----1A----">Náhradní</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w2"
+                        lemma="karta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP1-----A----">karty</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w3"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w4"
+                        lemma="jeho"
+                        pos="DET"
+                        msd="UPosTag=DET|Number[psor]=Plur|Person=3|Poss=Yes|PronType=Prs"
+                        ana="pdt:PSXXXXP3-------">jejich</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w4.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w5"
+                        lemma="číslo"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Neut|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNNP1-----A----">čísla</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w5.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w6"
+                        lemma="platit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---3P-AA---">platí</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w6.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w7.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w7"
+                        lemma="tak"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Dem"
+                        ana="pdt:Db-------------"
+                        join="right">tak</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w7.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p2.s2.w8"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w9.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w9"
+                        lemma="jak"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Int,Rel"
+                        ana="pdt:Db-------------">jak</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w9.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w10"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Neut|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpNS---XR-AA---">bylo</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w10.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w11"
+                        lemma="řečený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Aspect=Perf|Gender=Neut|Number=Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsNS---XX-AP---">řečeno</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w12"
+                        lemma="na"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">na</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w12.ae"/>
+                     <num ana="ne:no" xml:id="ps2021-056-01-000-000.ne3">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w13.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w13"
+                           lemma="55"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">55</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w13.ae"/>
+                        <pc xml:id="ps2021-056-01-000-000.u1.p2.s2.w14"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w15.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w15"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Loc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS6-----A----"
+                        join="right">schůzi</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w15.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p2.s2.w16"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w17.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w17"
+                        lemma="stejně"
+                        pos="ADV"
+                        msd="UPosTag=ADV|Degree=Pos|Polarity=Pos"
+                        ana="pdt:Dg-------1A----">stejně</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w17.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w18.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w18"
+                        lemma="tak"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Dem"
+                        ana="pdt:Db-------------">tak</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w18.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w19.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w19"
+                        lemma="se"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short"
+                        ana="pdt:P7-X4----------">se</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w19.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w20.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w20"
+                        lemma="omlouvat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---3P-AA---">omlouvají</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w20.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w21.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w21"
+                        lemma="tentýž"
+                        pos="DET"
+                        msd="UPosTag=DET|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Dem"
+                        ana="pdt:PDMP1----------">titíž</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w21.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w22.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p2.s2.w22"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP1-----A----"
+                        join="right">poslanci</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p2.s2.w22.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p2.s2.w23"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w2 #ps2021-056-01-000-000.u1.p2.s2.w1"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w6 #ps2021-056-01-000-000.u1.p2.s2.w2"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w5 #ps2021-056-01-000-000.u1.p2.s2.w3"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w5 #ps2021-056-01-000-000.u1.p2.s2.w4"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w2 #ps2021-056-01-000-000.u1.p2.s2.w5"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p2.s2 #ps2021-056-01-000-000.u1.p2.s2.w6"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w6 #ps2021-056-01-000-000.u1.p2.s2.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w11 #ps2021-056-01-000-000.u1.p2.s2.w8"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w11 #ps2021-056-01-000-000.u1.p2.s2.w9"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w11 #ps2021-056-01-000-000.u1.p2.s2.w10"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w6 #ps2021-056-01-000-000.u1.p2.s2.w11"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w15 #ps2021-056-01-000-000.u1.p2.s2.w12"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w15 #ps2021-056-01-000-000.u1.p2.s2.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w13 #ps2021-056-01-000-000.u1.p2.s2.w14"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w11 #ps2021-056-01-000-000.u1.p2.s2.w15"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w20 #ps2021-056-01-000-000.u1.p2.s2.w16"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w18 #ps2021-056-01-000-000.u1.p2.s2.w17"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w20 #ps2021-056-01-000-000.u1.p2.s2.w18"/>
+                        <link ana="ud-syn:expl_pv"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w20 #ps2021-056-01-000-000.u1.p2.s2.w19"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w6 #ps2021-056-01-000-000.u1.p2.s2.w20"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w22 #ps2021-056-01-000-000.u1.p2.s2.w21"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w20 #ps2021-056-01-000-000.u1.p2.s2.w22"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p2.s2.w6 #ps2021-056-01-000-000.u1.p2.s2.w23"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p3">
+                  <s xml:id="ps2021-056-01-000-000.u1.p3.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w1"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Acc|Gender=Fem|Number=Sing|PronType=Dem"
+                        ana="pdt:PDFS4----------">Tuto</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w2"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">schůzi</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w3"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---">jsem</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w4"
+                        lemma="svolat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">svolala</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w4.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w5"
+                        lemma="podle"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Gen"
+                        ana="pdt:RR--2----------">podle</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w5.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w6"
+                        lemma="§"
+                        pos="SYM"
+                        msd="UPosTag=SYM|Animacy=Inan|Gender=Masc|Polarity=Pos"
+                        ana="pdt:NNIXX-----A---1">§</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w6.ae"/>
+                     <num ana="ne:nb" xml:id="ps2021-056-01-000-000.ne4">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w7.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w7"
+                           lemma="51"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">51</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w7.ae"/>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w8.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w8"
+                        lemma="odstavec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Abbr=Yes|Animacy=Inan|Gender=Masc|Polarity=Pos"
+                        ana="pdt:NNIXX-----A---8"
+                        join="right">odst</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w8.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p3.s1.w9"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <num ana="ne:nb" xml:id="ps2021-056-01-000-000.ne5">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w10.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w10"
+                           lemma="4"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">4</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w10.ae"/>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w11"
+                        lemma="můj"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Masc,Neut|Number=Sing|Number[psor]=Plur|Person=1|Poss=Yes|PronType=Prs"
+                        ana="pdt:PSZS2-P1-------">našeho</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w12"
+                        lemma="jednací"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Gen|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS2----1A----">jednacího</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w12.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w13.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w13"
+                        lemma="řád"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A----">řádu</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w13.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w14.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w14"
+                        lemma="na"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">na</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w14.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w15.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w15"
+                        lemma="základ"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Loc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS6-----A----">základě</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w15.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w16.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w16"
+                        lemma="žádost"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">žádosti</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w16.ae"/>
+                     <num ana="ne:nc" xml:id="ps2021-056-01-000-000.ne6">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w17.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w17"
+                           lemma="48"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">48</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w17.ae"/>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w18.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s1.w18"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP2-----A----"
+                        join="right">poslanců</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s1.w18.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p3.s1.w19"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w2 #ps2021-056-01-000-000.u1.p3.s1.w1"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w4 #ps2021-056-01-000-000.u1.p3.s1.w2"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w4 #ps2021-056-01-000-000.u1.p3.s1.w3"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p3.s1 #ps2021-056-01-000-000.u1.p3.s1.w4"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w6 #ps2021-056-01-000-000.u1.p3.s1.w5"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w4 #ps2021-056-01-000-000.u1.p3.s1.w6"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w6 #ps2021-056-01-000-000.u1.p3.s1.w7"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w6 #ps2021-056-01-000-000.u1.p3.s1.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w8 #ps2021-056-01-000-000.u1.p3.s1.w9"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w8 #ps2021-056-01-000-000.u1.p3.s1.w10"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w13 #ps2021-056-01-000-000.u1.p3.s1.w11"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w13 #ps2021-056-01-000-000.u1.p3.s1.w12"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w6 #ps2021-056-01-000-000.u1.p3.s1.w13"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w16 #ps2021-056-01-000-000.u1.p3.s1.w14"/>
+                        <link ana="ud-syn:fixed"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w14 #ps2021-056-01-000-000.u1.p3.s1.w15"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w4 #ps2021-056-01-000-000.u1.p3.s1.w16"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w18 #ps2021-056-01-000-000.u1.p3.s1.w17"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w16 #ps2021-056-01-000-000.u1.p3.s1.w18"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p3.s1.w4 #ps2021-056-01-000-000.u1.p3.s1.w19"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2021-056-01-000-000.u1.p3.s2">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w1"
+                        lemma="pozvánka"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----">Pozvánka</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w2"
+                        lemma="ty"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Case=Dat|Number=Plur|Person=2|PronType=Prs"
+                        ana="pdt:PP-P3--2-------">vám</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w3"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">byla</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w4"
+                        lemma="rozeslaný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---">rozeslána</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w4.ae"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w5"
+                        lemma="v"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">v</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w6"
+                        lemma="pátek"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS4-----A----">pátek</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w6.ae"/>
+                     <date ana="ne:T" xml:id="ps2021-056-01-000-000.ne7">
+                        <date ana="ne:td" xml:id="ps2021-056-01-000-000.ne8">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w7.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w7"
+                              lemma="24"
+                              pos="NUM"
+                              msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                              ana="pdt:C=-------------"
+                              join="right">24</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w7.ae"/>
+                           <pc xml:id="ps2021-056-01-000-000.u1.p3.s2.w8"
+                               pos="PUNCT"
+                               msd="UPosTag=PUNCT"
+                               ana="pdt:Z:-------------">.</pc>
+                        </date>
+                        <date ana="ne:tm" xml:id="ps2021-056-01-000-000.ne9">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w9.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w9"
+                              lemma="únor"
+                              pos="NOUN"
+                              msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNIS2-----A---1">února</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w9.ae"/>
+                        </date>
+                     </date>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w10"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Masc,Neut|Number=Sing|PronType=Dem"
+                        ana="pdt:PDZS2----------">tohoto</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w10.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w11"
+                        lemma="rok"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Gen|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS2-----A---1">roku</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w12"
+                        lemma="elektronický"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Case=Ins|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAFS7----1A----">elektronickou</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w12.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w13.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p3.s2.w13"
+                        lemma="pošta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS7-----A----"
+                        join="right">poštou</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p3.s2.w13.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p3.s2.w14"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w4 #ps2021-056-01-000-000.u1.p3.s2.w1"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w4 #ps2021-056-01-000-000.u1.p3.s2.w2"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w4 #ps2021-056-01-000-000.u1.p3.s2.w3"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p3.s2 #ps2021-056-01-000-000.u1.p3.s2.w4"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w6 #ps2021-056-01-000-000.u1.p3.s2.w5"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w4 #ps2021-056-01-000-000.u1.p3.s2.w6"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w9 #ps2021-056-01-000-000.u1.p3.s2.w7"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w7 #ps2021-056-01-000-000.u1.p3.s2.w8"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w6 #ps2021-056-01-000-000.u1.p3.s2.w9"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w11 #ps2021-056-01-000-000.u1.p3.s2.w10"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w9 #ps2021-056-01-000-000.u1.p3.s2.w11"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w13 #ps2021-056-01-000-000.u1.p3.s2.w12"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w4 #ps2021-056-01-000-000.u1.p3.s2.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p3.s2.w4 #ps2021-056-01-000-000.u1.p3.s2.w14"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p4">
+                  <s xml:id="ps2021-056-01-000-000.u1.p4.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w1"
+                        lemma="nyní"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Dem"
+                        ana="pdt:Db-------------">Nyní</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w2"
+                        lemma="přistoupit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Perf|Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---1P-AA---">přistoupíme</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w2.ae"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w3"
+                        lemma="k"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Dat"
+                        ana="pdt:RR--3----------">k</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w4"
+                        lemma="určení"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Dat|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS3-----A----">určení</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w4.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w5"
+                        lemma="dva"
+                        pos="NUM"
+                        msd="UPosTag=NUM|Case=Gen|Number=Plur|NumForm=Word|NumType=Card|NumValue=1,2,3"
+                        ana="pdt:ClXP2----------">dvou</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w5.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w6"
+                        lemma="ověřovatel"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP2-----A----">ověřovatelů</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w6.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w7.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w7"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Fem|Number=Sing|PronType=Dem"
+                        ana="pdt:PDFS2----------">této</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w7.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w8.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s1.w8"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">schůze</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s1.w8.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p4.s1.w9"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w2 #ps2021-056-01-000-000.u1.p4.s1.w1"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p4.s1 #ps2021-056-01-000-000.u1.p4.s1.w2"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w4 #ps2021-056-01-000-000.u1.p4.s1.w3"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w2 #ps2021-056-01-000-000.u1.p4.s1.w4"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w6 #ps2021-056-01-000-000.u1.p4.s1.w5"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w4 #ps2021-056-01-000-000.u1.p4.s1.w6"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w8 #ps2021-056-01-000-000.u1.p4.s1.w7"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w6 #ps2021-056-01-000-000.u1.p4.s1.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p4.s1.w2 #ps2021-056-01-000-000.u1.p4.s1.w9"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2021-056-01-000-000.u1.p4.s2">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w1"
+                        lemma="navrhovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1"
+                        join="right">Navrhuji</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w1.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p4.s2.w2"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w3">abychom<w xml:id="ps2021-056-01-000-000.u1.p4.s2.w4"
+                           lemma="aby"
+                           pos="SCONJ"
+                           msd="UPosTag=SCONJ"
+                           ana="pdt:J,-------------"
+                           norm="aby"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w5"
+                           lemma="být"
+                           pos="AUX"
+                           msd="UPosTag=AUX|Mood=Cnd|Number=Plur|Person=1|VerbForm=Fin"
+                           ana="pdt:Vc-P---1-------"
+                           norm="bychom"/>
+                     </w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w6"
+                        lemma="určit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">určili</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w6.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w7.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w7"
+                        lemma="poslankyně"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">poslankyni</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w7.ae"/>
+                     <name ana="ne:P" xml:id="ps2021-056-01-000-000.ne10" type="PER">
+                        <name ana="ne:pf" xml:id="ps2021-056-01-000-000.ne11">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w8.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w8"
+                              lemma="Renáta"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Case=Acc|Gender=Fem|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNFS4-----A----">Renátu</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w8.ae"/>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2021-056-01-000-000.ne12">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w9.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w9"
+                              lemma="Zajíčková"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Case=Acc|Gender=Fem|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNFS4-----A----">Zajíčkovou</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w9.ae"/>
+                        </name>
+                     </name>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w10"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w10.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w11"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS4-----A----">poslance</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w11.ae"/>
+                     <name ana="ne:P" xml:id="ps2021-056-01-000-000.ne13" type="PER">
+                        <name ana="ne:pf" xml:id="ps2021-056-01-000-000.ne14">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w12.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w12"
+                              lemma="Stanislav"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Acc|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS4-----A----">Stanislava</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w12.ae"/>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2021-056-01-000-000.ne15">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w13.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p4.s2.w13"
+                              lemma="Berkovec"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Acc|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS4-----A----"
+                              join="right">Berkovce</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p4.s2.w13.ae"/>
+                        </name>
+                     </name>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p4.s2.w14"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p4.s2 #ps2021-056-01-000-000.u1.p4.s2.w1"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w6 #ps2021-056-01-000-000.u1.p4.s2.w2"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w6 #ps2021-056-01-000-000.u1.p4.s2.w4"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w6 #ps2021-056-01-000-000.u1.p4.s2.w5"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w1 #ps2021-056-01-000-000.u1.p4.s2.w6"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w6 #ps2021-056-01-000-000.u1.p4.s2.w7"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w7 #ps2021-056-01-000-000.u1.p4.s2.w8"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w7 #ps2021-056-01-000-000.u1.p4.s2.w9"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w11 #ps2021-056-01-000-000.u1.p4.s2.w10"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w7 #ps2021-056-01-000-000.u1.p4.s2.w11"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w11 #ps2021-056-01-000-000.u1.p4.s2.w12"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w11 #ps2021-056-01-000-000.u1.p4.s2.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p4.s2.w1 #ps2021-056-01-000-000.u1.p4.s2.w14"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2021-056-01-000-000.u1.p4.s3">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s3.w1"
+                        lemma="mít"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">Má</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s3.w2"
+                        lemma="někdo"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Anim|Case=Nom|Gender=Masc|PronType=Ind"
+                        ana="pdt:PZM-1----------">někdo</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s3.w3"
+                        lemma="jiný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Inan|Case=Acc|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:AAIS4----1A----">jiný</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p4.s3.w4"
+                        lemma="návrh"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS4-----A----"
+                        join="right">návrh</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p4.s3.w4.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p4.s3.w5"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">?</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p4.s3 #ps2021-056-01-000-000.u1.p4.s3.w1"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2021-056-01-000-000.u1.p4.s3.w1 #ps2021-056-01-000-000.u1.p4.s3.w2"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p4.s3.w4 #ps2021-056-01-000-000.u1.p4.s3.w3"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p4.s3.w1 #ps2021-056-01-000-000.u1.p4.s3.w4"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p4.s3.w1 #ps2021-056-01-000-000.u1.p4.s3.w5"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p5">
+                  <s xml:id="ps2021-056-01-000-000.u1.p5.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w1"
+                        lemma="pokud"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">Pokud</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w2"
+                        lemma="ten"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Dat|Gender=Masc,Neut|Number=Sing|PronType=Dem"
+                        ana="pdt:PDZS3----------">tomu</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w3"
+                        lemma="tak"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Dem"
+                        ana="pdt:Db-------------">tak</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w4"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=3|Polarity=Neg|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-NA---"
+                        join="right">není</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w4.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p5.s1.w5"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w6"
+                        lemma="dávat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---">dávám</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w6.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w7.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w7"
+                        lemma="hlasovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Polarity=Pos|VerbForm=Inf"
+                        ana="pdt:Vf--------A----">hlasovat</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w7.ae"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w8"
+                        lemma="o"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">o</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w9.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w9"
+                        lemma="navržený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Loc|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAMP6----1A----">navržených</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w9.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w10"
+                        lemma="ověřovatel"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Loc|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP6-----A----">ověřovatelích</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w10.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w11"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Fem|Number=Sing|PronType=Dem"
+                        ana="pdt:PDFS2----------">této</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p5.s1.w12"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">schůze</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p5.s1.w12.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p5.s1.w13"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:mark"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w4 #ps2021-056-01-000-000.u1.p5.s1.w1"/>
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w4 #ps2021-056-01-000-000.u1.p5.s1.w2"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w4 #ps2021-056-01-000-000.u1.p5.s1.w3"/>
+                        <link ana="ud-syn:advcl"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w6 #ps2021-056-01-000-000.u1.p5.s1.w4"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w4 #ps2021-056-01-000-000.u1.p5.s1.w5"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p5.s1 #ps2021-056-01-000-000.u1.p5.s1.w6"/>
+                        <link ana="ud-syn:xcomp"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w6 #ps2021-056-01-000-000.u1.p5.s1.w7"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w10 #ps2021-056-01-000-000.u1.p5.s1.w8"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w10 #ps2021-056-01-000-000.u1.p5.s1.w9"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w7 #ps2021-056-01-000-000.u1.p5.s1.w10"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w12 #ps2021-056-01-000-000.u1.p5.s1.w11"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w10 #ps2021-056-01-000-000.u1.p5.s1.w12"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p5.s1.w6 #ps2021-056-01-000-000.u1.p5.s1.w13"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p6">
+                  <s xml:id="ps2021-056-01-000-000.u1.p6.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p6.s1.w1"
+                        lemma="kdo"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Anim|Case=Nom|Gender=Masc|PronType=Int,Rel"
+                        ana="pdt:PKM-1----------">Kdo</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s1.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p6.s1.w2"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">je</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s1.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s1.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p6.s1.w3"
+                        lemma="pro"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------"
+                        join="right">pro</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s1.w3.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p6.s1.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">?</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2021-056-01-000-000.u1.p6.s1.w2 #ps2021-056-01-000-000.u1.p6.s1.w1"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p6.s1 #ps2021-056-01-000-000.u1.p6.s1.w2"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p6.s1.w2 #ps2021-056-01-000-000.u1.p6.s1.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p6.s1.w2 #ps2021-056-01-000-000.u1.p6.s1.w4"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2021-056-01-000-000.u1.p6.s2">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s2.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p6.s2.w1"
+                        lemma="kdo"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Anim|Case=Nom|Gender=Masc|PronType=Int,Rel"
+                        ana="pdt:PKM-1----------">Kdo</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s2.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s2.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p6.s2.w2"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3P-AA---">je</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s2.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s2.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p6.s2.w3"
+                        lemma="proti"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Dat"
+                        ana="pdt:RR--3----------"
+                        join="right">proti</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p6.s2.w3.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p6.s2.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">?</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nsubj"
+                              target="#ps2021-056-01-000-000.u1.p6.s2.w2 #ps2021-056-01-000-000.u1.p6.s2.w1"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p6.s2 #ps2021-056-01-000-000.u1.p6.s2.w2"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p6.s2.w2 #ps2021-056-01-000-000.u1.p6.s2.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p6.s2.w2 #ps2021-056-01-000-000.u1.p6.s2.w4"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p7">
+                  <s xml:id="ps2021-056-01-000-000.u1.p7.s1">
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w1"
+                        lemma="v"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Loc"
+                        ana="pdt:RR--6----------">V</w>
+                     <ref ana="#parla.voting"
+                          n="79869"
+                          target="https://www.psp.cz/sqw/hlasy.sqw?G=79869">
+                        <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w2"
+                           lemma="hlasování"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Loc|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                           ana="pdt:NNNS6-----A----">hlasování</w>
+                        <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w3"
+                           lemma="číslo"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNNS1-----A----">číslo</w>
+                        <num ana="ne:n_" xml:id="ps2021-056-01-000-000.ne16">
+                           <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w4"
+                              lemma="1"
+                              pos="NUM"
+                              msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                              ana="pdt:C=-------------">1</w>
+                        </num>
+                     </ref>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w5"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Neut|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpNS---XR-AA---">bylo</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w6"
+                        lemma="přihlášený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Gender=Neut|Number=Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsNS---XX-AP---">přihlášeno</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w6.ae"/>
+                     <num ana="ne:nc" xml:id="ps2021-056-01-000-000.ne17">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w7.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w7"
+                           lemma="160"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------">160</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w7.ae"/>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w8.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w8"
+                        lemma="přítomný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Animacy=Anim|Case=Gen|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:AAMP2----1A----"
+                        join="right">přítomných</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w8.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p7.s1.w9"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w10.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w10"
+                        lemma="pro"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">pro</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w10.ae"/>
+                     <num ana="ne:nc" xml:id="ps2021-056-01-000-000.ne18">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w11.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w11"
+                           lemma="159"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">159</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w11.ae"/>
+                     </num>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p7.s1.w12"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w13.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w13"
+                        lemma="proti"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Dat"
+                        ana="pdt:RR--3----------">proti</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w13.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w14.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s1.w14"
+                        lemma="nikdo"
+                        pos="PRON"
+                        msd="UPosTag=PRON|Animacy=Anim|Case=Nom|Gender=Masc|PronType=Neg"
+                        ana="pdt:PWM-1----------"
+                        join="right">nikdo</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s1.w14.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p7.s1.w15"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w2 #ps2021-056-01-000-000.u1.p7.s1.w1"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w6 #ps2021-056-01-000-000.u1.p7.s1.w2"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w2 #ps2021-056-01-000-000.u1.p7.s1.w3"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w3 #ps2021-056-01-000-000.u1.p7.s1.w4"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w6 #ps2021-056-01-000-000.u1.p7.s1.w5"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p7.s1 #ps2021-056-01-000-000.u1.p7.s1.w6"/>
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w6 #ps2021-056-01-000-000.u1.p7.s1.w7"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w7 #ps2021-056-01-000-000.u1.p7.s1.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w11 #ps2021-056-01-000-000.u1.p7.s1.w9"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w11 #ps2021-056-01-000-000.u1.p7.s1.w10"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w6 #ps2021-056-01-000-000.u1.p7.s1.w11"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w11 #ps2021-056-01-000-000.u1.p7.s1.w12"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w14 #ps2021-056-01-000-000.u1.p7.s1.w13"/>
+                        <link ana="ud-syn:orphan"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w11 #ps2021-056-01-000-000.u1.p7.s1.w14"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p7.s1.w6 #ps2021-056-01-000-000.u1.p7.s1.w15"/>
+                     </linkGrp>
+                  </s>
+                  <s xml:id="ps2021-056-01-000-000.u1.p7.s2">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s2.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s2.w1"
+                        lemma="návrh"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNIS1-----A----">Návrh</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s2.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s2.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s2.w2"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Masc|Number=Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpYS---XR-AA---">byl</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s2.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s2.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p7.s2.w3"
+                        lemma="přijatý"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Gender=Masc|Number=Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsYS---XX-AP---"
+                        join="right">přijat</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p7.s2.w3.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p7.s2.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2021-056-01-000-000.u1.p7.s2.w3 #ps2021-056-01-000-000.u1.p7.s2.w1"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p7.s2.w3 #ps2021-056-01-000-000.u1.p7.s2.w2"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p7.s2 #ps2021-056-01-000-000.u1.p7.s2.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p7.s2.w3 #ps2021-056-01-000-000.u1.p7.s2.w4"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p8">
+                  <s xml:id="ps2021-056-01-000-000.u1.p8.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w1"
+                        lemma="konstatovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1"
+                        join="right">Konstatuji</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w1.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p8.s1.w2"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w3"
+                        lemma="že"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">že</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w3.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w4.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w4"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Plur|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-P---1P-AA---">jsme</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w4.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w5"
+                        lemma="ověřovatel"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Ins|Gender=Masc|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNMP7-----A----">ověřovateli</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w5.ae"/>
+                     <num ana="ne:no" xml:id="ps2021-056-01-000-000.ne19">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w6.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w6"
+                           lemma="56"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">56</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w6.ae"/>
+                        <pc xml:id="ps2021-056-01-000-000.u1.p8.s1.w7"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w8.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w8"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----">schůze</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w8.ae"/>
+                     <name ana="ne:io" xml:id="ps2021-056-01-000-000.ne20" type="ORG">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w9.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w9"
+                           lemma="poslanecký"
+                           pos="ADJ"
+                           msd="UPosTag=ADJ|Case=Gen|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:AAFS2----1A----">Poslanecké</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w9.ae"/>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w10.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w10"
+                           lemma="sněmovna"
+                           pos="NOUN"
+                           msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                           ana="pdt:NNFS2-----A----">sněmovny</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w10.ae"/>
+                     </name>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w11"
+                        lemma="určit"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpMP---XR-AA---">určili</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w12"
+                        lemma="poslankyně"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">poslankyni</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w12.ae"/>
+                     <name ana="ne:P" xml:id="ps2021-056-01-000-000.ne21" type="PER">
+                        <name ana="ne:pf" xml:id="ps2021-056-01-000-000.ne22">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w13.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w13"
+                              lemma="Renáta"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Case=Acc|Gender=Fem|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNFS4-----A----">Renátu</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w13.ae"/>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2021-056-01-000-000.ne23">
+                           <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w14"
+                              lemma="Zajíčková"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Case=Acc|Gender=Fem|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNFS4-----A----">Zajíčkovou</w>
+                        </name>
+                     </name>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w15.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w15"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w15.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w16.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w16"
+                        lemma="poslanec"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Animacy=Anim|Case=Acc|Gender=Masc|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNMS4-----A----">poslance</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w16.ae"/>
+                     <name ana="ne:P" xml:id="ps2021-056-01-000-000.ne24" type="PER">
+                        <name ana="ne:pf" xml:id="ps2021-056-01-000-000.ne25">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w17.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w17"
+                              lemma="Stanislav"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Acc|Gender=Masc|NameType=Giv|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS4-----A----">Stanislava</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w17.ae"/>
+                        </name>
+                        <name ana="ne:ps" xml:id="ps2021-056-01-000-000.ne26">
+                           <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w18.ab"/>
+                           <w xml:id="ps2021-056-01-000-000.u1.p8.s1.w18"
+                              lemma="Berkovec"
+                              pos="PROPN"
+                              msd="UPosTag=PROPN|Animacy=Anim|Case=Acc|Gender=Masc|NameType=Sur|Number=Sing|Polarity=Pos"
+                              ana="pdt:NNMS4-----A----"
+                              join="right">Berkovce</w>
+                           <anchor synch="#ps2021-056-01-000-000.u1.p8.s1.w18.ae"/>
+                        </name>
+                     </name>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p8.s1.w19"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p8.s1 #ps2021-056-01-000-000.u1.p8.s1.w1"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w11 #ps2021-056-01-000-000.u1.p8.s1.w2"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w11 #ps2021-056-01-000-000.u1.p8.s1.w3"/>
+                        <link ana="ud-syn:aux"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w11 #ps2021-056-01-000-000.u1.p8.s1.w4"/>
+                        <link ana="ud-syn:obl_arg"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w11 #ps2021-056-01-000-000.u1.p8.s1.w5"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w8 #ps2021-056-01-000-000.u1.p8.s1.w6"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w6 #ps2021-056-01-000-000.u1.p8.s1.w7"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w5 #ps2021-056-01-000-000.u1.p8.s1.w8"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w10 #ps2021-056-01-000-000.u1.p8.s1.w9"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w8 #ps2021-056-01-000-000.u1.p8.s1.w10"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w1 #ps2021-056-01-000-000.u1.p8.s1.w11"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w11 #ps2021-056-01-000-000.u1.p8.s1.w12"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w12 #ps2021-056-01-000-000.u1.p8.s1.w13"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w12 #ps2021-056-01-000-000.u1.p8.s1.w14"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w16 #ps2021-056-01-000-000.u1.p8.s1.w15"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w12 #ps2021-056-01-000-000.u1.p8.s1.w16"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w16 #ps2021-056-01-000-000.u1.p8.s1.w17"/>
+                        <link ana="ud-syn:flat"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w16 #ps2021-056-01-000-000.u1.p8.s1.w18"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p8.s1.w1 #ps2021-056-01-000-000.u1.p8.s1.w19"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+               <seg xml:id="ps2021-056-01-000-000.u1.p9">
+                  <s xml:id="ps2021-056-01-000-000.u1.p9.s1">
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w1.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w1"
+                        lemma="nyní"
+                        pos="ADV"
+                        msd="UPosTag=ADV|PronType=Dem"
+                        ana="pdt:Db-------------">Nyní</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w1.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w2.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w2"
+                        lemma="dle"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Gen"
+                        ana="pdt:RR--2----------">dle</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w2.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w3.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w3"
+                        lemma="dohoda"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">dohody</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w3.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w4"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w5.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w5"
+                        lemma="který"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Nom|Gender=Fem|Number=Sing|PronType=Int,Rel"
+                        ana="pdt:P4FS1----------">která</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w5.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w6.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w6"
+                        lemma="již"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">již</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w6.ae"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w7"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act"
+                        ana="pdt:VpQW---XR-AA---">byla</w>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w8"
+                        lemma="avizovaný"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Aspect=Imp|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---"
+                        join="right">avizována</w>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w9"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w10"
+                        lemma="přerušovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1">přerušuji</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w11.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w11"
+                        lemma="projednávání"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Neut|Number=Sing|Polarity=Pos|VerbForm=Vnoun"
+                        ana="pdt:NNNS4-----A----">projednávání</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w11.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w12.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w12"
+                        lemma="tento"
+                        pos="DET"
+                        msd="UPosTag=DET|Case=Gen|Gender=Fem|Number=Sing|PronType=Dem"
+                        ana="pdt:PDFS2----------">této</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w12.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w13.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w13"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS2-----A----"
+                        join="right">schůze</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w13.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w14"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w15.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w15"
+                        lemma="tedy"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">tedy</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w15.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w16.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w16"
+                        lemma="přerušovat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA--1">přerušuji</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w16.ae"/>
+                     <num ana="ne:no" xml:id="ps2021-056-01-000-000.ne27">
+                        <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w17"
+                           lemma="56"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">56</w>
+                        <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w18"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w19.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w19"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Acc|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS4-----A----">schůzi</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w19.ae"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w20"
+                        lemma="a"
+                        pos="CCONJ"
+                        msd="UPosTag=CCONJ"
+                        ana="pdt:J^-------------">a</w>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w21"
+                        lemma="připomínat"
+                        pos="VERB"
+                        msd="UPosTag=VERB|Aspect=Imp|Mood=Ind|Number=Sing|Person=1|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---1P-AA---"
+                        join="right">připomínám</w>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w22"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">,</pc>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w23"
+                        lemma="že"
+                        pos="SCONJ"
+                        msd="UPosTag=SCONJ"
+                        ana="pdt:J,-------------">že</w>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w24"
+                        lemma="zhruba"
+                        pos="ADV"
+                        msd="UPosTag=ADV"
+                        ana="pdt:Db-------------">zhruba</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w25.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w25"
+                        lemma="za"
+                        pos="ADP"
+                        msd="UPosTag=ADP|AdpType=Prep|Case=Acc"
+                        ana="pdt:RR--4----------">za</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w25.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w26.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w26"
+                        lemma="pět"
+                        pos="NUM"
+                        msd="UPosTag=NUM|Case=Acc|Number=Sing|NumForm=Word|NumType=Card"
+                        ana="pdt:Cn-S4----------">pět</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w26.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w27.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w27"
+                        lemma="minuta"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Gen|Gender=Fem|Number=Plur|Polarity=Pos"
+                        ana="pdt:NNFP2-----A----">minut</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w27.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w28.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w28"
+                        lemma="být"
+                        pos="AUX"
+                        msd="UPosTag=AUX|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Fut|VerbForm=Fin|Voice=Act"
+                        ana="pdt:VB-S---3F-AA---">bude</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w28.ae"/>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w29.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w29"
+                        lemma="zahájený"
+                        pos="ADJ"
+                        msd="UPosTag=ADJ|Aspect=Perf|Gender=Fem,Neut|Number=Plur,Sing|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass"
+                        ana="pdt:VsQW---XX-AP---">zahájena</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w29.ae"/>
+                     <num ana="ne:no" xml:id="ps2021-056-01-000-000.ne28">
+                        <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w30.ab"/>
+                        <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w30"
+                           lemma="57"
+                           pos="NUM"
+                           msd="UPosTag=NUM|NumForm=Digit|NumType=Card"
+                           ana="pdt:C=-------------"
+                           join="right">57</w>
+                        <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w30.ae"/>
+                        <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w31"
+                            pos="PUNCT"
+                            msd="UPosTag=PUNCT"
+                            ana="pdt:Z:-------------">.</pc>
+                     </num>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w32.ab"/>
+                     <w xml:id="ps2021-056-01-000-000.u1.p9.s1.w32"
+                        lemma="schůze"
+                        pos="NOUN"
+                        msd="UPosTag=NOUN|Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos"
+                        ana="pdt:NNFS1-----A----"
+                        join="right">schůze</w>
+                     <anchor synch="#ps2021-056-01-000-000.u1.p9.s1.w32.ae"/>
+                     <pc xml:id="ps2021-056-01-000-000.u1.p9.s1.w33"
+                         pos="PUNCT"
+                         msd="UPosTag=PUNCT"
+                         ana="pdt:Z:-------------">.</pc>
+                     <linkGrp targFunc="head argument" type="UD-SYN">
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w10 #ps2021-056-01-000-000.u1.p9.s1.w1"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w3 #ps2021-056-01-000-000.u1.p9.s1.w2"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w10 #ps2021-056-01-000-000.u1.p9.s1.w3"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w8 #ps2021-056-01-000-000.u1.p9.s1.w4"/>
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w8 #ps2021-056-01-000-000.u1.p9.s1.w5"/>
+                        <link ana="ud-syn:advmod"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w8 #ps2021-056-01-000-000.u1.p9.s1.w6"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w8 #ps2021-056-01-000-000.u1.p9.s1.w7"/>
+                        <link ana="ud-syn:amod"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w3 #ps2021-056-01-000-000.u1.p9.s1.w8"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w8 #ps2021-056-01-000-000.u1.p9.s1.w9"/>
+                        <link ana="ud-syn:root"
+                              target="#ps2021-056-01-000-000.u1.p9.s1 #ps2021-056-01-000-000.u1.p9.s1.w10"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w10 #ps2021-056-01-000-000.u1.p9.s1.w11"/>
+                        <link ana="ud-syn:det"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w13 #ps2021-056-01-000-000.u1.p9.s1.w12"/>
+                        <link ana="ud-syn:nmod"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w11 #ps2021-056-01-000-000.u1.p9.s1.w13"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w16 #ps2021-056-01-000-000.u1.p9.s1.w14"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w16 #ps2021-056-01-000-000.u1.p9.s1.w15"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w10 #ps2021-056-01-000-000.u1.p9.s1.w16"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w19 #ps2021-056-01-000-000.u1.p9.s1.w17"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w17 #ps2021-056-01-000-000.u1.p9.s1.w18"/>
+                        <link ana="ud-syn:obj"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w16 #ps2021-056-01-000-000.u1.p9.s1.w19"/>
+                        <link ana="ud-syn:cc"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w21 #ps2021-056-01-000-000.u1.p9.s1.w20"/>
+                        <link ana="ud-syn:conj"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w10 #ps2021-056-01-000-000.u1.p9.s1.w21"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w29 #ps2021-056-01-000-000.u1.p9.s1.w22"/>
+                        <link ana="ud-syn:mark"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w29 #ps2021-056-01-000-000.u1.p9.s1.w23"/>
+                        <link ana="ud-syn:advmod_emph"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w26 #ps2021-056-01-000-000.u1.p9.s1.w24"/>
+                        <link ana="ud-syn:case"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w27 #ps2021-056-01-000-000.u1.p9.s1.w25"/>
+                        <link ana="ud-syn:nummod_gov"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w27 #ps2021-056-01-000-000.u1.p9.s1.w26"/>
+                        <link ana="ud-syn:obl"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w29 #ps2021-056-01-000-000.u1.p9.s1.w27"/>
+                        <link ana="ud-syn:aux_pass"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w29 #ps2021-056-01-000-000.u1.p9.s1.w28"/>
+                        <link ana="ud-syn:ccomp"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w21 #ps2021-056-01-000-000.u1.p9.s1.w29"/>
+                        <link ana="ud-syn:nummod"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w32 #ps2021-056-01-000-000.u1.p9.s1.w30"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w30 #ps2021-056-01-000-000.u1.p9.s1.w31"/>
+                        <link ana="ud-syn:nsubj_pass"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w29 #ps2021-056-01-000-000.u1.p9.s1.w32"/>
+                        <link ana="ud-syn:punct"
+                              target="#ps2021-056-01-000-000.u1.p9.s1.w10 #ps2021-056-01-000-000.u1.p9.s1.w33"/>
+                     </linkGrp>
+                  </s>
+               </seg>
+            </u>
+            <note type="time">
+               <time when="2023-03-04T00:20:00">(Schůze přerušena v 0.20 hodin.)</time>
+            </note>
+         </div>
+         <timeline unit="ms"
+                   origin="#ps2021-056-01-000-000.audio1.origin"
+                   corresp="#ps2021-056-01-000-000.audio1"
+                   cert="0">
+            <when xml:id="ps2021-056-01-000-000.audio1.origin"
+                  absolute="2023-03-04T00:08:00"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w1.ab"
+                  interval="600980.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w1.ae"
+                  interval="601340.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w2.ab"
+                  interval="601350.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w2.ae"
+                  interval="601580.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w3.ab"
+                  interval="601590.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w3.ae"
+                  interval="602260.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w5.ab"
+                  interval="602270.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w5.ae"
+                  interval="602640.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w6.ab"
+                  interval="602650.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w6.ae"
+                  interval="602910.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w7.ab"
+                  interval="602920.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w7.ae"
+                  interval="603460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w9.ab"
+                  interval="603470.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w9.ae"
+                  interval="603820.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w10.ab"
+                  interval="603830.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w10.ae"
+                  interval="604210.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w11.ab"
+                  interval="604220.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w11.ae"
+                  interval="604770.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w13.ab"
+                  interval="605130.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w13.ae"
+                  interval="605620.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w14.ab"
+                  interval="605630.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w14.ae"
+                  interval="606170.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w16.ab"
+                  interval="606520.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w16.ae"
+                  interval="606840.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w17.ab"
+                  interval="606850.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w17.ae"
+                  interval="607430.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w18.ab"
+                  interval="607440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p1.s1.w18.ae"
+                  interval="608160.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w1.ab"
+                  interval="608550.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w1.ae"
+                  interval="608650.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w4.ab"
+                  interval="608660.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w4.ae"
+                  interval="608930.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w5.ab"
+                  interval="608940.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w5.ae"
+                  interval="609500.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w6.ab"
+                  interval="609890.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w6.ae"
+                  interval="609970.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w7.ab"
+                  interval="609980.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w7.ae"
+                  interval="610670.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w9.ab"
+                  interval="610950.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w9.ae"
+                  interval="611300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w10.ab"
+                  interval="611310.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w10.ae"
+                  interval="611440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w11.ab"
+                  interval="611450.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w11.ae"
+                  interval="611650.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w12.ab"
+                  interval="611660.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w12.ae"
+                  interval="611910.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w13.ab"
+                  interval="611920.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w13.ae"
+                  interval="612530.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w15.ab"
+                  interval="612540.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w15.ae"
+                  interval="612910.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w17.ab"
+                  interval="612920.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w17.ae"
+                  interval="613210.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w20.ab"
+                  interval="613220.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w20.ae"
+                  interval="613550.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w21.ab"
+                  interval="613970.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w21.ae"
+                  interval="614820.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w22.ab"
+                  interval="615440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w22.ae"
+                  interval="615940.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w23.ab"
+                  interval="615950.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w23.ae"
+                  interval="616900.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w24.ab"
+                  interval="616910.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s1.w24.ae"
+                  interval="617460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w1.ab"
+                  interval="618370.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w1.ae"
+                  interval="618830.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w2.ab"
+                  interval="618840.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w2.ae"
+                  interval="619210.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w3.ab"
+                  interval="619220.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w3.ae"
+                  interval="619290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w4.ab"
+                  interval="619300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w4.ae"
+                  interval="619540.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w5.ab"
+                  interval="619550.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w5.ae"
+                  interval="619950.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w6.ab"
+                  interval="619960.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w6.ae"
+                  interval="620310.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w7.ab"
+                  interval="620320.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w7.ae"
+                  interval="620720.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w9.ab"
+                  interval="620730.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w9.ae"
+                  interval="620970.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w10.ab"
+                  interval="620980.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w10.ae"
+                  interval="621180.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w11.ab"
+                  interval="621190.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w11.ae"
+                  interval="621680.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w12.ab"
+                  interval="621690.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w12.ae"
+                  interval="622000.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w13.ab"
+                  interval="622010.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w13.ae"
+                  interval="622700.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w15.ab"
+                  interval="623070.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w15.ae"
+                  interval="623690.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w17.ab"
+                  interval="624080.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w17.ae"
+                  interval="624590.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w18.ab"
+                  interval="624600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w18.ae"
+                  interval="624880.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w19.ab"
+                  interval="625920.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w19.ae"
+                  interval="626270.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w20.ab"
+                  interval="626780.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w20.ae"
+                  interval="627290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w21.ab"
+                  interval="627300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w21.ae"
+                  interval="627790.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w22.ab"
+                  interval="627800.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p2.s2.w22.ae"
+                  interval="628560.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w1.ab"
+                  interval="629280.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w1.ae"
+                  interval="629460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w2.ab"
+                  interval="629470.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w2.ae"
+                  interval="630090.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w3.ab"
+                  interval="630100.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w3.ae"
+                  interval="630320.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w4.ab"
+                  interval="630330.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w4.ae"
+                  interval="630800.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w5.ab"
+                  interval="630810.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w5.ae"
+                  interval="631280.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w6.ab"
+                  interval="631290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w6.ae"
+                  interval="631780.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w7.ab"
+                  interval="631790.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w7.ae"
+                  interval="632520.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w8.ab"
+                  interval="632530.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w8.ae"
+                  interval="632900.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w10.ab"
+                  interval="632910.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w10.ae"
+                  interval="633580.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w11.ab"
+                  interval="633760.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w11.ae"
+                  interval="634060.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w12.ab"
+                  interval="634070.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w12.ae"
+                  interval="634560.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w13.ab"
+                  interval="634570.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w13.ae"
+                  interval="635020.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w14.ab"
+                  interval="635410.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w14.ae"
+                  interval="635510.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w15.ab"
+                  interval="635520.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w15.ae"
+                  interval="636020.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w16.ab"
+                  interval="636030.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w16.ae"
+                  interval="636600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w17.ab"
+                  interval="636610.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w17.ae"
+                  interval="637660.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w18.ab"
+                  interval="637670.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s1.w18.ae"
+                  interval="638440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w1.ab"
+                  interval="638870.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w1.ae"
+                  interval="639330.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w2.ab"
+                  interval="639340.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w2.ae"
+                  interval="639510.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w3.ab"
+                  interval="639520.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w3.ae"
+                  interval="639690.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w4.ab"
+                  interval="639700.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w4.ae"
+                  interval="640300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w6.ab"
+                  interval="640310.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w6.ae"
+                  interval="640730.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w7.ab"
+                  interval="640740.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w7.ae"
+                  interval="641190.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w9.ab"
+                  interval="641720.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w9.ae"
+                  interval="642070.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w10.ab"
+                  interval="642080.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w10.ae"
+                  interval="642350.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w11.ab"
+                  interval="642360.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w11.ae"
+                  interval="642620.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w12.ab"
+                  interval="642630.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w12.ae"
+                  interval="643280.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w13.ab"
+                  interval="643290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p3.s2.w13.ae"
+                  interval="643790.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w1.ab"
+                  interval="644340.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w1.ae"
+                  interval="644540.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w2.ab"
+                  interval="644550.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w2.ae"
+                  interval="645350.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w4.ab"
+                  interval="645420.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w4.ae"
+                  interval="646140.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w5.ab"
+                  interval="646150.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w5.ae"
+                  interval="646450.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w6.ab"
+                  interval="646460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w6.ae"
+                  interval="647180.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w7.ab"
+                  interval="647190.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w7.ae"
+                  interval="647440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w8.ab"
+                  interval="647450.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s1.w8.ae"
+                  interval="648000.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w1.ab"
+                  interval="648500.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w1.ae"
+                  interval="648930.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w3.ab"
+                  interval="648940.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w3.ae"
+                  interval="649290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w6.ab"
+                  interval="649300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w6.ae"
+                  interval="649600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w7.ab"
+                  interval="649610.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w7.ae"
+                  interval="650130.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w8.ab"
+                  interval="650140.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w8.ae"
+                  interval="650460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w9.ab"
+                  interval="650470.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w9.ae"
+                  interval="651200.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w10.ab"
+                  interval="651210.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w10.ae"
+                  interval="651310.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w11.ab"
+                  interval="651320.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w11.ae"
+                  interval="651680.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w12.ab"
+                  interval="651690.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w12.ae"
+                  interval="652390.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w13.ab"
+                  interval="652400.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s2.w13.ae"
+                  interval="653040.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w1.ab"
+                  interval="653340.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w1.ae"
+                  interval="653430.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w2.ab"
+                  interval="653440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w2.ae"
+                  interval="653720.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w3.ab"
+                  interval="653730.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w3.ae"
+                  interval="653950.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w4.ab"
+                  interval="653960.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p4.s3.w4.ae"
+                  interval="654350.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w1.ab"
+                  interval="655710.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w1.ae"
+                  interval="655790.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w2.ab"
+                  interval="655800.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w2.ae"
+                  interval="655950.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w3.ab"
+                  interval="655960.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w3.ae"
+                  interval="656190.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w4.ab"
+                  interval="656200.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w4.ae"
+                  interval="656720.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w6.ab"
+                  interval="657350.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w6.ae"
+                  interval="657610.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w7.ab"
+                  interval="657620.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w7.ae"
+                  interval="658540.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w9.ab"
+                  interval="658960.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w9.ae"
+                  interval="659950.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w10.ab"
+                  interval="660620.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w10.ae"
+                  interval="661460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w11.ab"
+                  interval="661530.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w11.ae"
+                  interval="661760.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w12.ab"
+                  interval="661770.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p5.s1.w12.ae"
+                  interval="662280.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s1.w1.ab"
+                  interval="662290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s1.w1.ae"
+                  interval="662470.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s1.w2.ab"
+                  interval="662480.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s1.w2.ae"
+                  interval="662600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s1.w3.ab"
+                  interval="662610.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s1.w3.ae"
+                  interval="662980.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s2.w1.ab"
+                  interval="666430.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s2.w1.ae"
+                  interval="666510.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s2.w2.ab"
+                  interval="667450.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s2.w2.ae"
+                  interval="667720.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s2.w3.ab"
+                  interval="667730.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p6.s2.w3.ae"
+                  interval="668270.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w6.ab"
+                  interval="676020.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w6.ae"
+                  interval="676370.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w7.ab"
+                  interval="679070.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w7.ae"
+                  interval="679700.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w8.ab"
+                  interval="679710.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w8.ae"
+                  interval="680290.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w10.ab"
+                  interval="680300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w10.ae"
+                  interval="680550.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w11.ab"
+                  interval="680560.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w11.ae"
+                  interval="681310.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w13.ab"
+                  interval="681320.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w13.ae"
+                  interval="681640.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w14.ab"
+                  interval="681650.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s1.w14.ae"
+                  interval="682130.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s2.w1.ab"
+                  interval="682140.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s2.w1.ae"
+                  interval="682550.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s2.w2.ab"
+                  interval="682560.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s2.w2.ae"
+                  interval="682700.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s2.w3.ab"
+                  interval="682710.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p7.s2.w3.ae"
+                  interval="683080.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w1.ab"
+                  interval="683460.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w1.ae"
+                  interval="684200.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w3.ab"
+                  interval="684210.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w3.ae"
+                  interval="684360.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w4.ab"
+                  interval="684370.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w4.ae"
+                  interval="684660.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w5.ab"
+                  interval="684670.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w5.ae"
+                  interval="685370.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w6.ab"
+                  interval="686410.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w6.ae"
+                  interval="686650.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w8.ab"
+                  interval="686660.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w8.ae"
+                  interval="687070.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w9.ab"
+                  interval="687080.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w9.ae"
+                  interval="687590.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w10.ab"
+                  interval="687600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w10.ae"
+                  interval="688130.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w11.ab"
+                  interval="688140.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w11.ae"
+                  interval="688610.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w12.ab"
+                  interval="688880.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w12.ae"
+                  interval="689450.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w13.ab"
+                  interval="689990.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w13.ae"
+                  interval="690330.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w15.ab"
+                  interval="690340.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w15.ae"
+                  interval="690440.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w16.ab"
+                  interval="690450.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w16.ae"
+                  interval="690790.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w17.ab"
+                  interval="690800.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w17.ae"
+                  interval="691360.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w18.ab"
+                  interval="691370.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p8.s1.w18.ae"
+                  interval="691990.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w1.ab"
+                  interval="692600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w1.ae"
+                  interval="693120.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w2.ab"
+                  interval="693240.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w2.ae"
+                  interval="693540.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w3.ab"
+                  interval="693570.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w3.ae"
+                  interval="694220.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w5.ab"
+                  interval="694230.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w5.ae"
+                  interval="694370.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w6.ab"
+                  interval="696590.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w6.ae"
+                  interval="697050.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w11.ab"
+                  interval="697060.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w11.ae"
+                  interval="698130.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w12.ab"
+                  interval="698310.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w12.ae"
+                  interval="698830.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w13.ab"
+                  interval="698840.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w13.ae"
+                  interval="699600.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w15.ab"
+                  interval="703910.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w15.ae"
+                  interval="704030.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w16.ab"
+                  interval="705200.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w16.ae"
+                  interval="705580.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w19.ab"
+                  interval="705590.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w19.ae"
+                  interval="706050.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w25.ab"
+                  interval="706300.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w25.ae"
+                  interval="706400.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w26.ab"
+                  interval="709070.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w26.ae"
+                  interval="709330.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w27.ab"
+                  interval="709340.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w27.ae"
+                  interval="709880.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w28.ab"
+                  interval="709890.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w28.ae"
+                  interval="710100.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w29.ab"
+                  interval="710110.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w29.ae"
+                  interval="710860.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w30.ab"
+                  interval="710870.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w30.ae"
+                  interval="712260.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w32.ab"
+                  interval="712270.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+            <when xml:id="ps2021-056-01-000-000.u1.p9.s1.w32.ae"
+                  interval="712790.0"
+                  since="#ps2021-056-01-000-000.audio1.origin"/>
+         </timeline>
+      </body>
+   </text>
+</TEI>
