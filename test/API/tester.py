@@ -10,7 +10,7 @@ args_parser.add_argument("--source_dir", type=str, default="examples/inputs/",
 args_parser.add_argument("--target_dir", type=str, default="examples/actual/", 
                          help="Directory where to store the results of queries.")
 args_parser.add_argument("--specific", type=str, default=None, help="Specific query path.")
-
+args_parser.add_argument("--expected", type=str, default=None, help="Path to the expected result file.")
 
 my_venv = "../../../bakalarka/bin/python3"
 server = "../../api/Server2_1.py"
@@ -21,7 +21,27 @@ def main(args):
     time.sleep(2)
     try:
         if (args.specific):
-            ...
+            try:
+                assert args.expected is not None
+            except AssertionError:
+                print("Missing the expected output.")
+                return 
+            print("---TESTING SPECIFIC QUERY---")
+            client_process = subprocess.run([my_venv, client, f"--specific_query={args.specific}"], capture_output=True, text=True)
+            actual = client_process.stdout.strip()
+            f1 = open(args.expected, 'r')
+            expected = f1.read().strip()
+
+            if (actual == expected):
+                print(f"Query {args.specific}: PASSED!")
+            else:
+                diff = difflib.unified_diff(expected.splitlines(), actual.splitlines(),
+                                            fromfile='expected', tofile='actual', lineterm='')
+                print(f"Query {args.specific}: FAILED!")
+                print("------------------------------")
+                for line in diff:
+                    print(line)
+                print("------------------------------")
         else:
             print("---TESTING ALL QUERIES AT ONCE---")
             client_process = subprocess.run([my_venv, client, f"--query_source={args.source_dir}",

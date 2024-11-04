@@ -67,10 +67,11 @@ class Client2():
             print("Nothing to graph.")
     
     def run_specific(self, specific_query):
-        print(f"Processing {specific_query} ...")
+        # print(f"Processing {specific_query} ...")
         description, result = self.__process_query(specific_query)
-        print(f"Result for {specific_query}:")
-        print(description)
+        # print(f"Result for {specific_query}:")
+
+        res=None
         if self.interactive:
             graph = input("Would you like to graph the results?(Y/n)")
             if graph == 'Y':
@@ -82,9 +83,10 @@ class Client2():
                     print(res)
         else:
             for res in result:
-                res = self.__adjust_results(res)
                 print(res)
-        
+                print()
+                res = self.__adjust_results(res)
+                print(res)       
 
     def run(self):
         for filename in os.listdir(self.QueryDir):
@@ -100,12 +102,11 @@ class Client2():
                             self.__graph_results(description, result)
                         else:
                             print(f"Result for {query_file}:")
-                            print("here")
                             print(self.__adjust_results(result))
                     
                     else:
-                        #print(f"Result for {query_file}:")
-                        #print(self.__adjust_results(result))
+                        print(f"Result for {query_file}:")
+                        print(self.__adjust_results(result))
                     if self.target_dir:
                         with open(f"{self.target_dir}{filename[:-5]}_result.txt", 'w') as file:
                             print(result, file=file)
