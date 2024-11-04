@@ -122,10 +122,10 @@ class speechParser2:
                 if row['ID'] not in invalid_speeches:
                     if (len(timestamps_info) > 0):
                         utterance.loadTimestampsInfo(timestamps_info[current_speech])    
-                    if (not row["personID"] in result):
-                        result[row["personID"]] = [utterance]
-                    else:
-                        result[row["personID"]].append(utterance)
+                if (not row["personID"] in result):
+                    result[row["personID"]] = [utterance]
+                else:
+                    result[row["personID"]].append(utterance)
                 
                 current_speech += 1
         return result

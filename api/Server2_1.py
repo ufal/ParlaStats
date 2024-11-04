@@ -37,7 +37,7 @@ app.json = CustomJSONProvider(app)
 
 args_parser = ArgumentParser()
 
-args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/databaseCS.ini", help="connection parameters")
+args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/", help="connection parameters")
     
 args = args_parser.parse_args()
 
