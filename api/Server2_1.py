@@ -204,7 +204,7 @@ def query():
             connection.close()
             final_step_name = json_query['steps'][-1]['goal']
             results = step_results[final_step_name]
-            columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['filtering']['columns']]
+            columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
             response = [dict(zip(columns, row)) for row in results]
        
             res.append(format_output(response))
