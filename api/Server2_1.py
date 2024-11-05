@@ -114,11 +114,11 @@ def connect_to_database(db_ini_path=args.db):
         print(error)
 
 def SQLBuilder(json_query, step_results):
-    columns = ", ".join(json_query["filtering"]["columns"])
+    columns = ", ".join(json_query["columns"])
     sql_query = f"SELECT {columns} FROM person "
     
     # Get necessary joins
-    joins = determine_joins(json_query["filtering"]["columns"],
+    joins = determine_joins(json_query["columns"],
                             json_query["filtering"]["conditions"],
                             json_query["aggregation"]["group_by"])
 
@@ -154,7 +154,7 @@ def SQLBuilder(json_query, step_results):
         sql_query += order_clause
 
     # LIMIT
-    limit = json_query["filtering"]["limit"]
+    limit = json_query["limit"]
     if limit:
         limit_clause = f" LIMIT {limit}"
         sql_query += limit_clause

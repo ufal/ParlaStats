@@ -4,23 +4,23 @@
 	"steps":[
 		{
 			"goal":"main",
+			"columns":["persName.forename","persName.surname", "person.person_id", "COUNT(speech.id) AS total_speeches"],
 			"aggregation": {
 				"group_by":["persName.forename", "persName.surname",
 							"person.person_id"],
 				"order_by":[]
 			},
 			"filtering": {
-				"columns":["persName.forename","persName.surname", 
-						   "person.person_id", "COUNT(speech.id) AS total_speeches"],
 				"conditions": [
 					{
 						"column":"person.person_id",
 						"operator": " IN ",
 						"value":"('KazinovskisAndris','IkstenaInese')"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
+
 		}
 	]
 }

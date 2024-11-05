@@ -4,6 +4,7 @@
 	"steps":[
 		{
 			"goal":"get_fastest_speaker",
+			"columns":["speech.person_id"],
 			"aggregation": {
 				"group_by":["speech.person_id"],
 				"order_by":[
@@ -14,19 +15,21 @@
 				]
 			},
 			"filtering": {
-				"columns":["speech.person_id"],
+				
 				"conditions":[
 					{
 						"column":"speech.total_duration",
 						"operator":">=",
 						"value":"60000"
 					}
-				],
-				"limit":"1"
-			}
+				]
+			},
+			"limit":"1"
+
 		},
 		{
 			"goal":"main",
+			"columns":["speech.earliest_timestamp", "AVG((speech.token_count / (speech.total_duration / 60000))) AS average_wpm"],
 			"aggregation": {
 				"group_by":["speech.person_id", "speech.earliest_timestamp"],
 				"order_by":[
@@ -37,7 +40,6 @@
 				]
 			},
 			"filtering": {
-				"columns":["speech.earliest_timestamp", "AVG((speech.token_count / (speech.total_duration / 60000))) AS average_wpm"],
 				"conditions": [
 					{
 						"column":"speech.total_duration",
@@ -49,9 +51,9 @@
 						"operator":"=",
 						"value":"step_result.get_fastest_speaker.speech.person_id"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
 		}
 	]
 }

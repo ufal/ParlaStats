@@ -4,23 +4,23 @@
 	"steps":[
 		{
 			"goal":"main",
+			"columns":["person.person_id", "persName.forename", "persName.surname", "COUNT(speech.id) AS total_speeches"],
 			"aggregation": {
 				"group_by":["persName.forename", "persName.surname",
 				            "person.person_id"],
 				"order_by":[]
 			},
 			"filtering": {
-				"columns":["person.person_id", "persName.forename",
-				           "persName.surname", "COUNT(speech.id) AS total_speeches"],
 				"conditions": [
 					{
 						"column":"person.person_id",
 						"operator":" IN ",
 						"value":"('AdamKalous.1979', 'AdamRykala.1986')"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
+
 		}
 	]
 }

@@ -4,24 +4,26 @@
 	"steps": [
 		{
 			"goal":"get_ano_members",
+			"columns":["person.person_id"],
 			"aggregation" : {
 				"group_by":["person.person_id", "organisation.organisation_id"],
 				"order_by":[]
 			},
 			"filtering": {
-				"columns":["person.person_id"],
 				"conditions": [
 					{
 						"column":"organisation.organisation_id",
 						"operator":"LIKE",
 						"value":"'%%ANO%%'"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
+
 		},
 		{
 			"goal":"main",
+			"columns":["affiliation.person_id", "SUM(speech.total_duration) AS total_duration_ms"],
 			"aggregation": {
 				"group_by":["affiliation.person_id"],
 				"order_by":[
@@ -32,7 +34,6 @@
 				]
 			},
 			"filtering": {
-				"columns":["affiliation.person_id", "SUM(speech.total_duration) AS total_duration_ms"],
 				"conditions": [
 					{
 						"column":"affiliation.person_id",
@@ -49,9 +50,9 @@
 						"operator":">=",
 						"value":"affiliation.since"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
 		}
 	]
 }

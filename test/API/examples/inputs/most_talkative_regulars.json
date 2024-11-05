@@ -4,6 +4,7 @@
 	"steps": [
 		{
 			"goal":"main",
+			"columns":["persName.forename", "persName.surname", "SUM(speech.token_count) AS total_tokens"],
 			"aggregation": {
 				"group_by":["persName.forename","persName.surname","speech.role"],
 				"order_by":[
@@ -14,17 +15,15 @@
 				]
 			},
 			"filtering": {
-				"columns":["persName.forename", "persName.surname", 
-					       "SUM(speech.token_count) AS total_tokens"],
 				"conditions":[
 					{
 						"column":"speech.role",
 						"operator":"=",
 						"value":"'regular'"
 					}
-				],
-				"limit":"10"
-			}
+				]
+			},
+			"limit":"10"
 		}
 	]
 }

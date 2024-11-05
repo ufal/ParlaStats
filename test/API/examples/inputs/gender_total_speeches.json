@@ -4,15 +4,17 @@
 	"steps": [
 		{
 			"goal":"main",
+			"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
+
 			"aggregation": {
 				"group_by":["person.sex"],
 				"order_by":[] 
 			},
 			"filtering": {
-				"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
-				"conditions":[],
-				"limit":""
-			}
+				"conditions":[]
+			},
+			"limit":""
+
 		}
 	]
 }

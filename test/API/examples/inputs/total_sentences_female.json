@@ -4,21 +4,21 @@
 	"steps": [
 		{
 			"goal":"main",
+			"columns":["person.sex", "SUM(speech.sentence_count) AS total_sentences"],
 			"aggregation": {
 				"group_by":["person.sex"],
 				"order_by":[]
 			},
 			"filtering": {
-				"columns":["person.sex", "SUM(speech.sentence_count) AS total_sentences"],
 				"conditions": [
 					{
 						"column":"person.sex",
 						"operator":"=",
 						"value":"'F'"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
 		}
 	]
 }

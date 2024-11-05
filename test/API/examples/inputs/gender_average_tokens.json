@@ -4,15 +4,16 @@
 	"steps": [
 		{
 			"goal":"main",
+			"columns":["person.sex", "AVG(speech.token_count) AS average_tokens"],
 			"aggregation": {
 				"group_by":["person.sex"],
 				"order_by":[]
 			},
 			"filtering": {
-				"columns":["person.sex", "AVG(speech.token_count) AS average_tokens"],
-				"conditions":[],
-				"limit":""
-			}
+				"conditions":[]
+			},
+			"limit":""
+
 		}
 	]
 }

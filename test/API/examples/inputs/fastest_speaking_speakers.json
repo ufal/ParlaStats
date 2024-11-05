@@ -4,6 +4,7 @@
 	"steps":[
 		{
 			"goal":"main",
+			"columns":["speech.person_id", "AVG((speech.token_count / (speech.total_duration / 60000))) AS average_wpm"],
 			"aggregation": {
 				"group_by":["speech.person_id"],
 				"order_by":[
@@ -14,16 +15,16 @@
 				]
 			},
 			"filtering":{
-				"columns":["speech.person_id", "AVG((speech.token_count / (speech.total_duration / 60000))) AS average_wpm"],
 				"conditions":[
 					{
 						"column":"speech.total_duration",
 						"operator":">=",
 						"value":"60000"
 					}
-				],
-				"limit":"10"
-			}
+				]
+			},
+			"limit":"10"
+
 		}
 	]
 }

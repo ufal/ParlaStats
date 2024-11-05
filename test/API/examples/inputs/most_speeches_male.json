@@ -4,6 +4,7 @@
 	"steps": [
 		{
 			"goal":"main",
+			"columns":["person.person_id", "COUNT(speech.id) AS total_speeches"],
 			"aggregation": {
 				"group_by":["person.person_id", "persName.forename",
 					        "persName.surname"],
@@ -15,16 +16,15 @@
 				]
 			},
 			"filtering": {
-				"columns":["person.person_id", "COUNT(speech.id) AS total_speeches"],
 				"conditions":[
 					{
 						"column":"person.sex",
 						"operator":"=",
 						"value":"'M'"
 					}
-				],
-				"limit":"10"
-			}
+				]
+			},
+			"limit":"10"
 		}
 	]
 }

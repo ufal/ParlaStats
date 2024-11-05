@@ -4,6 +4,7 @@
 	"steps": [
 		{
 			"goal":"main",
+			"columns":["organisation.role", "COUNT(speech.id) as total_speeches"],
 			"aggregation": {
 				"group_by":["organisation.role"],
 				"order_by": [
@@ -14,7 +15,6 @@
 				]
 			},
 			"filtering": {
-				"columns":["organisation.role", "COUNT(speech.id) as total_speeches"],
 				"conditions":[
 					{
 						"column":"speech.date", 
@@ -26,9 +26,10 @@
 						"operator":"<=",
 						"value":"affiliation.until"
 					}
-				],
-				"limit":""
-			}
+				]
+			},
+			"limit":""
+
 		}
 	]
 }
