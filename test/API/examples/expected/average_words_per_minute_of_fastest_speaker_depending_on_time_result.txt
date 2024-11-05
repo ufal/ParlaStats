@@ -1,54 +1,7 @@
-[{'speech.earliest_timestamp': '09:18:00', 'average_wpm': 164.11680742063112}, {'speech.earliest_timestamp': '09:28:00', 'average_wpm': 129.36363728644952}, {'speech.earliest_timestamp': '09:38:00', 'average_wpm': 155.39009388151504}, {'speech.earliest_timestamp': '09:48:00', 'average_wpm': 152.7478361903574}, {'speech.earliest_timestamp': '09:58:00', 'average_wpm': 165.18550043565887}, {'speech.earliest_timestamp': '10:08:00', 'average_wpm': 144.47282013863554}, {'speech.earliest_timestamp': '10:18:00', 'average_wpm': 169.15814319433517}, {'speech.earliest_timestamp': '10:28:00', 'average_wpm': 146.55715833517496}, {'speech.earliest_timestamp': '10:38:00', 'average_wpm': 158.9193022118747}, {'speech.earliest_timestamp': '10:48:00', 'average_wpm': 168.0504280937123}, {'speech.earliest_timestamp': '10:58:00', 'average_wpm': 146.2948280005757}, {'speech.earliest_timestamp': '11:08:00', 'average_wpm': 175.516693163752}, {'speech.earliest_timestamp': '11:58:00', 'average_wpm': 179.42122186495178}, {'speech.earliest_timestamp': '12:18:00', 'average_wpm': 168.16277678037102}, {'speech.earliest_timestamp': '12:28:00', 'average_wpm': 156.29386991109033}, {'speech.earliest_timestamp': '13:38:00', 'average_wpm': 177.40384615384616}, {'speech.earliest_timestamp': '13:48:00', 'average_wpm': 140.09835117153602}, {'speech.earliest_timestamp': '14:08:00', 'average_wpm': 154.37826893875484}, {'speech.earliest_timestamp': '14:28:00', 'average_wpm': 165.6070708636998}, {'speech.earliest_timestamp': '14:38:00', 'average_wpm': 162.36269133338254}, {'speech.earliest_timestamp': '14:58:00', 'average_wpm': 175.8412156923554}, {'speech.earliest_timestamp': '15:08:00', 'average_wpm': 166.35407322841067}, {'speech.earliest_timestamp': '15:18:00', 'average_wpm': 155.87698356972334}, {'speech.earliest_timestamp': '15:28:00', 'average_wpm': 164.44885799404173}, {'speech.earliest_timestamp': '15:38:00', 'average_wpm': 136.21565917980186}, {'speech.earliest_timestamp': '16:18:00', 'average_wpm': 157.53682171247584}, {'speech.earliest_timestamp': '16:38:00', 'average_wpm': 145.3038674033149}, {'speech.earliest_timestamp': '16:48:00', 'average_wpm': 174.36702560605926}, {'speech.earliest_timestamp': '16:58:00', 'average_wpm': 172.14250977532714}, {'speech.earliest_timestamp': '17:08:00', 'average_wpm': 181.54979644288355}, {'speech.earliest_timestamp': '17:18:00', 'average_wpm': 157.7944508333258}, {'speech.earliest_timestamp': '17:28:00', 'average_wpm': 174.1334066480834}, {'speech.earliest_timestamp': '17:38:00', 'average_wpm': 180.93744814692937}, {'speech.earliest_timestamp': '17:48:00', 'average_wpm': 108.08175518916276}, {'speech.earliest_timestamp': '18:08:00', 'average_wpm': 174.8878923766816}, {'speech.earliest_timestamp': '18:18:00', 'average_wpm': 161.55352480417753}, {'speech.earliest_timestamp': '18:28:00', 'average_wpm': 123.18382817435251}, {'speech.earliest_timestamp': '19:08:00', 'average_wpm': 192.19219219219218}, {'speech.earliest_timestamp': '19:18:00', 'average_wpm': 146.5439259298675}, {'speech.earliest_timestamp': '19:28:00', 'average_wpm': 167.80045351473922}, {'speech.earliest_timestamp': '20:38:00', 'average_wpm': 156.58654275442558}, {'speech.earliest_timestamp': '21:58:00', 'average_wpm': 189.63254593175853}, {'speech.earliest_timestamp': '22:38:00', 'average_wpm': 162.02260113325391}, {'speech.earliest_timestamp': '22:58:00', 'average_wpm': 186.91169878978036}, {'speech.earliest_timestamp': '23:18:00', 'average_wpm': 148.11606986091118}, {'speech.earliest_timestamp': '23:28:00', 'average_wpm': 139.46059544658493}, {'speech.earliest_timestamp': '23:38:00', 'average_wpm': 135.70973901973264}, {'speech.earliest_timestamp': '23:48:00', 'average_wpm': 156.3575572819353}]
+[{'speech.earliest_timestamp': '12:48:00', 'average_wpm': 161.34031413612567}]
 
 +---------------------------+--------------------+
 | speech.earliest_timestamp |    average_wpm     |
 +---------------------------+--------------------+
-|          09:18:00         | 164.11680742063112 |
-|          09:28:00         | 129.36363728644952 |
-|          09:38:00         | 155.39009388151504 |
-|          09:48:00         | 152.7478361903574  |
-|          09:58:00         | 165.18550043565887 |
-|          10:08:00         | 144.47282013863554 |
-|          10:18:00         | 169.15814319433517 |
-|          10:28:00         | 146.55715833517496 |
-|          10:38:00         | 158.9193022118747  |
-|          10:48:00         | 168.0504280937123  |
-|          10:58:00         | 146.2948280005757  |
-|          11:08:00         |  175.516693163752  |
-|          11:58:00         | 179.42122186495178 |
-|          12:18:00         | 168.16277678037102 |
-|          12:28:00         | 156.29386991109033 |
-|          13:38:00         | 177.40384615384616 |
-|          13:48:00         | 140.09835117153602 |
-|          14:08:00         | 154.37826893875484 |
-|          14:28:00         | 165.6070708636998  |
-|          14:38:00         | 162.36269133338254 |
-|          14:58:00         | 175.8412156923554  |
-|          15:08:00         | 166.35407322841067 |
-|          15:18:00         | 155.87698356972334 |
-|          15:28:00         | 164.44885799404173 |
-|          15:38:00         | 136.21565917980186 |
-|          16:18:00         | 157.53682171247584 |
-|          16:38:00         | 145.3038674033149  |
-|          16:48:00         | 174.36702560605926 |
-|          16:58:00         | 172.14250977532714 |
-|          17:08:00         | 181.54979644288355 |
-|          17:18:00         | 157.7944508333258  |
-|          17:28:00         | 174.1334066480834  |
-|          17:38:00         | 180.93744814692937 |
-|          17:48:00         | 108.08175518916276 |
-|          18:08:00         | 174.8878923766816  |
-|          18:18:00         | 161.55352480417753 |
-|          18:28:00         | 123.18382817435251 |
-|          19:08:00         | 192.19219219219218 |
-|          19:18:00         | 146.5439259298675  |
-|          19:28:00         | 167.80045351473922 |
-|          20:38:00         | 156.58654275442558 |
-|          21:58:00         | 189.63254593175853 |
-|          22:38:00         | 162.02260113325391 |
-|          22:58:00         | 186.91169878978036 |
-|          23:18:00         | 148.11606986091118 |
-|          23:28:00         | 139.46059544658493 |
-|          23:38:00         | 135.70973901973264 |
-|          23:48:00         | 156.3575572819353  |
+|          12:48:00         | 161.34031413612567 |
 +---------------------------+--------------------+

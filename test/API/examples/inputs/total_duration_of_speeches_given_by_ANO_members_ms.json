@@ -41,6 +41,11 @@
 						"value":"step_result.get_ano_members.affiliation.person_id"
 					},
 					{
+						"column":"speech.total_duration",
+						"operator":"IS NOT",
+						"value":"NULL"
+					},
+					{
 						"column":"speech.date",
 						"operator":"<=",
 						"value":"affiliation.until"

@@ -1,16 +1,16 @@
-[{'person.person_id': 'VojtechFilip.1955', 'total_speeches': 18681}, {'person.person_id': 'JanBartosek.1971', 'total_speeches': 11598}, {'person.person_id': 'PetrGazdik.1974', 'total_speeches': 10010}, {'person.person_id': 'RadekVondracek.1973', 'total_speeches': 9423}, {'person.person_id': 'TomioOkamura.1972', 'total_speeches': 8665}, {'person.person_id': 'PetrFiala.1964', 'total_speeches': 7939}, {'person.person_id': 'VojtechPikal.1987', 'total_speeches': 7874}, {'person.person_id': 'JanHamacek.1978', 'total_speeches': 7812}, {'person.person_id': 'TomasHanzel.1975', 'total_speeches': 5134}, {'person.person_id': 'ZbynekStanjura.1964', 'total_speeches': 3842}]
+[{'person.person_id': 'RadekVondracek.1973', 'total_speeches': 769}, {'person.person_id': 'JanHamacek.1978', 'total_speeches': 587}, {'person.person_id': 'TomioOkamura.1972', 'total_speeches': 303}, {'person.person_id': 'JanBartosek.1971', 'total_speeches': 287}, {'person.person_id': 'VojtechFilip.1955', 'total_speeches': 262}, {'person.person_id': 'MiroslavKalousek.1960', 'total_speeches': 160}, {'person.person_id': 'ZbynekStanjura.1964', 'total_speeches': 127}, {'person.person_id': 'PetrFiala.1964', 'total_speeches': 126}, {'person.person_id': 'JanSkopecek.1980', 'total_speeches': 119}, {'person.person_id': 'VojtechPikal.1987', 'total_speeches': 89}]
 
-+---------------------+----------------+
-|   person.person_id  | total_speeches |
-+---------------------+----------------+
-|  VojtechFilip.1955  |     18681      |
-|   JanBartosek.1971  |     11598      |
-|   PetrGazdik.1974   |     10010      |
-| RadekVondracek.1973 |      9423      |
-|  TomioOkamura.1972  |      8665      |
-|    PetrFiala.1964   |      7939      |
-|  VojtechPikal.1987  |      7874      |
-|   JanHamacek.1978   |      7812      |
-|   TomasHanzel.1975  |      5134      |
-| ZbynekStanjura.1964 |      3842      |
-+---------------------+----------------+
++-----------------------+----------------+
+|    person.person_id   | total_speeches |
++-----------------------+----------------+
+|  RadekVondracek.1973  |      769       |
+|    JanHamacek.1978    |      587       |
+|   TomioOkamura.1972   |      303       |
+|    JanBartosek.1971   |      287       |
+|   VojtechFilip.1955   |      262       |
+| MiroslavKalousek.1960 |      160       |
+|  ZbynekStanjura.1964  |      127       |
+|     PetrFiala.1964    |      126       |
+|    JanSkopecek.1980   |      119       |
+|   VojtechPikal.1987   |       89       |
++-----------------------+----------------+

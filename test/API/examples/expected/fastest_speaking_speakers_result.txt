@@ -1,16 +1,16 @@
-[{'speech.person_id': 'HubertLang.1969', 'average_wpm': 161.41698165379293}, {'speech.person_id': 'PavelBlazek.1969', 'average_wpm': 158.97911562369416}, {'speech.person_id': 'PetrDolinek.1981', 'average_wpm': 158.30039783796744}, {'speech.person_id': 'OndrejVesely.1976', 'average_wpm': 158.10500409292203}, {'speech.person_id': 'BronislavSchwarz.1966', 'average_wpm': 157.14088727252556}, {'speech.person_id': 'LukasWagenknecht', 'average_wpm': 155.23762539056077}, {'speech.person_id': 'JaroslavBzoch.1983', 'average_wpm': 152.54676361269722}, {'speech.person_id': 'IvanAdamec.1960', 'average_wpm': 151.18225768975364}, {'speech.person_id': 'MikulasPeksa.1986', 'average_wpm': 151.14543689902007}, {'speech.person_id': 'JaroslavMartinu.1959', 'average_wpm': 150.94729800606632}]
+[{'speech.person_id': 'BronislavSchwarz.1966', 'average_wpm': 161.34031413612567}, {'speech.person_id': 'LukasKolarik.1984', 'average_wpm': 155.80850204389782}, {'speech.person_id': 'OndrejVesely.1976', 'average_wpm': 151.81583647549118}, {'speech.person_id': 'PavelBlazek.1969', 'average_wpm': 149.77964855666076}, {'speech.person_id': 'MilanChovanec.1970', 'average_wpm': 149.25437760129654}, {'speech.person_id': 'MarianJurecka.1981', 'average_wpm': 147.04994388205515}, {'speech.person_id': 'RobertPlaga.1978', 'average_wpm': 145.44581783271332}, {'speech.person_id': 'MarcelChladek', 'average_wpm': 145.00501169395255}, {'speech.person_id': 'MiloslavJanulik.1962', 'average_wpm': 143.10080192959902}, {'speech.person_id': 'MartinKolovratnik.1975', 'average_wpm': 142.27168366868392}]
 
-+-----------------------+--------------------+
-|    speech.person_id   |    average_wpm     |
-+-----------------------+--------------------+
-|    HubertLang.1969    | 161.41698165379293 |
-|    PavelBlazek.1969   | 158.97911562369416 |
-|    PetrDolinek.1981   | 158.30039783796744 |
-|   OndrejVesely.1976   | 158.10500409292203 |
-| BronislavSchwarz.1966 | 157.14088727252556 |
-|    LukasWagenknecht   | 155.23762539056077 |
-|   JaroslavBzoch.1983  | 152.54676361269722 |
-|    IvanAdamec.1960    | 151.18225768975364 |
-|   MikulasPeksa.1986   | 151.14543689902007 |
-|  JaroslavMartinu.1959 | 150.94729800606632 |
-+-----------------------+--------------------+
++------------------------+--------------------+
+|    speech.person_id    |    average_wpm     |
++------------------------+--------------------+
+| BronislavSchwarz.1966  | 161.34031413612567 |
+|   LukasKolarik.1984    | 155.80850204389782 |
+|   OndrejVesely.1976    | 151.81583647549118 |
+|    PavelBlazek.1969    | 149.77964855666076 |
+|   MilanChovanec.1970   | 149.25437760129654 |
+|   MarianJurecka.1981   | 147.04994388205515 |
+|    RobertPlaga.1978    | 145.44581783271332 |
+|     MarcelChladek      | 145.00501169395255 |
+|  MiloslavJanulik.1962  | 143.10080192959902 |
+| MartinKolovratnik.1975 | 142.27168366868392 |
++------------------------+--------------------+

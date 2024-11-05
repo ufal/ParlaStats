@@ -1,16 +1,16 @@
-[{'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'total_tokens': 15869}, {'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'total_tokens': 3494}, {'persName.forename': 'Adam', 'persName.surname': 'Vojtěch', 'total_tokens': 187216}, {'persName.forename': 'Adolf', 'persName.surname': 'Beznoska', 'total_tokens': 41522}, {'persName.forename': 'Alena', 'persName.surname': 'Gajdůšková', 'total_tokens': 78796}, {'persName.forename': 'Alena', 'persName.surname': 'Nohavová', 'total_tokens': 17614}, {'persName.forename': 'Alena', 'persName.surname': 'Schillerová', 'total_tokens': 416524}, {'persName.forename': 'Aleš', 'persName.surname': 'Dufek', 'total_tokens': 4498}, {'persName.forename': 'Aleš', 'persName.surname': 'Juchelka', 'total_tokens': 134560}, {'persName.forename': 'Alexander', 'persName.surname': 'Černý', 'total_tokens': 20376}]
+[{'persName.forename': 'Josef', 'persName.surname': 'Bělica', 'total_tokens': 307}, {'persName.forename': 'Alena', 'persName.surname': 'Gajdůšková', 'total_tokens': 65}, {'persName.forename': 'Antonín', 'persName.surname': 'Seďa', 'total_tokens': 117}, {'persName.forename': 'Věra', 'persName.surname': 'Adámková', 'total_tokens': 7310}, {'persName.forename': 'Vít', 'persName.surname': 'Vomáčka', 'total_tokens': 29}, {'persName.forename': 'Stanislav', 'persName.surname': 'Juránek', 'total_tokens': 89}, {'persName.forename': 'Robert', 'persName.surname': 'Stržínek', 'total_tokens': 653}, {'persName.forename': 'Petr', 'persName.surname': 'Třešňák', 'total_tokens': 227}, {'persName.forename': 'Jakub', 'persName.surname': 'Michálek', 'total_tokens': 11491}, {'persName.forename': 'Vladimíra', 'persName.surname': 'Lesenská', 'total_tokens': 1003}]
 
 +-------------------+------------------+--------------+
 | persName.forename | persName.surname | total_tokens |
 +-------------------+------------------+--------------+
-|        Adam       |      Kalous      |    15869     |
-|        Adam       |      Rykala      |     3494     |
-|        Adam       |     Vojtěch      |    187216    |
-|       Adolf       |     Beznoska     |    41522     |
-|       Alena       |    Gajdůšková    |    78796     |
-|       Alena       |     Nohavová     |    17614     |
-|       Alena       |   Schillerová    |    416524    |
-|        Aleš       |      Dufek       |     4498     |
-|        Aleš       |     Juchelka     |    134560    |
-|     Alexander     |      Černý       |    20376     |
+|       Josef       |      Bělica      |     307      |
+|       Alena       |    Gajdůšková    |      65      |
+|      Antonín      |       Seďa       |     117      |
+|        Věra       |     Adámková     |     7310     |
+|        Vít        |     Vomáčka      |      29      |
+|     Stanislav     |     Juránek      |      89      |
+|       Robert      |     Stržínek     |     653      |
+|        Petr       |     Třešňák      |     227      |
+|       Jakub       |     Michálek     |    11491     |
+|     Vladimíra     |     Lesenská     |     1003     |
 +-------------------+------------------+--------------+

@@ -30,8 +30,8 @@ def main(args):
             client_process = subprocess.run([my_venv, client, f"--specific_query={args.specific}"], capture_output=True, text=True)
             actual = client_process.stdout.strip()
             f1 = open(args.expected, 'r')
+        
             expected = f1.read().strip()
-
             if (actual == expected):
                 print(f"Query {args.specific}: PASSED!")
             else:
@@ -46,6 +46,7 @@ def main(args):
             print("---TESTING ALL QUERIES AT ONCE---")
             client_process = subprocess.run([my_venv, client, f"--query_source={args.source_dir}",
                                          f"--dir={args.target_dir}"], capture_output=True, text=True)
+            
             results = os.listdir(args.target_dir)
             targets = os.listdir("examples/expected/")
             for result, target in zip(results, targets):
@@ -55,7 +56,6 @@ def main(args):
                 expected = f2.read().strip()
                 f1.close()
                 f2.close()
-
                 if (actual == expected):
                     print(f"Query: {result[:]} PASSED!")
                 else:

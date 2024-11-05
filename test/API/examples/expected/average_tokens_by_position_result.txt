@@ -1,9 +1,9 @@
-[{'speech.role': 'guest', 'average_tokens': 452.1521328803322}, {'speech.role': 'regular', 'average_tokens': 266.9352142475181}, {'speech.role': 'chair', 'average_tokens': 55.23546464501979}]
+[{'speech.role': 'guest', 'average_tokens': 1077.8934426229507}, {'speech.role': 'regular', 'average_tokens': 496.90713671539123}, {'speech.role': 'chair', 'average_tokens': 143.19426456984274}]
 
-+-------------+-------------------+
-| speech.role |   average_tokens  |
-+-------------+-------------------+
-|    guest    | 452.1521328803322 |
-|   regular   | 266.9352142475181 |
-|    chair    | 55.23546464501979 |
-+-------------+-------------------+
++-------------+--------------------+
+| speech.role |   average_tokens   |
++-------------+--------------------+
+|    guest    | 1077.8934426229507 |
+|   regular   | 496.90713671539123 |
+|    chair    | 143.19426456984274 |
++-------------+--------------------+
