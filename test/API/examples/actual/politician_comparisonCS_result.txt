@@ -1,10 +1,10 @@
-[{'person.person_id': 'AdamKalous.1979', 'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'total_speeches': 0}, {'person.person_id': 'AdamRykala.1986', 'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'total_speeches': 0}]
+[{'person.person_id': 'AndrejBabis.1954', 'persName.forename': 'Andrej', 'persName.surname': 'Babiš', 'total_speeches': 59}, {'person.person_id': 'VeraJourova.1964', 'persName.forename': 'Věra', 'persName.surname': 'Jourová', 'total_speeches': 2}]
 
-Running time 7.3037109375 ms
+Running time 5.59716796875 ms
 
 +------------------+-------------------+------------------+----------------+
 | person.person_id | persName.forename | persName.surname | total_speeches |
 +------------------+-------------------+------------------+----------------+
-| AdamKalous.1979  |        Adam       |      Kalous      |       0        |
-| AdamRykala.1986  |        Adam       |      Rykala      |       0        |
+| AndrejBabis.1954 |       Andrej      |      Babiš       |       59       |
+| VeraJourova.1964 |        Věra       |     Jourová      |       2        |
 +------------------+-------------------+------------------+----------------+

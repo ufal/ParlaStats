@@ -15,7 +15,7 @@
 					{
 						"column":"person.person_id",
 						"operator":" IN ",
-						"value":"('AdamKalous.1979', 'AdamRykala.1986')"
+						"value":"('AndrejBabis.1954', 'VeraJourova.1964')"
 					}
 				]
 			},
