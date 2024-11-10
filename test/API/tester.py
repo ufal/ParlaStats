@@ -3,6 +3,7 @@ import time
 import difflib
 import argparse
 import os
+import re
 
 args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--source_dir", type=str, default="examples/inputs/",
@@ -32,10 +33,19 @@ def main(args):
             f1 = open(args.expected, 'r')
         
             expected = f1.read().strip()
-            if (actual == expected):
+            
+            expected = [line for line in expected.splitlines() if not "Running time" in line]
+            actual = [line for line in actual.splitlines() if not "Running time" in line]
+            correct = True
+            
+            for el, al in zip(expected, actual):
+                if el != al:
+                    correct = False
+            
+            if (correct):
                 print(f"Query {args.specific}: PASSED!")
             else:
-                diff = difflib.unified_diff(expected.splitlines(), actual.splitlines(),
+                diff = difflib.unified_diff(expected, actual,
                                             fromfile='expected', tofile='actual', lineterm='')
                 print(f"Query {args.specific}: FAILED!")
                 print("------------------------------")
@@ -44,6 +54,7 @@ def main(args):
                 print("------------------------------")
         else:
             print("---TESTING ALL QUERIES AT ONCE---")
+            
             client_process = subprocess.run([my_venv, client, f"--query_source={args.source_dir}",
                                          f"--dir={args.target_dir}"], capture_output=True, text=True)
             
@@ -56,10 +67,19 @@ def main(args):
                 expected = f2.read().strip()
                 f1.close()
                 f2.close()
-                if (actual == expected):
+
+                expected = [line for line in expected.splitlines() if not "Running time" in line]
+                actual = [line for line in actual.splitlines() if not "Running time" in line]
+                correct = True
+                for el, al in zip(expected, actual):
+                    if el != al:
+                        correct = False   
+                
+                if (correct):
                     print(f"Query: {result[:]} PASSED!")
                 else:
-                    diff = difflib.unified_diff(expected.splitlines(), actual.splitlines(),
+
+                    diff = difflib.unified_diff(expected, actual,
                                                 fromfile='expected', tofile='actual', lineterm='')
                     print(f"Query: {result} FAILED!")
                     print("-----------------------")
@@ -67,7 +87,6 @@ def main(args):
                         print(line)
                     print("-----------------------")
                     
-
 
     finally:
         server_process.terminate()

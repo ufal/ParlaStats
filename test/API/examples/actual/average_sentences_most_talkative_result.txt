@@ -1,5 +1,7 @@
 [{'affiliation.role': 'member', 'average_sentence_count': 10.937954642704321}, {'affiliation.role': 'head', 'average_sentence_count': 11.042723631508679}, {'affiliation.role': 'deputyHead', 'average_sentence_count': 8.285714285714286}]
 
+Running time 14.8916015625 ms
+
 +------------------+------------------------+
 | affiliation.role | average_sentence_count |
 +------------------+------------------------+

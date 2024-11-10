@@ -1,5 +1,7 @@
 [{'speech.earliest_timestamp': '12:48:00', 'average_wpm': 161.34031413612567}]
 
+Running time 9.771728515625 ms
+
 +---------------------------+--------------------+
 | speech.earliest_timestamp |    average_wpm     |
 +---------------------------+--------------------+

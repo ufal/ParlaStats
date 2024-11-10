@@ -1,5 +1,7 @@
 [{'person.sex': 'F', 'total_sentences': 18642}]
 
+Running time 7.949951171875 ms
+
 +------------+-----------------+
 | person.sex | total_sentences |
 +------------+-----------------+

@@ -1,5 +1,7 @@
 [{'persName.forename': 'Josef', 'persName.surname': 'Bělica', 'total_tokens': 307}, {'persName.forename': 'Alena', 'persName.surname': 'Gajdůšková', 'total_tokens': 65}, {'persName.forename': 'Antonín', 'persName.surname': 'Seďa', 'total_tokens': 117}, {'persName.forename': 'Věra', 'persName.surname': 'Adámková', 'total_tokens': 7310}, {'persName.forename': 'Vít', 'persName.surname': 'Vomáčka', 'total_tokens': 29}, {'persName.forename': 'Stanislav', 'persName.surname': 'Juránek', 'total_tokens': 89}, {'persName.forename': 'Robert', 'persName.surname': 'Stržínek', 'total_tokens': 653}, {'persName.forename': 'Petr', 'persName.surname': 'Třešňák', 'total_tokens': 227}, {'persName.forename': 'Jakub', 'persName.surname': 'Michálek', 'total_tokens': 11491}, {'persName.forename': 'Vladimíra', 'persName.surname': 'Lesenská', 'total_tokens': 1003}]
 
+Running time 9.15185546875 ms
+
 +-------------------+------------------+--------------+
 | persName.forename | persName.surname | total_tokens |
 +-------------------+------------------+--------------+

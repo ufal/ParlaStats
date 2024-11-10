@@ -1,5 +1,7 @@
 [{'organisation.role': 'interparliamentaryFriendshipGroup', 'COUNT(speech.id) as total_speeches': 17013}, {'organisation.role': 'committee', 'COUNT(speech.id) as total_speeches': 9380}, {'organisation.role': 'parliament', 'COUNT(speech.id) as total_speeches': 6220}, {'organisation.role': 'parliamentaryGroup', 'COUNT(speech.id) as total_speeches': 5299}, {'organisation.role': 'subcommittee', 'COUNT(speech.id) as total_speeches': 4803}, {'organisation.role': 'politicalParty', 'COUNT(speech.id) as total_speeches': 2586}, {'organisation.role': 'commission', 'COUNT(speech.id) as total_speeches': 1890}, {'organisation.role': 'delegation', 'COUNT(speech.id) as total_speeches': 1452}, {'organisation.role': 'government', 'COUNT(speech.id) as total_speeches': 383}, {'organisation.role': 'supervisoryBoard', 'COUNT(speech.id) as total_speeches': 201}, {'organisation.role': 'boardOfDirectors', 'COUNT(speech.id) as total_speeches': 14}, {'organisation.role': 'republic', 'COUNT(speech.id) as total_speeches': 4}]
 
+Running time 32.56396484375 ms
+
 +-----------------------------------+------------------------------------+
 |         organisation.role         | COUNT(speech.id) as total_speeches |
 +-----------------------------------+------------------------------------+

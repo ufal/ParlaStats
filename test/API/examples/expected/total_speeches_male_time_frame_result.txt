@@ -1,5 +1,7 @@
 [{'person.sex': 'M', 'total_speeches': 285}]
 
+Running time 5.8994140625 ms
+
 +------------+----------------+
 | person.sex | total_speeches |
 +------------+----------------+

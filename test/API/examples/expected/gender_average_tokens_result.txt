@@ -1,5 +1,7 @@
 [{'person.sex': '', 'average_tokens': 1335.3333333333333}, {'person.sex': 'M', 'average_tokens': 325.23359818388195}, {'person.sex': 'F', 'average_tokens': 245.54014029618082}]
 
+Running time 9.655517578125 ms
+
 +------------+--------------------+
 | person.sex |   average_tokens   |
 +------------+--------------------+

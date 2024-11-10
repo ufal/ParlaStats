@@ -1,5 +1,7 @@
 [{'speech.role': 'guest', 'average_tokens': 1077.8934426229507}, {'speech.role': 'regular', 'average_tokens': 496.90713671539123}, {'speech.role': 'chair', 'average_tokens': 143.19426456984274}]
 
+Running time 21.019287109375 ms
+
 +-------------+--------------------+
 | speech.role |   average_tokens   |
 +-------------+--------------------+

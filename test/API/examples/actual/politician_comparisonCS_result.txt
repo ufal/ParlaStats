@@ -1,5 +1,7 @@
 [{'person.person_id': 'AdamKalous.1979', 'persName.forename': 'Adam', 'persName.surname': 'Kalous', 'total_speeches': 0}, {'person.person_id': 'AdamRykala.1986', 'persName.forename': 'Adam', 'persName.surname': 'Rykala', 'total_speeches': 0}]
 
+Running time 7.3037109375 ms
+
 +------------------+-------------------+------------------+----------------+
 | person.person_id | persName.forename | persName.surname | total_speeches |
 +------------------+-------------------+------------------+----------------+

@@ -2,6 +2,7 @@
 import requests
 import json
 import os
+import time
 
 import argparse
 from prettytable import PrettyTable
@@ -25,11 +26,12 @@ class Client2():
         self.interactive = args.interactive
     
     def __process_query(self, query_file):
+        start_time = time.time()*1000
         with open(query_file, 'r') as file:
             query = json.load(file)
         response = requests.post(self.URL, json=query)
-        
-        return query['description'], response.json()
+        end_time = time.time()*1000
+        return query['description'], response.json(), (end_time - start_time)
     
     def __adjust_results(self, result):
         if result:
@@ -68,7 +70,7 @@ class Client2():
     
     def run_specific(self, specific_query):
         # print(f"Processing {specific_query} ...")
-        description, result = self.__process_query(specific_query)
+        description, result, runtime = self.__process_query(specific_query)
         # print(f"Result for {specific_query}:")
 
         res=None
@@ -80,20 +82,33 @@ class Client2():
             else:
                 for res in result:
                     res = self.__adjust_results(res)
+                    print(f"Running time: {runtime} ms")
+                    print()
                     print(res)
         else:
             for res in result:
-                print(res)
-                print()
                 res = self.__adjust_results(res)
-                print(res)       
+                print(f"Running time {runtime} ms")
+                print()
+                print(res)
+                
+        if self.target_dir:
+            with open(f"{self.target_dir}/{specific_query[:-5]}_result.txt", 'w') as file:
+                print(result, file=file)
+                print(file=file)
+                print(f"Running time {runtime} ms", file=file)
+                print(file=file)
+                print(self.__adjust_results(result), file=file)
+                print(file=file)
+                print()
 
     def run(self):
         for filename in os.listdir(self.QueryDir):
+            
             if filename.endswith(".json"):
                 query_file = os.path.join(self.QueryDir, filename)
                 print(f"Processing {query_file} ...")
-                description, results = self.__process_query(query_file)
+                description, results, runtime = self.__process_query(query_file)
                 for result in results:
                     
                     if self.interactive:
@@ -101,15 +116,19 @@ class Client2():
                         if graph == 'Y':
                             self.__graph_results(description, result)
                         else:
+                            
                             print(f"Result for {query_file}:")
                             print(self.__adjust_results(result))
                     
                     else:
+                        print(result)
                         print(f"Result for {query_file}:")
                         print(self.__adjust_results(result))
                     if self.target_dir:
                         with open(f"{self.target_dir}{filename[:-5]}_result.txt", 'w') as file:
                             print(result, file=file)
+                            print(file=file)
+                            print(f"Running time {runtime} ms", file=file)
                             print(file=file)
                             res = self.__adjust_results(result)
                             print(str(res), file=file)
