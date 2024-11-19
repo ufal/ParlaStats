@@ -1,0 +1,130 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 20px;
+	background-color: #f9f9f9;
+	display:flex;
+	justify-content:left;
+	font-size:0.5em;
+}
+
+h1 {
+	text-align: center;
+	color: #333;
+}
+
+.form-section {
+	margin-bottom:20px;
+	padding:15px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+}
+
+.target-database {
+	background-color:#f9f9f9;
+	border: 5px solid #ebc77c;
+}
+
+.step{
+	width=50%;
+
+	font-size=1.5em;
+	background-color:#f9f9f9;
+	border: 5px solid #ffcb66;
+	padding:15px;
+	margin-bottom:20px;
+}
+
+.goal{
+	border:5px solid #b6d4ff;
+	padding:10px;
+	margin-bottom:15px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.columns {
+	border:5px solid #82c995;
+	padding:10px;
+	margin-bottom:10px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+
+.columns-entry {
+	border: 5px dashed #67e976;
+	padding:5px;
+	margin-bottom:5px;
+	background-color:#f9f9f9;
+}
+
+.aggregation {
+	border:5px solid #c6a6f2;
+	padding:10px;
+	margin-bottom:15px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.group-by {
+	border:5px solid #7b9ef5;
+	padding:5px;
+	margin-bottom:10px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.group-by-entry {
+	border:5px dashed #7b9ef5;
+	padding:5px;
+	margin-bottom:5px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.order-by {
+	border: 5px solid #8778d8;
+	padding:5px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.order-by-entry {
+	border:5px dashed #8778d8;
+	padding:5px;
+	margin-bottom:5px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.filtering {
+	border: 5px solid #ffb2d2;
+	padding:10px;
+	margin-bottom:15px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.conditions {
+	border: 5px solid #ffa1d8;
+	padding: 5px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.conditions-entry {
+	border: 5px dashed #ff81d8;
+	padding: 5px;
+	margin-bottom:5px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+
+.limit {
+	border: 5px solid #ffa37b;
+	padding:10px;
+	background-color:#f9f9f9;
+	font-size=1.5em;
+}
+

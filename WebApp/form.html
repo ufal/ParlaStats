@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta cahrset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Simple loading of JSON into the Form</title>
+		<script src="https://code.jquery.com/jquery-3.6.0.mn.js"></script>
+		<script src="scripts/form_filler.js" defer></script>
+		<link rel="stylesheet" href="styles/form.css"></link>
+	</head>
+	<body>
+		<h1>Simple loading of JSON into form</h1">
+		<label for="targetDatabase">Target database:</label>
+		<input type="text" id="targetDatabase" name="TargetDatabase"></input>
+		<br>
+		<br>
+		<label for="description">Description:</label>
+		<input type="text" id="description" name="Description"></input>
+		
+		<div id="stepsSection">
+			<div id="columnsSection">
+				<h3>Columns</h3>
+			</div>
+
+			<div id="aggregationSection">
+			
+				<h2>Aggregation</h2>
+			
+				<div id="groupBySection">
+					<h3>Group By</h3>
+				</div>
+		
+				<div id="orderBySection">
+					<h3>Order By<h3>
+				</div>
+		
+			</div>
+
+			<div id="filteringSection">
+				<h3>Filtering</h3>
+				<div id="conditionsSection">
+					<h3>Conditions</h3>
+				</div>
+			</div>
+			<div id="limitSection">
+				<h3>Limit<h3>
+			</div>
+		</div>
+	</body>
+</html>
