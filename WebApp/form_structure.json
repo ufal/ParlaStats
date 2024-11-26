@@ -4,20 +4,21 @@
             {
                 "id": "targetDatabaseSection",
                 "title": "Target Database and Description",
-                "fields": [
+				"type":"COMPLEX",
+                "subfields": [
                     {
                         "id": "targetDatabase",
                         "label": "Target Database",
-                        "type": "SIMPLE",
+                        "type": "REPEATABLE",
                         "inputType": "text",
-                        "readonly": true
+						"placeholder":"Target Database"
                     },
                     {
                         "id": "description",
                         "label": "Description",
                         "type": "SIMPLE",
                         "inputType": "text",
-                        "readonly": true
+						"placeholder":"Query description"
                     }
                 ]
             },
@@ -31,7 +32,8 @@
                         "id": "goal",
                         "label": "Goal",
                         "type": "SIMPLE",
-                        "inputType": "text"
+                        "inputType": "text",
+						"placeholder":"goal"
                     },
                     {
                         "id": "columns",
