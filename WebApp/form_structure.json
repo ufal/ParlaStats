@@ -1,0 +1,112 @@
+{
+    "form": {
+        "sections": [
+            {
+                "id": "targetDatabaseSection",
+                "title": "Target Database and Description",
+                "fields": [
+                    {
+                        "id": "targetDatabase",
+                        "label": "Target Database",
+                        "type": "SIMPLE",
+                        "inputType": "text",
+                        "readonly": true
+                    },
+                    {
+                        "id": "description",
+                        "label": "Description",
+                        "type": "SIMPLE",
+                        "inputType": "text",
+                        "readonly": true
+                    }
+                ]
+            },
+            {
+                "id": "stepsSection",
+                "title": "Steps",
+				"label": "step",
+                "type": "REPEATABLE",
+                "fields": [
+                    {
+                        "id": "goal",
+                        "label": "Goal",
+                        "type": "SIMPLE",
+                        "inputType": "text"
+                    },
+                    {
+                        "id": "columns",
+                        "label": "Columns",
+                        "type": "REPEATABLE",
+                        "placeholder": "Column",
+                        "inputType": "text"
+                    },
+                    {
+                        "id": "aggregation",
+                        "label": "Aggregation",
+                        "type": "COMPLEX",
+                        "subfields": [
+                            {
+                                "id": "group-by",
+                                "label": "Group By",
+                                "type": "REPEATABLE",
+                                "placeholder": "Group By Column",
+                                "inputType": "text"
+                            },
+							{
+								"id": "order-by",
+								"label": "Order By",
+								"type": "REPEATABLE",
+								"columns": [
+									{
+										"label": "Column",
+										"inputType": "text"
+									},
+									{
+										"label": "Direction",
+										"inputType": "select",
+										"choices": ["ASC", "DESC"]
+									}
+								]
+							}
+						]
+                    },
+                    {
+                        "id": "filtering",
+                        "label": "Filtering",
+                        "type": "COMPLEX",
+                        "subfields": [
+                            {
+                                "id": "conditions",
+                                "label": "Conditions",
+                                "type": "REPEATABLE",
+                                "columns": [
+                                    {
+                                        "label": "Column",
+                                        "inputType": "text"
+                                    },
+                                    {
+                                        "label": "Operator",
+                                        "inputType": "select",
+                                        "choices": ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"]
+                                    },
+                                    {
+                                        "label": "Value",
+                                        "inputType": "text"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "id": "limit",
+                        "label": "Limit",
+                        "type": "SIMPLE",
+                        "inputType": "number",
+                        "placeholder": "Limit"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
