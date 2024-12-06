@@ -27,6 +27,7 @@
                 "title": "Steps",
 				"label": "step",
                 "type": "REPEATABLE",
+				"min_occur":1,
                 "fields": [
                     {
                         "id": "goal",
@@ -89,6 +90,7 @@
                                     {
                                         "label": "Operator",
                                         "inputType": "select",
+										"prefix":"condOperator",
                                         "choices": ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"]
                                     },
                                     {

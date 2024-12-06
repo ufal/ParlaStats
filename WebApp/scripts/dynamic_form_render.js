@@ -44,6 +44,16 @@ function renderForm(schema) {
 
         form.appendChild(sectionDiv);
     });
+	
+	const generateQueryButton = document.createElement("button");
+	generateQueryButton.textContent = "Generate JSON";
+	generateQueryButton.type="button";
+	generateQueryButton.onclick = () => {
+		const query = generateQueryFromForm(schema);
+		console.log("Generated Query:", JSON.stringify(query, null, 2));
+	};
+
+	form.appendChild(generateQueryButton)
 }
 
 function renderSimpleField(container, field) {
@@ -78,6 +88,7 @@ function renderSimpleField(container, field) {
 
 function renderRepeatableField(container, field) {
 	// Function for rendering REPEATABLE field / section.
+	let subfieldsCount = 0;
     const fieldDiv = document.createElement("div");
 	fieldDiv.classList.add(field.id);
     const label = document.createElement("h3");
@@ -92,57 +103,55 @@ function renderRepeatableField(container, field) {
     repeatableContainer.classList.add("repeatable-container");
 
     addButton.onclick = () => {
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("repeatable-row");
+		const rowDiv = document.createElement("div");
+		rowDiv.classList.add("repeatable-row");
 
-        if (field.fields) {
-            // If it's a REPEATABLE section with nested fields
-            field.fields.forEach((nestedField) => {
-                switch (nestedField.type) {
-                    case "SIMPLE":
-                        renderSimpleField(rowDiv, nestedField);
-                        break;
-                    case "REPEATABLE":
-                        renderRepeatableField(rowDiv, nestedField);
-                        break;
-                    case "COMPLEX":
-                        renderComplexField(rowDiv, nestedField);
-                        break;
-                }
-            });
-        } else if (field.columns) {
-            // Render REPEATABLE rows with multiple columns
-            field.columns.forEach((column) => {
-                const input = document.createElement(column.inputType === "select" ? "select" : "input");
-                if (column.inputType === "select") {
-                    column.choices.forEach((choice) => {
-                        const option = document.createElement("option");
-                        option.value = choice;
-                        option.textContent = choice;
-                        input.appendChild(option);
-                    });
-                } else {
-                    input.type = column.inputType;
-                    input.placeholder = column.label;
-                }
-                rowDiv.appendChild(input);
-            });
-        } else {
-            // Render a simple REPEATABLE field
-            const input = document.createElement("input");
-            input.type = field.inputType;
-            input.placeholder = field.placeholder || "";
-            rowDiv.appendChild(input);
-        }
+		if (field.fields) {
+			// If it's a REPEATABLE section with nested fields
+			field.fields.forEach((nestedField) => {
+				const uniqueId = `${nestedField.id}_${field.id}_${subfieldsCount}`;
+				nestedField.id = uniqueId; // Ensure unique ID
+				renderField(rowDiv, nestedField); // Use a common function for rendering
+			});
+		} else if (field.columns) {
+			// Render REPEATABLE rows with multiple columns
+			field.columns.forEach((column, index) => {
+				const input = document.createElement(column.inputType === "select" ? "select" : "input");
+				if (column.inputType === "select") {
+					column.choices.forEach((choice) => {
+						const option = document.createElement("option");
+						option.value = choice;
+						option.textContent = choice;
+						input.appendChild(option);
+					});
+				} else {
+					input.type = column.inputType;
+					input.placeholder = column.label;
+				}
+				const uniqueId = `${field.id}_col_${index}_${subfieldsCount}`;
+				input.id = uniqueId; // Ensure unique ID
+				input.dataset.fieldId = field.id; // Use data attribute to group related inputs
+				rowDiv.appendChild(input);
+			});
+		} else {
+			// Render a simple REPEATABLE field
+			const input = document.createElement("input");
+			input.type = field.inputType;
+			input.placeholder = field.placeholder || "";
+			const uniqueId = `${field.id}_${subfieldsCount}`;
+			input.id = uniqueId; // Ensure unique ID
+			rowDiv.appendChild(input);
+		}
 
-        const removeButton = document.createElement("button");
-        removeButton.textContent = "-";
-        removeButton.type = "button";
-        removeButton.onclick = () => rowDiv.remove();
+		const removeButton = document.createElement("button");
+		removeButton.textContent = "-";
+		removeButton.type = "button";
+		removeButton.onclick = () => rowDiv.remove();
 
-        rowDiv.appendChild(removeButton);
-        repeatableContainer.appendChild(rowDiv);
-    };
+		rowDiv.appendChild(removeButton);
+		repeatableContainer.appendChild(rowDiv);
+		subfieldsCount++;
+	};
 
     // fieldDiv.appendChild(label);
     fieldDiv.appendChild(repeatableContainer);
@@ -171,6 +180,22 @@ function renderComplexField(container, field) {
 
     
     container.appendChild(complexDiv);
+}
+
+function renderField(container, field) {
+    switch (field.type) {
+        case "SIMPLE":
+            renderSimpleField(container, field);
+            break;
+        case "REPEATABLE":
+            renderRepeatableField(container, field);
+            break;
+        case "COMPLEX":
+            renderComplexField(container, field);
+            break;
+        default:
+            console.warn(`Unknown field type: ${field.type}`);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
