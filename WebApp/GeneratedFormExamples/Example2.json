@@ -1,12 +1,11 @@
-Generated Query: {
-  "targetDatabases": [
+"targetDatabases": [
     "d1",
     "d2"
   ],
   "description": "desc1",
   "steps": [
     {
-      "goal": "",
+      "goal": "s1",
       "columns": [
         "s1col1",
         "s1col2"
@@ -44,7 +43,7 @@ Generated Query: {
       "limit": 1
     },
     {
-      "goal": "",
+      "goal": "s2",
       "columns": [
         "s2col1",
         "s2col2"
