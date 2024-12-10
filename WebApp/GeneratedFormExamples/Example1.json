@@ -1,0 +1,47 @@
+{
+  "targetDatabases": [
+    "d1",
+    "d2"
+  ],
+  "description": "desc1",
+  "steps": [
+    {
+      "goal": "s1",
+      "columns": [
+        "s1col1",
+        "s1col2"
+      ],
+      "aggregation": {
+        "groupBy": [
+          "s1gb1",
+          "s1gb2"
+        ],
+        "orderBy": [
+          {
+            "column": "s1ob1",
+            "direction": "DESC"
+          },
+          {
+            "column": "s1ob2",
+            "direction": "ASC"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "s1ccol1",
+            "operator": "=",
+            "value": "s1cval1"
+          },
+          {
+            "column": "s1ccol2",
+            "operator": "=",
+            "value": "s1cval2"
+          }
+        ]
+      },
+      "limit": 1
+    }
+  ]
+}

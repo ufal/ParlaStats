@@ -1,0 +1,85 @@
+Generated Query: {
+  "targetDatabases": [
+    "d1",
+    "d2"
+  ],
+  "description": "desc1",
+  "steps": [
+    {
+      "goal": "",
+      "columns": [
+        "s1col1",
+        "s1col2"
+      ],
+      "aggregation": {
+        "groupBy": [
+          "s1gb1",
+          "s1gb2"
+        ],
+        "orderBy": [
+          {
+            "column": "s1ob1",
+            "direction": "DESC"
+          },
+          {
+            "column": "s1ob2",
+            "direction": "ASC"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "s1ccol1",
+            "operator": "=",
+            "value": "s1cval1"
+          },
+          {
+            "column": "s1ccol2",
+            "operator": "=",
+            "value": "s1cval2"
+          }
+        ]
+      },
+      "limit": 1
+    },
+    {
+      "goal": "",
+      "columns": [
+        "s2col1",
+        "s2col2"
+      ],
+      "aggregation": {
+        "groupBy": [
+          "s2gb1",
+          "s2gb2"
+        ],
+        "orderBy": [
+          {
+            "column": "s2ob1",
+            "direction": "ASC"
+          },
+          {
+            "column": "s2ob2",
+            "direction": "ASC"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "s2ccol1",
+            "operator": "=",
+            "value": "s2cval1"
+          },
+          {
+            "column": "s2ccol2",
+            "operator": "=",
+            "value": "s2cval2"
+          }
+        ]
+      },
+      "limit": 2
+    }
+  ]
+}

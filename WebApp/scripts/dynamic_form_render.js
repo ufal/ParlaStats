@@ -49,7 +49,7 @@ function renderForm(schema) {
 	generateQueryButton.textContent = "Generate JSON";
 	generateQueryButton.type="button";
 	generateQueryButton.onclick = () => {
-		const query = generateQueryFromForm(schema);
+		const query = collectFromForm();
 		console.log("Generated Query:", JSON.stringify(query, null, 2));
 	};
 
