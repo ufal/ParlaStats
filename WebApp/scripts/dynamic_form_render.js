@@ -37,13 +37,13 @@ function renderStepsSection(container) {
 
 	queryObject.steps.forEach((step, stepIndex) => {
 		const stepRow = document.createElement('div');
-		stepRow.className = 'repeatable-row';
+		stepRow.className = 'repeatable-row-step';
 
 		// Goal of the step
 		const goalDiv = document.createElement('div');
 		goalDiv.className = `goal_steps_${stepIndex}`;
 		const goalLabel = document.createElement('label');
-		goalLabel.textContent = 'Goal';
+		goalLabel.textContent = 'Name';
 		const goalInput = document.createElement('input');
 		goalInput.type = 'text';
 		goalInput.placeholder = 'goal';
@@ -375,12 +375,12 @@ function renderColumns(container, step, stepIndex) {
 function renderTargetSection(container) {
 	// Title
 	const targetTitle = document.createElement('h2');
-	targetTitle.textContent = "Target Database and Description";
+	targetTitle.textContent = "Target Database and Query Description";
 	container.appendChild(targetTitle);
 
 	// Target databases
 	const targetDatabasesDiv = document.createElement('div');
-	targetDatabasesDiv.className = 'targetDatabase';
+	targetDatabasesDiv.className = 'targetDatabase(s)';
 	const targetDatabaseTitle = document.createElement('h3');
 	targetDatabaseTitle.textContent = 'Target Database';
 	targetDatabasesDiv.appendChild(targetDatabaseTitle);
