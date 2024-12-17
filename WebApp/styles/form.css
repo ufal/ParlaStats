@@ -10,6 +10,30 @@ h1 {
 	text-align: center;
 	color: #333;
 }
+.container {
+	display:flex;
+	flex-direction:row;
+	gap:20px;
+}
+.form-wrapper {
+	flex:1;
+	min-width:400px;
+}
+.textarea-wrapper {
+	flex:1;
+	display:flex;
+	flex-direction:column;
+	gap:10px;
+}
+
+textarea {
+	
+	resize:none;
+	white-space:pre;
+	font-family:monospace;
+	width:400px;
+	height:100%;
+}
 
 .form-section {
 	margin-bottom:20px;

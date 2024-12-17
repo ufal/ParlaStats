@@ -1,216 +1,491 @@
-function renderForm(schema) {
-	// Render the form based on JSON structure description.
-	// Basically, the form sections are divided into 3 categories:
-	// 
-	//	SIMPLE
-	//	-> The field / section which contains only input fields of
-	//	   some sort and do not contain any subfileds (i.e Goal section of the step)
-	//
-	//	COMPLEX
-	//	-> The field / section which can contain subfields or subsections
-	//	   of some sort, i.e Aggregation (has subsections group by and order by)
-	//
-	//	REPEATABLE
-	//	-> Both SIMPLE and COMPLEX sections / fields can be repeatable, if 
-	//	   it makes sense to have multiple instance of them rendered (step, group-by columns etc.)
-	//
-	//	This fucntion reads the JSON structure specification and renders individual fields
-	//	based on it.
-	//
-	//	Calls special functions for generating each of the above described types of
-	//	sections.
-    const form = document.getElementById("dynamicForm");
+let queryObject = {
+	targetDatabases: [],
+	description: "",
+	steps:[]
+};
 
-    schema.form.sections.forEach((section) => {
-        const sectionDiv = document.createElement("div");
-        sectionDiv.classList.add("form-section");
-        sectionDiv.id = section.id;
+function renderForm() {
+	const container = document.getElementById('formContainer');
+	container.innerHTML = '';
+	const form = document.createElement('form');
+	form.id = 'dynamicForm';
 
-        const sectionTitle = document.createElement("h2");
-        sectionTitle.textContent = section.title;
-        sectionDiv.appendChild(sectionTitle);
+	const targetSection = document.createElement('div');
+	targetSection.className = 'form-section';
 
-        switch (section.type) {
-            case "REPEATABLE":
-                renderRepeatableField(sectionDiv, section);
-                break;
-            case "SIMPLE":
-                renderSimpleField(sectionDiv, section);
-                break;
-            case "COMPLEX":
-                renderComplexField(sectionDiv, section);
-                break;
-        }
+	const stepsSection = document.createElement('div');
+	stepsSection.className = 'form-section';
 
-        form.appendChild(sectionDiv);
-    });
+	renderTargetSection(targetSection);
+	renderStepsSection(stepsSection);
 	
-	const generateQueryButton = document.createElement("button");
-	generateQueryButton.textContent = "Generate JSON";
-	generateQueryButton.type="button";
-	generateQueryButton.onclick = () => {
-		const query = collectFromForm();
-		console.log("Generated Query:", JSON.stringify(query, null, 2));
+	
+
+	form.appendChild(targetSection);
+	form.appendChild(stepsSection);
+	container.appendChild(form);
+}
+
+function renderStepsSection(container) {
+	// Title
+	const stepsTitle = document.createElement('h2');
+	stepsTitle.textContent = 'Steps';
+	container.appendChild(stepsTitle);
+
+	const stepsContainer = document.createElement('div');
+	stepsContainer.className = 'steps repeatable-container';
+
+	queryObject.steps.forEach((step, stepIndex) => {
+		const stepRow = document.createElement('div');
+		stepRow.className = 'repeatable-row';
+
+		// Goal of the step
+		const goalDiv = document.createElement('div');
+		goalDiv.className = `goal_steps_${stepIndex}`;
+		const goalLabel = document.createElement('label');
+		goalLabel.textContent = 'Goal';
+		const goalInput = document.createElement('input');
+		goalInput.type = 'text';
+		goalInput.placeholder = 'goal';
+		goalInput.value = step.goal;
+		goalInput.addEventListener('input',  () => {
+			queryObject.steps[stepIndex].goal = goalInput.value;
+		});
+		goalDiv.appendChild(goalLabel);
+		goalDiv.appendChild(goalInput);
+		stepRow.appendChild(goalDiv);
+		
+		// Columns
+		const columnsDiv = document.createElement('div');
+		columnsDiv.className = `columns_steps_${stepIndex}`;
+		renderColumns(columnsDiv, step, stepIndex);
+		stepRow.appendChild(columnsDiv);
+
+		// Aggregation
+		const aggregationDiv = document.createElement('div');
+		aggregationDiv.className = `aggregation_steps_${stepIndex}`;
+		renderAggregation(aggregationDiv, step, stepIndex);
+		stepRow.appendChild(aggregationDiv);
+		
+		// Filtering
+		const filteringDiv = document.createElement('div');
+		filteringDiv.className = `filtering_steps_${stepIndex}`;
+		renderFiltering(filteringDiv, step, stepIndex);
+		stepRow.appendChild(filteringDiv);
+
+		// Limit
+		const limitDiv = document.createElement('div');
+		limitDiv.className = `limit_steps_${stepIndex}`;
+		renderLimit(limitDiv, step, stepIndex);
+		stepRow.appendChild(limitDiv);
+
+		const removeStepButton = document.createElement('button');
+		removeStepButton.type = 'button';
+		removeStepButton.textContent = '-';
+		removeStepButton.onclick = () => {
+			queryObject.steps.splice(stepIndex, 1);
+			renderForm();
+		};
+		stepRow.appendChild(removeStepButton);
+
+		stepsContainer.appendChild(stepRow);
+	});
+
+	const addStepButton = document.createElement('button');
+	addStepButton.type = 'button';
+	addStepButton.textContent = 'Add Step';
+	addStepButton.onclick = () => {
+		queryObject.steps.push({
+			goal: '',
+			columns: [],
+			aggregation: {
+				groupBy: [],
+				orderBy: []
+			},
+			filtering: {
+				conditions: []
+			},
+			limit: undefined
+		});
+		renderForm();
+	};
+	container.appendChild(stepsContainer);
+	container.appendChild(addStepButton);
+}
+
+function renderLimit(container, step, stepIndex) {
+	const limitLabel = document.createElement('label');
+	limitLabel.textContent = 'Limit';
+	container.appendChild(limitLabel);
+
+	const limitInput = document.createElement('input');
+	limitInput.type = 'number';
+	limitInput.placeholder = 'Limit';
+	limitInput.value = typeof step.limit === 'number' ? step.limit : '';
+	limitInput.addEventListener('input', () => {
+		const value =parseInt(limitInput.value, 10);
+		queryObject.steps[stepIndex].limit = isNaN(value) ? undefined : value;
+	});
+	container.appendChild(limitInput);
+}
+
+function renderFiltering(container, step, stepIndex) {
+	const filteringTitle = document.createElement('h3');
+	filteringTitle.textContent = 'Filtering';
+	container.appendChild(filteringTitle);
+
+	const conditionsDiv = document.createElement('div');
+	conditionsDiv.className = 'conditions';
+	renderConditions(conditionsDiv, step, stepIndex);
+	container.appendChild(conditionsDiv);
+
+}
+
+function renderConditions(container, step, stepIndex) {
+	const conditionsTitle = document.createElement('h3');
+	conditionsTitle.textContent = 'Conditions';
+	container.appendChild(conditionsTitle);
+
+	const conditionsContainer = document.createElement('div');
+	conditionsContainer.className = 'repeatable-container';
+	step.filtering.conditions.forEach((condition, conditionIndex) => {
+		const conditionRow = document.createElement('div');
+		conditionRow.className = 'repeatable-row';
+
+		const conditionColumnInput = document.createElement('input');
+		conditionColumnInput.type = 'text';
+		conditionColumnInput.placeholder = 'Column';
+		conditionColumnInput.value = condition.column;
+		conditionColumnInput.addEventListener('input', () => {
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnInput.value;
+		});
+		
+		const conditionOperatorSelect = document.createElement('select');
+		const operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"];
+		operators.forEach(oper => {
+			const operatorOption = document.createElement('option');
+			operatorOption.value = oper;
+			operatorOption.textContent = oper;
+			conditionOperatorSelect.appendChild(operatorOption);
+		});
+		conditionOperatorSelect.value = condition.operator;
+		conditionOperatorSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].operator = conditionOperatorSelect.value;
+		});
+
+		const conditionValueInput = document.createElement('input');
+		conditionValueInput.type = 'text';
+		conditionValueInput.placeholder = 'Value';
+		conditionValueInput.value = condition.value;
+		conditionValueInput.addEventListener('input', () => {
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
+		});
+
+		const removeConditionButton = document.createElement('button');
+		removeConditionButton.type = 'button';
+		removeConditionButton.textContent = '-';
+		removeConditionButton.onclick = () => {
+			queryObject.steps[stepIndex].filtering.conditions.splice(conditionIndex, 1);
+			renderForm();
+		};
+
+		conditionRow.appendChild(conditionColumnInput);
+		conditionRow.appendChild(conditionOperatorSelect);
+		conditionRow.appendChild(conditionValueInput);
+		conditionRow.appendChild(removeConditionButton);
+
+		conditionsContainer.appendChild(conditionRow);
+	});
+
+	const addConditionButton = document.createElement('button');
+	addConditionButton.type = 'button';
+	addConditionButton.textContent = 'Add Condition';
+	addConditionButton.onclick = () => {
+		queryObject.steps[stepIndex].filtering.conditions.push({column:"", operator:"=", value:""});
+		renderForm();
 	};
 
-	form.appendChild(generateQueryButton)
+	container.appendChild(conditionsContainer);
+	container.appendChild(addConditionButton);
 }
 
-function renderSimpleField(container, field) {
-	// Function for rendering SIMPLE field / section.
-    const fieldDiv = document.createElement("div");
-    fieldDiv.classList.add(field.id)
-	const label = document.createElement("label");
-    label.textContent = field.label;
-    label.setAttribute("for", field.id);
+function renderAggregation(container, step, stepIndex) {
+	const aggregationTitle = document.createElement('h3');
+	aggregationTitle.textContent = 'Aggregation';
+	container.appendChild(aggregationTitle);
 
-    const input = document.createElement(field.inputType === "select" ? "select" : "input");
-    if (field.inputType === "select") {
-        field.choices.forEach((choice) => {
-            const option = document.createElement("option");
-            option.value = choice;
-            option.textContent = choice;
-            input.appendChild(option);
-        });
-    } else {
-        input.type = field.inputType;
-        input.placeholder = field.placeholder || "";
-        if (field.readonly) {
-            input.setAttribute("readonly", true);
-        }
-    }
-    input.id = field.id;
+	const groupByDiv = document.createElement('div');
+	groupByDiv.className = 'group-by';
+	renderGroupBy(groupByDiv, step, stepIndex);
+	container.appendChild(groupByDiv);
 
-    fieldDiv.appendChild(label);
-    fieldDiv.appendChild(input);
-    container.appendChild(fieldDiv);
+	const orderByDiv = document.createElement('div');
+	orderByDiv.className = 'order-by';
+	renderOrderBy(orderByDiv, step, stepIndex);
+	container.appendChild(orderByDiv);
+
 }
 
-function renderRepeatableField(container, field) {
-	// Function for rendering REPEATABLE field / section.
-	let subfieldsCount = 0;
-    const fieldDiv = document.createElement("div");
-	fieldDiv.classList.add(field.id);
-    const label = document.createElement("h3");
-    label.textContent = field.label;
-	fieldDiv.appendChild(label);
+function renderOrderBy(container, step, stepIndex) {
+	const orderByTitle = document.createElement('h3');
+	orderByTitle.textContent = 'Order by';
+	container.appendChild(orderByTitle);
 
-    const addButton = document.createElement("button");
-    addButton.textContent = `Add ${field.label}`;
-    addButton.type = "button";
+	const orderByContainer = document.createElement('div');
+	orderByContainer.className = 'repeatable-container';
+	step.aggregation.orderBy.forEach((orderByEntry, orderByIndex) => {
+		const orderByRow = document.createElement('div');
+		orderByRow.className = 'repeatable-row';
+		const orderByColumnInput = document.createElement('input');
+		orderByColumnInput.type = 'text';
+		orderByColumnInput.placeholder = 'Column';
+		orderByColumnInput.value = orderByEntry.column;
+		orderByColumnInput.addEventListener('input', () => {
+			queryObject.steps[stepIndex].aggregation.orderBy[orderByIndex].column = orderByColumnInput.value;
+		});
 
-    const repeatableContainer = document.createElement("div");
-    repeatableContainer.classList.add("repeatable-container");
+		const orderByDirectionSelect = document.createElement('select');
+		
+		const ascendingOption = document.createElement('option');
+		ascendingOption.value = 'ASC';
+		ascendingOption.textContent = 'ASC';
+		const descendingOption = document.createElement('option');
+		descendingOption.value = 'DESC';
+		descendingOption.textContent = 'DESC';
 
-    addButton.onclick = () => {
-		const rowDiv = document.createElement("div");
-		rowDiv.classList.add("repeatable-row");
+		orderByDirectionSelect.appendChild(ascendingOption);
+		orderByDirectionSelect.appendChild(descendingOption);
+		orderByDirectionSelect.value = orderByEntry.direction || 'ASC';
+		orderByDirectionSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].aggregation.orderBy[orderByIndex].direction = orderByDirectionSelect.value;
+		});
+		
+		const removeOrderByButton = document.createElement('button');
+		removeOrderByButton.type = 'button';
+		removeOrderByButton.textContent = '-';
+		removeOrderByButton.onclick = () => {
+			queryObject.steps[stepIndex].aggregation.orderBy.splice(orderByIndex, 1);
+			renderForm();
+		};
 
-		if (field.fields) {
-			// If it's a REPEATABLE section with nested fields
-			field.fields.forEach((nestedField) => {
-				const uniqueId = `${nestedField.id}_${field.id}_${subfieldsCount}`;
-				nestedField.id = uniqueId; // Ensure unique ID
-				renderField(rowDiv, nestedField); // Use a common function for rendering
-			});
-		} else if (field.columns) {
-			// Render REPEATABLE rows with multiple columns
-			field.columns.forEach((column, index) => {
-				const input = document.createElement(column.inputType === "select" ? "select" : "input");
-				if (column.inputType === "select") {
-					column.choices.forEach((choice) => {
-						const option = document.createElement("option");
-						option.value = choice;
-						option.textContent = choice;
-						input.appendChild(option);
-					});
-				} else {
-					input.type = column.inputType;
-					input.placeholder = column.label;
-				}
-				const uniqueId = `${field.id}_col_${index}_${subfieldsCount}`;
-				input.id = uniqueId; // Ensure unique ID
-				input.dataset.fieldId = field.id; // Use data attribute to group related inputs
-				rowDiv.appendChild(input);
-			});
-		} else {
-			// Render a simple REPEATABLE field
-			const input = document.createElement("input");
-			input.type = field.inputType;
-			input.placeholder = field.placeholder || "";
-			const uniqueId = `${field.id}_${subfieldsCount}`;
-			input.id = uniqueId; // Ensure unique ID
-			rowDiv.appendChild(input);
+		orderByRow.appendChild(orderByColumnInput);
+		orderByRow.appendChild(orderByDirectionSelect);
+		orderByRow.appendChild(removeOrderByButton);
+
+		orderByContainer.appendChild(orderByRow);
+	});
+
+	const addOrderByButton = document.createElement('button');
+	addOrderByButton.type = 'button';
+	addOrderByButton.textContent = 'Add Order By';
+	addOrderByButton.onclick = () => {
+		queryObject.steps[stepIndex].aggregation.orderBy.push({column:"", direction:"ASC"});
+		renderForm();
+	};
+
+	container.appendChild(orderByContainer);
+	container.appendChild(addOrderByButton);
+}
+
+function renderGroupBy(container, step, stepIndex) {
+	const groupByTitle = document.createElement('h3');
+	groupByTitle.textContent = 'Group by';
+	container.appendChild(groupByTitle);
+
+	const groupByContainer = document.createElement('div');
+	groupByContainer.className = 'repeatable-container';
+	step.aggregation.groupBy.forEach((gbColumn, gbColumnIndex) => {
+		const groupByRow = document.createElement('div');
+		groupByRow.className = 'repeatable-row';
+		const groupByInput = document.createElement('input');
+		groupByInput.type = 'text';
+		groupByInput.placeholder = 'Group By Column';
+		groupByInput.value = gbColumn;
+		groupByInput.addEventListener('input', () => {
+			queryObject.steps[stepIndex].aggregation.groupBy[gbColumnIndex] = groupByInput.value;	
+		});
+
+		const removeGroupByButton = document.createElement('button');
+		removeGroupByButton.type = 'button';
+		removeGroupByButton.textContent = '-';
+		removeGroupByButton.onclick = () => {
+			queryObject.steps[stepIndex].aggregation.groupBy.splice(gbColumnIndex, 1);
+			renderForm()
 		}
 
-		const removeButton = document.createElement("button");
-		removeButton.textContent = "-";
-		removeButton.type = "button";
-		removeButton.onclick = () => rowDiv.remove();
+		groupByRow.appendChild(groupByInput);
+		groupByRow.appendChild(removeGroupByButton);
+		groupByContainer.appendChild(groupByRow);
+	});
 
-		rowDiv.appendChild(removeButton);
-		repeatableContainer.appendChild(rowDiv);
-		subfieldsCount++;
+	const addGroupByButton = document.createElement('button');
+	addGroupByButton.type = 'button';
+	addGroupByButton.textContent = 'Add Group By';
+	addGroupByButton.onclick = () => {
+		queryObject.steps[stepIndex].aggregation.groupBy.push("");
+		renderForm();
+	};
+	container.appendChild(groupByContainer);
+	container.appendChild(addGroupByButton);
+}
+
+function renderColumns(container, step, stepIndex) {
+	const columnsTitle = document.createElement('h3');
+	columnsTitle.textContent = 'Columns';
+	container.appendChild(columnsTitle);
+
+	const columnsContainer = document.createElement('div');
+	columnsContainer.className = 'repeatable-container';
+	step.columns.forEach((column, columnIndex) => {
+		const columnRow = document.createElement('div');
+		columnRow.className = 'repeatable-container';
+		const columnInput = document.createElement('input');
+		columnInput.type = 'text';
+		columnInput.placeholder = 'Column';
+		columnInput.value = column;
+		columnInput.addEventListener('input', () => {
+			queryObject.steps[stepIndex].columns[columnIndex] = columnInput.value;	
+		});
+
+		const removeColumnButton = document.createElement('button');
+		removeColumnButton.type = 'button';
+		removeColumnButton.textContent = '-';
+		removeColumnButton.onclick = () => {
+			queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
+			renderForm();
+		}
+
+		columnRow.appendChild(columnInput);
+		columnRow.appendChild(removeColumnButton);
+		columnsContainer.appendChild(columnRow);
+	});
+
+	const addColumnButton = document.createElement('button');
+	addColumnButton.type = 'button';
+	addColumnButton.textContent = 'Add Column';
+	addColumnButton.onclick = () => {
+		queryObject.steps[stepIndex].columns.push("");
+		renderForm();
 	};
 
-    // fieldDiv.appendChild(label);
-    fieldDiv.appendChild(repeatableContainer);
-    fieldDiv.appendChild(addButton);
-    container.appendChild(fieldDiv);
+	container.appendChild(columnsContainer);
+	container.appendChild(addColumnButton);
 }
 
-function renderComplexField(container, field) {
-	// Function for rendering COMPLEX fields / sections
-    const complexDiv = document.createElement("div");
-	complexDiv.classList.add(field.id)
-    const label = document.createElement("h3");
-    label.textContent = field.label;
-	complexDiv.appendChild(label);
+function renderTargetSection(container) {
+	// Title
+	const targetTitle = document.createElement('h2');
+	targetTitle.textContent = "Target Database and Description";
+	container.appendChild(targetTitle);
 
-    field.subfields.forEach((subfield) => {
-        switch (subfield.type) {
-            case "SIMPLE":
-                renderSimpleField(complexDiv, subfield);
-                break;
-            case "REPEATABLE":
-                renderRepeatableField(complexDiv, subfield);
-                break;
-        }
-    });
+	// Target databases
+	const targetDatabasesDiv = document.createElement('div');
+	targetDatabasesDiv.className = 'targetDatabase';
+	const targetDatabaseTitle = document.createElement('h3');
+	targetDatabaseTitle.textContent = 'Target Database';
+	targetDatabasesDiv.appendChild(targetDatabaseTitle);
 
-    
-    container.appendChild(complexDiv);
+	const targetDatabasesContainer = document.createElement('div');
+	targetDatabasesContainer.className = 'repeatable-container';
+
+	queryObject.targetDatabases.forEach((database, databaseIndex) => {
+		const row = document.createElement('div');
+		row.className = 'repeatable-row';
+
+		const input = document.createElement('input');
+		input.type = 'text';
+		input.value = database;
+		input.placeholder = 'Target Database';
+		input.addEventListener('input', () => {
+			queryObject.targetDatabases[databaseIndex] = input.value;
+		});
+
+		const removeButton = document.createElement('button');
+		removeButton.type = 'button';
+		removeButton.textContent = '-';
+		removeButton.onclick = () => {
+			queryObject.targetDatabases.splice(databaseIndex, 1);
+			renderForm();
+		};
+
+		row.appendChild(input);
+		row.appendChild(removeButton);
+		targetDatabasesContainer.appendChild(row);
+	});
+
+	const addButton = document.createElement('button');
+	addButton.type = 'button';
+	addButton.textContent = 'Add Target Database';
+	addButton.onclick = () => {
+		queryObject.targetDatabases.push("");
+		renderForm();
+	};
+	targetDatabasesDiv.appendChild(targetDatabasesContainer)
+	targetDatabasesDiv.appendChild(addButton);
+	
+	// Description
+	const descriptionDiv = document.createElement('div');
+	descriptionDiv.className = 'description';
+	const descriptionLabel = document.createElement('labe');
+	descriptionLabel.textContent = "Description";
+	const descriptionInput = document.createElement('input');
+	descriptionInput.type = 'text';
+	descriptionInput.placeholder = 'Query Description';
+	descriptionInput.value = queryObject.description;
+	descriptionInput.addEventListener('input', () => {
+		queryObject.description = descriptionInput.value;
+	});
+	descriptionDiv.appendChild(descriptionLabel);
+	descriptionDiv.appendChild(descriptionInput);
+
+	container.appendChild(targetDatabasesDiv);
+	container.appendChild(descriptionDiv);
+	
 }
 
-function renderField(container, field) {
-    switch (field.type) {
-        case "SIMPLE":
-            renderSimpleField(container, field);
-            break;
-        case "REPEATABLE":
-            renderRepeatableField(container, field);
-            break;
-        case "COMPLEX":
-            renderComplexField(container, field);
-            break;
-        default:
-            console.warn(`Unknown field type: ${field.type}`);
-    }
+function loadQuery(jsonString) {
+	queryObject = JSON.parse(jsonString);
+	renderForm();
 }
+
+const generateButton = document.getElementById('generateButton');
+generateButton.onclick = () => {
+	const outputJsonField = document.getElementById('outputJSON');
+	const jsonString = JSON.stringify(queryObject, null, 2);
+	outputJsonField.value = jsonString;
+
+	autoResizeTextarea(outputJsonField);
+};
+
+function autoResizeTextarea(textarea) {
+	textarea.style.width = 'auto';
+	textarea.style.height = 'auto';
+
+	textarea.style.height = textarea.scrollHeight + 'px';
+	textarea.style.width = textarea.scrollWidth + 'px';
+}
+
+const inputJsonField = document.getElementById('inputJSON');
+const outputJsonField = document.getElementById('outputJSON');
+
+inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
+outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
+
+const loadButton = document.getElementById('loadButton');
+loadButton.onclick = () => {
+	const inputJsonField = document.getElementById('inputJSON');
+	const inputJSON = inputJsonField.value.trim();
+	if (inputJSON) {
+		try {
+			loadQuery(inputJSON);	
+		} catch (e) {
+			alert("Invalid JSON.");
+		}
+	} else {
+		alert("Paste a JSON before loading.")
+	}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("form_structure.json")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Failed to load form schema: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((schema) => {
-            renderForm(schema);
-        })
-        .catch((error) => {
-            console.error("Error rendering form:", error);
-        });
+	renderForm();
 });
-
