@@ -23,7 +23,7 @@ args_parser = argparse.ArgumentParser()
 args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/ParCzech.ana.xml", help="Path to the corpus root file.")
 args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
 args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
-args_parser.add_argument("--database", type=str, default="DatabaseCommunication/databaseCS.ini", help="File with target database details")
+args_parser.add_argument("--database", type=str, default="DatabaseCommunication/parczech4_0.ini", help="File with target database details")
 args_parser.add_argument("--create_tables", action="store_true", help="Set this flag to create database tables.")
 args_parser.add_argument("--legacy", action="store_true", help="Set this flag to use legacy (non-XSLT) metadata extraction")
 

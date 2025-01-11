@@ -35,11 +35,16 @@ app = Flask(__name__)
 app.json = CustomJSONProvider(app)
 
 
-args_parser = ArgumentParser()
+# args_parser = ArgumentParser()
 
-args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/", help="connection parameters")
+# args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/", help="connection parameters")
     
-args = args_parser.parse_args()
+# args = args_parser.parse_args()
+
+class EmptyClass(object):
+    pass
+args = EmptyClass()
+setattr(args,"db","../DatabaseCommunication/")
 
 TABLE_MATCHING = {
     "person":[],
@@ -109,6 +114,7 @@ def connect_to_database(db_ini_path=args.db):
         raise Exception(f"Malformed database.ini file, please see README.md")
     try:
         with psycopg2.connect(**config) as connection:
+            connection.set_client_encoding('UTF8')
             return connection
     except (psycopg2.DatabaseError, Exception) as error:
         print(error)
@@ -189,25 +195,24 @@ def query():
     target_databases = json_query["target_databases"]
     res = []
     for database in target_databases:
-        if (database) == "databaseCS":
-            step_results = {}
-            connection = connect_to_database(f"{args.db}{database}.ini")
-            cursor = connection.cursor()
-            try:
-                for step in json_query['steps']:
-                    sql_query, params = SQLBuilder(step, step_results)
-                    cursor.execute(sql_query, params)
-                    step_results[step['goal']] = cursor.fetchall()
-            except ValueError as e:
-                return jsonify({"error": str(e)}), 400
-            cursor.close()
-            connection.close()
-            final_step_name = json_query['steps'][-1]['goal']
-            results = step_results[final_step_name]
-            columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
-            response = [dict(zip(columns, row)) for row in results]
-       
-            res.append(format_output(response))
+        step_results = {}
+        connection = connect_to_database(f"{args.db}{database}.ini")
+        cursor = connection.cursor()
+        try:
+            for step in json_query['steps']:
+                sql_query, params = SQLBuilder(step, step_results)
+                cursor.execute(sql_query, params)
+                step_results[step['goal']] = cursor.fetchall()
+        except ValueError as e:
+            return jsonify({"error": str(e)}), 400
+        cursor.close()
+        connection.close()
+        final_step_name = json_query['steps'][-1]['goal']
+        results = step_results[final_step_name]
+        columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
+        response = [dict(zip(columns, row)) for row in results]
+        res.append(database)
+        res.append(format_output(response))
     return jsonify(res)
 if __name__ == "__main__":
     app.run(debug=True)

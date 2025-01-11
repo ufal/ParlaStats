@@ -67,6 +67,7 @@ class DatabaseOperator:
 
         try:
             with psycopg2.connect(**config) as connection:
+                connection.set_client_encoding('UTF8')
                 return connection
         except (psycopg2.DatabaseError, Exception) as error:
             print(error)

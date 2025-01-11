@@ -20,7 +20,7 @@ args_parser.add_argument("--interactive", action="store_true", help="Set this fl
 class Client2():
     def __init__(self, args):
         self.URL = args.URL
-        self.URL = "http://127.0.0.1:5000/query"
+        self.URL = "http://quest.ms.mff.cuni.cz/parlastats/api/query"
         self.QueryDir = args.query_source
         self.target_dir = args.dir
         self.interactive = args.interactive
@@ -77,16 +77,16 @@ class Client2():
         if self.interactive:
             graph = input("Would you like to graph the results?(Y/n)")
             if graph == 'Y':
-                for res in result:
+                for res in result[1:]:
                     self.__graph_results(description, res)
             else:
-                for res in result:
+                for res in result[1:]:
                     res = self.__adjust_results(res)
                     print(f"Running time: {runtime} ms")
                     print()
                     print(res)
         else:
-            for res in result:
+            for res in result[1:]:
                 res = self.__adjust_results(res)
                 print(f"Running time {runtime} ms")
                 print()
