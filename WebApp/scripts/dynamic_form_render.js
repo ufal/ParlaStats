@@ -102,8 +102,8 @@ function renderStepsSection(container) {
 			goal: '',
 			columns: [],
 			aggregation: {
-				groupBy: [],
-				orderBy: []
+				group_by: [],
+				order_by: []
 			},
 			filtering: {
 				conditions: []
