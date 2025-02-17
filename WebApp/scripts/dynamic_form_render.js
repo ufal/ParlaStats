@@ -1,10 +1,13 @@
 let queryObject = {
-	targetDatabases: [],
+	target_databases: [],
 	description: "",
 	steps:[]
 };
 
+let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query"
+
 function renderForm() {
+	console.log(queryObject)
 	const container = document.getElementById('formContainer');
 	container.innerHTML = '';
 	const form = document.createElement('form');
@@ -23,7 +26,7 @@ function renderForm() {
 
 	form.appendChild(targetSection);
 	form.appendChild(stepsSection);
-	container.appendChild(form);
+container.appendChild(form)
 }
 
 function renderStepsSection(container) {
@@ -233,7 +236,7 @@ function renderOrderBy(container, step, stepIndex) {
 
 	const orderByContainer = document.createElement('div');
 	orderByContainer.className = 'repeatable-container';
-	step.aggregation.orderBy.forEach((orderByEntry, orderByIndex) => {
+	step.aggregation.order_by.forEach((orderByEntry, orderByIndex) => {
 		const orderByRow = document.createElement('div');
 		orderByRow.className = 'repeatable-row';
 		const orderByColumnInput = document.createElement('input');
@@ -241,7 +244,7 @@ function renderOrderBy(container, step, stepIndex) {
 		orderByColumnInput.placeholder = 'Column';
 		orderByColumnInput.value = orderByEntry.column;
 		orderByColumnInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].aggregation.orderBy[orderByIndex].column = orderByColumnInput.value;
+			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByColumnInput.value;
 		});
 
 		const orderByDirectionSelect = document.createElement('select');
@@ -257,14 +260,14 @@ function renderOrderBy(container, step, stepIndex) {
 		orderByDirectionSelect.appendChild(descendingOption);
 		orderByDirectionSelect.value = orderByEntry.direction || 'ASC';
 		orderByDirectionSelect.addEventListener('change', () => {
-			queryObject.steps[stepIndex].aggregation.orderBy[orderByIndex].direction = orderByDirectionSelect.value;
+			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].direction = orderByDirectionSelect.value;
 		});
 		
 		const removeOrderByButton = document.createElement('button');
 		removeOrderByButton.type = 'button';
 		removeOrderByButton.textContent = '-';
 		removeOrderByButton.onclick = () => {
-			queryObject.steps[stepIndex].aggregation.orderBy.splice(orderByIndex, 1);
+			queryObject.steps[stepIndex].aggregation.order_by.splice(orderByIndex, 1);
 			renderForm();
 		};
 
@@ -279,7 +282,7 @@ function renderOrderBy(container, step, stepIndex) {
 	addOrderByButton.type = 'button';
 	addOrderByButton.textContent = 'Add Order By';
 	addOrderByButton.onclick = () => {
-		queryObject.steps[stepIndex].aggregation.orderBy.push({column:"", direction:"ASC"});
+		qggueryObject.steps[stepIndex].aggregation.order_by.push({column:"", direction:"ASC"});
 		renderForm();
 	};
 
@@ -294,7 +297,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 	const groupByContainer = document.createElement('div');
 	groupByContainer.className = 'repeatable-container';
-	step.aggregation.groupBy.forEach((gbColumn, gbColumnIndex) => {
+	step.aggregation.group_by.forEach((gbColumn, gbColumnIndex) => {
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row';
 		const groupByInput = document.createElement('input');
@@ -302,14 +305,14 @@ function renderGroupBy(container, step, stepIndex) {
 		groupByInput.placeholder = 'Group By Column';
 		groupByInput.value = gbColumn;
 		groupByInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].aggregation.groupBy[gbColumnIndex] = groupByInput.value;	
+			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByInput.value;	
 		});
 
 		const removeGroupByButton = document.createElement('button');
 		removeGroupByButton.type = 'button';
 		removeGroupByButton.textContent = '-';
 		removeGroupByButton.onclick = () => {
-			queryObject.steps[stepIndex].aggregation.groupBy.splice(gbColumnIndex, 1);
+			queryObject.steps[stepIndex].aggregation.group_by.splice(gbColumnIndex, 1);
 			renderForm()
 		}
 
@@ -322,48 +325,48 @@ function renderGroupBy(container, step, stepIndex) {
 	addGroupByButton.type = 'button';
 	addGroupByButton.textContent = 'Add Group By';
 	addGroupByButton.onclick = () => {
-		queryObject.steps[stepIndex].aggregation.groupBy.push("");
-		renderForm();
-	};
-	container.appendChild(groupByContainer);
-	container.appendChild(addGroupByButton);
-}
+			queryObject.steps[stepIndex].aggregation.group_by.push("");
+			renderForm();
+		};
+		container.appendChild(groupByContainer);
+		container.appendChild(addGroupByButton);
+	}
 
-function renderColumns(container, step, stepIndex) {
-	const columnsTitle = document.createElement('h3');
-	columnsTitle.textContent = 'Columns';
-	container.appendChild(columnsTitle);
+	function renderColumns(container, step, stepIndex) {
+		const columnsTitle = document.createElement('h3');
+		columnsTitle.textContent = 'Columns';
+		container.appendChild(columnsTitle);
 
-	const columnsContainer = document.createElement('div');
-	columnsContainer.className = 'repeatable-container';
-	step.columns.forEach((column, columnIndex) => {
-		const columnRow = document.createElement('div');
-		columnRow.className = 'repeatable-container';
-		const columnInput = document.createElement('input');
-		columnInput.type = 'text';
-		columnInput.placeholder = 'Column';
-		columnInput.value = column;
-		columnInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].columns[columnIndex] = columnInput.value;	
+		const columnsContainer = document.createElement('div');
+		columnsContainer.className = 'repeatable-container';
+		step.columns.forEach((column, columnIndex) => {
+			const columnRow = document.createElement('div');
+			columnRow.className = 'repeatable-container';
+			const columnInput = document.createElement('input');
+			columnInput.type = 'text';
+			columnInput.placeholder = 'Column';
+			columnInput.value = column;
+			columnInput.addEventListener('input', () => {
+				queryObject.steps[stepIndex].columns[columnIndex] = columnInput.value;	
+			});
+
+			const removeColumnButton = document.createElement('button');
+			removeColumnButton.type = 'button';
+			removeColumnButton.textContent = '-';
+			removeColumnButton.onclick = () => {
+				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
+				renderForm();
+			}
+
+			columnRow.appendChild(columnInput);
+			columnRow.appendChild(removeColumnButton);
+			columnsContainer.appendChild(columnRow);
 		});
 
-		const removeColumnButton = document.createElement('button');
-		removeColumnButton.type = 'button';
-		removeColumnButton.textContent = '-';
-		removeColumnButton.onclick = () => {
-			queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
-			renderForm();
-		}
-
-		columnRow.appendChild(columnInput);
-		columnRow.appendChild(removeColumnButton);
-		columnsContainer.appendChild(columnRow);
-	});
-
-	const addColumnButton = document.createElement('button');
-	addColumnButton.type = 'button';
-	addColumnButton.textContent = 'Add Column';
-	addColumnButton.onclick = () => {
+		const addColumnButton = document.createElement('button');
+		addColumnButton.type = 'button';
+		addColumnButton.textContent = 'Add Column';
+		addColumnButton.onclick = () => {
 		queryObject.steps[stepIndex].columns.push("");
 		renderForm();
 	};
@@ -388,7 +391,7 @@ function renderTargetSection(container) {
 	const targetDatabasesContainer = document.createElement('div');
 	targetDatabasesContainer.className = 'repeatable-container';
 
-	queryObject.targetDatabases.forEach((database, databaseIndex) => {
+	queryObject.target_databases.forEach((database, databaseIndex) => {
 		const row = document.createElement('div');
 		row.className = 'repeatable-row';
 
@@ -397,14 +400,14 @@ function renderTargetSection(container) {
 		input.value = database;
 		input.placeholder = 'Target Database';
 		input.addEventListener('input', () => {
-			queryObject.targetDatabases[databaseIndex] = input.value;
+			queryObject.target_databases[databaseIndex] = input.value;
 		});
 
 		const removeButton = document.createElement('button');
 		removeButton.type = 'button';
 		removeButton.textContent = '-';
 		removeButton.onclick = () => {
-			queryObject.targetDatabases.splice(databaseIndex, 1);
+			queryObject.target_databases.splice(databaseIndex, 1);
 			renderForm();
 		};
 
@@ -417,7 +420,7 @@ function renderTargetSection(container) {
 	addButton.type = 'button';
 	addButton.textContent = 'Add Target Database';
 	addButton.onclick = () => {
-		queryObject.targetDatabases.push("");
+		queryObject.target_databases.push("");
 		renderForm();
 	};
 	targetDatabasesDiv.appendChild(targetDatabasesContainer)
@@ -444,8 +447,13 @@ function renderTargetSection(container) {
 }
 
 function loadQuery(jsonString) {
+	console.log(jsonString)
 	queryObject = JSON.parse(jsonString);
 	renderForm();
+}
+
+function displayResults(results) {
+	
 }
 
 const generateButton = document.getElementById('generateButton');
@@ -456,6 +464,27 @@ generateButton.onclick = () => {
 
 	autoResizeTextarea(outputJsonField);
 };
+
+const sendQueryButton = document.getElementById('sendQueryButton');
+sendQueryButton.onclick = async () => {
+	try {
+		const query = JSON.stringify(queryObject, null, 2);
+		const queryWrapped = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: query
+		}
+		const response = await fetch(serverURL, queryWrapped);
+		if (!response.ok) {
+			throw new Error(`HTTP Error! Status: ${response.status}`);
+		}
+		const responseData = await response.json();
+		document.getElementById("responseJSON").textContent = JSON.stringify(responseData, null, 2);
+	} catch (error) {
+		document.getELementById("responseJSON").textContent = `Error ${error}`;
+
+	}
+}
 
 function autoResizeTextarea(textarea) {
 	textarea.style.width = 'auto';
@@ -479,6 +508,7 @@ loadButton.onclick = () => {
 		try {
 			loadQuery(inputJSON);	
 		} catch (e) {
+			console.log(e);
 			alert("Invalid JSON.");
 		}
 	} else {
