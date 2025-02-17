@@ -108,7 +108,7 @@ function renderStepsSection(container) {
 			filtering: {
 				conditions: []
 			},
-			limit: undefined
+			limit: ""
 		});
 		renderForm();
 	};
@@ -120,14 +120,13 @@ function renderLimit(container, step, stepIndex) {
 	const limitLabel = document.createElement('label');
 	limitLabel.textContent = 'Limit';
 	container.appendChild(limitLabel);
-
 	const limitInput = document.createElement('input');
 	limitInput.type = 'number';
 	limitInput.placeholder = 'Limit';
 	limitInput.value = typeof step.limit === 'number' ? step.limit : '';
 	limitInput.addEventListener('input', () => {
 		const value =parseInt(limitInput.value, 10);
-		queryObject.steps[stepIndex].limit = isNaN(value) ? undefined : value;
+		queryObject.steps[stepIndex].limit = isNaN(value) ? "" : value;
 	});
 	container.appendChild(limitInput);
 }
@@ -282,7 +281,7 @@ function renderOrderBy(container, step, stepIndex) {
 	addOrderByButton.type = 'button';
 	addOrderByButton.textContent = 'Add Order By';
 	addOrderByButton.onclick = () => {
-		qggueryObject.steps[stepIndex].aggregation.order_by.push({column:"", direction:"ASC"});
+		queryObject.steps[stepIndex].aggregation.order_by.push({column:"", direction:"ASC"});
 		renderForm();
 	};
 
