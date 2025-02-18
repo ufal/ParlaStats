@@ -1,8 +1,0 @@
-[{'persName.forename': 'Andris', 'persName.surname': 'Kazinovskis', 'person.person_id': 'KazinovskisAndris', 'total_speeches': 168}, {'persName.forename': 'Inese', 'persName.surname': 'Ikstena', 'person.person_id': 'IkstenaInese', 'total_speeches': 50}]
-
-+-------------------+------------------+-------------------+----------------+
-| persName.forename | persName.surname |  person.person_id | total_speeches |
-+-------------------+------------------+-------------------+----------------+
-|       Andris      |   Kazinovskis    | KazinovskisAndris |      168       |
-|       Inese       |     Ikstena      |    IkstenaInese   |       50       |
-+-------------------+------------------+-------------------+----------------+
