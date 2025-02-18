@@ -428,7 +428,7 @@ function renderTargetSection(container) {
 	// Description
 	const descriptionDiv = document.createElement('div');
 	descriptionDiv.className = 'description';
-	const descriptionLabel = document.createElement('labe');
+	const descriptionLabel = document.createElement('label');
 	descriptionLabel.textContent = "Description";
 	const descriptionInput = document.createElement('input');
 	descriptionInput.type = 'text';
@@ -451,19 +451,16 @@ function loadQuery(jsonString) {
 	renderForm();
 }
 
-function displayResults(results) {
-	
-}
-
+/*
 const generateButton = document.getElementById('generateButton');
 generateButton.onclick = () => {
 	const outputJsonField = document.getElementById('outputJSON');
 	const jsonString = JSON.stringify(queryObject, null, 2);
 	outputJsonField.value = jsonString;
 
-	autoResizeTextarea(outputJsonField);
+	// autoResizeTextarea(outputJsonField);
 };
-
+*/
 const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = async () => {
 	try {
@@ -478,11 +475,46 @@ sendQueryButton.onclick = async () => {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
 		const responseData = await response.json();
-		document.getElementById("responseJSON").textContent = JSON.stringify(responseData, null, 2);
+		visualizeResponseInTable(responseData);
+		// document.getElementById("responseJSON").textContent = JSON.stringify(responseData, null, 2);
 	} catch (error) {
-		document.getELementById("responseJSON").textContent = `Error ${error}`;
+		document.getElementById("responseJSON").textContent = `Error ${error}`;
 
 	}
+}
+
+function visualizeResponseInTable(responseData) {
+	const visualizationDiv = document.getElementById("responseDataTable");
+	var table = document.createElement("table");
+	var tableHeader = document.createElement("thead");
+	var headerRow = document.createElement("tr");
+
+	// Header Construction
+	var columnNames = Object.keys(responseData[1][0]);
+
+	columnNames.forEach(columnName => {
+		var th = document.createElement("th");
+		th.textContent = columnName;
+		headerRow.appendChild(th);
+	});
+
+	tableHeader.appendChild(headerRow);
+	table.appendChild(tableHeader)
+	
+	// Body construction
+	var tableBody = document.createElement("tbody");
+	responseData[1].forEach(row => {
+		var tableRow = document.createElement("tr");
+		columnNames.forEach(columnName => {
+			var td = document.createElement("td");
+			td.textContent = row[columnName];
+			tableRow.appendChild(td);
+		});
+		tableBody.appendChild(tableRow);
+	});
+	table.appendChild(tableBody);
+	visualizationDiv.appendChild(table);
+
 }
 
 function autoResizeTextarea(textarea) {
@@ -497,7 +529,7 @@ const inputJsonField = document.getElementById('inputJSON');
 const outputJsonField = document.getElementById('outputJSON');
 
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
-outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
+// outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
 
 const loadButton = document.getElementById('loadButton');
 loadButton.onclick = () => {

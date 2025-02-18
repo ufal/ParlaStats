@@ -142,3 +142,21 @@ label {
 input {
 	font-size:10px;
 }
+table {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+th {
+	padding 8px;
+	border: 1px solid #000000;
+	background-color: "#f2f2f2";
+}
+td {
+	padding 8px;
+	border: 1px solid #000000;
+}
+#responseDataTable {
+	overflow-y: auto;
+	width: 400px;
+	max-height: 300px;
+}
