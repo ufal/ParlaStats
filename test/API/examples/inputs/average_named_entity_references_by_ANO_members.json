@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":"Average named_entity references by ANO members.",
 	"steps":[
 		{

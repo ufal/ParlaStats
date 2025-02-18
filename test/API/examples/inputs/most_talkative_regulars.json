@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseLV", "databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":"Most talkative regulars",
 	"steps": [
 		{

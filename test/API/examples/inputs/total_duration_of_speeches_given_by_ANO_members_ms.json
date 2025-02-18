@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":"Total duration of members of ANO in miliseconds",
 	"steps": [
 		{

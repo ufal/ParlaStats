@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseLV", "databaseCS"],
+	"target_databases":["parczech$_0"],
 	"description":"How many speeches were given by members of each political party or parliamentary group",
 	"steps": [
 		{

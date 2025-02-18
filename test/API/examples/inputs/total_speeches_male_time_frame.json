@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseCS","databaseLV"],
+	"target_databases":["parczech4_0"],
 	"description":"How many speeches did male politicians give between 1.1.2019 and 1.1.2020.",
 	"steps": [
 		{

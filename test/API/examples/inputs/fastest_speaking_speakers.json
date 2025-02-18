@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":" TOP 10 speakers with most words per minute.",
 	"steps":[
 		{

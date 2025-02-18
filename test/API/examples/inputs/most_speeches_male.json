@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseLV", "databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":"TOP 10 male speakers with most speeches",
 	"steps": [
 		{

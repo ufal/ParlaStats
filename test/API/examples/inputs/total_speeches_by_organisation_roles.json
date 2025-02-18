@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseLV","databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":"Total speeches for each organisation role.",
 	"steps": [
 		{

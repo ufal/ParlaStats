@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseCS", "databaseLV"],
+	"target_databases":["parczech4_0"],
 	"description":"Average sentences of speeches by most talkative politician across all  roles they held across all their affiliations.",
 	"steps": [
 		{

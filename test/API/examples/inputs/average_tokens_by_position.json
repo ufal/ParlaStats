@@ -1,5 +1,5 @@
 {
-	"target_databases":["databaseLV", "databaseCS"],
+	"target_databases":["parczech4_0"],
 	"description":"How many words contain speeches for each position of the speaker (regular, chair, guest)",
 	"steps":[
 		{
