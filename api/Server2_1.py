@@ -10,6 +10,7 @@ from json import JSONEncoder
 import json
 from datetime import datetime, time, date
 import sys
+from metainformationFetcher import metainformationFetcher
 
 class CustomJSONifier(JSONEncoder):
     """
@@ -220,36 +221,9 @@ def query():
 ############################# DATABASE META INFORMATION FETCHING ################################################
 =================================================================================================================
 """
-@app.route('/metainformation/databases')
-def get_databases_info():
-    with connect_to_database(f"{args.db}meta.ini") as meta_connection:
-        with meta_connection.cursor() as meta_cursor:
-            meta_cursor.execute("SELECT database_name FROM databases;")
-            return jsonify([row[0] for row in meta_cursor.fetchall()])
-
-@app.route('/metainformation/tables/<database>')
-def get_database_tables(database):
-    with connect_to_database(f"{args.db}meta.ini") as meta_connection:
-        with meta_connection.cursor() as meta_cursor:
-            meta_cursor.execute("""
-                                SELECT schema_name, table_name FROM tables JOIN databases ON tables.database_id = databases.id
-                                WHERE database_name = %s;
-                                """, (database,))
-            return jsonify([{"schema":row[0], "table":row[1]} for row in meta_cursor.fetchall()])
-
-@app.route('/metadatainformation/columns/<database>/<schema>/<table>')
-def get_table_columns(database, schema, table):
-    with connect_to_database(f"{args.db}meta.ini") as meta_connection:
-        with meta_connection.cursor() as meta_cursor:
-            meta_cursor.execute("""
-                                SELECT column_name, data_type FROM columns 
-                                JOIN tables ON columns.table_id = tables.id
-                                JOIN databases ON databases.id = tables.database_id
-                                WHERE database.database_name = %s 
-                                AND tables.schema_name = %s
-                                AND tables.table_name = %s
-                                """, (database, schema, table))
-        return jsonify([{"column_name":row[0], "data_type":row[1]} for row in meta_cursor.fetchall()])    
+@app.route('/metainformation')
+def get_metainformation_JSON():
+    return jsonify(metainformationFetcher.make_metainformation_JSON())
 
 if __name__ == "__main__":
     app.run(debug=True)
