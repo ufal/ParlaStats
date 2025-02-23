@@ -1,3 +1,5 @@
+import { getAvailableDatabases, getMetaInformation } from './metaInformation.js'; 
+
 let queryObject = {
 	target_databases: [],
 	description: "",
@@ -340,7 +342,8 @@ function renderGroupBy(container, step, stepIndex) {
 		columnsContainer.className = 'repeatable-container';
 		step.columns.forEach((column, columnIndex) => {
 			const columnRow = document.createElement('div');
-			columnRow.className = 'repeatable-container';
+			columnRow.className = 'repeatable-row';
+				
 			const columnInput = document.createElement('input');
 			columnInput.type = 'text';
 			columnInput.placeholder = 'Column';
@@ -393,15 +396,22 @@ function renderTargetSection(container) {
 	queryObject.target_databases.forEach((database, databaseIndex) => {
 		const row = document.createElement('div');
 		row.className = 'repeatable-row';
-
-		const input = document.createElement('input');
-		input.type = 'text';
-		input.value = database;
-		input.placeholder = 'Target Database';
-		input.addEventListener('input', () => {
-			queryObject.target_databases[databaseIndex] = input.value;
+		// ========================== NEW ===============================
+		const newInput = document.createElement('select');
+		// let databases = getAvailableDatabases(); 
+		// console.log(databases);
+		let metainformation = getMetaInformation()
+		
+		metainformation.available_databases.forEach(databaseName => {
+			const option = document.createElement('option');
+			option.value = databaseName;
+			option.textContent = databaseName;
+			newInput.appendChild(option);
 		});
-
+		newInput.addEventListener('change', () => {
+			queryObject.target_databasesp[databaseIndex] = newInput.value;
+		});
+		// ======================= END NEW ==============================
 		const removeButton = document.createElement('button');
 		removeButton.type = 'button';
 		removeButton.textContent = '-';
@@ -409,8 +419,7 @@ function renderTargetSection(container) {
 			queryObject.target_databases.splice(databaseIndex, 1);
 			renderForm();
 		};
-
-		row.appendChild(input);
+		row.appendChild(newInput);
 		row.appendChild(removeButton);
 		targetDatabasesContainer.appendChild(row);
 	});
@@ -549,4 +558,5 @@ loadButton.onclick = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
+	
 });
