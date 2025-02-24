@@ -1,4 +1,4 @@
-import { getAvailableDatabases, getMetaInformation } from './metaInformation.js'; 
+import { getMetaInformation } from './metaInformation.js'; 
 
 let queryObject = {
 	target_databases: [],
@@ -7,7 +7,7 @@ let queryObject = {
 };
 
 let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query"
-
+let metaInformation = {}
 function renderForm() {
 	console.log(queryObject)
 	const container = document.getElementById('formContainer');
@@ -155,14 +155,44 @@ function renderConditions(container, step, stepIndex) {
 	step.filtering.conditions.forEach((condition, conditionIndex) => {
 		const conditionRow = document.createElement('div');
 		conditionRow.className = 'repeatable-row';
+		let conditionColumnParts = condition.column.split('.');
+		// ========================== NEW VERSION BEGIN ===========================
+		const conditionColumnTableSelect = document.createElement('select');
+		const conditionColumnColumnSelect = document.createElement('select');
 
-		const conditionColumnInput = document.createElement('input');
-		conditionColumnInput.type = 'text';
-		conditionColumnInput.placeholder = 'Column';
-		conditionColumnInput.value = condition.column;
-		conditionColumnInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnInput.value;
+		metaInformation.filtering.column.forEach(item => {
+			const tableOption = document.createElement('option');
+			const columnOption = document.createElement('option');
+
+			tableOption.value = item.table;
+			tableOption.textContent = item.table;
+			conditionColumnTableSelect.appendChild(tableOption);
+
+			columnOption.value = item.column;
+			columnOption.textContent = item.column;
+			conditionColumnColumnSelect.appendChild(columnOption);
 		});
+
+		conditionColumnTableSelect.value = conditionColumnParts[0];
+		conditionColumnColumnSelect.value = conditionColumnParts[1];
+
+		conditionColumnTableSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`; 
+		});
+
+		conditionColumnColumnSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`;
+		});
+		// ========================== NEW VERSION END =============================
+		// ========================== OLD VERSION BEGIN ===========================
+		// const conditionColumnInput = document.createElement('input');
+		// conditionColumnInput.type = 'text';
+		// conditionColumnInput.placeholder = 'Column';
+		// conditionColumnInput.value = condition.column;
+		// conditionColumnInput.addEventListener('input', () => {
+		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnInput.value;
+		// });
+		// ========================== OLD VERSION END =============================
 		
 		const conditionOperatorSelect = document.createElement('select');
 		const operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"];
@@ -193,7 +223,9 @@ function renderConditions(container, step, stepIndex) {
 			renderForm();
 		};
 
-		conditionRow.appendChild(conditionColumnInput);
+		// conditionRow.appendChild(conditionColumnInput);
+		conditionRow.appendChild(conditionColumnTableSelect);
+		conditionRow.appendChild(conditionColumnColumnSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInput);
 		conditionRow.appendChild(removeConditionButton);
@@ -240,14 +272,46 @@ function renderOrderBy(container, step, stepIndex) {
 	step.aggregation.order_by.forEach((orderByEntry, orderByIndex) => {
 		const orderByRow = document.createElement('div');
 		orderByRow.className = 'repeatable-row';
-		const orderByColumnInput = document.createElement('input');
-		orderByColumnInput.type = 'text';
-		orderByColumnInput.placeholder = 'Column';
-		orderByColumnInput.value = orderByEntry.column;
-		orderByColumnInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByColumnInput.value;
+		let orderByColumnParts = orderByEntry.column.split('.');
+		// ===================== NEW VERSION BEGIN ===========================
+		const orderByTableSelect = document.createElement('select');
+		const orderByColumnSelect = document.createElement('select');
+		
+		metaInformation.aggregation.order_by.forEach(item => {
+			const tableOption = document.createElement('option');
+			const columnOption = document.createElement('option');
+
+			tableOption.value = item.table;
+			tableOption.textContent = item.table;
+			orderByTableSelect.appendChild(tableOption);
+
+			columnOption.value = item.column;
+			columnOption.textContent = item.column;
+			orderByColumnSelect.appendChild(columnOption);
+		});
+		
+		orderByTableSelect.value = orderByColumnParts[0];
+		orderByColumnSelect.value = orderByColumnParts[1];
+
+		orderByTableSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
 		});
 
+		orderByColumnSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
+		});
+
+		// ===================== NEW VERSION END =============================
+
+		// ===================== OLD VERSION BEGIN ===========================
+		// const orderByColumnInput = document.createElement('input');
+		// orderByColumnInput.type = 'text';
+		// orderByColumnInput.placeholder = 'Column';
+		// orderByColumnInput.value = orderByEntry.column;
+		// orderByColumnInput.addEventListener('input', () => {
+		// 	queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByColumnInput.value;
+		// });
+		// ==================== OLD VERSION END ==============================
 		const orderByDirectionSelect = document.createElement('select');
 		
 		const ascendingOption = document.createElement('option');
@@ -272,7 +336,9 @@ function renderOrderBy(container, step, stepIndex) {
 			renderForm();
 		};
 
-		orderByRow.appendChild(orderByColumnInput);
+		// orderByRow.appendChild(orderByColumnInput);
+		orderByRow.appendChild(orderByTableSelect);
+		orderByRow.appendChild(orderByColumnSelect);
 		orderByRow.appendChild(orderByDirectionSelect);
 		orderByRow.appendChild(removeOrderByButton);
 
@@ -299,16 +365,50 @@ function renderGroupBy(container, step, stepIndex) {
 	const groupByContainer = document.createElement('div');
 	groupByContainer.className = 'repeatable-container';
 	step.aggregation.group_by.forEach((gbColumn, gbColumnIndex) => {
+		let gbColumnParts = gbColumn.split('.');
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row';
-		const groupByInput = document.createElement('input');
-		groupByInput.type = 'text';
-		groupByInput.placeholder = 'Group By Column';
-		groupByInput.value = gbColumn;
-		groupByInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByInput.value;	
+		// =========================== NEW VERSION BEGIN ============================
+		// ####### TABLE SELECTION ##########
+		const groupByTableSelect = document.createElement('select');
+		const groupByColumnSelect = document.createElement('select');
+
+		metaInformation.aggregation.group_by.forEach(item => {
+			const columnOption = document.createElement('option');
+			const tableOption = document.createElement('option');
+			
+			tableOption.value = item.table;
+			tableOption.textContent = item.table;
+			groupByTableSelect.appendChild(tableOption);
+
+			columnOption.value = item.column;
+			columnOption.textContent = item.column;
+			groupByColumnSelect.appendChild(columnOption);
+
+		});
+		
+		groupByTableSelect.value = gbColumnParts[0];
+		groupByColumnSelect.value = gbColumnParts[1];
+
+		groupByTableSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
 		});
 
+		groupByColumnSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
+		});
+	
+		// ========================== NEW VERSION END ==============================
+
+		// ========================= OLD VERSION BEGIN =============================
+		// const groupByInput = document.createElement('input');
+		// groupByInput.type = 'text';
+		// groupByInput.placeholder = 'Group By Column';
+		// groupByInput.value = gbColumn;
+		// groupByInput.addEventListener('input', () => {
+		// 	queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByInput.value;	
+		// });
+		// ======================== OLD VERSION END ================================
 		const removeGroupByButton = document.createElement('button');
 		removeGroupByButton.type = 'button';
 		removeGroupByButton.textContent = '-';
@@ -316,8 +416,10 @@ function renderGroupBy(container, step, stepIndex) {
 			queryObject.steps[stepIndex].aggregation.group_by.splice(gbColumnIndex, 1);
 			renderForm()
 		}
-
-		groupByRow.appendChild(groupByInput);
+		
+		// groupByRow.appendChild(groupByInput);
+		groupByRow.appendChild(groupByTableSelect);
+		groupByRow.appendChild(groupByColumnSelect);
 		groupByRow.appendChild(removeGroupByButton);
 		groupByContainer.appendChild(groupByRow);
 	});
@@ -343,15 +445,46 @@ function renderGroupBy(container, step, stepIndex) {
 		step.columns.forEach((column, columnIndex) => {
 			const columnRow = document.createElement('div');
 			columnRow.className = 'repeatable-row';
+			// ====================== NEW VERSION BEGIN ==============================
+			let columnParts = column.split('.');
+			const columnTableSelect = document.createElement('select');
+			const columnColumnSelect = document.createElement('select');
+			metaInformation.columns.forEach(item => {
 				
-			const columnInput = document.createElement('input');
-			columnInput.type = 'text';
-			columnInput.placeholder = 'Column';
-			columnInput.value = column;
-			columnInput.addEventListener('input', () => {
-				queryObject.steps[stepIndex].columns[columnIndex] = columnInput.value;	
+				const tableOption = document.createElement('option');
+				tableOption.value = item.table;
+				tableOption.textContent = item.table;
+
+				const columnOption = document.createElement('option');
+				columnOption.value = item.column;
+				columnOption.textContent = item.column;
+
+				columnColumnSelect.appendChild(columnOption);
+				columnTableSelect.appendChild(tableOption);
+			});
+			columnTableSelect.value = columnParts[0];
+			
+			columnColumnSelect.value = columnParts[1];
+
+			columnTableSelect.addEventListener('change', () => {
+				queryObject.steps[stepIndex].columns[columnIndex] = `${columnTableSelect.value}.${columnColumnSelect.value}`;
 			});
 
+			columnColumnSelect.addEventListener('change', () => {
+				queryObject.steps[stepIndex].columns[columnIndex] = `${columnTableSelect.value}.${columnColumnSelect.value}`;
+			});
+		
+			// ====================== NEW VERSION END ================================
+
+			// ====================== OLD VERSION BEGIN ==============================	
+			// const columnInput = document.createElement('input');
+			// columnInput.type = 'text';
+			// columnInput.placeholder = 'Column';
+			// columnInput.value = column;
+			// columnInput.addEventListener('input', () => {
+			// 	queryObject.steps[stepIndex].columns[columnIndex] = columnInput.value;	
+			// });
+			// ===================== OLD VERSION END ================================
 			const removeColumnButton = document.createElement('button');
 			removeColumnButton.type = 'button';
 			removeColumnButton.textContent = '-';
@@ -360,7 +493,9 @@ function renderGroupBy(container, step, stepIndex) {
 				renderForm();
 			}
 
-			columnRow.appendChild(columnInput);
+			// columnRow.appendChild(columnInput);
+			columnRow.appendChild(columnTableSelect);
+			columnRow.appendChild(columnColumnSelect);
 			columnRow.appendChild(removeColumnButton);
 			columnsContainer.appendChild(columnRow);
 		});
@@ -400,9 +535,7 @@ function renderTargetSection(container) {
 		const newInput = document.createElement('select');
 		// let databases = getAvailableDatabases(); 
 		// console.log(databases);
-		let metainformation = getMetaInformation()
-		
-		metainformation.available_databases.forEach(databaseName => {
+		metaInformation.available_databases.forEach(databaseName => {
 			const option = document.createElement('option');
 			option.value = databaseName;
 			option.textContent = databaseName;
@@ -558,5 +691,6 @@ loadButton.onclick = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
+	metaInformation = getMetaInformation()
 	
 });
