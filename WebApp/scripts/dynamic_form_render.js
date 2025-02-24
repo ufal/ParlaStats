@@ -157,26 +157,48 @@ function renderConditions(container, step, stepIndex) {
 		conditionRow.className = 'repeatable-row';
 		let conditionColumnParts = condition.column.split('.');
 		// ========================== NEW VERSION BEGIN ===========================
+		// ######################## NOTES BEGIN #######################
+		// TODO: Repeated code at 181-188 and 194-201
+		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
 		const conditionColumnColumnSelect = document.createElement('select');
 
 		metaInformation.filtering.column.forEach(item => {
 			const tableOption = document.createElement('option');
-			const columnOption = document.createElement('option');
 
 			tableOption.value = item.table;
 			tableOption.textContent = item.table;
 			conditionColumnTableSelect.appendChild(tableOption);
 
-			columnOption.value = item.column;
-			columnOption.textContent = item.column;
-			conditionColumnColumnSelect.appendChild(columnOption);
+		});
+		
+		if (!conditionColumnParts[0]) {
+			conditionColumnTableSelect.value = conditionColumnTableSelect.options[0].value;
+		} else {
+			conditionColumnTableSelect.value = conditionColumnParts[0];
+		}
+
+		metaInformation.filtering.column.forEach(item => {
+			if (conditionColumnTableSelect.value === item.table) {
+				const columnOption = document.createElement('option');
+				columnOption.value = item.column;
+				columnOption.textContent = item.column;
+				conditionColumnColumnSelect.appendChild(columnOption);
+			}
 		});
 
-		conditionColumnTableSelect.value = conditionColumnParts[0];
 		conditionColumnColumnSelect.value = conditionColumnParts[1];
 
 		conditionColumnTableSelect.addEventListener('change', () => {
+			conditionColumnColumnSelect.innerHTML = '';
+			metaInformation.filtering.column.forEach(item => {
+				if (conditionColumnTableSelect.value === item.table) {
+					const columnOption = document.createElement('option');
+					columnOption.value = item.column;
+					columnOption.textContent = item.column;
+					conditionColumnColumnSelect.appendChild(columnOption);
+				}
+			});
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`; 
 		});
 
@@ -274,26 +296,48 @@ function renderOrderBy(container, step, stepIndex) {
 		orderByRow.className = 'repeatable-row';
 		let orderByColumnParts = orderByEntry.column.split('.');
 		// ===================== NEW VERSION BEGIN ===========================
+		// ######################## NOTES BEGIN #######################
+		// TODO: Repeated code at 298-305 and 311-318
+		// ######################## NOTES END #########################
 		const orderByTableSelect = document.createElement('select');
 		const orderByColumnSelect = document.createElement('select');
-		
+
 		metaInformation.aggregation.order_by.forEach(item => {
 			const tableOption = document.createElement('option');
-			const columnOption = document.createElement('option');
 
 			tableOption.value = item.table;
 			tableOption.textContent = item.table;
 			orderByTableSelect.appendChild(tableOption);
 
-			columnOption.value = item.column;
-			columnOption.textContent = item.column;
-			orderByColumnSelect.appendChild(columnOption);
 		});
 		
-		orderByTableSelect.value = orderByColumnParts[0];
+		if (!orderByColumnParts[0]) {
+			orderByTableSelect.value = orderByTableSelect.options[0].value;
+		} else {
+			orderByTableSelect.value = orderByColumnParts[0];
+		}
+
+		metaInformation.aggregation.order_by.forEach(item => {
+			if (orderByTableSelect.value == item.table) {
+				const columnOption = document.createElement('option');
+				columnOption.value = item.column;
+				columnOption.textCOntent = item.column;
+				orderByColumnSelect.appendChild(columnOption);
+			}
+		});
+
 		orderByColumnSelect.value = orderByColumnParts[1];
 
 		orderByTableSelect.addEventListener('change', () => {
+			orderByColumnSelect.innerHTML = '';
+			metaInformation.aggregation.order_by.forEach(item => {
+				if (orderByTableSelect.value == item.table) {
+					const columnOption = document.createElement('option');
+					columnOption.value = item.column;
+					columnOption.textCOntent = item.column;
+					orderByColumnSelect.appendChild(columnOption);
+				}
+			});
 			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
 		});
 
@@ -369,28 +413,49 @@ function renderGroupBy(container, step, stepIndex) {
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row';
 		// =========================== NEW VERSION BEGIN ============================
-		// ####### TABLE SELECTION ##########
+		// ######################## NOTES BEGIN #######################
+		// TODO: Repeated code at 393-400 and 406-503
+		// ######################## NOTES END #########################
 		const groupByTableSelect = document.createElement('select');
 		const groupByColumnSelect = document.createElement('select');
 
 		metaInformation.aggregation.group_by.forEach(item => {
-			const columnOption = document.createElement('option');
 			const tableOption = document.createElement('option');
 			
 			tableOption.value = item.table;
 			tableOption.textContent = item.table;
 			groupByTableSelect.appendChild(tableOption);
 
-			columnOption.value = item.column;
-			columnOption.textContent = item.column;
-			groupByColumnSelect.appendChild(columnOption);
-
 		});
 		
-		groupByTableSelect.value = gbColumnParts[0];
+		if (!gbColumnParts[0]) {
+			groupByTableSelect.value = groupByTableSelect.options[0].value;
+		} else {
+			groupByTableSelect.value = gbColumnParts[0];
+		}
+
+		metaInformation.aggregation.group_by.forEach(item => {
+			if (groupByTableSelect.value === item.table) {
+				const columnOption = document.createElement('option');
+				columnOption.value = item.column;
+				columnOption.textContent = item.column;
+				groupByColumnSelect.appendChild(columnOption);
+			}
+		});
+
 		groupByColumnSelect.value = gbColumnParts[1];
 
 		groupByTableSelect.addEventListener('change', () => {
+			groupByColumnSelect.innerHTML = '';
+			metaInformation.aggregation.group_by.forEach(item => {
+				if (groupByTableSelect.value === item.table) {
+					const columnOption = document.createElement('option');
+					columnOption.value = item.column;
+					columnOption.textContent = item.column;
+					groupByColumnSelect.appendChild(columnOption);
+				}
+			});
+
 			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
 		});
 
@@ -446,6 +511,9 @@ function renderGroupBy(container, step, stepIndex) {
 			const columnRow = document.createElement('div');
 			columnRow.className = 'repeatable-row';
 			// ====================== NEW VERSION BEGIN ==============================
+			// ######################## NOTES BEGIN #######################
+			// TODO: Repeated code at 470-477 and 483-450
+			// ######################## NOTES END #########################
 			let columnParts = column.split('.');
 			const columnTableSelect = document.createElement('select');
 			const columnColumnSelect = document.createElement('select');
@@ -454,19 +522,38 @@ function renderGroupBy(container, step, stepIndex) {
 				const tableOption = document.createElement('option');
 				tableOption.value = item.table;
 				tableOption.textContent = item.table;
-
-				const columnOption = document.createElement('option');
-				columnOption.value = item.column;
-				columnOption.textContent = item.column;
-
-				columnColumnSelect.appendChild(columnOption);
+				
 				columnTableSelect.appendChild(tableOption);
 			});
-			columnTableSelect.value = columnParts[0];
 			
+			if (!columnParts[0]) {
+				columnTableSelect.value = columnTableSelect.options[0].value;
+			} else {
+				columnTableSelect.value = columnParts[0];
+			}
+			
+			metaInformation.columns.forEach(item => {
+				if (item.table === columnTableSelect.value) {
+					const columnOption = document.createElement('option');
+					columnOption.value = item.column;
+					columnOption.textContent = item.column;
+					columnColumnSelect.appendChild(columnOption);
+				}
+			});
+
 			columnColumnSelect.value = columnParts[1];
 
 			columnTableSelect.addEventListener('change', () => {
+				columnColumnSelect.innerHTML = '';
+				metaInformation.columns.forEach(item => {
+					if (item.table === columnTableSelect.value) {
+						const columnOption = document.createElement('option');
+						columnOption.value = item.column;
+						columnOption.textContent = item.column;
+						columnColumnSelect.appendChild(columnOption);
+					}
+				});
+
 				queryObject.steps[stepIndex].columns[columnIndex] = `${columnTableSelect.value}.${columnColumnSelect.value}`;
 			});
 
