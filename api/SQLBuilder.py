@@ -79,7 +79,7 @@ class SQLBuilder:
     def parse_limit(self, limit):
         res = ""
         if limit:
-            limit_clause = "LIMIT {limit}"
+            limit_clause = f" LIMIT {limit}"
             res += limit_clause
         return res
 
@@ -89,9 +89,10 @@ class SQLBuilder:
             order_clause = " ORDER BY "
             for ob in order_by:
                 if (isinstance(ob['column'], str)):
-                    order_clause += ob['column']
+                    order_clause += f"{ob['column']} {ob['direction']}"
                 elif (isinstance(ob['column'], dict)):
-                    order_clause += f"{ob['column']['agg_func'](ob['column']['real'])}"
+                    order_clause += f"{ob['column']['agg_func']}({ob['column']['real']})"
+                    order_clause += f" {ob['direction']} "
             res += order_clause
         return res
 

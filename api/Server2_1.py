@@ -103,6 +103,7 @@ def query():
         try:
             for step in json_query['steps']:
                 sql_query, params = sql_builder.buildSQLQuery(step, step_results)
+                print(sql_query)
                 cursor.execute(sql_query, params)
                 step_results[step['goal']] = cursor.fetchall()
         except ValueError as e:
@@ -119,6 +120,7 @@ def query():
         response = [dict(zip(columns, row)) for row in results]
         res.append(database)
         res.append(format_output(response))
+        print(res)
     return jsonify(res)
 
 """
