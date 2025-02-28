@@ -9,7 +9,10 @@
 				"group_by":["speech.person_id"],
 				"order_by":[
 					{
-						"column":"AVG((speech.token_count / (speech.total_duration / 60000)))",
+						"column": {
+							"real":"(speech.token_count / (speech.total_duration / 60000))",
+							"agg_func":"AVG"
+						},
 						"direction":"DESC"
 					}
 				]
@@ -29,7 +32,14 @@
 		},
 		{
 			"goal":"main",
-			"columns":["speech.earliest_timestamp", "AVG((speech.token_count / (speech.total_duration / 60000))) AS average_wpm"],
+			"columns":[
+				"speech.earliest_timestamp", 
+				{
+					"real":"(speech.token_count / (speech.total_duration / 60000))",
+					"alias":"average_wpm",
+					"agg_func":"AVG"
+				}
+			],
 			"aggregation": {
 				"group_by":["speech.person_id", "speech.earliest_timestamp"],
 				"order_by":[

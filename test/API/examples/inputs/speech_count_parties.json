@@ -1,10 +1,17 @@
 {
-	"target_databases":["parczech$_0"],
+	"target_databases":["parczech4_0"],
 	"description":"How many speeches were given by members of each political party or parliamentary group",
 	"steps": [
 		{
 			"goal":"main",
-			"columns":["organisation.name", "COUNT(speech.id) AS total_speeches"],
+			"columns":[
+				"organisation.name",
+				{
+					"real":"speech.id",
+					"alias":"total_speeches",
+					"agg_func":"COUNT"
+				}
+			],
 			"aggregation": {
 				"group_by":["organisation.role", "organisation.name"],
 				"order_by":[]

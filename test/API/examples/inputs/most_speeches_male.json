@@ -4,10 +4,17 @@
 	"steps": [
 		{
 			"goal":"main",
-			"columns":["person.person_id", "COUNT(speech.id) AS total_speeches"],
+			"columns":[
+				"person.person_id", 
+				{
+					"real":"speech.id",
+					"alias":"total_speeches",
+					"agg_func":"COUNT"
+				}
+			],
 			"aggregation": {
-				"group_by":["person.person_id", "persName.forename",
-					        "persName.surname"],
+				"group_by":["person.person_id", "persname.forename",
+					        "persname.surname"],
 				"order_by":[
 					{
 						"column":"total_speeches",

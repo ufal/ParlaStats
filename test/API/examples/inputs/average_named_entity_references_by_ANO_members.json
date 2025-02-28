@@ -4,9 +4,9 @@
 	"steps":[
 		{
 			"goal":"get_ano_members",
-			"columns":["person.person_id"],
+			"columns":[ "person.person_id" ],
 			"aggregation": {
-				"group_by":["person.person_id","organisation.organisation_id"],
+				"group_by":[ "person.person_id", "organisation.organisation_id" ],
 				"order_by":[]
 			},
 			"filtering":{	
@@ -22,7 +22,14 @@
 		},
 		{
 			"goal":"main",
-			"columns":["affiliation.person_id", "AVG(speech.named_entity_count) AS average_named_entity_references"],
+			"columns":[ 
+				"affiliation.person_id",
+				{
+					"real":"speech.named_entity_count",
+					"alias":"average_named_entity_references",
+					"agg_func":"AVG"
+				}
+			],
 			"aggregation":{
 				"group_by":["affiliation.person_id"],
 				"order_by":[

@@ -4,7 +4,14 @@
 	"steps": [
 		{
 			"goal":"main",
-			"columns":["person.sex", "SUM(speech.sentence_count) AS total_sentences"],
+			"columns":[
+				"person.sex",
+				{
+					"real":"speech.sentence_count",
+					"alias":"total_sentences",
+					"agg_func":"SUM"
+				}
+			],
 			"aggregation": {
 				"group_by":["person.sex"],
 				"order_by":[]

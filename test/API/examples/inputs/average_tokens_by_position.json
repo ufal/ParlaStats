@@ -4,7 +4,14 @@
 	"steps":[
 		{
 			"goal":"main",
-			"columns":["speech.role", "AVG(speech.token_count) AS average_tokens"],
+			"columns":[
+				"speech.role",
+				{
+					"real":"speech.token_count",
+					"alias":"average_tokens",
+					"agg_func":"AVG"
+				}
+			],
 			"aggregation": {
 				"group_by":["speech.role"],
 				"order_by":[]

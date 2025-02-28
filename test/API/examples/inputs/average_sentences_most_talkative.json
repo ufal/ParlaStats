@@ -4,12 +4,19 @@
 	"steps": [
 		{
 			"goal":"find_most_talkative",
-			"columns":["speech.person_id", "COUNT(speech.id) AS total_speeches"],
+			"columns":[
+				"speech.person_id", 
+				{
+					"real":"speech.id",
+					"alias":"total_speeches",
+					"agg_func":"COUNT"
+				}
+			],
 			"aggregation": {
 				"group_by":["speech.person_id"],
 				"order_by":[
 					{
-						"column":"COUNT(speech.id)",
+						"column":"total_speeches",
 						"direction":"DESC"
 					}
 				]
@@ -22,7 +29,14 @@
 		},
 		{
 			"goal":"average_sentence_counts",
-			"columns":["affiliation.role", "AVG(speech.sentence_count) AS average_sentence_count"],
+			"columns":[
+				"affiliation.role", 
+				{
+					"real":"speech.sentence_count",
+					"alias":"average_sentence_count",
+					"agg_func":"AVG"
+				}
+			],
 			"aggregation": {
 				"group_by":["affiliation.role"],
 				"order_by":[]

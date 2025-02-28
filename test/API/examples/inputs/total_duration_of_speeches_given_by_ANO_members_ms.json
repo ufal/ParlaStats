@@ -23,7 +23,14 @@
 		},
 		{
 			"goal":"main",
-			"columns":["affiliation.person_id", "SUM(speech.total_duration) AS total_duration_ms"],
+			"columns":[
+				"affiliation.person_id", 
+				{
+					"real":"speech.total_duration",
+					"alias":"total_duration_ms",
+					"agg_func":"SUM"
+				}
+			],
 			"aggregation": {
 				"group_by":["affiliation.person_id"],
 				"order_by":[

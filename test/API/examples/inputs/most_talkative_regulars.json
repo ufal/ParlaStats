@@ -4,9 +4,21 @@
 	"steps": [
 		{
 			"goal":"main",
-			"columns":["persName.forename", "persName.surname", "SUM(speech.token_count) AS total_tokens"],
+			"columns":[
+				"persname.forename", 
+				"persname.surname", 
+				{
+					"real":"speech.token_count",
+					"alias":"total_tokens",
+					"agg_func":"SUM"
+				}
+			],
 			"aggregation": {
-				"group_by":["persName.forename","persName.surname","speech.role"],
+				"group_by":[
+					"persname.forename",
+					"persname.surname",
+					"speech.role"
+				],
 				"order_by":[
 					{
 						"column":"speech.role",

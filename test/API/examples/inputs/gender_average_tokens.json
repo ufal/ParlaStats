@@ -4,7 +4,14 @@
 	"steps": [
 		{
 			"goal":"main",
-			"columns":["person.sex", "AVG(speech.token_count) AS average_tokens"],
+			"columns":[
+				"person.sex", 
+				{
+					"real":"speech.token_count",
+					"alias":"average_tokens",
+					"agg_func":"AVG"
+				}
+			],
 			"aggregation": {
 				"group_by":["person.sex"],
 				"order_by":[]

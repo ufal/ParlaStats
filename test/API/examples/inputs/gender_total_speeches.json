@@ -4,8 +4,14 @@
 	"steps": [
 		{
 			"goal":"main",
-			"columns":["person.sex", "COUNT(speech.id) AS total_speeches"],
-
+			"columns":[
+				"person.sex", 
+				{
+					"real":"speech.id",
+					"alias":"total_speeches",
+					"agg_func":"COUNT"
+				}
+			],
 			"aggregation": {
 				"group_by":["person.sex"],
 				"order_by":[] 
