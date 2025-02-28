@@ -6,8 +6,9 @@ let queryObject = {
 	steps:[]
 };
 
-let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query"
-let metaInformation = {}
+let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query";
+let testServerURL = "http://127.0.0.1:5000/query";
+let metaInformation = {};
 function renderForm() {
 	console.log(queryObject)
 	const container = document.getElementById('formContainer');
@@ -162,14 +163,16 @@ function renderConditions(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
 		const conditionColumnColumnSelect = document.createElement('select');
-
+		let alreadySeen = [];
 		metaInformation.filtering.column.forEach(item => {
-			const tableOption = document.createElement('option');
-
-			tableOption.value = item.table;
-			tableOption.textContent = item.table;
-			conditionColumnTableSelect.appendChild(tableOption);
-
+			if (!alreadySeen.includes(item.table)) {
+				const tableOption = document.createElement('option');
+			
+				tableOption.value = item.table;
+				tableOption.textContent = item.table;
+				conditionColumnTableSelect.appendChild(tableOption);
+				alreadySeen.push(item.table);
+			}
 		});
 		
 		if (!conditionColumnParts[0]) {
@@ -301,14 +304,16 @@ function renderOrderBy(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const orderByTableSelect = document.createElement('select');
 		const orderByColumnSelect = document.createElement('select');
-
+		let alreadySeen = [];
 		metaInformation.aggregation.order_by.forEach(item => {
-			const tableOption = document.createElement('option');
+			if (!alreadySeen.includes(item.table)) {
+				const tableOption = document.createElement('option');
 
-			tableOption.value = item.table;
-			tableOption.textContent = item.table;
-			orderByTableSelect.appendChild(tableOption);
-
+				tableOption.value = item.table;
+				tableOption.textContent = item.table;
+				orderByTableSelect.appendChild(tableOption);
+				alreadySeen.push(item.table);
+			}
 		});
 		
 		if (!orderByColumnParts[0]) {
@@ -321,7 +326,7 @@ function renderOrderBy(container, step, stepIndex) {
 			if (orderByTableSelect.value == item.table) {
 				const columnOption = document.createElement('option');
 				columnOption.value = item.column;
-				columnOption.textCOntent = item.column;
+				columnOption.textContent = item.column;
 				orderByColumnSelect.appendChild(columnOption);
 			}
 		});
@@ -418,14 +423,16 @@ function renderGroupBy(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const groupByTableSelect = document.createElement('select');
 		const groupByColumnSelect = document.createElement('select');
-
+		let alreadySeen = [];
 		metaInformation.aggregation.group_by.forEach(item => {
-			const tableOption = document.createElement('option');
+			if (!alreadySeen.includes(item.table)) {
+				const tableOption = document.createElement('option');
 			
-			tableOption.value = item.table;
-			tableOption.textContent = item.table;
-			groupByTableSelect.appendChild(tableOption);
-
+				tableOption.value = item.table;
+				tableOption.textContent = item.table;
+				groupByTableSelect.appendChild(tableOption);
+				alreadySeen.push(item.table);
+			}
 		});
 		
 		if (!gbColumnParts[0]) {
@@ -512,53 +519,82 @@ function renderGroupBy(container, step, stepIndex) {
 			columnRow.className = 'repeatable-row';
 			// ====================== NEW VERSION BEGIN ==============================
 			// ######################## NOTES BEGIN #######################
-			// TODO: Repeated code at 470-477 and 483-450
 			// ######################## NOTES END #########################
-			let columnParts = column.split('.');
+			// let columnParts = column.split('.');
 			const columnTableSelect = document.createElement('select');
-			const columnColumnSelect = document.createElement('select');
+			// Alias input field
+			const aliasInputField = document.createElement('input');
+			aliasInputField.type = 'text';
+			aliasInputField.placeholder = 'Type alias here.'
+			
+			aliasInputField.addEventListener('input', () => {
+				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
+					queryObject.steps[stepIndex].columns[columnIndex] = {
+						"real":columnTableSelect.value,
+						"alias":aliasInputField.value,
+						"agg_func":aggregationFunctionSelect.value
+					};
+				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
+					queryObject.steps[stepIndex].columns[columnIndex] = aliasInputField.value;
+				}
+		
+			});
+
+
+			// Aggregation function select
+			const aggregationFunctionSelect = document.createElement('select');
+			let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT']
+			aggFOptions.forEach(option => {
+				const aggFOption = document.createElement('option');
+				aggFOption.value = option;
+				aggFOption.textContent = option;
+				aggregationFunctionSelect.appendChild(aggFOption);
+			});
+
+			aggregationFunctionSelect.addEventListener('change', () => {
+				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
+					queryObject.steps[stepIndex].columns[columnIndex] = {
+						"real":columnTableSelect.value,
+						"alias":aliasInputField.value,
+						"agg_func":aggregationFunctionSelect.value
+					}
+				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
+						queryObject.steps[stepIndex].columns[columnIndex].agg_func = aggregationFunctionSelect.value;
+				}
+				console.log(queryObject);
+			});
+
+			if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
+				aliasInputField.value = queryObject.steps[stepIndex].columns[columnIndex].alias;
+				aggregationFunctionSelect.value = queryObject.steps[stepIndex].columns[columnIndex].agg_func;
+			} else {
+				aliasInputField.value = "";
+				aggregationFunctionSelect.value = "";
+			}
+
 			metaInformation.columns.forEach(item => {
-				
 				const tableOption = document.createElement('option');
-				tableOption.value = item.table;
-				tableOption.textContent = item.table;
+				tableOption.value = item.table + "." + item.column;
+				tableOption.textContent = item.table + "." + item.column;
 				
 				columnTableSelect.appendChild(tableOption);
+				
 			});
 			
-			if (!columnParts[0]) {
+			if (!column) {
 				columnTableSelect.value = columnTableSelect.options[0].value;
 			} else {
-				columnTableSelect.value = columnParts[0];
-			}
-			
-			metaInformation.columns.forEach(item => {
-				if (item.table === columnTableSelect.value) {
-					const columnOption = document.createElement('option');
-					columnOption.value = item.column;
-					columnOption.textContent = item.column;
-					columnColumnSelect.appendChild(columnOption);
+				if (typeof column === "string") {
+					columnTableSelect.value = column;
+				} else if (typeof column === "object") {
+					columnTableSelect.value = column.real;
 				}
-			});
-
-			columnColumnSelect.value = columnParts[1];
+			}
 
 			columnTableSelect.addEventListener('change', () => {
-				columnColumnSelect.innerHTML = '';
-				metaInformation.columns.forEach(item => {
-					if (item.table === columnTableSelect.value) {
-						const columnOption = document.createElement('option');
-						columnOption.value = item.column;
-						columnOption.textContent = item.column;
-						columnColumnSelect.appendChild(columnOption);
-					}
-				});
-
-				queryObject.steps[stepIndex].columns[columnIndex] = `${columnTableSelect.value}.${columnColumnSelect.value}`;
-			});
-
-			columnColumnSelect.addEventListener('change', () => {
-				queryObject.steps[stepIndex].columns[columnIndex] = `${columnTableSelect.value}.${columnColumnSelect.value}`;
+				aggregationFunctionSelect.value = "";
+				aliasInputField.value = "";
+				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
 			});
 		
 			// ====================== NEW VERSION END ================================
@@ -579,10 +615,9 @@ function renderGroupBy(container, step, stepIndex) {
 				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
 				renderForm();
 			}
-
-			// columnRow.appendChild(columnInput);
+			columnRow.appendChild(aggregationFunctionSelect);
 			columnRow.appendChild(columnTableSelect);
-			columnRow.appendChild(columnColumnSelect);
+			columnRow.appendChild(aliasInputField);
 			columnRow.appendChild(removeColumnButton);
 			columnsContainer.appendChild(columnRow);
 		});
@@ -628,8 +663,15 @@ function renderTargetSection(container) {
 			option.textContent = databaseName;
 			newInput.appendChild(option);
 		});
+		
+		if (!queryObject.target_databases[databaseIndex]) {
+			newInput.value = newInput.options[0].value;
+		} else {
+			newInput.value = queryObject.target_databases[databaseIndex];
+		}
+
 		newInput.addEventListener('change', () => {
-			queryObject.target_databasesp[databaseIndex] = newInput.value;
+			queryObject.target_databases[databaseIndex] = newInput.value;
 		});
 		// ======================= END NEW ==============================
 		const removeButton = document.createElement('button');
@@ -680,7 +722,7 @@ function loadQuery(jsonString) {
 	renderForm();
 }
 
-/*
+
 const generateButton = document.getElementById('generateButton');
 generateButton.onclick = () => {
 	const outputJsonField = document.getElementById('outputJSON');
@@ -689,7 +731,7 @@ generateButton.onclick = () => {
 
 	// autoResizeTextarea(outputJsonField);
 };
-*/
+
 const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = async () => {
 	try {
@@ -699,7 +741,8 @@ sendQueryButton.onclick = async () => {
 			headers: { "Content-Type": "application/json" },
 			body: query
 		}
-		const response = await fetch(serverURL, queryWrapped);
+		console.log(query);
+		const response = await fetch(testServerURL, queryWrapped);
 		if (!response.ok) {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
@@ -707,13 +750,14 @@ sendQueryButton.onclick = async () => {
 		visualizeResponseInTable(responseData);
 		// document.getElementById("responseJSON").textContent = JSON.stringify(responseData, null, 2);
 	} catch (error) {
-		document.getElementById("responseJSON").textContent = `Error ${error}`;
+		// document.getElementById("responseJSON").textContent = `Error ${error}`;
 
 	}
 }
 
 function visualizeResponseInTable(responseData) {
 	const visualizationDiv = document.getElementById("responseDataTable");
+	visualizationDiv.innerHTML = '';
 	var table = document.createElement("table");
 	var tableHeader = document.createElement("thead");
 	var headerRow = document.createElement("tr");
@@ -758,7 +802,7 @@ const inputJsonField = document.getElementById('inputJSON');
 const outputJsonField = document.getElementById('outputJSON');
 
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
-// outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
+outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
 
 const loadButton = document.getElementById('loadButton');
 loadButton.onclick = () => {

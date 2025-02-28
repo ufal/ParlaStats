@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic JSON Form</title>
     <link rel="stylesheet" href="styles/form.css">
+	<script type="module" src="scripts/dynamic_form_render.js" defer></script>
+	<script type="module" src="scripts/metaInformation.js" defer></script>
+
 </head>
 <body>
 
@@ -19,13 +22,13 @@
 			<div id="formContainer"></div>
 		</div>
 		<div class="textarea-wrapper">
-			<!-- <h2>Output JSON</h2> -->
-			<!-- <textarea id="outputJSON" placeholder="Generated JSON query"></textarea> -->
-			<!-- <button id="generateButton" type="button">Generate Query</button> -->
+			<h2>Output JSON</h2>
+			<textarea id="outputJSON" placeholder="Generated JSON query"></textarea>
+			<button id="generateButton" type="button">Generate Query</button>
 			<button id="sendQueryButton" type="button">Send Query</button>
 			<div id="responseDataTable"/>	
 		</div>
 	</div>
-	<script src="scripts/dynamic_form_render.js"></script>
+	
 </body>
 </html>
