@@ -30,8 +30,15 @@ class MIDatabaseFiller(DatabaseOperator):
             with database_connection.cursor() as database_cursor:
                 database_cursor.execute("""
                     SELECT column_name, data_type FROM information_schema.columns
-                    WHERE table_schema = %s AND table_name = %s;
-                """, (schema, table))
+                    WHERE table_schema = %s AND table_name = %s
+                    AND column_name NOT IN (
+                        SELECT a.attname
+                        FROM pg_attribute a
+                        JOIN pg_constraint con ON a.attnum = ANY(con.conkey)
+                        JOIN pg_class cls ON cls.oid = con.conrelid
+                        WHERE con.contype = 'f' AND cls.relname = %s
+                    );
+                """, (schema, table, table))
                 return database_cursor.fetchall()
     
     def update_metadata(self):

@@ -37,9 +37,9 @@ class metainformationFetcher:
                 available_databases = [row[0] for row in meta_cursor.fetchall()]
 
                 meta_cursor.execute("""
-                                SELECT DISTINCT tables.table_name, columns.column_name
-                                FROM columns
-                                JOIN tables on columns.table_id = tables.id;
+                                SELECT DISTINCT t.table_name, c.column_name
+                                FROM columns c
+                                JOIN tables t ON c.table_id = t.id;
                                """)
                 table_columns = [{"table": row[0], "column":row[1]} for row in meta_cursor.fetchall()]
                 json_response = {
