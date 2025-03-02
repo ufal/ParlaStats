@@ -1,14 +1,27 @@
 import { getMetaInformation } from './metaInformation.js'; 
+import { storeAliases, storeStepResults } from './stored_data_worker.js' 
+// ================ SOME GLOBAL DATA DECLARATION ====================
 
+// json holding the query itself
 let queryObject = {
 	target_databases: [],
 	description: "",
 	steps:[]
 };
 
+// array of user defined aliases
+let userDefinedAliases = []
+
+// array of columns for selection for each step
+let stepResultArray = []
+// server connection specialization
 let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query";
 let testServerURL = "http://127.0.0.1:5000/query";
+
+// json where metainformation about available databases is to be stored
 let metaInformation = {};
+// ==================================================================
+
 function renderForm() {
 	console.log(queryObject)
 	const container = document.getElementById('formContainer');
@@ -90,11 +103,15 @@ function renderStepsSection(container) {
 		removeStepButton.textContent = '-';
 		removeStepButton.onclick = () => {
 			queryObject.steps.splice(stepIndex, 1);
+			stepResultArray.splice(stepIndex, 1);
+			userDefinedAliases.splice(stepIndex, 1);
 			renderForm();
 		};
 		stepRow.appendChild(removeStepButton);
 
 		stepsContainer.appendChild(stepRow);
+		storeStepResults(queryObject, stepResultArray, stepIndex)
+		
 	});
 
 	const addStepButton = document.createElement('button');
@@ -113,6 +130,7 @@ function renderStepsSection(container) {
 			},
 			limit: ""
 		});
+		userDefinedAliases.push([]);
 		renderForm();
 	};
 	container.appendChild(stepsContainer);
@@ -156,58 +174,97 @@ function renderConditions(container, step, stepIndex) {
 	step.filtering.conditions.forEach((condition, conditionIndex) => {
 		const conditionRow = document.createElement('div');
 		conditionRow.className = 'repeatable-row';
-		let conditionColumnParts = condition.column.split('.');
 		// ========================== NEW VERSION BEGIN ===========================
 		// ######################## NOTES BEGIN #######################
 		// TODO: Repeated code at 181-188 and 194-201
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
-		const conditionColumnColumnSelect = document.createElement('select');
-		let alreadySeen = [];
+		
+		// Offer user columns from available databases
 		metaInformation.filtering.column.forEach(item => {
-			if (!alreadySeen.includes(item.table)) {
-				const tableOption = document.createElement('option');
-			
-				tableOption.value = item.table;
-				tableOption.textContent = item.table;
-				conditionColumnTableSelect.appendChild(tableOption);
-				alreadySeen.push(item.table);
+			const selectOption = document.createElement('option');
+			selectOption.value = item.table + "." + item.column;
+			selectOption.textContent = item.table + "." + item.column;
+			conditionColumnTableSelect.appendChild(selectOption);
+		});
+
+		// Offer user aliases defined within this step
+		userDefinedAliases[stepIndex].forEach(alias => {
+			const selectOption = document.createElement('option');
+			selectOption.value = alias;
+			selectOption.textContent = alias;
+			conditionColumnTableSelect.appendChild(selectOption);
+		});
+
+		// Offer user column that are being selected in other steps
+		let index = 0;
+		stepResultArray.forEach(step => {
+			if (index < stepIndex) {
+				step.forEach(column => {
+					const selectOption = document.createElement('option');
+					selectOption.value = column;
+					selectOption.textContent = column;
+					conditionColumnTableSelect.appendChild(selectOption);
+				});
 			}
 		});
-		
-		if (!conditionColumnParts[0]) {
+
+		if (!condition.column) {
+			condition.column = conditionColumnTableSelect.options[0].value;
 			conditionColumnTableSelect.value = conditionColumnTableSelect.options[0].value;
 		} else {
-			conditionColumnTableSelect.value = conditionColumnParts[0];
+			conditionColumnTableSelect.value = condition.column;
 		}
 
-		metaInformation.filtering.column.forEach(item => {
-			if (conditionColumnTableSelect.value === item.table) {
-				const columnOption = document.createElement('option');
-				columnOption.value = item.column;
-				columnOption.textContent = item.column;
-				conditionColumnColumnSelect.appendChild(columnOption);
-			}
-		});
-
-		conditionColumnColumnSelect.value = conditionColumnParts[1];
-
 		conditionColumnTableSelect.addEventListener('change', () => {
-			conditionColumnColumnSelect.innerHTML = '';
-			metaInformation.filtering.column.forEach(item => {
-				if (conditionColumnTableSelect.value === item.table) {
-					const columnOption = document.createElement('option');
-					columnOption.value = item.column;
-					columnOption.textContent = item.column;
-					conditionColumnColumnSelect.appendChild(columnOption);
-				}
-			});
-			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`; 
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
 		});
+		// const conditionColumnColumnSelect = document.createElement('select');
+		// let alreadySeen = [];
+		// metaInformation.filtering.column.forEach(item => {
+		// 	if (!alreadySeen.includes(item.table)) {
+		// 		const tableOption = document.createElement('option');
+			
+		// 		tableOption.value = item.table;
+		// 		tableOption.textContent = item.table;
+		// 		conditionColumnTableSelect.appendChild(tableOption);
+		// 		alreadySeen.push(item.table);
+		// 	}
+		// });
+		
+		// if (!conditionColumnParts[0]) {
+		// 	conditionColumnTableSelect.value = conditionColumnTableSelect.options[0].value;
+		// } else {
+		// 	conditionColumnTableSelect.value = conditionColumnParts[0];
+		// }
 
-		conditionColumnColumnSelect.addEventListener('change', () => {
-			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`;
-		});
+		// metaInformation.filtering.column.forEach(item => {
+		// 	if (conditionColumnTableSelect.value === item.table) {
+		// 		const columnOption = document.createElement('option');
+		// 		columnOption.value = item.column;
+		// 		columnOption.textContent = item.column;
+		// 		conditionColumnColumnSelect.appendChild(columnOption);
+		// 	}
+		// });
+
+		// conditionColumnColumnSelect.value = conditionColumnParts[1];
+
+		// conditionColumnTableSelect.addEventListener('change', () => {
+		// 	conditionColumnColumnSelect.innerHTML = '';
+		// 	metaInformation.filtering.column.forEach(item => {
+		// 		if (conditionColumnTableSelect.value === item.table) {
+		// 			const columnOption = document.createElement('option');
+		// 			columnOption.value = item.column;
+		// 			columnOption.textContent = item.column;
+		// 			conditionColumnColumnSelect.appendChild(columnOption);
+		// 		}
+		// 	});
+		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`; 
+		// });
+
+		// conditionColumnColumnSelect.addEventListener('change', () => {
+		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`;
+		// });
 		// ========================== NEW VERSION END =============================
 		// ========================== OLD VERSION BEGIN ===========================
 		// const conditionColumnInput = document.createElement('input');
@@ -250,7 +307,7 @@ function renderConditions(container, step, stepIndex) {
 
 		// conditionRow.appendChild(conditionColumnInput);
 		conditionRow.appendChild(conditionColumnTableSelect);
-		conditionRow.appendChild(conditionColumnColumnSelect);
+		// conditionRow.appendChild(conditionColumnColumnSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInput);
 		conditionRow.appendChild(removeConditionButton);
@@ -297,58 +354,97 @@ function renderOrderBy(container, step, stepIndex) {
 	step.aggregation.order_by.forEach((orderByEntry, orderByIndex) => {
 		const orderByRow = document.createElement('div');
 		orderByRow.className = 'repeatable-row';
-		let orderByColumnParts = orderByEntry.column.split('.');
+		// let orderByColumnParts = orderByEntry.column.split('.');
 		// ===================== NEW VERSION BEGIN ===========================
 		// ######################## NOTES BEGIN #######################
 		// TODO: Repeated code at 298-305 and 311-318
 		// ######################## NOTES END #########################
 		const orderByTableSelect = document.createElement('select');
-		const orderByColumnSelect = document.createElement('select');
-		let alreadySeen = [];
+		
+		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
-			if (!alreadySeen.includes(item.table)) {
-				const tableOption = document.createElement('option');
+			const selectOption = document.createElement('option');
+			selectOption.value = item.table + "." + item.column;
+			selectOption.textContent = item.table + "." + item.column;
+			orderByTableSelect.appendChild(selectOption);
+		});
 
-				tableOption.value = item.table;
-				tableOption.textContent = item.table;
-				orderByTableSelect.appendChild(tableOption);
-				alreadySeen.push(item.table);
+		// Offer user aliases defined within the same step
+		userDefinedAliases[stepIndex].forEach(alias => {
+			const selectOption = document.createElement('option');
+			selectOption.value = alias;
+			selectOption.textContent = alias;
+			orderByTableSelect.appendChild(selectOption);
+		});
+
+		// Offer user columns selected in other steps
+		let index = 0;
+		stepResultArray.forEach(step => {
+			if (index < stepIndex) {
+				step.forEach(column => {
+					const selectOption = document.createElement('option');
+					selectOption.value = column;
+					selectOption.textContent = column;
+					orderByTableSelect.appendChild(selectOption);
+				});
 			}
+			index++;
 		});
 		
-		if (!orderByColumnParts[0]) {
+		if (!orderByEntry.column) {
+			orderByEntry.column = orderByTableSelect.options[0].value;
 			orderByTableSelect.value = orderByTableSelect.options[0].value;
 		} else {
-			orderByTableSelect.value = orderByColumnParts[0];
+			orderByTableSelect.value = orderByEntry.column;
 		}
 
-		metaInformation.aggregation.order_by.forEach(item => {
-			if (orderByTableSelect.value == item.table) {
-				const columnOption = document.createElement('option');
-				columnOption.value = item.column;
-				columnOption.textContent = item.column;
-				orderByColumnSelect.appendChild(columnOption);
-			}
-		});
-
-		orderByColumnSelect.value = orderByColumnParts[1];
-
 		orderByTableSelect.addEventListener('change', () => {
-			orderByColumnSelect.innerHTML = '';
-			metaInformation.aggregation.order_by.forEach(item => {
-				if (orderByTableSelect.value == item.table) {
-					const columnOption = document.createElement('option');
-					columnOption.value = item.column;
-					columnOption.textCOntent = item.column;
-					orderByColumnSelect.appendChild(columnOption);
-				}
-			});
-			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
+			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByTableSelect.value;
 		});
+		// metaInformation.aggregation.order_by.forEach(item => {
+		// 	if (!alreadySeen.includes(item.table)) {
+		// 		const tableOption = document.createElement('option');
 
-		orderByColumnSelect.addEventListener('change', () => {
-			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
-		});
+		// 		tableOption.value = item.table;
+		// 		tableOption.textContent = item.table;
+		// 		orderByTableSelect.appendChild(tableOption);
+		// 		alreadySeen.push(item.table);
+		// 	}
+		// });
+		
+		// if (!orderByColumnParts[0]) {
+		// 	orderByTableSelect.value = orderByTableSelect.options[0].value;
+		// } else {
+		// 	orderByTableSelect.value = orderByColumnParts[0];
+		// }
+
+		// metaInformation.aggregation.order_by.forEach(item => {
+		// 	if (orderByTableSelect.value == item.table) {
+		// 		const columnOption = document.createElement('option');
+		// 		columnOption.value = item.column;
+		// 		columnOption.textContent = item.column;
+		// 		orderByColumnSelect.appendChild(columnOption);
+		// 	}
+		// });
+
+		// orderByColumnSelect.value = orderByColumnParts[1];
+
+		// orderByTableSelect.addEventListener('change', () => {
+		// 	orderByColumnSelect.innerHTML = '';
+		// 	metaInformation.aggregation.order_by.forEach(item => {
+		// 		if (orderByTableSelect.value == item.table) {
+		// 			const columnOption = document.createElement('option');
+		// 			columnOption.value = item.column;
+		// 			columnOption.textCOntent = item.column;
+		// 			orderByColumnSelect.appendChild(columnOption);
+		// 		}
+		// 	});
+		// 	queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
+		// });
+
+		// orderByColumnSelect.addEventListener('change', () => {
+		// 	queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
+		// });
 
 		// ===================== NEW VERSION END =============================
 
@@ -387,7 +483,7 @@ function renderOrderBy(container, step, stepIndex) {
 
 		// orderByRow.appendChild(orderByColumnInput);
 		orderByRow.appendChild(orderByTableSelect);
-		orderByRow.appendChild(orderByColumnSelect);
+		// orderByRow.appendChild(orderByColumnSelect);
 		orderByRow.appendChild(orderByDirectionSelect);
 		orderByRow.appendChild(removeOrderByButton);
 
@@ -414,7 +510,7 @@ function renderGroupBy(container, step, stepIndex) {
 	const groupByContainer = document.createElement('div');
 	groupByContainer.className = 'repeatable-container';
 	step.aggregation.group_by.forEach((gbColumn, gbColumnIndex) => {
-		let gbColumnParts = gbColumn.split('.');
+		// let gbColumnParts = gbColumn.split('.');
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row';
 		// =========================== NEW VERSION BEGIN ============================
@@ -422,53 +518,96 @@ function renderGroupBy(container, step, stepIndex) {
 		// TODO: Repeated code at 393-400 and 406-503
 		// ######################## NOTES END #########################
 		const groupByTableSelect = document.createElement('select');
-		const groupByColumnSelect = document.createElement('select');
-		let alreadySeen = [];
+		// const groupByColumnSelect = document.createElement('select');
+		
+		// Offer user columns available in databases
 		metaInformation.aggregation.group_by.forEach(item => {
-			if (!alreadySeen.includes(item.table)) {
-				const tableOption = document.createElement('option');
-			
-				tableOption.value = item.table;
-				tableOption.textContent = item.table;
-				groupByTableSelect.appendChild(tableOption);
-				alreadySeen.push(item.table);
-			}
+			const selectOption = document.createElement('option');
+			selectOption.value = item.table + "." + item.column;
+			selectOption.textContent = item.table + "." + item.column;
+			groupByTableSelect.appendChild(selectOption);
 		});
 		
-		if (!gbColumnParts[0]) {
+		// Offer user aliases defined within this step
+		
+		if (userDefinedAliases[stepIndex]) { 
+			userDefinedAliases[stepIndex].forEach(alias => {
+				const selectOption = document.createElement('option');
+				selectOption.value = alias;
+				selectOption.textContent = alias;
+				groupByTableSelect.appendChild(selectOption);
+			});
+		}
+		// Offer user columns that are to beselected in other steps
+		let index = 0;
+		stepResultArray.forEach(step => {
+			console.log(stepIndex);
+			if (index < stepIndex) {
+				step.forEach(column => {
+					const selectOption = document.createElement('option');
+					selectOption.value = column;
+					selectOption.textContent = column;
+					groupByTableSelect.appendChild(selectOption);
+				});
+			}
+			index++;
+		});
+
+		if (!gbColumn) {
+			gbColumn = groupByTableSelect.options[0].value;
 			groupByTableSelect.value = groupByTableSelect.options[0].value;
 		} else {
-			groupByTableSelect.value = gbColumnParts[0];
+			groupByTableSelect.value = gbColumn;
 		}
 
-		metaInformation.aggregation.group_by.forEach(item => {
-			if (groupByTableSelect.value === item.table) {
-				const columnOption = document.createElement('option');
-				columnOption.value = item.column;
-				columnOption.textContent = item.column;
-				groupByColumnSelect.appendChild(columnOption);
-			}
-		});
-
-		groupByColumnSelect.value = gbColumnParts[1];
-
 		groupByTableSelect.addEventListener('change', () => {
-			groupByColumnSelect.innerHTML = '';
-			metaInformation.aggregation.group_by.forEach(item => {
-				if (groupByTableSelect.value === item.table) {
-					const columnOption = document.createElement('option');
-					columnOption.value = item.column;
-					columnOption.textContent = item.column;
-					groupByColumnSelect.appendChild(columnOption);
-				}
-			});
-
-			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
+			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
 		});
+		// metaInformation.aggregation.group_by.forEach(item => {
+		// 	if (!alreadySeen.includes(item.table)) {
+		// 		const tableOption = document.createElement('option');
+			
+		// 		tableOption.value = item.table;
+		// 		tableOption.textContent = item.table;
+		// 		groupByTableSelect.appendChild(tableOption);
+		// 		alreadySeen.push(item.table);
+		// 	}
+		// });
+		
+		// if (!gbColumnParts[0]) {
+		// 	groupByTableSelect.value = groupByTableSelect.options[0].value;
+		// } else {
+		// 	groupByTableSelect.value = gbColumnParts[0];
+		// }
 
-		groupByColumnSelect.addEventListener('change', () => {
-			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
-		});
+		// metaInformation.aggregation.group_by.forEach(item => {
+		// 	if (groupByTableSelect.value === item.table) {
+		// 		const columnOption = document.createElement('option');
+		// 		columnOption.value = item.column;
+		// 		columnOption.textContent = item.column;
+		// 		groupByColumnSelect.appendChild(columnOption);
+		// 	}
+		// });
+
+		// groupByColumnSelect.value = gbColumnParts[1];
+
+		// groupByTableSelect.addEventListener('change', () => {
+		// 	groupByColumnSelect.innerHTML = '';
+		// 	metaInformation.aggregation.group_by.forEach(item => {
+		// 		if (groupByTableSelect.value === item.table) {
+		// 			const columnOption = document.createElement('option');
+		// 			columnOption.value = item.column;
+		// 			columnOption.textContent = item.column;
+		// 			groupByColumnSelect.appendChild(columnOption);
+		// 		}
+		// 	});
+
+		// 	queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
+		// });
+
+		// groupByColumnSelect.addEventListener('change', () => {
+		// 	queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
+		// });
 	
 		// ========================== NEW VERSION END ==============================
 
@@ -491,7 +630,7 @@ function renderGroupBy(container, step, stepIndex) {
 		
 		// groupByRow.appendChild(groupByInput);
 		groupByRow.appendChild(groupByTableSelect);
-		groupByRow.appendChild(groupByColumnSelect);
+		// groupByRow.appendChild(groupByColumnSelect);
 		groupByRow.appendChild(removeGroupByButton);
 		groupByContainer.appendChild(groupByRow);
 	});
@@ -537,7 +676,8 @@ function renderGroupBy(container, step, stepIndex) {
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
 					queryObject.steps[stepIndex].columns[columnIndex] = aliasInputField.value;
 				}
-		
+				storeAliases(queryObject, userDefinedAliases, stepIndex);
+				
 			});
 
 
@@ -571,7 +711,8 @@ function renderGroupBy(container, step, stepIndex) {
 				aliasInputField.value = "";
 				aggregationFunctionSelect.value = "";
 			}
-
+			
+			// Offer the user choice of database tables
 			metaInformation.columns.forEach(item => {
 				const tableOption = document.createElement('option');
 				tableOption.value = item.table + "." + item.column;
@@ -615,6 +756,7 @@ function renderGroupBy(container, step, stepIndex) {
 				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
 				renderForm();
 			}
+			storeAliases(queryObject, userDefinedAliases, stepIndex);
 			columnRow.appendChild(aggregationFunctionSelect);
 			columnRow.appendChild(columnTableSelect);
 			columnRow.appendChild(aliasInputField);
@@ -629,7 +771,7 @@ function renderGroupBy(container, step, stepIndex) {
 		queryObject.steps[stepIndex].columns.push("");
 		renderForm();
 	};
-
+	storeStepResults(queryObject, stepResultArray, stepIndex)
 	container.appendChild(columnsContainer);
 	container.appendChild(addColumnButton);
 }
