@@ -1,5 +1,5 @@
 import { getMetaInformation } from './metaInformation.js'; 
-import { storeAliases, storeStepResults } from './stored_data_worker.js' 
+import { storeAliases, storeStepResults, updateColumnsOfferings } from './stored_data_worker.js' 
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -179,7 +179,7 @@ function renderConditions(container, step, stepIndex) {
 		// TODO: Repeated code at 181-188 and 194-201
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
-		
+		conditionColumnTableSelect.className = "column-offering";
 		// Offer user columns from available databases
 		metaInformation.filtering.column.forEach(item => {
 			const selectOption = document.createElement('option');
@@ -191,6 +191,7 @@ function renderConditions(container, step, stepIndex) {
 		// Offer user aliases defined within this step
 		userDefinedAliases[stepIndex].forEach(alias => {
 			const selectOption = document.createElement('option');
+			selectOption.className = "user-specific";
 			selectOption.value = alias;
 			selectOption.textContent = alias;
 			conditionColumnTableSelect.appendChild(selectOption);
@@ -202,8 +203,9 @@ function renderConditions(container, step, stepIndex) {
 			if (index < stepIndex) {
 				step.forEach(column => {
 					const selectOption = document.createElement('option');
+					selectOption.className = "user-specific";
 					selectOption.value = column;
-					selectOption.textContent = column;
+					selectOption.textContent = column
 					conditionColumnTableSelect.appendChild(selectOption);
 				});
 			}
@@ -360,7 +362,7 @@ function renderOrderBy(container, step, stepIndex) {
 		// TODO: Repeated code at 298-305 and 311-318
 		// ######################## NOTES END #########################
 		const orderByTableSelect = document.createElement('select');
-		
+		orderByTableSelect.className = "column-offering";
 		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
 			const selectOption = document.createElement('option');
@@ -372,6 +374,7 @@ function renderOrderBy(container, step, stepIndex) {
 		// Offer user aliases defined within the same step
 		userDefinedAliases[stepIndex].forEach(alias => {
 			const selectOption = document.createElement('option');
+			selectOption.className = "user-specific";
 			selectOption.value = alias;
 			selectOption.textContent = alias;
 			orderByTableSelect.appendChild(selectOption);
@@ -383,6 +386,7 @@ function renderOrderBy(container, step, stepIndex) {
 			if (index < stepIndex) {
 				step.forEach(column => {
 					const selectOption = document.createElement('option');
+					selectOption.className = "user-specific";
 					selectOption.value = column;
 					selectOption.textContent = column;
 					orderByTableSelect.appendChild(selectOption);
@@ -518,6 +522,7 @@ function renderGroupBy(container, step, stepIndex) {
 		// TODO: Repeated code at 393-400 and 406-503
 		// ######################## NOTES END #########################
 		const groupByTableSelect = document.createElement('select');
+		groupByTableSelect.className = "column-offering";
 		// const groupByColumnSelect = document.createElement('select');
 		
 		// Offer user columns available in databases
@@ -533,6 +538,7 @@ function renderGroupBy(container, step, stepIndex) {
 		if (userDefinedAliases[stepIndex]) { 
 			userDefinedAliases[stepIndex].forEach(alias => {
 				const selectOption = document.createElement('option');
+				selectOption.className = "user-specific";
 				selectOption.value = alias;
 				selectOption.textContent = alias;
 				groupByTableSelect.appendChild(selectOption);
@@ -545,6 +551,7 @@ function renderGroupBy(container, step, stepIndex) {
 			if (index < stepIndex) {
 				step.forEach(column => {
 					const selectOption = document.createElement('option');
+					selectOption.className = "user-specific";
 					selectOption.value = column;
 					selectOption.textContent = column;
 					groupByTableSelect.appendChild(selectOption);
@@ -674,10 +681,11 @@ function renderGroupBy(container, step, stepIndex) {
 						"agg_func":aggregationFunctionSelect.value
 					};
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
-					queryObject.steps[stepIndex].columns[columnIndex] = aliasInputField.value;
+					queryObject.steps[stepIndex].columns[columnIndex].alias = aliasInputField.value;
 				}
 				storeAliases(queryObject, userDefinedAliases, stepIndex);
-				
+				storeStepResults(queryObject, stepResultArray, stepIndex);
+				updateColumnsOfferings(userDefinedAliases[stepIndex], stepResultArray, stepIndex);
 			});
 
 
@@ -757,6 +765,8 @@ function renderGroupBy(container, step, stepIndex) {
 				renderForm();
 			}
 			storeAliases(queryObject, userDefinedAliases, stepIndex);
+			storeStepResults(queryObject, stepResultArray, stepIndex);
+			updateColumnsOfferings(userDefinedAliases[stepIndex], stepResultArray, stepIndex);
 			columnRow.appendChild(aggregationFunctionSelect);
 			columnRow.appendChild(columnTableSelect);
 			columnRow.appendChild(aliasInputField);
