@@ -5,7 +5,6 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 	columns.forEach(column => {
 		console.log(column);
 		if (typeof column === 'object') {
-			console.log("object detected");
 			if (column.alias && !aliases[stepIndex].includes(column.alias)) {
 				aliases[stepIndex].push(column.alias);
 			}
@@ -29,71 +28,33 @@ export function storeStepResults(jsonQuery, stepResultsArray, stepIndex) {
 	});
 }
 
-export function updateColumnsOfferings(userDefinedAliases, stepResultsArray, stepIndex) {
-	let columnOfferings = document.querySelectorAll(".column-offering");
-	columnOfferings.forEach(columnSelect => {
-		let currentOptions = Array.from(columnSelect.options)
-		currentOptions = currentOptions.filter(option => option.className === "user-specific");
-		currentOptions = currentOptions.map(option => option.value);
-		
-		
-		let newAliasses = userDefinedAliases.filter(value => !currentOptions.includes(value));
-		
-		let newStepResults = []
-		let index = 0;
-		stepResultsArray.forEach(step => {
-			if (index < stepIndex) {
-				let temp = step.filter(value => !currentOptions.includes(value));
-				temp.forEach(item => {newStepResults.push(item)});
-				index++;
-			}
-		});
-		// let newStepResults = stepResultsArray[stepIndex].filter(value => !currentOptions.includes(value));
-		
-		
-		let redundantOptions = currentOptions.filter(value => !userDefinedAliases.includes(value));
-		
-		
-		index = 0;
-		stepResultsArray.forEach(step => {
-			console.log(step);
-			if (index < stepIndex) {
-				redundantOptions = redundantOptions.filter(value => !step.includes(value));
-			}
-			index++;
-		});
-		// console.log(redundantOptions);
-		// console.log(newAliasses);
-		// console.log(newStepResults);
-		// Remove redundant options
-		for (let option of columnSelect.options) {
-			if (redundantOptions.includes(option.value)) {
-				columnSelect.remove(option.index);
-			}
-		}
-		// Add new options
-		newAliasses.forEach(alias => {
-			const columnOption = document.createElement('option');
-			columnOption.className = "user-specific";
-			columnOption.value = alias;
-			columnOption.textContent = alias;
-			columnSelect.appendChild(columnOption);
-		});
-		index = 0;
-		stepResultsArray.forEach(step => {
-			if (index < stepIndex) {
-				newStepResults.forEach(stepResult => {
-					const columnOption = document.createElement('option');
-					columnOption.className = "user-specific";
-					columnOption.value = stepResult;
-					columnOption.textContent = stepResult;
-					columnSelect.appendChild(columnOption);
-				});
-				index++;
-			}
-		});
-		
-		
+export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, stepsCount) {
+	for (var index = 0; index < stepsCount; index++) {
+		let columnOfferings = document.querySelectorAll(`.column-offering-${index}`);
+		columnOfferings.forEach(columnSelect => {
+			const options = columnSelect.querySelectorAll('option.user-specific');
+			options.forEach(option => option.remove());
 
-	});
+			let aliases = userDefinedAliases[index];
+			aliases.forEach(alias => {
+				const selectOption = document.createElement('option');
+				selectOption.className = "user-specific";
+				selectOption.value = alias;
+				selectOption.textContent = alias;
+				columnSelect.appendChild(selectOption);
+			});
+
+			for (var i = 0; i < index; i++) {
+				stepResultsArray[i].forEach(stepResult => {
+					 const selectOption = document.createElement('option');
+					selectOption.className = "user-specific";
+					selectOption.value = stepResult;
+					selectOption.textContent = stepResult;
+					columnSelect.appendChild(selectOption);
+				});
+			}
+		});
+	}
 }
+
+

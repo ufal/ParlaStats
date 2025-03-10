@@ -1,5 +1,5 @@
 import { getMetaInformation } from './metaInformation.js'; 
-import { storeAliases, storeStepResults, updateColumnsOfferings } from './stored_data_worker.js' 
+import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -179,7 +179,7 @@ function renderConditions(container, step, stepIndex) {
 		// TODO: Repeated code at 181-188 and 194-201
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
-		conditionColumnTableSelect.className = "column-offering";
+		conditionColumnTableSelect.className = `column-offering-${stepIndex}`;
 		// Offer user columns from available databases
 		metaInformation.filtering.column.forEach(item => {
 			const selectOption = document.createElement('option');
@@ -362,7 +362,7 @@ function renderOrderBy(container, step, stepIndex) {
 		// TODO: Repeated code at 298-305 and 311-318
 		// ######################## NOTES END #########################
 		const orderByTableSelect = document.createElement('select');
-		orderByTableSelect.className = "column-offering";
+		orderByTableSelect.className = `column-offering-${stepIndex}`;
 		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
 			const selectOption = document.createElement('option');
@@ -522,7 +522,7 @@ function renderGroupBy(container, step, stepIndex) {
 		// TODO: Repeated code at 393-400 and 406-503
 		// ######################## NOTES END #########################
 		const groupByTableSelect = document.createElement('select');
-		groupByTableSelect.className = "column-offering";
+		groupByTableSelect.className = `column-offering-${stepIndex}`;
 		// const groupByColumnSelect = document.createElement('select');
 		
 		// Offer user columns available in databases
@@ -685,7 +685,7 @@ function renderGroupBy(container, step, stepIndex) {
 				}
 				storeAliases(queryObject, userDefinedAliases, stepIndex);
 				storeStepResults(queryObject, stepResultArray, stepIndex);
-				updateColumnsOfferings(userDefinedAliases[stepIndex], stepResultArray, stepIndex);
+				updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			});
 
 
@@ -766,7 +766,7 @@ function renderGroupBy(container, step, stepIndex) {
 			}
 			storeAliases(queryObject, userDefinedAliases, stepIndex);
 			storeStepResults(queryObject, stepResultArray, stepIndex);
-			updateColumnsOfferings(userDefinedAliases[stepIndex], stepResultArray, stepIndex);
+			updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			columnRow.appendChild(aggregationFunctionSelect);
 			columnRow.appendChild(columnTableSelect);
 			columnRow.appendChild(aliasInputField);
@@ -975,5 +975,6 @@ loadButton.onclick = () => {
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
 	metaInformation = getMetaInformation()
+	console.log(metaInformation);
 	
 });
