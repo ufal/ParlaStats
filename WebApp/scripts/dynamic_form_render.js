@@ -9,6 +9,16 @@ let queryObject = {
 	steps:[]
 };
 
+// what types can use what aggregation functions
+let aggregationFunctionTypeMapping = {
+	"real":["SUM", "AVG", "MIN", "MAX", "COUNT"],
+	"date":["MIN", "MAX", "COUNT"],
+	"character varying":["COUNT", "DISTINCT"],
+	"time without ime zone":["MIN", "MAX", "COUNT"],
+	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT"]
+}
+
+
 // array of user defined aliases
 let userDefinedAliases = []
 
@@ -55,6 +65,7 @@ function renderStepsSection(container) {
 	stepsContainer.className = 'steps repeatable-container';
 
 	queryObject.steps.forEach((step, stepIndex) => {
+		userDefinedAliases.push([]);
 		const stepRow = document.createElement('div');
 		stepRow.className = 'repeatable-row-step';
 
@@ -183,8 +194,8 @@ function renderConditions(container, step, stepIndex) {
 		// Offer user columns from available databases
 		metaInformation.filtering.column.forEach(item => {
 			const selectOption = document.createElement('option');
-			selectOption.value = item.table + "." + item.column;
-			selectOption.textContent = item.table + "." + item.column;
+			selectOption.value = item.column;
+			selectOption.textContent = item.column;
 			conditionColumnTableSelect.appendChild(selectOption);
 		});
 
@@ -366,8 +377,8 @@ function renderOrderBy(container, step, stepIndex) {
 		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
 			const selectOption = document.createElement('option');
-			selectOption.value = item.table + "." + item.column;
-			selectOption.textContent = item.table + "." + item.column;
+			selectOption.value = item.column;
+			selectOption.textContent = item.column;
 			orderByTableSelect.appendChild(selectOption);
 		});
 
@@ -528,8 +539,8 @@ function renderGroupBy(container, step, stepIndex) {
 		// Offer user columns available in databases
 		metaInformation.aggregation.group_by.forEach(item => {
 			const selectOption = document.createElement('option');
-			selectOption.value = item.table + "." + item.column;
-			selectOption.textContent = item.table + "." + item.column;
+			selectOption.value = item.column;
+			selectOption.textContent = item.column;
 			groupByTableSelect.appendChild(selectOption);
 		});
 		
@@ -723,8 +734,8 @@ function renderGroupBy(container, step, stepIndex) {
 			// Offer the user choice of database tables
 			metaInformation.columns.forEach(item => {
 				const tableOption = document.createElement('option');
-				tableOption.value = item.table + "." + item.column;
-				tableOption.textContent = item.table + "." + item.column;
+				tableOption.value = item.column;
+				tableOption.textContent = item.column;
 				
 				columnTableSelect.appendChild(tableOption);
 				
@@ -742,6 +753,17 @@ function renderGroupBy(container, step, stepIndex) {
 
 			columnTableSelect.addEventListener('change', () => {
 				aggregationFunctionSelect.value = "";
+				const options = aggregationFunctionSelect.querySelectorAll('option');
+				options.forEach(option => option.remove());
+				let selectedColumnMeta = metaInformation.columns.find(col => col.column === columnTableSelect.value)
+				
+				aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
+					const selectOption = document.createElement('option');
+					selectOption.value = aggFunc;
+					selectOption.textContent = aggFunc;
+					aggregationFunctionSelect.appendChild(selectOption);
+				});
+				
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
 			});
@@ -961,12 +983,7 @@ loadButton.onclick = () => {
 	const inputJsonField = document.getElementById('inputJSON');
 	const inputJSON = inputJsonField.value.trim();
 	if (inputJSON) {
-		try {
-			loadQuery(inputJSON);	
-		} catch (e) {
-			console.log(e);
-			alert("Invalid JSON.");
-		}
+		loadQuery(inputJSON);	
 	} else {
 		alert("Paste a JSON before loading.")
 	}

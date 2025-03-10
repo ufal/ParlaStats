@@ -41,7 +41,7 @@ class metainformationFetcher:
                                 FROM columns c
                                 JOIN tables t ON c.table_id = t.id;
                                """)
-                table_columns = [{"table": row[0], "column":row[1], "type":row[2]} for row in meta_cursor.fetchall()]
+                table_columns = [{ "column":f"{row[0]}.{row[1]}", "type":row[2]} for row in meta_cursor.fetchall()]
                 json_response = {
                     "available_databases": available_databases,
                     "columns": table_columns,
