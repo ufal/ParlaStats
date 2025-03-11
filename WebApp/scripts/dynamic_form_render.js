@@ -1,5 +1,6 @@
 import { getMetaInformation } from './metaInformation.js'; 
 import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
+import { getTranslations } from './translations.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -30,6 +31,9 @@ let testServerURL = "http://127.0.0.1:5000/query";
 
 // json where metainformation about available databases is to be stored
 let metaInformation = {};
+
+let translations = getTranslations();
+let currentLanguage = "en";
 // ==================================================================
 
 function renderForm() {
@@ -38,6 +42,26 @@ function renderForm() {
 	container.innerHTML = '';
 	const form = document.createElement('form');
 	form.id = 'dynamicForm';
+	
+	const languageSelectDiv = document.createElement('div');
+	const languageSelectLabel = document.createElement('label');
+	languageSelectLabel.textContent = "Language selection:";
+	const languageSelect = document.createElement('select');
+	translations.availableLanguages.forEach(lang => {
+		const selectOption = document.createElement('option');
+		selectOption.value = lang;
+		selectOption.textContent = lang;
+		languageSelect.appendChild(selectOption);
+	});
+	languageSelect.value = currentLanguage;
+	languageSelect.addEventListener('change', () => {
+		currentLanguage = languageSelect.value;
+		console.log(currentLanguage);
+		renderForm();
+	});
+
+	languageSelectDiv.appendChild(languageSelectLabel);
+	languageSelectDiv.appendChild(languageSelect);
 
 	const targetSection = document.createElement('div');
 	targetSection.className = 'form-section';
@@ -49,10 +73,10 @@ function renderForm() {
 	renderStepsSection(stepsSection);
 	
 	
-
+	form.appendChild(languageSelectDiv);
 	form.appendChild(targetSection);
 	form.appendChild(stepsSection);
-container.appendChild(form)
+	container.appendChild(form);
 }
 
 function renderStepsSection(container) {
@@ -195,7 +219,11 @@ function renderConditions(container, step, stepIndex) {
 		metaInformation.filtering.column.forEach(item => {
 			const selectOption = document.createElement('option');
 			selectOption.value = item.column;
-			selectOption.textContent = item.column;
+			if	(translations[item.column]) {
+				selectOption.textContent = translations[item.column][currentLanguage];
+			} else {
+				selectOption.textContent = item.column;
+			}
 			conditionColumnTableSelect.appendChild(selectOption);
 		});
 
@@ -378,7 +406,11 @@ function renderOrderBy(container, step, stepIndex) {
 		metaInformation.aggregation.order_by.forEach(item => {
 			const selectOption = document.createElement('option');
 			selectOption.value = item.column;
-			selectOption.textContent = item.column;
+			if (translations[item.column]) {
+				selectOption.textContent = translations[item.column][currentLanguage];
+			} else {
+				selectOption.textContent = item.column;
+			}
 			orderByTableSelect.appendChild(selectOption);
 		});
 
@@ -540,7 +572,11 @@ function renderGroupBy(container, step, stepIndex) {
 		metaInformation.aggregation.group_by.forEach(item => {
 			const selectOption = document.createElement('option');
 			selectOption.value = item.column;
-			selectOption.textContent = item.column;
+			if (translations[item.column]) {
+				selectOption.textContent = translations[item.column][currentLanguage];
+			} else {
+				selectOption.textContent = item.column;
+			}
 			groupByTableSelect.appendChild(selectOption);
 		});
 		
@@ -735,8 +771,12 @@ function renderGroupBy(container, step, stepIndex) {
 			metaInformation.columns.forEach(item => {
 				const tableOption = document.createElement('option');
 				tableOption.value = item.column;
-				tableOption.textContent = item.column;
-				
+				console.log(translations[item.column]);
+				if (translations[item.column]) {
+					tableOption.textContent = translations[item.column][currentLanguage];
+				} else {
+					tableOption.textContent = item.column;
+				}
 				columnTableSelect.appendChild(tableOption);
 				
 			});
