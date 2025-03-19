@@ -759,7 +759,7 @@ function renderGroupBy(container, step, stepIndex) {
 			aggFOptions.forEach(option => {
 				const aggFOption = document.createElement('option');
 				aggFOption.value = option;
-				aggFOption.textContent = option;
+				aggFOption.textContent = translations[option][currentLanguage];
 				aggregationFunctionSelect.appendChild(aggFOption);
 			});
 
@@ -817,7 +817,7 @@ function renderGroupBy(container, step, stepIndex) {
 				aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
 					const selectOption = document.createElement('option');
 					selectOption.value = aggFunc;
-					selectOption.textContent = aggFunc;
+					selectOption.textContent = translations[aggFunc][currentLanguage];
 					aggregationFunctionSelect.appendChild(selectOption);
 				});
 				

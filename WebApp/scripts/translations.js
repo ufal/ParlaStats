@@ -123,6 +123,30 @@ let UItranslations = {
 
 let translations = {
 	"availableLanguages":["en", "cs"],
+	"AVG": {
+		"en":"Average",
+		"cs":"Průměr"
+	},
+	"SUM": {
+		"en":"Sum",
+		"cs":"Součet"
+	},
+	"MIN": {
+		"en":"Minimum",
+		"cs":"Minimum"
+	},
+	"MAX": {
+		"en":"Maximum",
+		"cs":"Maximum"
+	},
+	"COUNT": {
+		"en":"Count",
+		"cs":"Počet"
+	},
+	"DISTINCT": {
+		"en":"Distinct",
+		"cs":"Rozdílné"
+	},
 	"speech.time_silent": {
 		"en":"Time silent",
 		"cs":"Čas ticha"
