@@ -1,6 +1,6 @@
 import { getMetaInformation } from './metaInformation.js'; 
 import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
-import { getTranslations } from './translations.js'
+import { getTranslations, getUITranslations } from './translations.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -34,6 +34,7 @@ let metaInformation = {};
 
 let translations = getTranslations();
 let currentLanguage = "en";
+let UItranslations = getUITranslations();
 // ==================================================================
 
 function renderForm() {
@@ -45,7 +46,8 @@ function renderForm() {
 	
 	const languageSelectDiv = document.createElement('div');
 	const languageSelectLabel = document.createElement('label');
-	languageSelectLabel.textContent = "Language selection:";
+	console.log(UItranslations["languageSelectionLabel"][currentLanguage]);
+	languageSelectLabel.textContent = UItranslations.languageSelectionLabel[currentLanguage];
 	const languageSelect = document.createElement('select');
 	translations.availableLanguages.forEach(lang => {
 		const selectOption = document.createElement('option');
@@ -77,12 +79,27 @@ function renderForm() {
 	form.appendChild(targetSection);
 	form.appendChild(stepsSection);
 	container.appendChild(form);
+
+	let inputJSONtitle = document.getElementById("inputJSONtitle");
+	inputJSONtitle.textContent = UItranslations.inputJsonTitle[currentLanguage];
+	let loadQueryButton = document.getElementById("loadButton");
+	loadQueryButton.textContent = UItranslations.loadQueryButton[currentLanguage];
+	let generateQueryButton = document.getElementById("generateButton");
+	generateButton.textContent = UItranslations.GenerateQueryButtonText[currentLanguage];
+	let outputJSONtitle = document.getElementById("outputJSONtitle");
+	outputJSONtitle.textContent = UItranslations.OutputJSONTitle[currentLanguage];
+	let sendQueryButton = document.getElementById("sendQueryButton");
+	sendQueryButton.textContent = UItranslations.SendQueryButtonText[currentLanguage];
+	let inputJSONTextarea = document.getElementById("inputJSON");
+	inputJSONTextarea.placeholder = UItranslations.inputJSONPlaceholder[currentLanguage];
+	let outputJSONTextarea = document.getElementById("outputJSON");
+	outputJSONTextarea.placeholder = UItranslations.outputJSONPlaceholder[currentLanguage];
 }
 
 function renderStepsSection(container) {
 	// Title
 	const stepsTitle = document.createElement('h2');
-	stepsTitle.textContent = 'Steps';
+	stepsTitle.textContent = UItranslations.StepsTitle[currentLanguage];
 	container.appendChild(stepsTitle);
 
 	const stepsContainer = document.createElement('div');
@@ -97,10 +114,10 @@ function renderStepsSection(container) {
 		const goalDiv = document.createElement('div');
 		goalDiv.className = `goal_steps_${stepIndex}`;
 		const goalLabel = document.createElement('label');
-		goalLabel.textContent = 'Name';
+		goalLabel.textContent = UItranslations.StepNameInputLabel[currentLanguage];
 		const goalInput = document.createElement('input');
 		goalInput.type = 'text';
-		goalInput.placeholder = 'goal';
+		goalInput.placeholder = UItranslations.StepNameInputPlaceholder[currentLanguage];
 		goalInput.value = step.goal;
 		goalInput.addEventListener('input',  () => {
 			queryObject.steps[stepIndex].goal = goalInput.value;
@@ -151,7 +168,7 @@ function renderStepsSection(container) {
 
 	const addStepButton = document.createElement('button');
 	addStepButton.type = 'button';
-	addStepButton.textContent = 'Add Step';
+	addStepButton.textContent = UItranslations.AddStepButtonText[currentLanguage];
 	addStepButton.onclick = () => {
 		queryObject.steps.push({
 			goal: '',
@@ -189,7 +206,7 @@ function renderLimit(container, step, stepIndex) {
 
 function renderFiltering(container, step, stepIndex) {
 	const filteringTitle = document.createElement('h3');
-	filteringTitle.textContent = 'Filtering';
+	filteringTitle.textContent = UItranslations.FilteringSectionTitle[currentLanguage];
 	container.appendChild(filteringTitle);
 
 	const conditionsDiv = document.createElement('div');
@@ -201,7 +218,7 @@ function renderFiltering(container, step, stepIndex) {
 
 function renderConditions(container, step, stepIndex) {
 	const conditionsTitle = document.createElement('h3');
-	conditionsTitle.textContent = 'Conditions';
+	conditionsTitle.textContent = UItranslations.ConditionsSectionTitle[currentLanguage];
 	container.appendChild(conditionsTitle);
 
 	const conditionsContainer = document.createElement('div');
@@ -358,7 +375,7 @@ function renderConditions(container, step, stepIndex) {
 
 	const addConditionButton = document.createElement('button');
 	addConditionButton.type = 'button';
-	addConditionButton.textContent = 'Add Condition';
+	addConditionButton.textContent = UItranslations.AddConditionButtonText[currentLanguage];
 	addConditionButton.onclick = () => {
 		queryObject.steps[stepIndex].filtering.conditions.push({column:"", operator:"=", value:""});
 		renderForm();
@@ -370,7 +387,7 @@ function renderConditions(container, step, stepIndex) {
 
 function renderAggregation(container, step, stepIndex) {
 	const aggregationTitle = document.createElement('h3');
-	aggregationTitle.textContent = 'Aggregation';
+	aggregationTitle.textContent = UItranslations.AggregationSectionTitle[currentLanguage];
 	container.appendChild(aggregationTitle);
 
 	const groupByDiv = document.createElement('div');
@@ -387,7 +404,7 @@ function renderAggregation(container, step, stepIndex) {
 
 function renderOrderBy(container, step, stepIndex) {
 	const orderByTitle = document.createElement('h3');
-	orderByTitle.textContent = 'Order by';
+	orderByTitle.textContent = UItranslations.OrderBySectionTitle[currentLanguage];
 	container.appendChild(orderByTitle);
 
 	const orderByContainer = document.createElement('div');
@@ -508,10 +525,10 @@ function renderOrderBy(container, step, stepIndex) {
 		
 		const ascendingOption = document.createElement('option');
 		ascendingOption.value = 'ASC';
-		ascendingOption.textContent = 'ASC';
+		ascendingOption.textContent = UItranslations.OrderByAscendingDirection[currentLanguage];
 		const descendingOption = document.createElement('option');
 		descendingOption.value = 'DESC';
-		descendingOption.textContent = 'DESC';
+		descendingOption.textContent = UItranslations.OrderByDescendingDirection[currentLanguage];
 
 		orderByDirectionSelect.appendChild(ascendingOption);
 		orderByDirectionSelect.appendChild(descendingOption);
@@ -539,7 +556,7 @@ function renderOrderBy(container, step, stepIndex) {
 
 	const addOrderByButton = document.createElement('button');
 	addOrderByButton.type = 'button';
-	addOrderByButton.textContent = 'Add Order By';
+	addOrderByButton.textContent = UItranslations.AddOrderByButtonText[currentLanguage];
 	addOrderByButton.onclick = () => {
 		queryObject.steps[stepIndex].aggregation.order_by.push({column:"", direction:"ASC"});
 		renderForm();
@@ -551,7 +568,7 @@ function renderOrderBy(container, step, stepIndex) {
 
 function renderGroupBy(container, step, stepIndex) {
 	const groupByTitle = document.createElement('h3');
-	groupByTitle.textContent = 'Group by';
+	groupByTitle.textContent = UItranslations.GroupBySectionTitle[currentLanguage];
 	container.appendChild(groupByTitle);
 
 	const groupByContainer = document.createElement('div');
@@ -691,7 +708,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 	const addGroupByButton = document.createElement('button');
 	addGroupByButton.type = 'button';
-	addGroupByButton.textContent = 'Add Group By';
+	addGroupByButton.textContent = UItranslations.AddGroupByButtonText[currentLanguage];
 	addGroupByButton.onclick = () => {
 			queryObject.steps[stepIndex].aggregation.group_by.push("");
 			renderForm();
@@ -702,7 +719,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 	function renderColumns(container, step, stepIndex) {
 		const columnsTitle = document.createElement('h3');
-		columnsTitle.textContent = 'Columns';
+		columnsTitle.textContent = UItranslations.columnsHeader[currentLanguage];
 		container.appendChild(columnsTitle);
 
 		const columnsContainer = document.createElement('div');
@@ -838,7 +855,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 		const addColumnButton = document.createElement('button');
 		addColumnButton.type = 'button';
-		addColumnButton.textContent = 'Add Column';
+		addColumnButton.textContent = UItranslations.addColumnButtonText[currentLanguage];
 		addColumnButton.onclick = () => {
 		queryObject.steps[stepIndex].columns.push("");
 		renderForm();
@@ -851,14 +868,14 @@ function renderGroupBy(container, step, stepIndex) {
 function renderTargetSection(container) {
 	// Title
 	const targetTitle = document.createElement('h2');
-	targetTitle.textContent = "Target Database and Query Description";
+	targetTitle.textContent = UItranslations.targetDatabaseSectionTitle[currentLanguage];
 	container.appendChild(targetTitle);
 
 	// Target databases
 	const targetDatabasesDiv = document.createElement('div');
 	targetDatabasesDiv.className = 'targetDatabase(s)';
 	const targetDatabaseTitle = document.createElement('h3');
-	targetDatabaseTitle.textContent = 'Target Database';
+	targetDatabaseTitle.textContent = UItranslations.targetDatabaseTitle[currentLanguage];
 	targetDatabasesDiv.appendChild(targetDatabaseTitle);
 
 	const targetDatabasesContainer = document.createElement('div');
@@ -902,7 +919,7 @@ function renderTargetSection(container) {
 
 	const addButton = document.createElement('button');
 	addButton.type = 'button';
-	addButton.textContent = 'Add Target Database';
+	addButton.textContent = UItranslations.targetDatabaseAddButton[currentLanguage];
 	addButton.onclick = () => {
 		queryObject.target_databases.push("");
 		renderForm();
@@ -914,10 +931,10 @@ function renderTargetSection(container) {
 	const descriptionDiv = document.createElement('div');
 	descriptionDiv.className = 'description';
 	const descriptionLabel = document.createElement('label');
-	descriptionLabel.textContent = "Description";
+	descriptionLabel.textContent = UItranslations.DescriptionLabel[currentLanguage];
 	const descriptionInput = document.createElement('input');
 	descriptionInput.type = 'text';
-	descriptionInput.placeholder = 'Query Description';
+	descriptionInput.placeholder = UItranslations.DescriptionInputPlaceHolder[currentLanguage];
 	descriptionInput.value = queryObject.description;
 	descriptionInput.addEventListener('input', () => {
 		queryObject.description = descriptionInput.value;
