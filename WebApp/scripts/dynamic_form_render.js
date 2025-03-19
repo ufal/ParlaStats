@@ -1,6 +1,7 @@
 import { getMetaInformation } from './metaInformation.js'; 
 import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
 import { getTranslations, getUITranslations } from './translations.js'
+import { getArtificialColumns } from './artificialColumns.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -35,6 +36,7 @@ let metaInformation = {};
 let translations = getTranslations();
 let currentLanguage = "en";
 let UItranslations = getUITranslations();
+let artificialColumns = getArtificialColumns();
 // ==================================================================
 
 function renderForm() {
@@ -232,6 +234,7 @@ function renderConditions(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
 		conditionColumnTableSelect.className = `column-offering-${stepIndex}`;
+		
 		// Offer user columns from available databases
 		metaInformation.filtering.column.forEach(item => {
 			const selectOption = document.createElement('option');
@@ -242,6 +245,14 @@ function renderConditions(container, step, stepIndex) {
 				selectOption.textContent = item.column;
 			}
 			conditionColumnTableSelect.appendChild(selectOption);
+		});
+
+		// Offer user template columns
+		Object.keys(artificialColumns).forEach(key => {
+			const option = document.createElement('option');
+			option.value = artificialColumns[key].formula;
+			option.textContent = translations[key][currentLanguage];
+			conditionColumnTableSelect.appendChild(option);
 		});
 
 		// Offer user aliases defined within this step
@@ -419,6 +430,7 @@ function renderOrderBy(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const orderByTableSelect = document.createElement('select');
 		orderByTableSelect.className = `column-offering-${stepIndex}`;
+		
 		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
 			const selectOption = document.createElement('option');
@@ -429,6 +441,14 @@ function renderOrderBy(container, step, stepIndex) {
 				selectOption.textContent = item.column;
 			}
 			orderByTableSelect.appendChild(selectOption);
+		});
+
+		// Offer user template columns
+		Object.keys(artificialColumns).forEach(key => {
+			const option = document.createElement('option');
+			option.value = artificialColumns[key].formula;
+			option.textContent = translations[key][currentLanguage];
+			orderByTableSelect.appendChild(option);
 		});
 
 		// Offer user aliases defined within the same step
@@ -596,7 +616,14 @@ function renderGroupBy(container, step, stepIndex) {
 			}
 			groupByTableSelect.appendChild(selectOption);
 		});
-		
+		// Offer user template columns
+		Object.keys(artificialColumns).forEach(key => {
+			const option = document.createElement('option');
+			option.value = artificialColumns[key].formula;
+			option.textContent = translations[key][currentLanguage];
+			groupByTableSelect.appendChild(option);
+		});
+
 		// Offer user aliases defined within this step
 		
 		if (userDefinedAliases[stepIndex]) { 
@@ -796,6 +823,15 @@ function renderGroupBy(container, step, stepIndex) {
 				}
 				columnTableSelect.appendChild(tableOption);
 				
+			});
+
+			// Offer the user choice of template columns
+			Object.keys(artificialColumns).forEach(key => {
+				const option = document.createElement('option');
+				option.value = artificialColumns[key].formula;
+				option.textContent = translations[key][currentLanguage];
+				columnTableSelect.appendChild(option);
+	
 			});
 			
 			if (!column) {
