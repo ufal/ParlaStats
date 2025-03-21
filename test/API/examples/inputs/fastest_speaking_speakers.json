@@ -4,9 +4,16 @@
 	"steps":[
 		{
 			"goal":"main",
-			"columns":["speech.person_id", "AVG((speech.token_count / (speech.total_duration / 60000))) AS average_wpm"],
+			"columns":[
+				"person.person_id", 
+				{
+					"real":"(speech.token_count / (speech.total_duration / 60000))",
+					"agg_func":"AVG",
+					"alias":"average_wpm"
+				}
+			],
 			"aggregation": {
-				"group_by":["speech.person_id"],
+				"group_by":["person.person_id"],
 				"order_by":[
 					{
 						"column":"average_wpm",

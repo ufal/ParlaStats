@@ -41,7 +41,7 @@
 				}
 			],
 			"aggregation": {
-				"group_by":["speech.person_id", "speech.earliest_timestamp"],
+				"group_by":["person.person_id", "speech.earliest_timestamp"],
 				"order_by":[
 					{
 						"column":"speech.earliest_timestamp",
@@ -57,7 +57,7 @@
 						"value":"60000"
 					},
 					{
-						"column":"speech.person_id",
+						"column":"person.person_id",
 						"operator":"=",
 						"value":"step_result.get_fastest_speaker.speech.person_id"
 					}

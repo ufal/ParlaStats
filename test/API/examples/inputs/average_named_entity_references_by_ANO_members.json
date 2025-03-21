@@ -13,7 +13,7 @@
 				"conditions":[
 					{
 						"column":"organisation.organisation_id",
-						"operator":" LIKE ",
+						"operator":"LIKE",
 						"value":"'%%ANO%%'"
 					}
 				]
@@ -23,7 +23,7 @@
 		{
 			"goal":"main",
 			"columns":[ 
-				"affiliation.person_id",
+				"person.person_id",
 				{
 					"real":"speech.named_entity_count",
 					"alias":"average_named_entity_references",
@@ -31,7 +31,7 @@
 				}
 			],
 			"aggregation":{
-				"group_by":["affiliation.person_id"],
+				"group_by":["person.person_id"],
 				"order_by":[
 					{
 						"column":"average_named_entity_references",
@@ -42,7 +42,7 @@
 			"filtering":{
 				"conditions": [
 					{
-						"column":"affiliation.person_id",
+						"column":"person.person_id",
 						"operator":"IN",
 						"value":"step_result.get_ano_members.affiliation.person_id"
 					},
