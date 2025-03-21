@@ -147,6 +147,10 @@ let translations = {
 		"en":"Distinct",
 		"cs":"Rozdílné"
 	},
+	"organisation.organisation_id": {
+		"en":"ID of an organization",
+		"cs":"ID organizace"
+	},
 	"speech.time_silent": {
 		"en":"Time silent",
 		"cs":"Čas ticha"
@@ -239,7 +243,22 @@ let translations = {
 		"en":"Latest timestamp of the speech",
 		"cs":"Nejpozdejší časová značka promluvy"
 	},
-	
+	"month": {
+		"en":"Month",
+		"cs":"Měsíc"
+	},
+	"year": {
+		"en":"Year",
+		"cs":"Rok"
+	},
+	"day_of_the_week": {
+		"en":"Day of the week",
+		"cs":"Den v týdnu"
+	},
+	"words_per_minute": {
+		"en":"Words per minute",
+		"cs":"Počet slov za minutu"
+	}
 }
 
 function storeUITranslations() {
