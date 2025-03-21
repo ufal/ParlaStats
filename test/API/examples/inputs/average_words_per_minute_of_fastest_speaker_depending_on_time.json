@@ -4,9 +4,9 @@
 	"steps":[
 		{
 			"goal":"get_fastest_speaker",
-			"columns":["speech.person_id"],
+			"columns":["person.person_id"],
 			"aggregation": {
-				"group_by":["speech.person_id"],
+				"group_by":["person.person_id"],
 				"order_by":[
 					{
 						"column": {
