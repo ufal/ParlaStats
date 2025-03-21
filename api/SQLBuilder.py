@@ -44,6 +44,8 @@ class SQLBuilder:
             for table in tables:
                 if (table in cond["column"]) and (table not in required):
                     required.add(table)
+                if (table in cond["value"]) and (table not in required):
+                    required.add(table)
        
         joins = []
         if "person" in required:
@@ -108,7 +110,7 @@ class SQLBuilder:
                 elif (isinstance(gb, dict)):
                     group_by_clause += f"{gb['agg_func']}(gb['real']), "
             res += group_clause
-        return res
+        return res[:-2]
 
     def parse_conditions(self, conditions, step_results):
         res = ""
