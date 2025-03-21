@@ -241,10 +241,12 @@ function renderConditions(container, step, stepIndex) {
 			selectOption.value = item.column;
 			if	(translations[item.column]) {
 				selectOption.textContent = translations[item.column][currentLanguage];
-			} else {
-				selectOption.textContent = item.column;
-			}
-			conditionColumnTableSelect.appendChild(selectOption);
+				conditionColumnTableSelect.appendChild(selectOption);
+			} 
+			// else {
+			// 	selectOption.textContent = item.column;
+			// }
+			// conditionColumnTableSelect.appendChild(selectOption);
 		});
 
 		// Offer user template columns
@@ -431,16 +433,20 @@ function renderOrderBy(container, step, stepIndex) {
 		const orderByTableSelect = document.createElement('select');
 		orderByTableSelect.className = `column-offering-${stepIndex}`;
 		
+	
+
 		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
 			const selectOption = document.createElement('option');
 			selectOption.value = item.column;
 			if (translations[item.column]) {
 				selectOption.textContent = translations[item.column][currentLanguage];
-			} else {
-				selectOption.textContent = item.column;
-			}
-			orderByTableSelect.appendChild(selectOption);
+				orderByTableSelect.appendChild(selectOption);
+			} 
+			// else {
+			// 	selectOption.textContent = item.column;
+			// }
+			// orderByTableSelect.appendChild(selectOption);
 		});
 
 		// Offer user template columns
@@ -605,16 +611,45 @@ function renderGroupBy(container, step, stepIndex) {
 		groupByTableSelect.className = `column-offering-${stepIndex}`;
 		// const groupByColumnSelect = document.createElement('select');
 		
+		// Offer aggregation functions
+		const groupByAggregationSelect = document.createElement('select');
+		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT'];
+		aggFOptions.forEach(option => {
+			const aggFOption = document.createElement('option');
+			aggFOption.value = option;
+			aggFOption.textContent = translations[option][currentLanguage];
+			groupByAggregationSelect.appendChild(aggFOption);
+		});
+
+		groupByAggregationSelect.addEventListener('change', () => {
+			if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "string") {
+				queryObject.steps[stepIndex].columns[columnIndex] = {
+					"real":columnTableSelect.value,
+					"agg_func":groupByAggregationSelect.value
+				}
+			} else if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "object") {
+				queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex].agg_func = groupByAggregationSelect.value;
+			}
+		});
+
+		if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "object") {
+			groupByAggregationSelect.value = queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex].agg_func;
+		} else {
+			groupByAggregationSelect.value = "";
+		}
+
 		// Offer user columns available in databases
 		metaInformation.aggregation.group_by.forEach(item => {
 			const selectOption = document.createElement('option');
 			selectOption.value = item.column;
 			if (translations[item.column]) {
 				selectOption.textContent = translations[item.column][currentLanguage];
-			} else {
-				selectOption.textContent = item.column;
-			}
-			groupByTableSelect.appendChild(selectOption);
+				groupByTableSelect.appendChild(selectOption);
+			} 
+			// else {
+			// 	selectOption.textContent = item.column;
+			// }
+			// groupByTableSelect.appendChild(selectOption);
 		});
 		// Offer user template columns
 		Object.keys(artificialColumns).forEach(key => {
@@ -635,7 +670,7 @@ function renderGroupBy(container, step, stepIndex) {
 				groupByTableSelect.appendChild(selectOption);
 			});
 		}
-		// Offer user columns that are to beselected in other steps
+		// Offer user columns that are to be selected in other steps
 		let index = 0;
 		stepResultArray.forEach(step => {
 			console.log(stepIndex);
@@ -659,6 +694,17 @@ function renderGroupBy(container, step, stepIndex) {
 		}
 
 		groupByTableSelect.addEventListener('change', () => {
+			groupByAggregationSelect.value = "";
+			const options = groupByAggregationSelect.querySelectorAll('option');
+			options.forEach(option => option.remove());
+			let selectedColumnMeta = metaInformation.columns.find(col => col.column === groupByTableSelect.value);
+
+			aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
+				const selectOption = document.createElement('option');
+				selectOption.value = aggFunc;
+				selectOption.textContent = translations[aggFunc][currentLanguage];
+				groupByAggregationSelect.appendChild(selectOption);
+			});
 			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
 		});
 		// metaInformation.aggregation.group_by.forEach(item => {
@@ -725,7 +771,7 @@ function renderGroupBy(container, step, stepIndex) {
 			queryObject.steps[stepIndex].aggregation.group_by.splice(gbColumnIndex, 1);
 			renderForm()
 		}
-		
+		groupByRow.appendChild(groupByAggregationSelect);
 		// groupByRow.appendChild(groupByInput);
 		groupByRow.appendChild(groupByTableSelect);
 		// groupByRow.appendChild(groupByColumnSelect);
@@ -818,10 +864,12 @@ function renderGroupBy(container, step, stepIndex) {
 				console.log(translations[item.column]);
 				if (translations[item.column]) {
 					tableOption.textContent = translations[item.column][currentLanguage];
-				} else {
-					tableOption.textContent = item.column;
-				}
-				columnTableSelect.appendChild(tableOption);
+					columnTableSelect.appendChild(tableOption);
+				} 
+				// else {
+				// 	tableOption.textContent = item.column;
+				// }
+				// columnTableSelect.appendChild(tableOption);
 				
 			});
 
