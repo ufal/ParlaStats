@@ -130,6 +130,7 @@ def query():
 """
 @app.route('/metainformation')
 def get_metainformation_JSON():
+    print(jsonify(metainformationFetcher.make_metainformation_JSON()))
     return jsonify(metainformationFetcher.make_metainformation_JSON())
 
 if __name__ == "__main__":
