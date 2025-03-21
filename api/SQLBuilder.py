@@ -26,6 +26,7 @@ class SQLBuilder:
     def determine_joins(self, columns, conditions, group_by):
         required = set()
         tables = self.TABLE_MATCHING.keys()
+        print(columns)
         for table in tables:
             for col in columns:
                 if (isinstance(col, str)):
@@ -34,6 +35,7 @@ class SQLBuilder:
                 elif (isinstance(col, dict)):
                     if table in col["real"] and table not in required:
                         required.add(table)
+            
             for gb in group_by:
                 if table in gb and table not in required:
                     required.add(table)
@@ -99,7 +101,12 @@ class SQLBuilder:
     def parse_group_by(self, group_by):
         res = ""
         if group_by:
-            group_clause = " GROUP BY " + ", ".join(group_by)
+            group_clause = " GROUP BY "
+            for gb in group_by:
+                if (isinstance(gb, str)):
+                    group_clause += f'{gb}, '
+                elif (isinstance(gb, dict)):
+                    group_by_clause += f"{gb['agg_func']}(gb['real']), "
             res += group_clause
         return res
 
