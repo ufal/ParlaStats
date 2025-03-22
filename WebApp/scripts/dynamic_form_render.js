@@ -433,7 +433,32 @@ function renderOrderBy(container, step, stepIndex) {
 		const orderByTableSelect = document.createElement('select');
 		orderByTableSelect.className = `column-offering-${stepIndex}`;
 		
-	
+		const orderByAggregationSelect = document.createElement('select');
+		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT'];
+		aggFOptions.forEach(option => {
+			const aggFOption = document.createElement('option');
+			aggFOption.value = option;
+			aggFOption.textContent = translations[option][currentLanguage];
+			orderByAggregationSelect.appendChild(aggFOption);
+		
+		});
+		
+		orderByAggregationSelect.addEventListener('change', () => {
+			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex] === "string") {
+				queryObject.steps[stepIndex].columns[columnIndex] = {
+					"real":orderByTableSelect.value,
+					"agg_func":orderByAggregationSelect.value
+				}
+			} else if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
+				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func = orderByAggregationSelect.value;
+			}
+		});
+
+		if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
+			orderByAggregationSelect.value = queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func;
+		} else {
+			orderByAggregationSelect.value = "";
+		}
 
 		// Offer user columns from available databases
 		metaInformation.aggregation.order_by.forEach(item => {
@@ -485,11 +510,30 @@ function renderOrderBy(container, step, stepIndex) {
 			orderByEntry.column = orderByTableSelect.options[0].value;
 			orderByTableSelect.value = orderByTableSelect.options[0].value;
 		} else {
-			orderByTableSelect.value = orderByEntry.column;
+			if (typeof orderByEntry.column === "object") {
+				orderByTableSelect.value = orderByEntry.column.real;
+			} else {
+				orderByTableSelect.value = orderByEntry.column;
+			}
 		}
 
 		orderByTableSelect.addEventListener('change', () => {
-			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByTableSelect.value;
+			orderByAggregationSelect.value = "";
+			const options = orderByAggregationSelect.querySelectorAll('option');
+			options.forEach(option => option.remove());
+			let selectedColumnMeta = metaInformation.columns.find(col => col.column === orderByTableSelect.value);
+
+			aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
+				const selectOption = document.createElement('option');
+				selectOption.value = aggFunc;
+				selectOption.textContent = translations[aggFunc][currentLanguage];
+				orderByAggregationSelect.appednChild(selectOption);
+			});
+			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
+				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.real = orderByTableSelect.value;
+			} else  {
+				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByTableSelect.value;
+			}
 		});
 		// metaInformation.aggregation.order_by.forEach(item => {
 		// 	if (!alreadySeen.includes(item.table)) {
@@ -570,7 +614,7 @@ function renderOrderBy(container, step, stepIndex) {
 			queryObject.steps[stepIndex].aggregation.order_by.splice(orderByIndex, 1);
 			renderForm();
 		};
-
+		orderByRow.appendChild(orderByAggregationSelect);
 		// orderByRow.appendChild(orderByColumnInput);
 		orderByRow.appendChild(orderByTableSelect);
 		// orderByRow.appendChild(orderByColumnSelect);
@@ -690,7 +734,11 @@ function renderGroupBy(container, step, stepIndex) {
 			gbColumn = groupByTableSelect.options[0].value;
 			groupByTableSelect.value = groupByTableSelect.options[0].value;
 		} else {
-			groupByTableSelect.value = gbColumn;
+			if (typeof gbColumn === "object") {
+				groupByTableSelect.value = gbColumn.real;
+			} else if (typeof gbColumn === "string") {
+				groupByTableSelect.value = gbColumn;
+			}
 		}
 
 		groupByTableSelect.addEventListener('change', () => {

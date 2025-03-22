@@ -151,6 +151,14 @@ let translations = {
 		"en":"ID of an organization",
 		"cs":"ID organizace"
 	},
+	"speech.id": {
+		"en":"ID of a speech",
+		"cs":"ID promluvy"
+	},
+	"affiliation.role": {
+		"en":"Role of a speaker within organization",
+		"cs":"Role mluvčího vrámci organizace"
+	},
 	"speech.time_silent": {
 		"en":"Time silent",
 		"cs":"Čas ticha"
