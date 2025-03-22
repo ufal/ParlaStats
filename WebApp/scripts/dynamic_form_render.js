@@ -1,6 +1,6 @@
 import { getMetaInformation } from './metaInformation.js'; 
 import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
-import { getTranslations, getUITranslations } from './translations.js'
+import { getTranslations, getUITranslations, translateStepResults } from './translations.js'
 import { getArtificialColumns } from './artificialColumns.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
@@ -776,7 +776,7 @@ function renderGroupBy(container, step, stepIndex) {
 					const selectOption = document.createElement('option');
 					selectOption.className = "user-specific";
 					selectOption.value = column;
-					selectOption.textContent = column;
+					selectOption.textContent = translateStepResults(column, translations, artificialColumns, currentLanguage);
 					groupByTableSelect.appendChild(selectOption);
 				});
 			}
@@ -1044,6 +1044,7 @@ function renderGroupBy(container, step, stepIndex) {
 				
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
+				aggregationFunctionSelect.value = "";
 			});
 		
 			// ====================== NEW VERSION END ================================

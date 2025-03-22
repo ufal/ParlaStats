@@ -123,6 +123,10 @@ let UItranslations = {
 
 let translations = {
 	"availableLanguages":["en", "cs"],
+	'': {
+		"en":"---",
+		"cs":"---"
+	},
 	"AVG": {
 		"en":"Average",
 		"cs":"Průměr"
@@ -280,6 +284,23 @@ function storeTranslations() {
 export function getTranslations() {
 	const translations = localStorage.getItem("translations");
 	return translations ? JSON.parse(translations) : [];
+}
+
+export function translateStepResults(stepResult, translations, artificialColumns, currentLanguage) {
+	let parts = stepResult.split('.');
+	let result = `${parts[1]}->`
+	if (parts.length == 3) {
+		Object.keys(artificialColumns).forEach(key => {
+			if (artificialColumns[key].formula === parts[2]) {
+				result += translations[key][currentLanguage];
+			} 		
+		});
+		result += parts[2];
+	} else if (parts.length == 4) { // Selected non - aliased column
+		col = `${parts[2] + parts[3]}`;
+		result += `${translations[col]}`;
+	}
+	return result
 }
 
 export function getUITranslations() {
