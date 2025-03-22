@@ -13,11 +13,11 @@ let queryObject = {
 
 // what types can use what aggregation functions
 let aggregationFunctionTypeMapping = {
-	"real":["SUM", "AVG", "MIN", "MAX", "COUNT"],
-	"date":["MIN", "MAX", "COUNT"],
-	"character varying":["COUNT", "DISTINCT"],
-	"time without ime zone":["MIN", "MAX", "COUNT"],
-	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT"]
+	"real":["SUM", "AVG", "MIN", "MAX", "COUNT", ""],
+	"date":["MIN", "MAX", "COUNT","DISTINCT", ""],
+	"character varying":["COUNT", "DISTINCT", ""],
+	"time without time zone":["MIN", "MAX", "COUNT", "DISTINCT", ""],
+	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT", ""]
 }
 
 
@@ -40,7 +40,6 @@ let artificialColumns = getArtificialColumns();
 // ==================================================================
 
 function renderForm() {
-	console.log(queryObject)
 	const container = document.getElementById('formContainer');
 	container.innerHTML = '';
 	const form = document.createElement('form');
@@ -48,7 +47,6 @@ function renderForm() {
 	
 	const languageSelectDiv = document.createElement('div');
 	const languageSelectLabel = document.createElement('label');
-	console.log(UItranslations["languageSelectionLabel"][currentLanguage]);
 	languageSelectLabel.textContent = UItranslations.languageSelectionLabel[currentLanguage];
 	const languageSelect = document.createElement('select');
 	translations.availableLanguages.forEach(lang => {
@@ -60,7 +58,6 @@ function renderForm() {
 	languageSelect.value = currentLanguage;
 	languageSelect.addEventListener('change', () => {
 		currentLanguage = languageSelect.value;
-		console.log(currentLanguage);
 		renderForm();
 	});
 
@@ -433,24 +430,47 @@ function renderOrderBy(container, step, stepIndex) {
 		const orderByTableSelect = document.createElement('select');
 		orderByTableSelect.className = `column-offering-${stepIndex}`;
 		
+
 		const orderByAggregationSelect = document.createElement('select');
-		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT'];
+		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
+		let currentColumn = queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column;
+		if (currentColumn) {
+			if (typeof currentColumn === "object") {
+				currentColumn = currentColumn.real;
+			}
+			let currentColumnMeta = "";
+			Object.keys(artificialColumns).forEach(key => {
+				if (artificialColumns[key].formula === currentColumn) {
+					currentColumnMeta = artificialColumns[key].type;
+				}
+			});
+			if (currentColumnMeta === "") {
+				currentColumnMeta = metaInformation.aggregation.group_by.find(col => col.column === currentColumn).type;
+			}
+			if (currentColumnMeta !== "") {
+				aggFOptions = aggregationFunctionTypeMapping[currentColumnMeta];
+			}
+		}
 		aggFOptions.forEach(option => {
 			const aggFOption = document.createElement('option');
 			aggFOption.value = option;
 			aggFOption.textContent = translations[option][currentLanguage];
 			orderByAggregationSelect.appendChild(aggFOption);
-		
 		});
+		orderByAggregationSelect.value = "";
 		
-		orderByAggregationSelect.addEventListener('change', () => {
-			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex] === "string") {
-				queryObject.steps[stepIndex].columns[columnIndex] = {
+		orderByAggregationSelect.addEventListener('change', function (event) {
+			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "string") {
+				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = {
 					"real":orderByTableSelect.value,
 					"agg_func":orderByAggregationSelect.value
 				}
 			} else if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
-				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func = orderByAggregationSelect.value;
+				if (event.target.selectedOptions[0].value === "") {
+					queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByTableSelect.value;
+				} else {
+					queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func = orderByAggregationSelect.value;
+				}
 			}
 		});
 
@@ -517,23 +537,34 @@ function renderOrderBy(container, step, stepIndex) {
 			}
 		}
 
-		orderByTableSelect.addEventListener('change', () => {
+		orderByTableSelect.addEventListener('change', function (event) {
 			orderByAggregationSelect.value = "";
 			const options = orderByAggregationSelect.querySelectorAll('option');
 			options.forEach(option => option.remove());
-			let selectedColumnMeta = metaInformation.columns.find(col => col.column === orderByTableSelect.value);
+			
+			let selectedOption = event.target.selectedOptions[0].value;
+			let selectedColumnMeta = "";
+			Object.keys(artificialColumns).forEach(key => {
+				if (artificialColumns[key].formula === selectedOption) {
+					selectedColumnMeta = artificialColumns[key].type;
+				}
+			});
+			if (selectedColumnMeta === "") {
+				selectedColumnMeta = metaInformation.columns.find(col => col.column === selectedOption).type;
+			}
 
-			aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
+			aggregationFunctionTypeMapping[selectedColumnMeta].forEach(aggFunc => {
 				const selectOption = document.createElement('option');
 				selectOption.value = aggFunc;
 				selectOption.textContent = translations[aggFunc][currentLanguage];
-				orderByAggregationSelect.appednChild(selectOption);
+				orderByAggregationSelect.appendChild(selectOption);
 			});
 			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
 				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.real = orderByTableSelect.value;
 			} else  {
 				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByTableSelect.value;
 			}
+			orderByAggregationSelect.value = "";
 		});
 		// metaInformation.aggregation.order_by.forEach(item => {
 		// 	if (!alreadySeen.includes(item.table)) {
@@ -657,22 +688,45 @@ function renderGroupBy(container, step, stepIndex) {
 		
 		// Offer aggregation functions
 		const groupByAggregationSelect = document.createElement('select');
-		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT'];
+		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
+		let currentColumn = queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex];
+		if (currentColumn) {
+			if (typeof currentColumn === "object") {
+				currentColumn = currentColumn.real;
+			}
+			let currentColumnMeta = "";
+			Object.keys(artificialColumns).forEach(key => {
+				if (artificialColumns[key].formula === currentColumn) {
+					currentColumnMeta = artificialColumns[key].type;
+				}
+			});
+			if (currentColumnMeta === "") {
+				currentColumnMeta = metaInformation.aggregation.group_by.find(col => col.column === currentColumn).type;
+			}
+			if (currentColumnMeta !== "") {
+				aggFOptions = aggregationFunctionTypeMapping[currentColumnMeta];
+			}
+		}
 		aggFOptions.forEach(option => {
 			const aggFOption = document.createElement('option');
 			aggFOption.value = option;
 			aggFOption.textContent = translations[option][currentLanguage];
 			groupByAggregationSelect.appendChild(aggFOption);
 		});
+		groupByAggregationSelect.value = "";
 
-		groupByAggregationSelect.addEventListener('change', () => {
+		groupByAggregationSelect.addEventListener('change', function (event) {
 			if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "string") {
-				queryObject.steps[stepIndex].columns[columnIndex] = {
-					"real":columnTableSelect.value,
+				queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = {
+					"real":groupByTableSelect.value,
 					"agg_func":groupByAggregationSelect.value
 				}
 			} else if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "object") {
-				queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex].agg_func = groupByAggregationSelect.value;
+				if (event.target.selectedOptions[0]. value === "") {
+					queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
+				} else {
+					queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex].agg_func = groupByAggregationSelect.value;
+				}
 			}
 		});
 
@@ -717,7 +771,6 @@ function renderGroupBy(container, step, stepIndex) {
 		// Offer user columns that are to be selected in other steps
 		let index = 0;
 		stepResultArray.forEach(step => {
-			console.log(stepIndex);
 			if (index < stepIndex) {
 				step.forEach(column => {
 					const selectOption = document.createElement('option');
@@ -741,19 +794,30 @@ function renderGroupBy(container, step, stepIndex) {
 			}
 		}
 
-		groupByTableSelect.addEventListener('change', () => {
+		groupByTableSelect.addEventListener('change', function (event) {
 			groupByAggregationSelect.value = "";
 			const options = groupByAggregationSelect.querySelectorAll('option');
 			options.forEach(option => option.remove());
-			let selectedColumnMeta = metaInformation.columns.find(col => col.column === groupByTableSelect.value);
 
-			aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
+			const selectedOption = event.target.selectedOptions[0].value;
+			let selectedColumnMeta = "";
+			Object.keys(artificialColumns).forEach(key => {
+				if (artificialColumns[key].formula === selectedOption) {
+					selectedColumnMeta = artificialColumns[key].type;
+				}
+			});
+			if (selectedColumnMeta === "") {
+				selectedColumnMeta = metaInformation.columns.find(col => col.column === selectedOption).type;
+			}
+
+			aggregationFunctionTypeMapping[selectedColumnMeta].forEach(aggFunc => {
 				const selectOption = document.createElement('option');
 				selectOption.value = aggFunc;
 				selectOption.textContent = translations[aggFunc][currentLanguage];
 				groupByAggregationSelect.appendChild(selectOption);
 			});
 			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
+			groupByAggregationSelect.value = "";
 		});
 		// metaInformation.aggregation.group_by.forEach(item => {
 		// 	if (!alreadySeen.includes(item.table)) {
@@ -873,16 +937,35 @@ function renderGroupBy(container, step, stepIndex) {
 				updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			});
 
-
 			// Aggregation function select
 			const aggregationFunctionSelect = document.createElement('select');
-			let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT']
+			let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT',""];
+			let currentColumn = queryObject.steps[stepIndex].columns[columnIndex];
+			console.log(currentColumn);
+			if (currentColumn) {
+				if (typeof currentColumn === "object") {
+					currentColumn = currentColumn.real;
+				}
+				let currentColumnMeta = "";
+				Object.keys(artificialColumns).forEach(key => {
+					if (artificialColumns[key].formula === currentColumn) {
+						currentColumnMeta = artificialColumns[key].type;
+					}
+				});
+				if (currentColumnMeta === "") {
+					currentColumnMeta = metaInformation.columns.find(col => col.column === currentColumn).type;
+				}
+				if (currentColumnMeta !== "") {
+					aggFOptions = aggregationFunctionTypeMapping[currentColumnMeta];
+				}
+			}
 			aggFOptions.forEach(option => {
 				const aggFOption = document.createElement('option');
 				aggFOption.value = option;
 				aggFOption.textContent = translations[option][currentLanguage];
 				aggregationFunctionSelect.appendChild(aggFOption);
 			});
+			aggregationFunctionSelect.value = "";
 
 			aggregationFunctionSelect.addEventListener('change', () => {
 				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
@@ -894,7 +977,6 @@ function renderGroupBy(container, step, stepIndex) {
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
 						queryObject.steps[stepIndex].columns[columnIndex].agg_func = aggregationFunctionSelect.value;
 				}
-				console.log(queryObject);
 			});
 
 			if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
@@ -909,7 +991,6 @@ function renderGroupBy(container, step, stepIndex) {
 			metaInformation.columns.forEach(item => {
 				const tableOption = document.createElement('option');
 				tableOption.value = item.column;
-				console.log(translations[item.column]);
 				if (translations[item.column]) {
 					tableOption.textContent = translations[item.column][currentLanguage];
 					columnTableSelect.appendChild(tableOption);
@@ -940,13 +1021,21 @@ function renderGroupBy(container, step, stepIndex) {
 				}
 			}
 
-			columnTableSelect.addEventListener('change', () => {
+			columnTableSelect.addEventListener('change', function (event) {
 				aggregationFunctionSelect.value = "";
 				const options = aggregationFunctionSelect.querySelectorAll('option');
 				options.forEach(option => option.remove());
-				let selectedColumnMeta = metaInformation.columns.find(col => col.column === columnTableSelect.value)
-				
-				aggregationFunctionTypeMapping[selectedColumnMeta.type].forEach(aggFunc => {
+				const selectedOption = event.target.selectedOptions[0].value;
+				let selectedColumnMeta = "";
+				Object.keys(artificialColumns).forEach(key => {
+					if (artificialColumns[key].formula === selectedOption) {
+						selectedColumnMeta = artificialColumns[key].type;
+					}
+				});
+				if (selectedColumnMeta === "") {
+					selectedColumnMeta = metaInformation.columns.find(col => col.column === columnTableSelect.value).type;
+				}
+				aggregationFunctionTypeMapping[selectedColumnMeta].forEach(aggFunc => {
 					const selectOption = document.createElement('option');
 					selectOption.value = aggFunc;
 					selectOption.textContent = translations[aggFunc][currentLanguage];
@@ -1080,7 +1169,6 @@ function renderTargetSection(container) {
 }
 
 function loadQuery(jsonString) {
-	console.log(jsonString)
 	queryObject = JSON.parse(jsonString);
 	renderForm();
 }
@@ -1104,7 +1192,6 @@ sendQueryButton.onclick = async () => {
 			headers: { "Content-Type": "application/json" },
 			body: query
 		}
-		console.log(query);
 		const response = await fetch(testServerURL, queryWrapped);
 		if (!response.ok) {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
@@ -1181,6 +1268,5 @@ loadButton.onclick = () => {
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
 	metaInformation = getMetaInformation()
-	console.log(metaInformation);
 	
 });
