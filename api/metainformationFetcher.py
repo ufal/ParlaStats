@@ -20,7 +20,6 @@ class metainformationFetcher:
             for parameter in parameters:
                 config[parameter[0]] = parameter[1]
         
-        
         try:
             with psycopg2.connect(**config) as connection:
                 connection.set_client_encoding('UTF-8')

@@ -33,12 +33,15 @@ class MIDatabaseFiller(DatabaseOperator):
                     WHERE table_schema = %s AND table_name = %s
                     AND column_name NOT IN (
                         SELECT a.attname
-                        FROM pg_attribute a
-                        JOIN pg_constraint con ON a.attnum = ANY(con.conkey)
+                        FROM pg_constraint con
                         JOIN pg_class cls ON cls.oid = con.conrelid
-                        WHERE con.contype = 'f' AND cls.relname = %s
+                        JOIN pg_namespace nsp ON nsp.oid = cls.relnamespace
+                        JOIN pg_attribute a ON a.attrelid = cls.oid AND a.attnum = ANY(con.conkey)
+                        WHERE con.contype = 'f'
+                            AND cls.relname = %s
+                            AND nsp.nspname = %s
                     );
-                """, (schema, table, table))
+                """, (schema, table, table, schema))
                 return database_cursor.fetchall()
     
     def update_metadata(self):
@@ -54,6 +57,7 @@ class MIDatabaseFiller(DatabaseOperator):
                     table_id = meta_cursor.fetchone()
                     if table_id: table_id = table_id[0]
                     
+                    print(self.__fetch_columns(database, schema, table))
                     for column_name, data_type in self.__fetch_columns(database, schema, table):
                         meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (table_id, column_name, data_type))
             self.connection_meta.commit()
