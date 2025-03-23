@@ -2,6 +2,7 @@ import { getMetaInformation } from './metaInformation.js';
 import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
 import { getTranslations, getUITranslations, translateStepResults } from './translations.js'
 import { getArtificialColumns } from './artificialColumns.js'
+import * as Utilities from './rendering_utilities.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -422,43 +423,21 @@ function renderOrderBy(container, step, stepIndex) {
 	step.aggregation.order_by.forEach((orderByEntry, orderByIndex) => {
 		const orderByRow = document.createElement('div');
 		orderByRow.className = 'repeatable-row';
-		// let orderByColumnParts = orderByEntry.column.split('.');
-		// ===================== NEW VERSION BEGIN ===========================
-		// ######################## NOTES BEGIN #######################
-		// TODO: Repeated code at 298-305 and 311-318
-		// ######################## NOTES END #########################
+		
 		const orderByTableSelect = document.createElement('select');
 		orderByTableSelect.className = `column-offering-${stepIndex}`;
 		
 
 		const orderByAggregationSelect = document.createElement('select');
-		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
-		let currentColumn = queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column;
-		if (currentColumn) {
-			if (typeof currentColumn === "object") {
-				currentColumn = currentColumn.real;
-			}
-			let currentColumnMeta = "";
-			Object.keys(artificialColumns).forEach(key => {
-				if (artificialColumns[key].formula === currentColumn) {
-					currentColumnMeta = artificialColumns[key].type;
-				}
-			});
-			if (currentColumnMeta === "") {
-				currentColumnMeta = metaInformation.aggregation.group_by.find(col => col.column === currentColumn).type;
-			}
-			if (currentColumnMeta !== "") {
-				aggFOptions = aggregationFunctionTypeMapping[currentColumnMeta];
-			}
-		}
-		aggFOptions.forEach(option => {
-			const aggFOption = document.createElement('option');
-			aggFOption.value = option;
-			aggFOption.textContent = translations[option][currentLanguage];
-			orderByAggregationSelect.appendChild(aggFOption);
-		});
-		orderByAggregationSelect.value = "";
 		
+		// Make aggregation functions offerings
+		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.order_by, orderByAggregationSelect,
+		                                        currentLanguage, 
+		                                        queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column,
+		                                        aggregationFunctionTypeMapping);
+
+		
+		// Add change handler
 		orderByAggregationSelect.addEventListener('change', function (event) {
 			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "string") {
 				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = {
@@ -481,54 +460,28 @@ function renderOrderBy(container, step, stepIndex) {
 		}
 
 		// Offer user columns from available databases
-		metaInformation.aggregation.order_by.forEach(item => {
-			const selectOption = document.createElement('option');
-			selectOption.value = item.column;
-			if (translations[item.column]) {
-				selectOption.textContent = translations[item.column][currentLanguage];
-				orderByTableSelect.appendChild(selectOption);
-			} 
-			// else {
-			// 	selectOption.textContent = item.column;
-			// }
-			// orderByTableSelect.appendChild(selectOption);
-		});
+		Utilities.addDatabaseColumnOfferings(metaInformation.aggregation.order_by,
+		                                     orderByTableSelect,
+		                                     currentLanguage);
 
 		// Offer user template columns
-		Object.keys(artificialColumns).forEach(key => {
-			const option = document.createElement('option');
-			option.value = artificialColumns[key].formula;
-			option.textContent = translations[key][currentLanguage];
-			orderByTableSelect.appendChild(option);
-		});
+		Utilities.addArtificialColumnOfferings(orderByTableSelect, currentLanguage);
 
 		// Offer user aliases defined within the same step
-		userDefinedAliases[stepIndex].forEach(alias => {
-			const selectOption = document.createElement('option');
-			selectOption.className = "user-specific";
-			selectOption.value = alias;
-			selectOption.textContent = alias;
-			orderByTableSelect.appendChild(selectOption);
-		});
-
-		// Offer user columns selected in other steps
-		let index = 0;
-		stepResultArray.forEach(step => {
-			if (index < stepIndex) {
-				step.forEach(column => {
-					const selectOption = document.createElement('option');
-					selectOption.className = "user-specific";
-					selectOption.value = column;
-					selectOption.textContent = column;
-					orderByTableSelect.appendChild(selectOption);
-				});
-			}
-			index++;
-		});
+		Utilities.addUserDefinedAliases(orderByTableSelect, userDefinedAliases[stepIndex]);
 		
+		// Offer user columns selected in other steps
+		Utilities.addStepResultsOfferings(orderByTableSelect, stepResultArray, stepIndex, currentLanguage);
+
+		// Add default option
+		const defaultOption = document.createElement('option');
+		defaultOption.value = ''
+		defaultOption.textContent = translations[''][currentLanguage];
+		orderByTableSelect.appendChild(defaultOption);
+
+		// Handle loading into form fields		
 		if (!orderByEntry.column) {
-			orderByEntry.column = orderByTableSelect.options[0].value;
-			orderByTableSelect.value = orderByTableSelect.options[0].value;
+			orderByTableSelect.value = "";
 		} else {
 			if (typeof orderByEntry.column === "object") {
 				orderByTableSelect.value = orderByEntry.column.real;
@@ -537,28 +490,13 @@ function renderOrderBy(container, step, stepIndex) {
 			}
 		}
 
-		orderByTableSelect.addEventListener('change', function (event) {
-			orderByAggregationSelect.value = "";
-			const options = orderByAggregationSelect.querySelectorAll('option');
-			options.forEach(option => option.remove());
-			
-			let selectedOption = event.target.selectedOptions[0].value;
-			let selectedColumnMeta = "";
-			Object.keys(artificialColumns).forEach(key => {
-				if (artificialColumns[key].formula === selectedOption) {
-					selectedColumnMeta = artificialColumns[key].type;
-				}
-			});
-			if (selectedColumnMeta === "") {
-				selectedColumnMeta = metaInformation.columns.find(col => col.column === selectedOption).type;
-			}
+		// Offer aggregation function options based on selected column type
+		Utilities.addTypeBasedAggOfferings(orderByTableSelect, orderByAggregationSelect,
+		                                   metaInformation.aggregation.order_by,
+		                                   aggregationFunctionTypeMapping, currentLanguage);
 
-			aggregationFunctionTypeMapping[selectedColumnMeta].forEach(aggFunc => {
-				const selectOption = document.createElement('option');
-				selectOption.value = aggFunc;
-				selectOption.textContent = translations[aggFunc][currentLanguage];
-				orderByAggregationSelect.appendChild(selectOption);
-			});
+		
+		orderByTableSelect.addEventListener('change', () => {
 			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
 				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.real = orderByTableSelect.value;
 			} else  {
@@ -566,62 +504,7 @@ function renderOrderBy(container, step, stepIndex) {
 			}
 			orderByAggregationSelect.value = "";
 		});
-		// metaInformation.aggregation.order_by.forEach(item => {
-		// 	if (!alreadySeen.includes(item.table)) {
-		// 		const tableOption = document.createElement('option');
-
-		// 		tableOption.value = item.table;
-		// 		tableOption.textContent = item.table;
-		// 		orderByTableSelect.appendChild(tableOption);
-		// 		alreadySeen.push(item.table);
-		// 	}
-		// });
 		
-		// if (!orderByColumnParts[0]) {
-		// 	orderByTableSelect.value = orderByTableSelect.options[0].value;
-		// } else {
-		// 	orderByTableSelect.value = orderByColumnParts[0];
-		// }
-
-		// metaInformation.aggregation.order_by.forEach(item => {
-		// 	if (orderByTableSelect.value == item.table) {
-		// 		const columnOption = document.createElement('option');
-		// 		columnOption.value = item.column;
-		// 		columnOption.textContent = item.column;
-		// 		orderByColumnSelect.appendChild(columnOption);
-		// 	}
-		// });
-
-		// orderByColumnSelect.value = orderByColumnParts[1];
-
-		// orderByTableSelect.addEventListener('change', () => {
-		// 	orderByColumnSelect.innerHTML = '';
-		// 	metaInformation.aggregation.order_by.forEach(item => {
-		// 		if (orderByTableSelect.value == item.table) {
-		// 			const columnOption = document.createElement('option');
-		// 			columnOption.value = item.column;
-		// 			columnOption.textCOntent = item.column;
-		// 			orderByColumnSelect.appendChild(columnOption);
-		// 		}
-		// 	});
-		// 	queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
-		// });
-
-		// orderByColumnSelect.addEventListener('change', () => {
-		// 	queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = `${orderByTableSelect.value}.${orderByColumnSelect.value}`;
-		// });
-
-		// ===================== NEW VERSION END =============================
-
-		// ===================== OLD VERSION BEGIN ===========================
-		// const orderByColumnInput = document.createElement('input');
-		// orderByColumnInput.type = 'text';
-		// orderByColumnInput.placeholder = 'Column';
-		// orderByColumnInput.value = orderByEntry.column;
-		// orderByColumnInput.addEventListener('input', () => {
-		// 	queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByColumnInput.value;
-		// });
-		// ==================== OLD VERSION END ==============================
 		const orderByDirectionSelect = document.createElement('select');
 		
 		const ascendingOption = document.createElement('option');
@@ -679,42 +562,17 @@ function renderGroupBy(container, step, stepIndex) {
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row';
 		// =========================== NEW VERSION BEGIN ============================
-		// ######################## NOTES BEGIN #######################
-		// TODO: Repeated code at 393-400 and 406-503
-		// ######################## NOTES END #########################
 		const groupByTableSelect = document.createElement('select');
 		groupByTableSelect.className = `column-offering-${stepIndex}`;
-		// const groupByColumnSelect = document.createElement('select');
+		const groupByColumnSelect = document.createElement('select');
 		
 		// Offer aggregation functions
 		const groupByAggregationSelect = document.createElement('select');
-		let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
-		let currentColumn = queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex];
-		if (currentColumn) {
-			if (typeof currentColumn === "object") {
-				currentColumn = currentColumn.real;
-			}
-			let currentColumnMeta = "";
-			Object.keys(artificialColumns).forEach(key => {
-				if (artificialColumns[key].formula === currentColumn) {
-					currentColumnMeta = artificialColumns[key].type;
-				}
-			});
-			if (currentColumnMeta === "") {
-				currentColumnMeta = metaInformation.aggregation.group_by.find(col => col.column === currentColumn).type;
-			}
-			if (currentColumnMeta !== "") {
-				aggFOptions = aggregationFunctionTypeMapping[currentColumnMeta];
-			}
-		}
-		aggFOptions.forEach(option => {
-			const aggFOption = document.createElement('option');
-			aggFOption.value = option;
-			aggFOption.textContent = translations[option][currentLanguage];
-			groupByAggregationSelect.appendChild(aggFOption);
-		});
-		groupByAggregationSelect.value = "";
-
+		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.group_by, groupByAggregationSelect, currentLanguage,
+									  queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex],
+		 							  aggregationFunctionTypeMapping);
+		
+		// Add change handling
 		groupByAggregationSelect.addEventListener('change', function (event) {
 			if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "string") {
 				queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = {
@@ -737,55 +595,27 @@ function renderGroupBy(container, step, stepIndex) {
 		}
 
 		// Offer user columns available in databases
-		metaInformation.aggregation.group_by.forEach(item => {
-			const selectOption = document.createElement('option');
-			selectOption.value = item.column;
-			if (translations[item.column]) {
-				selectOption.textContent = translations[item.column][currentLanguage];
-				groupByTableSelect.appendChild(selectOption);
-			} 
-			// else {
-			// 	selectOption.textContent = item.column;
-			// }
-			// groupByTableSelect.appendChild(selectOption);
-		});
+		Utilities.addDatabaseColumnOfferings(metaInformation.aggregation.group_by, groupByTableSelect, currentLanguage);
+		
 		// Offer user template columns
-		Object.keys(artificialColumns).forEach(key => {
-			const option = document.createElement('option');
-			option.value = artificialColumns[key].formula;
-			option.textContent = translations[key][currentLanguage];
-			groupByTableSelect.appendChild(option);
-		});
+		Utilities.addArtificialColumnOfferings(groupByTableSelect, currentLanguage);
 
 		// Offer user aliases defined within this step
 		
 		if (userDefinedAliases[stepIndex]) { 
-			userDefinedAliases[stepIndex].forEach(alias => {
-				const selectOption = document.createElement('option');
-				selectOption.className = "user-specific";
-				selectOption.value = alias;
-				selectOption.textContent = alias;
-				groupByTableSelect.appendChild(selectOption);
-			});
+			Utilities.addUserDefinedAliases(groupByTableSelect, userDefinedAliases[stepIndex]);
 		}
-		// Offer user columns that are to be selected in other steps
-		let index = 0;
-		stepResultArray.forEach(step => {
-			if (index < stepIndex) {
-				step.forEach(column => {
-					const selectOption = document.createElement('option');
-					selectOption.className = "user-specific";
-					selectOption.value = column;
-					selectOption.textContent = translateStepResults(column, translations, artificialColumns, currentLanguage);
-					groupByTableSelect.appendChild(selectOption);
-				});
-			}
-			index++;
-		});
 
+		// Offer user columns that are to be selected in other steps
+		Utilities.addStepResultsOfferings(groupByTableSelect, stepResultArray, stepIndex, currentLanguage);
+		
+		const defaultOption = document.createElement('option');
+		defaultOption.value = '';
+		defaultOption.textContent = translations[''][currentLanguage];
+		groupByTableSelect.appendChild(defaultOption);
+		
 		if (!gbColumn) {
-			gbColumn = groupByTableSelect.options[0].value;
-			groupByTableSelect.value = groupByTableSelect.options[0].value;
+			groupByTableSelect.value = "";
 		} else {
 			if (typeof gbColumn === "object") {
 				groupByTableSelect.value = gbColumn.real;
@@ -794,88 +624,21 @@ function renderGroupBy(container, step, stepIndex) {
 			}
 		}
 
-		groupByTableSelect.addEventListener('change', function (event) {
-			groupByAggregationSelect.value = "";
-			const options = groupByAggregationSelect.querySelectorAll('option');
-			options.forEach(option => option.remove());
+		// Update aggregation offerings based on selected column type
+		Utilities.addTypeBasedAggOfferings(groupByTableSelect, groupByAggregationSelect, 
+		                                   metaInformation.aggregation.group_by, aggregationFunctionTypeMapping,
+										   currentLanguage);
 
-			const selectedOption = event.target.selectedOptions[0].value;
-			let selectedColumnMeta = "";
-			Object.keys(artificialColumns).forEach(key => {
-				if (artificialColumns[key].formula === selectedOption) {
-					selectedColumnMeta = artificialColumns[key].type;
-				}
-			});
-			if (selectedColumnMeta === "") {
-				selectedColumnMeta = metaInformation.columns.find(col => col.column === selectedOption).type;
-			}
-
-			aggregationFunctionTypeMapping[selectedColumnMeta].forEach(aggFunc => {
-				const selectOption = document.createElement('option');
-				selectOption.value = aggFunc;
-				selectOption.textContent = translations[aggFunc][currentLanguage];
-				groupByAggregationSelect.appendChild(selectOption);
-			});
+		
+		// Store selection
+		groupByTableSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
 			groupByAggregationSelect.value = "";
 		});
-		// metaInformation.aggregation.group_by.forEach(item => {
-		// 	if (!alreadySeen.includes(item.table)) {
-		// 		const tableOption = document.createElement('option');
-			
-		// 		tableOption.value = item.table;
-		// 		tableOption.textContent = item.table;
-		// 		groupByTableSelect.appendChild(tableOption);
-		// 		alreadySeen.push(item.table);
-		// 	}
-		// });
 		
-		// if (!gbColumnParts[0]) {
-		// 	groupByTableSelect.value = groupByTableSelect.options[0].value;
-		// } else {
-		// 	groupByTableSelect.value = gbColumnParts[0];
-		// }
-
-		// metaInformation.aggregation.group_by.forEach(item => {
-		// 	if (groupByTableSelect.value === item.table) {
-		// 		const columnOption = document.createElement('option');
-		// 		columnOption.value = item.column;
-		// 		columnOption.textContent = item.column;
-		// 		groupByColumnSelect.appendChild(columnOption);
-		// 	}
-		// });
-
-		// groupByColumnSelect.value = gbColumnParts[1];
-
-		// groupByTableSelect.addEventListener('change', () => {
-		// 	groupByColumnSelect.innerHTML = '';
-		// 	metaInformation.aggregation.group_by.forEach(item => {
-		// 		if (groupByTableSelect.value === item.table) {
-		// 			const columnOption = document.createElement('option');
-		// 			columnOption.value = item.column;
-		// 			columnOption.textContent = item.column;
-		// 			groupByColumnSelect.appendChild(columnOption);
-		// 		}
-		// 	});
-
-		// 	queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
-		// });
-
-		// groupByColumnSelect.addEventListener('change', () => {
-		// 	queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = `${groupByTableSelect.value}.${groupByColumnSelect.value}`;
-		// });
 	
 		// ========================== NEW VERSION END ==============================
-
-		// ========================= OLD VERSION BEGIN =============================
-		// const groupByInput = document.createElement('input');
-		// groupByInput.type = 'text';
-		// groupByInput.placeholder = 'Group By Column';
-		// groupByInput.value = gbColumn;
-		// groupByInput.addEventListener('input', () => {
-		// 	queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByInput.value;	
-		// });
-		// ======================== OLD VERSION END ================================
+		
 		const removeGroupByButton = document.createElement('button');
 		removeGroupByButton.type = 'button';
 		removeGroupByButton.textContent = '-';
@@ -884,9 +647,7 @@ function renderGroupBy(container, step, stepIndex) {
 			renderForm()
 		}
 		groupByRow.appendChild(groupByAggregationSelect);
-		// groupByRow.appendChild(groupByInput);
 		groupByRow.appendChild(groupByTableSelect);
-		// groupByRow.appendChild(groupByColumnSelect);
 		groupByRow.appendChild(removeGroupByButton);
 		groupByContainer.appendChild(groupByRow);
 	});
@@ -939,34 +700,11 @@ function renderGroupBy(container, step, stepIndex) {
 
 			// Aggregation function select
 			const aggregationFunctionSelect = document.createElement('select');
-			let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT',""];
-			let currentColumn = queryObject.steps[stepIndex].columns[columnIndex];
-			console.log(currentColumn);
-			if (currentColumn) {
-				if (typeof currentColumn === "object") {
-					currentColumn = currentColumn.real;
-				}
-				let currentColumnMeta = "";
-				Object.keys(artificialColumns).forEach(key => {
-					if (artificialColumns[key].formula === currentColumn) {
-						currentColumnMeta = artificialColumns[key].type;
-					}
-				});
-				if (currentColumnMeta === "") {
-					currentColumnMeta = metaInformation.columns.find(col => col.column === currentColumn).type;
-				}
-				if (currentColumnMeta !== "") {
-					aggFOptions = aggregationFunctionTypeMapping[currentColumnMeta];
-				}
-			}
-			aggFOptions.forEach(option => {
-				const aggFOption = document.createElement('option');
-				aggFOption.value = option;
-				aggFOption.textContent = translations[option][currentLanguage];
-				aggregationFunctionSelect.appendChild(aggFOption);
-			});
-			aggregationFunctionSelect.value = "";
-
+			Utilities.makeAggregationFunctionSelect(metaInformation.columns, aggregationFunctionSelect, 
+			                              currentLanguage, queryObject.steps[stepIndex].columns[columnIndex],
+			                              aggregationFunctionTypeMapping);
+			
+			// Store selected aggregation function
 			aggregationFunctionSelect.addEventListener('change', () => {
 				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
 					queryObject.steps[stepIndex].columns[columnIndex] = {
@@ -979,6 +717,7 @@ function renderGroupBy(container, step, stepIndex) {
 				}
 			});
 
+			// Load aggregation function and alias into form fields
 			if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
 				aliasInputField.value = queryObject.steps[stepIndex].columns[columnIndex].alias;
 				aggregationFunctionSelect.value = queryObject.steps[stepIndex].columns[columnIndex].agg_func;
@@ -988,31 +727,18 @@ function renderGroupBy(container, step, stepIndex) {
 			}
 			
 			// Offer the user choice of database tables
-			metaInformation.columns.forEach(item => {
-				const tableOption = document.createElement('option');
-				tableOption.value = item.column;
-				if (translations[item.column]) {
-					tableOption.textContent = translations[item.column][currentLanguage];
-					columnTableSelect.appendChild(tableOption);
-				} 
-				// else {
-				// 	tableOption.textContent = item.column;
-				// }
-				// columnTableSelect.appendChild(tableOption);
-				
-			});
-
+			Utilities.addDatabaseColumnOfferings(metaInformation.columns, columnTableSelect, currentLanguage);
 			// Offer the user choice of template columns
-			Object.keys(artificialColumns).forEach(key => {
-				const option = document.createElement('option');
-				option.value = artificialColumns[key].formula;
-				option.textContent = translations[key][currentLanguage];
-				columnTableSelect.appendChild(option);
-	
-			});
+			Utilities.addArtificialColumnOfferings(columnTableSelect, currentLanguage);
+
+			// Add default option
+			let defaultOption = document.createElement('option');
+			defaultOption.value = '';
+			defaultOption.textContent = translations[''][currentLanguage];
+			columnTableSelect.appendChild(defaultOption);
 			
 			if (!column) {
-				columnTableSelect.value = columnTableSelect.options[0].value;
+				columnTableSelect.value = "";
 			} else {
 				if (typeof column === "string") {
 					columnTableSelect.value = column;
@@ -1020,44 +746,23 @@ function renderGroupBy(container, step, stepIndex) {
 					columnTableSelect.value = column.real;
 				}
 			}
+			
+			// Limit aggregation function offers based on type
+			Utilities.addTypeBasedAggOfferings(columnTableSelect, 
+			                         aggregationFunctionSelect, metaInformation.columns,
+			                         aggregationFunctionTypeMapping, currentLanguage);
 
-			columnTableSelect.addEventListener('change', function (event) {
-				aggregationFunctionSelect.value = "";
-				const options = aggregationFunctionSelect.querySelectorAll('option');
-				options.forEach(option => option.remove());
-				const selectedOption = event.target.selectedOptions[0].value;
-				let selectedColumnMeta = "";
-				Object.keys(artificialColumns).forEach(key => {
-					if (artificialColumns[key].formula === selectedOption) {
-						selectedColumnMeta = artificialColumns[key].type;
-					}
-				});
-				if (selectedColumnMeta === "") {
-					selectedColumnMeta = metaInformation.columns.find(col => col.column === columnTableSelect.value).type;
-				}
-				aggregationFunctionTypeMapping[selectedColumnMeta].forEach(aggFunc => {
-					const selectOption = document.createElement('option');
-					selectOption.value = aggFunc;
-					selectOption.textContent = translations[aggFunc][currentLanguage];
-					aggregationFunctionSelect.appendChild(selectOption);
-				});
-				
+			// Store changes
+			columnTableSelect.addEventListener('change', () => {
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
 				aggregationFunctionSelect.value = "";
 			});
+
+			
 		
 			// ====================== NEW VERSION END ================================
 
-			// ====================== OLD VERSION BEGIN ==============================	
-			// const columnInput = document.createElement('input');
-			// columnInput.type = 'text';
-			// columnInput.placeholder = 'Column';
-			// columnInput.value = column;
-			// columnInput.addEventListener('input', () => {
-			// 	queryObject.steps[stepIndex].columns[columnIndex] = columnInput.value;	
-			// });
-			// ===================== OLD VERSION END ================================
 			const removeColumnButton = document.createElement('button');
 			removeColumnButton.type = 'button';
 			removeColumnButton.textContent = '-';
