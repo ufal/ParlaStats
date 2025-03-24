@@ -288,7 +288,6 @@ export function getTranslations() {
 
 export function translateStepResults(stepResult, translations, artificialColumns, currentLanguage) {
 	let parts = stepResult.split('/');
-	console.log(parts);
 	let result = `${parts[1]}->`
 	if (parts.length == 3) {
 		Object.keys(artificialColumns).forEach(key => {

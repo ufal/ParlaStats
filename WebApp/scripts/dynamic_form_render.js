@@ -18,7 +18,8 @@ let aggregationFunctionTypeMapping = {
 	"date":["MIN", "MAX", "COUNT","DISTINCT", ""],
 	"character varying":["COUNT", "DISTINCT", ""],
 	"time without time zone":["MIN", "MAX", "COUNT", "DISTINCT", ""],
-	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT", ""]
+	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT", ""],
+	"NoAggregation":[""]
 }
 
 
@@ -50,6 +51,7 @@ function renderForm() {
 	const languageSelectLabel = document.createElement('label');
 	languageSelectLabel.textContent = UItranslations.languageSelectionLabel[currentLanguage];
 	const languageSelect = document.createElement('select');
+	languageSelect.id = 'languageSelection';
 	translations.availableLanguages.forEach(lang => {
 		const selectOption = document.createElement('option');
 		selectOption.value = lang;
@@ -479,11 +481,10 @@ function renderOrderBy(container, step, stepIndex) {
 		defaultOption.textContent = translations[''][currentLanguage];
 		orderByTableSelect.appendChild(defaultOption);
 
-		// Handle loading into form fields		
+		// Handle loading into form fields
 		if (!orderByEntry.column) {
 			orderByTableSelect.value = "";
 		} else {
-			console.log(orderByEntry);
 			if (typeof orderByEntry.column === "object") {
 				orderByTableSelect.value = orderByEntry.column.real;
 			} else {
@@ -494,7 +495,7 @@ function renderOrderBy(container, step, stepIndex) {
 		// Offer aggregation function options based on selected column type
 		Utilities.addTypeBasedAggOfferings(orderByTableSelect, orderByAggregationSelect,
 		                                   metaInformation.aggregation.order_by,
-		                                   aggregationFunctionTypeMapping, currentLanguage);
+		                                   aggregationFunctionTypeMapping, currentLanguage, userDefinedAliases[stepIndex]);
 
 		
 		orderByTableSelect.addEventListener('change', () => {
@@ -628,7 +629,7 @@ function renderGroupBy(container, step, stepIndex) {
 		// Update aggregation offerings based on selected column type
 		Utilities.addTypeBasedAggOfferings(groupByTableSelect, groupByAggregationSelect, 
 		                                   metaInformation.aggregation.group_by, aggregationFunctionTypeMapping,
-										   currentLanguage);
+										   currentLanguage, userDefinedAliases[stepIndex]);
 
 		
 		// Store selection
@@ -751,7 +752,8 @@ function renderGroupBy(container, step, stepIndex) {
 			// Limit aggregation function offers based on type
 			Utilities.addTypeBasedAggOfferings(columnTableSelect, 
 			                         aggregationFunctionSelect, metaInformation.columns,
-			                         aggregationFunctionTypeMapping, currentLanguage);
+			                         aggregationFunctionTypeMapping, currentLanguage,
+									 userDefinedAliases[stepIndex]);
 
 			// Store changes
 			columnTableSelect.addEventListener('change', () => {
@@ -774,6 +776,15 @@ function renderGroupBy(container, step, stepIndex) {
 			storeAliases(queryObject, userDefinedAliases, stepIndex);
 			storeStepResults(queryObject, stepResultArray, stepIndex);
 			updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
+			if (!column) {
+				columnTableSelect.value = "";
+			} else {
+				if (typeof column === "string") {
+					columnTableSelect.value = column;
+				} else if (typeof column === "object") {
+					columnTableSelect.value = column.real;
+				}
+			}		
 			columnRow.appendChild(aggregationFunctionSelect);
 			columnRow.appendChild(columnTableSelect);
 			columnRow.appendChild(aliasInputField);

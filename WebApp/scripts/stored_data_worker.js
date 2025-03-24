@@ -1,3 +1,9 @@
+import { getTranslations, translateStepResults } from './translations.js' 
+import { getArtificialColumns } from './artificialColumns.js'
+
+let translations = getTranslations();
+let artificialColumns = getArtificialColumns;
+
 export function storeAliases(jsonQuery, aliases, stepIndex) {
 	aliases[stepIndex] = [];
 	const targetStep = jsonQuery.steps[stepIndex];
@@ -36,6 +42,7 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 	for (var index = 0; index < stepsCount; index++) {
 		let columnOfferings = document.querySelectorAll(`.column-offering-${index}`);
 		columnOfferings.forEach(columnSelect => {
+			const selectedOption = columnSelect.value;
 			const options = columnSelect.querySelectorAll('option.user-specific');
 			options.forEach(option => option.remove());
 
@@ -43,22 +50,26 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 			aliases.forEach(aliasEntry => {
 				const selectOption = document.createElement('option');
 				selectOption.className = "user-specific";
-				console.log(alias);
+				
 				selectOption.value = aliasEntry.alias;
 				selectOption.textContent = aliasEntry.alias;
 				columnSelect.appendChild(selectOption);
 			});
-
+			let languageSelectField = document.getElementById('languageSelection');
+			let currentLanguage = languageSelectField.value;
 			for (var i = 0; i < index; i++) {
 				stepResultsArray[i].forEach(stepResult => {
 					 const selectOption = document.createElement('option');
 					selectOption.className = "user-specific";
 					selectOption.value = stepResult;
-					selectOption.textContent = stepResult;
+					selectOption.textContent = translateStepResults(stepResult, translations, artificialColumns,
+					                                                currentLanguage);
 					columnSelect.appendChild(selectOption);
 				});
 			}
+			columnSelect.value = selectedOption;
 		});
+		
 	}
 }
 

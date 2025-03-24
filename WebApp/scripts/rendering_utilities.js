@@ -34,7 +34,6 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 		if (typeof currentField === "object") {
 			currentField = currentField.real;
 		}
-		console.log(currentField);
 		let currentFieldMeta = "";
 		Object.keys(artificialColumns).forEach(key => {
 			if (artificialColumns[key].formula === currentField) {
@@ -85,11 +84,11 @@ export function addTypeBasedAggOfferings(targetElement, aggFuncSelect, available
 				selectedColumnMeta = artificialColumns[key].type;
 			}
 		});
+		if (selectedOption.includes("step_result")) {
+			selectedColumnMeta = "NoAggregation";
+		}
 		if (selectedColumnMeta === "") {
 			let c = "";
-			if (targetElement.value.includes("step_result")) {
-				c = targetElement.value.split('/')[2];
-			}
 			userDefinedAliases.forEach(aliasEntry => { 
 				if (aliasEntry.alias === targetElement.value) {
 					c = aliasEntry.real;
