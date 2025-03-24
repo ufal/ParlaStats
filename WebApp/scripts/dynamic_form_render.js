@@ -434,7 +434,7 @@ function renderOrderBy(container, step, stepIndex) {
 		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.order_by, orderByAggregationSelect,
 		                                        currentLanguage, 
 		                                        queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column,
-		                                        aggregationFunctionTypeMapping);
+		                                        aggregationFunctionTypeMapping, userDefinedAliases[stepIndex]);
 
 		
 		// Add change handler
@@ -483,6 +483,7 @@ function renderOrderBy(container, step, stepIndex) {
 		if (!orderByEntry.column) {
 			orderByTableSelect.value = "";
 		} else {
+			console.log(orderByEntry);
 			if (typeof orderByEntry.column === "object") {
 				orderByTableSelect.value = orderByEntry.column.real;
 			} else {
@@ -570,7 +571,7 @@ function renderGroupBy(container, step, stepIndex) {
 		const groupByAggregationSelect = document.createElement('select');
 		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.group_by, groupByAggregationSelect, currentLanguage,
 									  queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex],
-		 							  aggregationFunctionTypeMapping);
+		 							  aggregationFunctionTypeMapping, userDefinedAliases[stepIndex]);
 		
 		// Add change handling
 		groupByAggregationSelect.addEventListener('change', function (event) {
@@ -702,7 +703,7 @@ function renderGroupBy(container, step, stepIndex) {
 			const aggregationFunctionSelect = document.createElement('select');
 			Utilities.makeAggregationFunctionSelect(metaInformation.columns, aggregationFunctionSelect, 
 			                              currentLanguage, queryObject.steps[stepIndex].columns[columnIndex],
-			                              aggregationFunctionTypeMapping);
+			                              aggregationFunctionTypeMapping, userDefinedAliases[stepIndex]);
 			
 			// Store selected aggregation function
 			aggregationFunctionSelect.addEventListener('change', () => {

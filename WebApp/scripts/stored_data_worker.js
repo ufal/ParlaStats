@@ -3,10 +3,14 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 	const targetStep = jsonQuery.steps[stepIndex];
 	const columns = targetStep.columns;
 	columns.forEach(column => {
-		console.log(column);
 		if (typeof column === 'object') {
 			if (column.alias && !aliases[stepIndex].includes(column.alias)) {
-				aliases[stepIndex].push(column.alias);
+				let aliasesEntry = {
+					"real":column.real,
+					"alias":column.alias,
+					"agg_func":column.agg_func
+				}
+				aliases[stepIndex].push(aliasesEntry);
 			}
 		}
 	});
@@ -36,11 +40,12 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 			options.forEach(option => option.remove());
 
 			let aliases = userDefinedAliases[index];
-			aliases.forEach(alias => {
+			aliases.forEach(aliasEntry => {
 				const selectOption = document.createElement('option');
 				selectOption.className = "user-specific";
-				selectOption.value = alias;
-				selectOption.textContent = alias;
+				console.log(alias);
+				selectOption.value = aliasEntry.alias;
+				selectOption.textContent = aliasEntry.alias;
 				columnSelect.appendChild(selectOption);
 			});
 

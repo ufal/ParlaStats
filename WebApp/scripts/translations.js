@@ -297,7 +297,7 @@ export function translateStepResults(stepResult, translations, artificialColumns
 			} 		
 		});
 		if (result === `${parts[1]}->`) {
-			if (!parts[2] in translations) {
+			if (!(parts[2] in translations)) {
 				result += parts[2];
 			} else {
 				result += translations[parts[2]][currentLanguage];

@@ -2,7 +2,6 @@ import { getArtificialColumns } from './artificialColumns.js'
 import { getMetaInformation } from './metaInformation.js'
 import { getTranslations, translateStepResults } from './translations.js'
 
-
 let artificialColumns = getArtificialColumns();
 let metaInformation = getMetaInformation();
 let translations = getTranslations();
@@ -28,17 +27,23 @@ export function addArtificialColumnOfferings( targetElement, currentLanguage) {
 }
 
 export function makeAggregationFunctionSelect(availableColumns, targetElement, currentLanguage, forField,
-											  typeMapping) {
+											  typeMapping, userDefinedAliases) {
 	let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
 	let currentField = forField;
 	if (currentField) {
 		if (typeof currentField === "object") {
 			currentField = currentField.real;
 		}
+		console.log(currentField);
 		let currentFieldMeta = "";
 		Object.keys(artificialColumns).forEach(key => {
 			if (artificialColumns[key].formula === currentField) {
 				currentFieldMeta = artificialColumns[key].type;
+			}
+		});
+		userDefinedAliases.forEach(item => {
+			if (currentField === item.alias) {
+				currentFieldMeta = availableColumns.find(col => col.column === item.real).type;
 			}
 		});
 		if (currentFieldMeta === "") {
@@ -58,16 +63,17 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 }
 
 export function addUserDefinedAliases(targetElement, userDefinedAliases) {
-	userDefinedAliases.forEach(alias => {
+	userDefinedAliases.forEach(aliasEntry => {
 		const selectOption = document.createElement('option');
 		selectOption.className = "user-specific";
-		selectOption.value = alias;
-		selectOption.textContent = alias;
+		selectOption.value = aliasEntry.alias;
+		selectOption.textContent = aliasEntry.alias;
 		targetElement.appendChild(selectOption);
 	});
 }
 
-export function addTypeBasedAggOfferings(targetElement, aggFuncSelect, availableColumns, typeMappings, currentLanguage) {
+export function addTypeBasedAggOfferings(targetElement, aggFuncSelect, availableColumns, typeMappings, currentLanguage, 
+                                         userDefinedAliases) {
 	targetElement.addEventListener('change', function (event) {
 		aggFuncSelect.value = "";
 		const options = aggFuncSelect.querySelectorAll('option');
@@ -83,7 +89,13 @@ export function addTypeBasedAggOfferings(targetElement, aggFuncSelect, available
 			let c = "";
 			if (targetElement.value.includes("step_result")) {
 				c = targetElement.value.split('/')[2];
-			} else {
+			}
+			userDefinedAliases.forEach(aliasEntry => { 
+				if (aliasEntry.alias === targetElement.value) {
+					c = aliasEntry.real;
+				}
+			});
+			if (c === "") {
 				c = targetElement.value;
 			}
 			selectedColumnMeta = availableColumns.find(col => col.column == c).type;
