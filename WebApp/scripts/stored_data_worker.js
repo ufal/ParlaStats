@@ -20,9 +20,9 @@ export function storeStepResults(jsonQuery, stepResultsArray, stepIndex) {
 	columns.forEach(column => {
 		let stepResult = "";
 		if (typeof column === 'object') {
-			stepResult = "step_result."+ stepName + "." + column.alias;
+			stepResult = "step_result/"+ stepName + "/" + column.alias;
 		} else if (typeof column === 'string') {
-			stepResult = "step_result." + stepName + "." + column;
+			stepResult = "step_result/" + stepName + "/" + column;
 		}
 		stepResultsArray[stepIndex].push(stepResult);
 	});

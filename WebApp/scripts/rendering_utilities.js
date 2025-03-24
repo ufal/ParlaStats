@@ -1,6 +1,6 @@
 import { getArtificialColumns } from './artificialColumns.js'
 import { getMetaInformation } from './metaInformation.js'
-import { getTranslations } from './translations.js'
+import { getTranslations, translateStepResults } from './translations.js'
 
 
 let artificialColumns = getArtificialColumns();
@@ -80,7 +80,13 @@ export function addTypeBasedAggOfferings(targetElement, aggFuncSelect, available
 			}
 		});
 		if (selectedColumnMeta === "") {
-			selectedColumnMeta = availableColumns.find(col => col.column == targetElement.value).type;
+			let c = "";
+			if (targetElement.value.includes("step_result")) {
+				c = targetElement.value.split('/')[2];
+			} else {
+				c = targetElement.value;
+			}
+			selectedColumnMeta = availableColumns.find(col => col.column == c).type;
 		}
 		typeMappings[selectedColumnMeta].forEach(aggFunc => {
 			const selectOption = document.createElement('option');
@@ -99,7 +105,8 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				const selectOption = document.createElement('option');
 				selectOption.className = "user-specific";
 				selectOption.value = column;
-				selectOption.textContent = column;
+				selectOption.textContent = translateStepResults(column, translations, artificialColumns,
+				                                                currentLanguage);
 				targetElement.appendChild(selectOption);
 			});
 		}
