@@ -41,8 +41,17 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 			}
 		});
 		userDefinedAliases.forEach(item => {
+			console.log(userDefinedAliases);
+			console.log(currentField);
 			if (currentField === item.alias) {
-				currentFieldMeta = availableColumns.find(col => col.column === item.real).type;
+				Object.keys(artificialColumns).forEach(key => {
+					if (item.real === artificialColumns[key].formula) {
+						currentFieldMeta = artificialColumns[key].type;
+					}
+				});
+				if (currentFieldMeta === "") {
+					currentFieldMeta = availableColumns.find(col => col.column === item.real).type;
+				}
 			}
 		});
 		if (currentFieldMeta === "") {

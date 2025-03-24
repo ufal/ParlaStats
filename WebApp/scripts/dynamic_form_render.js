@@ -203,6 +203,9 @@ function renderLimit(container, step, stepIndex) {
 		const value =parseInt(limitInput.value, 10);
 		queryObject.steps[stepIndex].limit = isNaN(value) ? "" : value;
 	});
+	if (queryObject.steps[stepIndex].limit != "") {
+		limitInput.value = queryObject.steps[stepIndex].limit;
+	}
 	container.appendChild(limitInput);
 }
 
@@ -236,49 +239,19 @@ function renderConditions(container, step, stepIndex) {
 		conditionColumnTableSelect.className = `column-offering-${stepIndex}`;
 		
 		// Offer user columns from available databases
-		metaInformation.filtering.column.forEach(item => {
-			const selectOption = document.createElement('option');
-			selectOption.value = item.column;
-			if	(translations[item.column]) {
-				selectOption.textContent = translations[item.column][currentLanguage];
-				conditionColumnTableSelect.appendChild(selectOption);
-			} 
-			// else {
-			// 	selectOption.textContent = item.column;
-			// }
-			// conditionColumnTableSelect.appendChild(selectOption);
-		});
+		Utilities.addDatabaseColumnOfferings(metaInformation.filtering.column, conditionColumnTableSelect,
+		                                     currentLanguage);
 
 		// Offer user template columns
-		Object.keys(artificialColumns).forEach(key => {
-			const option = document.createElement('option');
-			option.value = artificialColumns[key].formula;
-			option.textContent = translations[key][currentLanguage];
-			conditionColumnTableSelect.appendChild(option);
-		});
+		Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
 
 		// Offer user aliases defined within this step
-		userDefinedAliases[stepIndex].forEach(alias => {
-			const selectOption = document.createElement('option');
-			selectOption.className = "user-specific";
-			selectOption.value = alias;
-			selectOption.textContent = alias;
-			conditionColumnTableSelect.appendChild(selectOption);
-		});
+		if (userDefinedAliases[stepIndex]) {
+			Utilities.addUserDefinedAliases(conditionColumnTableSelect, userDefinedAliases[stepIndex]);
+		}
 
 		// Offer user column that are being selected in other steps
-		let index = 0;
-		stepResultArray.forEach(step => {
-			if (index < stepIndex) {
-				step.forEach(column => {
-					const selectOption = document.createElement('option');
-					selectOption.className = "user-specific";
-					selectOption.value = column;
-					selectOption.textContent = column
-					conditionColumnTableSelect.appendChild(selectOption);
-				});
-			}
-		});
+		Utilities.addStepResultsOfferings(conditionColumnTableSelect, stepResultArray, stepIndex, currentLanguage);
 
 		if (!condition.column) {
 			condition.column = conditionColumnTableSelect.options[0].value;
@@ -290,65 +263,9 @@ function renderConditions(container, step, stepIndex) {
 		conditionColumnTableSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
 		});
-		// const conditionColumnColumnSelect = document.createElement('select');
-		// let alreadySeen = [];
-		// metaInformation.filtering.column.forEach(item => {
-		// 	if (!alreadySeen.includes(item.table)) {
-		// 		const tableOption = document.createElement('option');
-			
-		// 		tableOption.value = item.table;
-		// 		tableOption.textContent = item.table;
-		// 		conditionColumnTableSelect.appendChild(tableOption);
-		// 		alreadySeen.push(item.table);
-		// 	}
-		// });
-		
-		// if (!conditionColumnParts[0]) {
-		// 	conditionColumnTableSelect.value = conditionColumnTableSelect.options[0].value;
-		// } else {
-		// 	conditionColumnTableSelect.value = conditionColumnParts[0];
-		// }
-
-		// metaInformation.filtering.column.forEach(item => {
-		// 	if (conditionColumnTableSelect.value === item.table) {
-		// 		const columnOption = document.createElement('option');
-		// 		columnOption.value = item.column;
-		// 		columnOption.textContent = item.column;
-		// 		conditionColumnColumnSelect.appendChild(columnOption);
-		// 	}
-		// });
-
-		// conditionColumnColumnSelect.value = conditionColumnParts[1];
-
-		// conditionColumnTableSelect.addEventListener('change', () => {
-		// 	conditionColumnColumnSelect.innerHTML = '';
-		// 	metaInformation.filtering.column.forEach(item => {
-		// 		if (conditionColumnTableSelect.value === item.table) {
-		// 			const columnOption = document.createElement('option');
-		// 			columnOption.value = item.column;
-		// 			columnOption.textContent = item.column;
-		// 			conditionColumnColumnSelect.appendChild(columnOption);
-		// 		}
-		// 	});
-		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`; 
-		// });
-
-		// conditionColumnColumnSelect.addEventListener('change', () => {
-		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = `${conditionColumnTableSelect.value}.${conditionColumnColumnSelect.value}`;
-		// });
-		// ========================== NEW VERSION END =============================
-		// ========================== OLD VERSION BEGIN ===========================
-		// const conditionColumnInput = document.createElement('input');
-		// conditionColumnInput.type = 'text';
-		// conditionColumnInput.placeholder = 'Column';
-		// conditionColumnInput.value = condition.column;
-		// conditionColumnInput.addEventListener('input', () => {
-		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnInput.value;
-		// });
-		// ========================== OLD VERSION END =============================
 		
 		const conditionOperatorSelect = document.createElement('select');
-		const operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN"];
+		const operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN", "NOT IN", "IS NOT"];
 		operators.forEach(oper => {
 			const operatorOption = document.createElement('option');
 			operatorOption.value = oper;
@@ -376,9 +293,7 @@ function renderConditions(container, step, stepIndex) {
 			renderForm();
 		};
 
-		// conditionRow.appendChild(conditionColumnInput);
 		conditionRow.appendChild(conditionColumnTableSelect);
-		// conditionRow.appendChild(conditionColumnColumnSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInput);
 		conditionRow.appendChild(removeConditionButton);
