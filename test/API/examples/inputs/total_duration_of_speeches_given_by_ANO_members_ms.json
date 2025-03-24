@@ -24,7 +24,7 @@
 		{
 			"goal":"main",
 			"columns":[
-				"affiliation.person_id", 
+				"person.person_id", 
 				{
 					"real":"speech.total_duration",
 					"alias":"total_duration_ms",
@@ -32,7 +32,7 @@
 				}
 			],
 			"aggregation": {
-				"group_by":["affiliation.person_id"],
+				"group_by":["person.person_id"],
 				"order_by":[
 					{
 						"column":"total_duration_ms",
@@ -45,7 +45,7 @@
 					{
 						"column":"affiliation.person_id",
 						"operator":"IN",
-						"value":"step_result.get_ano_members.affiliation.person_id"
+						"value":"step_result/get_ano_members/person.person_id"
 					},
 					{
 						"column":"speech.total_duration",

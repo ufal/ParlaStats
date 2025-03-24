@@ -119,8 +119,8 @@ class SQLBuilder:
             where_clause = " WHERE " + " AND ".join(
                 [
                     f"{cond['column']} {cond['operator']} {cond['value']}" if not cond['value'].startswith("step_result.") else
-                    f"{cond['column']} {cond['operator']} ({','.join(map(modify, step_results[cond['value'].split('.')[1]]))})" if len(step_results[cond['value'].split('.')[1]]) > 1 else
-                    f"{cond['column']} {cond['operator']} '{step_results[cond['value'].split('.')[1]][0][0]}'"
+                    f"{cond['column']} {cond['operator']} ({','.join(map(modify, step_results[cond['value'].split('/')[1]]))})" if len(step_results[cond['value'].split('/')[1]]) > 1 else
+                    f"{cond['column']} {cond['operator']} '{step_results[cond['value'].split('/')[1]][0][0]}'"
                     for cond in conditions
                 ]
             )
