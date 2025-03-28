@@ -111,7 +111,7 @@ function renderStepsSection(container) {
 		userDefinedAliases.push([]);
 		const stepRow = document.createElement('div');
 		stepRow.className = 'repeatable-row-step';
-
+		stepRow.setAttribute('data-step-index', stepIndex);
 		// Goal of the step
 		const goalDiv = document.createElement('div');
 		goalDiv.className = `goal_steps_${stepIndex}`;
@@ -164,7 +164,7 @@ function renderStepsSection(container) {
 		stepRow.appendChild(removeStepButton);
 
 		stepsContainer.appendChild(stepRow);
-		storeStepResults(queryObject, stepResultArray, stepIndex)
+		storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex)
 		
 	});
 
@@ -231,12 +231,13 @@ function renderConditions(container, step, stepIndex) {
 	step.filtering.conditions.forEach((condition, conditionIndex) => {
 		const conditionRow = document.createElement('div');
 		conditionRow.className = 'repeatable-row';
+		conditionRow.setAttribute('data-step-index', stepIndex);
 		// ========================== NEW VERSION BEGIN ===========================
 		// ######################## NOTES BEGIN #######################
 		// TODO: Repeated code at 181-188 and 194-201
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
-		conditionColumnTableSelect.className = `column-offering-${stepIndex}`;
+		conditionColumnTableSelect.className = `column-select-conditions`;
 		
 		// Offer user columns from available databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.filtering.column, conditionColumnTableSelect,
@@ -340,18 +341,18 @@ function renderOrderBy(container, step, stepIndex) {
 	step.aggregation.order_by.forEach((orderByEntry, orderByIndex) => {
 		const orderByRow = document.createElement('div');
 		orderByRow.className = 'repeatable-row';
-		
+		orderByRow.setAttribute('data-step-index', stepIndex);
 		const orderByTableSelect = document.createElement('select');
-		orderByTableSelect.className = `column-offering-${stepIndex}`;
+		orderByTableSelect.className = `column-select`;
 		
 
 		const orderByAggregationSelect = document.createElement('select');
-		
+		orderByAggregationSelect.className = "agg-select";
 		// Make aggregation functions offerings
 		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.order_by, orderByAggregationSelect,
 		                                        currentLanguage, 
 		                                        queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column,
-		                                        aggregationFunctionTypeMapping, userDefinedAliases[stepIndex]);
+		                                        aggregationFunctionTypeMapping, userDefinedAliases[stepIndex], stepResultArray);
 
 		
 		// Add change handler
@@ -408,11 +409,7 @@ function renderOrderBy(container, step, stepIndex) {
 		}
 
 		// Offer aggregation function options based on selected column type
-		Utilities.addTypeBasedAggOfferings(orderByTableSelect, orderByAggregationSelect,
-		                                   metaInformation.aggregation.order_by,
-		                                   aggregationFunctionTypeMapping, currentLanguage, userDefinedAliases[stepIndex]);
 
-		
 		orderByTableSelect.addEventListener('change', () => {
 			if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
 				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.real = orderByTableSelect.value;
@@ -420,6 +417,10 @@ function renderOrderBy(container, step, stepIndex) {
 				queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column = orderByTableSelect.value;
 			}
 			orderByAggregationSelect.value = "";
+			Utilities.updateAllAggregationSelects(userDefinedAliases, stepResultArray, 
+												  aggregationFunctionTypeMapping,
+												  currentLanguage);
+
 		});
 		
 		const orderByDirectionSelect = document.createElement('select');
@@ -478,16 +479,18 @@ function renderGroupBy(container, step, stepIndex) {
 		// let gbColumnParts = gbColumn.split('.');
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row';
+		groupByRow.setAttribute('data-step-index', stepIndex);
 		// =========================== NEW VERSION BEGIN ============================
 		const groupByTableSelect = document.createElement('select');
-		groupByTableSelect.className = `column-offering-${stepIndex}`;
+		groupByTableSelect.className = `column-select`;
 		const groupByColumnSelect = document.createElement('select');
 		
 		// Offer aggregation functions
 		const groupByAggregationSelect = document.createElement('select');
+		groupByAggregationSelect.className = "agg-select";
 		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.group_by, groupByAggregationSelect, currentLanguage,
 									  queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex],
-		 							  aggregationFunctionTypeMapping, userDefinedAliases[stepIndex]);
+		 							  aggregationFunctionTypeMapping, userDefinedAliases[stepIndex], stepResultArray);
 		
 		// Add change handling
 		groupByAggregationSelect.addEventListener('change', function (event) {
@@ -542,15 +545,14 @@ function renderGroupBy(container, step, stepIndex) {
 		}
 
 		// Update aggregation offerings based on selected column type
-		Utilities.addTypeBasedAggOfferings(groupByTableSelect, groupByAggregationSelect, 
-		                                   metaInformation.aggregation.group_by, aggregationFunctionTypeMapping,
-										   currentLanguage, userDefinedAliases[stepIndex]);
-
-		
 		// Store selection
 		groupByTableSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
 			groupByAggregationSelect.value = "";
+			Utilities.updateAllAggregationSelects(userDefinedAliases, stepResultArray,
+												  aggregationFunctionTypeMapping,
+												  currentLanguage);		
+			
 		});
 		
 	
@@ -590,11 +592,13 @@ function renderGroupBy(container, step, stepIndex) {
 		step.columns.forEach((column, columnIndex) => {
 			const columnRow = document.createElement('div');
 			columnRow.className = 'repeatable-row';
+			columnRow.setAttribute('data-step-index', stepIndex);
 			// ====================== NEW VERSION BEGIN ==============================
 			// ######################## NOTES BEGIN #######################
 			// ######################## NOTES END #########################
 			// let columnParts = column.split('.');
 			const columnTableSelect = document.createElement('select');
+			columnTableSelect.className = "column-select";
 			// Alias input field
 			const aliasInputField = document.createElement('input');
 			aliasInputField.type = 'text';
@@ -611,15 +615,16 @@ function renderGroupBy(container, step, stepIndex) {
 					queryObject.steps[stepIndex].columns[columnIndex].alias = aliasInputField.value;
 				}
 				storeAliases(queryObject, userDefinedAliases, stepIndex);
-				storeStepResults(queryObject, stepResultArray, stepIndex);
+				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 				updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			});
 
 			// Aggregation function select
 			const aggregationFunctionSelect = document.createElement('select');
+			aggregationFunctionSelect.className = "agg-select";
 			Utilities.makeAggregationFunctionSelect(metaInformation.columns, aggregationFunctionSelect, 
 			                              currentLanguage, queryObject.steps[stepIndex].columns[columnIndex],
-			                              aggregationFunctionTypeMapping, userDefinedAliases[stepIndex]);
+			                              aggregationFunctionTypeMapping, userDefinedAliases[stepIndex], stepResultArray);
 			
 			// Store selected aggregation function
 			aggregationFunctionSelect.addEventListener('change', () => {
@@ -645,15 +650,21 @@ function renderGroupBy(container, step, stepIndex) {
 			
 			// Offer the user choice of database tables
 			Utilities.addDatabaseColumnOfferings(metaInformation.columns, columnTableSelect, currentLanguage);
+			
 			// Offer the user choice of template columns
 			Utilities.addArtificialColumnOfferings(columnTableSelect, currentLanguage);
 
+			// Offer results of previous steps
+			Utilities.addStepResultsOfferings(columnTableSelect, stepResultArray, stepIndex, currentLanguage);
+		
 			// Add default option
 			let defaultOption = document.createElement('option');
 			defaultOption.value = '';
 			defaultOption.textContent = translations[''][currentLanguage];
 			columnTableSelect.appendChild(defaultOption);
 			
+			
+
 			if (!column) {
 				columnTableSelect.value = "";
 			} else {
@@ -665,16 +676,16 @@ function renderGroupBy(container, step, stepIndex) {
 			}
 			
 			// Limit aggregation function offers based on type
-			Utilities.addTypeBasedAggOfferings(columnTableSelect, 
-			                         aggregationFunctionSelect, metaInformation.columns,
-			                         aggregationFunctionTypeMapping, currentLanguage,
-									 userDefinedAliases[stepIndex]);
+			
 
 			// Store changes
 			columnTableSelect.addEventListener('change', () => {
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
 				aggregationFunctionSelect.value = "";
+				Utilities.updateAllAggregationSelects(userDefinedAliases, stepResultArray,
+													  aggregationFunctionTypeMapping,
+													  currentLanguage);
 			});
 
 			
@@ -689,7 +700,7 @@ function renderGroupBy(container, step, stepIndex) {
 				renderForm();
 			}
 			storeAliases(queryObject, userDefinedAliases, stepIndex);
-			storeStepResults(queryObject, stepResultArray, stepIndex);
+			storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 			updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			if (!column) {
 				columnTableSelect.value = "";
@@ -714,7 +725,7 @@ function renderGroupBy(container, step, stepIndex) {
 		queryObject.steps[stepIndex].columns.push("");
 		renderForm();
 	};
-	storeStepResults(queryObject, stepResultArray, stepIndex)
+	storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex)
 	container.appendChild(columnsContainer);
 	container.appendChild(addColumnButton);
 }

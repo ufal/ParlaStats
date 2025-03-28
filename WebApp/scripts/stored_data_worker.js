@@ -1,8 +1,10 @@
 import { getTranslations, translateStepResults } from './translations.js' 
 import { getArtificialColumns } from './artificialColumns.js'
+import { getMetaInformation } from './metaInformation.js'
 
 let translations = getTranslations();
-let artificialColumns = getArtificialColumns;
+let artificialColumns = getArtificialColumns();
+let metaInformation = getMetaInformation();
 
 export function storeAliases(jsonQuery, aliases, stepIndex) {
 	aliases[stepIndex] = [];
@@ -22,18 +24,65 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 	});
 }
 
-export function storeStepResults(jsonQuery, stepResultsArray, stepIndex) {
+export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex) {
 	stepResultsArray[stepIndex] = [];
 	const targetStep = jsonQuery.steps[stepIndex];
 	const stepName = targetStep.goal;
 	const columns = targetStep.columns;
+	
 	columns.forEach(column => {
-		let stepResult = "";
+		let columnType = "";
+		let queryPart = "";
+		let stepResult = {
+			"queryPart":"",
+			"type":""
+		};
 		if (typeof column === 'object') {
-			stepResult = "step_result/"+ stepName + "/" + column.alias;
+			console.log("here object");
+			// check artificial columns
+			Object.keys(artificialColumns).forEach(entry => {
+				if (entry.formula === column.real) {
+					columnType = entry.type;
+				}
+			});
+			
+			
+			// check metaInformation
+			metaInformation.columns.forEach(entry => {
+				if (entry.column === column.real) {
+					columnType = entry.type;
+				}
+			});
+			
+			// Else
+			if (columnType === "") {
+				columnType = "NoAggregation";
+			}
+			if (column.alias) {
+				queryPart = "step_result/" + stepName + "/" + column.alias;
+			} else {
+				queryPart = "step_result/" + stepName + "/" + column.real;
+			}
 		} else if (typeof column === 'string') {
-			stepResult = "step_result/" + stepName + "/" + column;
+			console.log("here string");
+			// check artificial columns
+			Object.keys(artificialColumns).forEach(entry => {
+				if (entry.formula === column.real) {
+					columnType = entry.type;
+				}
+			});
+			
+			// check metaInformation
+			metaInformation.columns.forEach(entry => {
+				if (entry.column === column) {
+					columnType = entry.type;
+				}
+			});
+
+			queryPart = "step_result/" + stepName + "/" + column;
 		}
+		stepResult.queryPart = queryPart;
+		stepResult.type = columnType;
 		stepResultsArray[stepIndex].push(stepResult);
 	});
 }

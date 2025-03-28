@@ -27,7 +27,7 @@ export function addArtificialColumnOfferings( targetElement, currentLanguage) {
 }
 
 export function makeAggregationFunctionSelect(availableColumns, targetElement, currentLanguage, forField,
-											  typeMapping, userDefinedAliases) {
+											  typeMapping, userDefinedAliases, stepResultArray) {
 	let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
 	let currentField = forField;
 	if (currentField) {
@@ -54,6 +54,16 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 				}
 			}
 		});
+		if (currentField.includes("step_result")) {
+			console.log(stepResultArray);
+			stepResultArray.forEach(step => {
+				step.forEach(item => {
+					if (currentField === item.queryPart) {
+						currentFieldMeta = item.type;
+					}
+				});
+			});
+		}
 		if (currentFieldMeta === "") {
 			currentFieldMeta = availableColumns.find(col => col.column === currentField).type;
 		}
@@ -80,42 +90,6 @@ export function addUserDefinedAliases(targetElement, userDefinedAliases) {
 	});
 }
 
-export function addTypeBasedAggOfferings(targetElement, aggFuncSelect, availableColumns, typeMappings, currentLanguage, 
-                                         userDefinedAliases) {
-	targetElement.addEventListener('change', function (event) {
-		aggFuncSelect.value = "";
-		const options = aggFuncSelect.querySelectorAll('option');
-		options.forEach(option => option.remove());
-		const selectedOption = event.target.selectedOptions[0].value;
-		let selectedColumnMeta = "";
-		Object.keys(artificialColumns).forEach(key => {
-			if (artificialColumns[key].formula === selectedOption) {
-				selectedColumnMeta = artificialColumns[key].type;
-			}
-		});
-		if (selectedOption.includes("step_result")) {
-			selectedColumnMeta = "NoAggregation";
-		}
-		if (selectedColumnMeta === "") {
-			let c = "";
-			userDefinedAliases.forEach(aliasEntry => { 
-				if (aliasEntry.alias === targetElement.value) {
-					c = aliasEntry.real;
-				}
-			});
-			if (c === "") {
-				c = targetElement.value;
-			}
-			selectedColumnMeta = availableColumns.find(col => col.column == c).type;
-		}
-		typeMappings[selectedColumnMeta].forEach(aggFunc => {
-			const selectOption = document.createElement('option');
-			selectOption.value = aggFunc;
-			selectOption.textContent = translations[aggFunc][currentLanguage];
-			aggFuncSelect.appendChild(selectOption)
-		});
-	});
-}
 
 export function addStepResultsOfferings(targetElement, stepResultArray, stepIndex, currentLanguage) {
 	let index = 0;
@@ -124,11 +98,99 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 			step.forEach(column => {
 				const selectOption = document.createElement('option');
 				selectOption.className = "user-specific";
-				selectOption.value = column;
-				selectOption.textContent = translateStepResults(column, translations, artificialColumns,
+				selectOption.value = column.queryPart;
+				selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
 				                                                currentLanguage);
 				targetElement.appendChild(selectOption);
 			});
 		}
 	});
+}
+
+export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray, aggregationTypeMapping, currentLanguage) {
+	const columnSelects = document.querySelectorAll('.column-select');
+	columnSelects.forEach(colSelect => {
+		const rowContainer = colSelect.closest('.repeatable-row');
+		if (!rowContainer) { return; }
+
+		let stepIndex = rowContainer.getAttribute('data-step-index');
+		stepIndex = stepIndex !== null ? parseInt(stepIndex, 10) : null;
+		const aggSelect = rowContainer.querySelector('.agg-select');
+
+		if (!aggSelect) { return; }
+		const currentAggValue = aggSelect.value;
+		
+		aggSelect.innerHTML = "";
+
+		const selectValue = colSelect.value;
+		let columnType = null;
+
+		// Check artificial columns
+		Object.keys(artificialColumns).forEach(key => {
+			if (artificialColumns[key].formula === selectValue) {
+				columnType = artificialColumns[key].type;
+			}
+		});
+
+		// Check userDefinedAliases
+		if (!columnType && stepIndex !== null && userDefinedAliases[stepIndex]) {
+			userDefinedAliases[stepIndex].forEach(aliasEntry => {
+				if (aliasEntry.alias === selectValue) {
+					const realValue = aliasEntry.real;
+
+					Object.keys(artificialColumns).forEach(key => {
+						if (artificialColumns[key].formula === realValue) {
+							columnType = artificialColumns[key].type;
+						}
+					});
+					if (!columnType) {
+						const colEntry = metaInformation.columns.find(col => col.column === realValue);
+						if (colEntry) {
+							columnType = colEntry.type;
+						}
+					}
+				}
+			});
+		}
+
+		if (columnType === null) {
+			
+			const colEntry = metaInformation.columns.find(col => col.column === selectValue);
+			if (colEntry) {
+				columnType = colEntry.type;
+			}
+		}
+
+		// Check step results
+		
+		if (!columnType && stepIndex !== null) {
+			for (let i = 0; i < stepIndex; i++) {
+				if (stepResultsArray[i]) {
+					stepResultsArray[i].forEach(result => {
+						if (result.queryPart == selectValue) {
+							columnType = result.type;
+							// console.log("here");
+						}
+					});
+				}
+			}
+		}
+
+		if (!columnType) {
+			columnType = "NoAggregation";
+		}
+		let aggOptions = aggregationTypeMapping[columnType] || [""];
+		aggOptions.forEach(option => {
+			const selectOption = document.createElement('option');
+			selectOption.value = option;
+			selectOption.textContent = translations[option] ? translations[option][currentLanguage] : option;
+			aggSelect.appendChild(selectOption);
+		});
+
+		if (aggOptions.includes(currentAggValue)) {
+			aggSelect.value = currentAggValue;
+		} else { aggSelect.value = ""; } 
+
+	});
+
 }
