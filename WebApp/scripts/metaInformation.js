@@ -7,6 +7,7 @@ async function storeMetainformation() {
 		console.log(responseJSON);
 		localStorage.setItem("metaInformation", JSON.stringify(responseJSON))
 	} catch (error) {
+		console.log(error);
 		console.error("Error fetching metaInformation");
 		return []
 	}

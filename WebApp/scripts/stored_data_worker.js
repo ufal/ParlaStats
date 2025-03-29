@@ -38,7 +38,6 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 			"type":""
 		};
 		if (typeof column === 'object') {
-			console.log("here object");
 			// check artificial columns
 			Object.keys(artificialColumns).forEach(entry => {
 				if (entry.formula === column.real) {
@@ -64,7 +63,6 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 				queryPart = "step_result/" + stepName + "/" + column.real;
 			}
 		} else if (typeof column === 'string') {
-			console.log("here string");
 			// check artificial columns
 			Object.keys(artificialColumns).forEach(entry => {
 				if (entry.formula === column.real) {
@@ -89,7 +87,7 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 
 export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, stepsCount) {
 	for (var index = 0; index < stepsCount; index++) {
-		let columnOfferings = document.querySelectorAll(`.column-offering-${index}`);
+		let columnOfferings = document.querySelectorAll(`.column-select`);
 		columnOfferings.forEach(columnSelect => {
 			const selectedOption = columnSelect.value;
 			const options = columnSelect.querySelectorAll('option.user-specific');

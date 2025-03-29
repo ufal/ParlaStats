@@ -238,7 +238,7 @@ function renderConditions(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
 		conditionColumnTableSelect.className = `column-select-conditions`;
-		
+
 		// Offer user columns from available databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.filtering.column, conditionColumnTableSelect,
 		                                     currentLanguage);
@@ -263,6 +263,7 @@ function renderConditions(container, step, stepIndex) {
 
 		conditionColumnTableSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
+			Utilities.UpdateConditionValuePossibilities(userDefinedAliases, stepResultArray, queryObject.target_databases);
 		});
 		
 		const conditionOperatorSelect = document.createElement('select');
@@ -279,12 +280,16 @@ function renderConditions(container, step, stepIndex) {
 		});
 
 		const conditionValueInput = document.createElement('input');
+		conditionValueInput.className = "condition-value-input";
 		conditionValueInput.type = 'text';
 		conditionValueInput.placeholder = 'Value';
 		conditionValueInput.value = condition.value;
 		conditionValueInput.addEventListener('input', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
 		});
+
+		const suggestionList = document.createElement('ul');
+		suggestionList.className = "suggestionList";
 
 		const removeConditionButton = document.createElement('button');
 		removeConditionButton.type = 'button';
@@ -297,8 +302,9 @@ function renderConditions(container, step, stepIndex) {
 		conditionRow.appendChild(conditionColumnTableSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInput);
+		conditionRow.appendChild(suggestionList);
 		conditionRow.appendChild(removeConditionButton);
-
+		
 		conditionsContainer.appendChild(conditionRow);
 	});
 
@@ -686,6 +692,8 @@ function renderGroupBy(container, step, stepIndex) {
 				Utilities.updateAllAggregationSelects(userDefinedAliases, stepResultArray,
 													  aggregationFunctionTypeMapping,
 													  currentLanguage);
+				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
+				updateColumnsOfferings2(userDefinedAliases, stepResultArray, stepIndex);
 			});
 
 			

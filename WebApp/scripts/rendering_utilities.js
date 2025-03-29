@@ -26,6 +26,8 @@ export function addArtificialColumnOfferings( targetElement, currentLanguage) {
 	});
 }
 
+
+
 export function makeAggregationFunctionSelect(availableColumns, targetElement, currentLanguage, forField,
 											  typeMapping, userDefinedAliases, stepResultArray) {
 	let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
@@ -123,62 +125,7 @@ export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray
 		aggSelect.innerHTML = "";
 
 		const selectValue = colSelect.value;
-		let columnType = null;
-
-		// Check artificial columns
-		Object.keys(artificialColumns).forEach(key => {
-			if (artificialColumns[key].formula === selectValue) {
-				columnType = artificialColumns[key].type;
-			}
-		});
-
-		// Check userDefinedAliases
-		if (!columnType && stepIndex !== null && userDefinedAliases[stepIndex]) {
-			userDefinedAliases[stepIndex].forEach(aliasEntry => {
-				if (aliasEntry.alias === selectValue) {
-					const realValue = aliasEntry.real;
-
-					Object.keys(artificialColumns).forEach(key => {
-						if (artificialColumns[key].formula === realValue) {
-							columnType = artificialColumns[key].type;
-						}
-					});
-					if (!columnType) {
-						const colEntry = metaInformation.columns.find(col => col.column === realValue);
-						if (colEntry) {
-							columnType = colEntry.type;
-						}
-					}
-				}
-			});
-		}
-
-		if (columnType === null) {
-			
-			const colEntry = metaInformation.columns.find(col => col.column === selectValue);
-			if (colEntry) {
-				columnType = colEntry.type;
-			}
-		}
-
-		// Check step results
-		
-		if (!columnType && stepIndex !== null) {
-			for (let i = 0; i < stepIndex; i++) {
-				if (stepResultsArray[i]) {
-					stepResultsArray[i].forEach(result => {
-						if (result.queryPart == selectValue) {
-							columnType = result.type;
-							// console.log("here");
-						}
-					});
-				}
-			}
-		}
-
-		if (!columnType) {
-			columnType = "NoAggregation";
-		}
+		let columnType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectValue);
 		let aggOptions = aggregationTypeMapping[columnType] || [""];
 		aggOptions.forEach(option => {
 			const selectOption = document.createElement('option');
@@ -194,3 +141,137 @@ export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray
 	});
 
 }
+
+function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectValue) {
+	let columnType = null;
+	Object.keys(artificialColumns).forEach(key => {
+		if (artificialColumns[key].formula === selectValue) {
+			columnType = artificialColumns[key].type;
+		}
+	});
+	if (!columnType && stepIndex !== null && userDefinedAliases[stepIndex]) {
+		userDefinedAliases[stepIndex].forEach(aliasEntry => {
+			if (aliasEntry.alias === selectValue) {
+				const realValue = aliasEntry.real;
+				Object.keys(artificialColumns).forEach(key => {
+					if (artificialColumns[key].formula === realValue) {
+						columnType = artificialColumns[key].type;
+					}
+				});
+				if (!columnType) {
+					const colEntry = metaInformation.columns.find(col => col.column === realValue);
+					if (colEntry) {
+						columnType = colEntry.type;
+					}
+				}
+			}
+		});
+	}
+	if (!columnType) {
+		const colEntry = metaInformation.columns.find(col => col.column === sleectValue);
+		for (let i = 0; i < stepIndex; i++) {
+			if (stepResultsArray[i]) {
+				stepResultsArray[i].forEach(result => {
+					if (result.queryPart === selectValue);
+					columnType = result.type;
+				});
+			}
+		}
+	}
+	if (!columnType) {
+		columnType = "NoAggregation";
+	}
+	return columnType;
+}
+
+function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, database, selectValue) {
+	let possibleValues = [];
+	let metaColumn = selectValue;
+	console.log(selectValue);
+	let found = false;
+	if (stepIndex !== null && userDefinedAliases[stepIndex]) {
+		userDefinedAliases[stepIndex].forEach(aliasEntry => {
+			if (aliasEntry.alias === selectValue) {
+				metaColumn = alias.real;
+				found = true;
+			}
+		});
+	}
+
+	
+	if (!found) {
+		for (let i = 0; i < stepIndex; i++) {
+			if (stepResultsArray[i]) {
+				stepResultsArray[i].forEach(result => {
+					if (result.queryPart === selectValue) {
+						let parts = result.queryPart.split('/');
+						metaColumn = parts[2];
+					}
+				});
+			}
+		}
+	}
+	
+	const columnEntry = metaInformation.columns.find(col => col.column === metaColumn);
+	if (columnEntry) {
+		console.log(columnEntry);
+		possibleValues = columnEntry["data"][database];		
+	} 
+	
+	return possibleValues;
+
+	
+	
+}
+
+export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
+	const columnSelects = document.querySelectorAll('.column-select-conditions');
+	columnSelects.forEach(colSelect => {
+		const rowContainer = colSelect.closest('.repeatable-row');
+		if (!rowContainer) { return; }
+		
+		let stepIndex = rowContainer.getAttribute('data-step-index');
+		stepIndex = stepIndex !== null ? parseInt(stepIndex, 10) : null;
+		const valueInput = rowContainer.querySelector('.condition-value-input');
+		
+		if (!valueInput) { return; }
+		const currentValue = valueInput.value;
+		valueInput.innerHTML = "";
+		
+		let possibleValues = []
+		
+		if (databases) {
+			databases.forEach(database => {
+				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases, 
+				                                               stepResultsArray, database, colSelect.value);
+				
+				databasePossibleValues.forEach(value => {
+					if (!possibleValues.includes(value)) {
+						possibleValues.push(value);
+					}
+				});
+			});
+		}
+		console.log(possibleValues);
+		const fuse = new Fuse(possibleValues, {
+			threshold:0.4,
+			includeScore:true,
+		});
+		const suggestionList = rowContainer.querySelector('.suggestionList');
+		
+		valueInput.addEventListener("input", () => {
+			
+			const query = valueInput.value.trim();
+			suggestionList.innerHTML = "";
+			if (query === "") { return; }
+			
+			const results = fuse.search(query, {limit:5});
+			results.forEach(result => {
+				const item = document.createElement("li");
+				item.textContent = result.item;
+				suggestionList.appendChild(item);
+			});
+		});
+	});
+}
+
