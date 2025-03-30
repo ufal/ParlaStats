@@ -168,7 +168,13 @@ function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectVa
 		});
 	}
 	if (!columnType) {
-		const colEntry = metaInformation.columns.find(col => col.column === sleectValue);
+		const colEntry = metaInformation.columns.find(col => col.column === selectValue);
+		if (colEntry) {
+			columnType = colEntry.type;
+		}
+	}
+	if (!columnType) {
+		const colEntry = metaInformation.columns.find(col => col.column === selectValue);
 		for (let i = 0; i < stepIndex; i++) {
 			if (stepResultsArray[i]) {
 				stepResultsArray[i].forEach(result => {
@@ -238,21 +244,32 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 		const currentValue = valueInput.value;
 		valueInput.innerHTML = "";
 		
+		let columnSelectType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, colSelect.value);
+		
 		let possibleValues = []
 		
 		if (databases) {
 			databases.forEach(database => {
 				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases, 
-				                                               stepResultsArray, database, colSelect.value);
+															stepResultsArray, database, colSelect.value);
 				
-				databasePossibleValues.forEach(value => {
-					if (!possibleValues.includes(value)) {
-						possibleValues.push(value);
-					}
-				});
+				if (columnSelectType === "character varying"){
+					databasePossibleValues.forEach(value => {
+						if (!possibleValues.includes(value)) {
+							possibleValues.push(value);
+						}
+					});
+				} else {
+					databasePossibleValues.forEach(value => {
+						if (!possibleValues.includes(value)) {
+							possibleValues.push(value);
+						}
+					});
+				}
+				
 			});
 		}
-		console.log(possibleValues);
+		
 		const fuse = new Fuse(possibleValues, {
 			threshold:0.4,
 			includeScore:true,
@@ -260,18 +277,27 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 		const suggestionList = rowContainer.querySelector('.suggestionList');
 		
 		valueInput.addEventListener("input", () => {
-			
 			const query = valueInput.value.trim();
 			suggestionList.innerHTML = "";
 			if (query === "") { return; }
 			
-			const results = fuse.search(query, {limit:5});
+			let results = [];
+			if (columnSelectType === "character varying") {
+				results = fuse.search(query, {limit:5});
+			} else {
+				results = possibleValues;
+			}
 			results.forEach(result => {
 				const item = document.createElement("li");
-				item.textContent = result.item;
+				if (columnSelectType === "character varying") {
+					item.textContent = result.item;
+				} else {
+					item.textContent = result;
+				}
 				suggestionList.appendChild(item);
 			});
-		});
+		});	
+		
 	});
 }
 
