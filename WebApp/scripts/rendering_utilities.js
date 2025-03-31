@@ -43,8 +43,6 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 			}
 		});
 		userDefinedAliases.forEach(item => {
-			console.log(userDefinedAliases);
-			console.log(currentField);
 			if (currentField === item.alias) {
 				Object.keys(artificialColumns).forEach(key => {
 					if (item.real === artificialColumns[key].formula) {
@@ -57,7 +55,6 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 			}
 		});
 		if (currentField.includes("step_result")) {
-			console.log(stepResultArray);
 			stepResultArray.forEach(step => {
 				step.forEach(item => {
 					if (currentField === item.queryPart) {
@@ -174,12 +171,13 @@ function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectVa
 		}
 	}
 	if (!columnType) {
-		const colEntry = metaInformation.columns.find(col => col.column === selectValue);
+		console.log(selectValue);
 		for (let i = 0; i < stepIndex; i++) {
 			if (stepResultsArray[i]) {
 				stepResultsArray[i].forEach(result => {
-					if (result.queryPart === selectValue);
-					columnType = result.type;
+					if (result.queryPart === selectValue) {
+						columnType = result.type;
+					}
 				});
 			}
 		}
@@ -192,13 +190,11 @@ function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectVa
 
 function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, database, selectValue) {
 	let possibleValues = [];
-	let metaColumn = selectValue;
-	console.log(selectValue);
 	let found = false;
 	if (stepIndex !== null && userDefinedAliases[stepIndex]) {
 		userDefinedAliases[stepIndex].forEach(aliasEntry => {
 			if (aliasEntry.alias === selectValue) {
-				metaColumn = alias.real;
+				possibleValues = aliasEntry.possibleValues[database];
 				found = true;
 			}
 		});
@@ -210,24 +206,71 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 			if (stepResultsArray[i]) {
 				stepResultsArray[i].forEach(result => {
 					if (result.queryPart === selectValue) {
-						let parts = result.queryPart.split('/');
-						metaColumn = parts[2];
+						possibleValues = result.possibleValues[database];
+						found = true;
 					}
 				});
 			}
 		}
 	}
-	
-	const columnEntry = metaInformation.columns.find(col => col.column === metaColumn);
-	if (columnEntry) {
-		console.log(columnEntry);
-		possibleValues = columnEntry["data"][database];		
-	} 
-	
+	if (!found) {
+		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
+		if (columnEntry) {
+			possibleValues = columnEntry["data"][database];		
+		} 
+	}
 	return possibleValues;
 
 	
 	
+}
+
+function makeStringSuggestions(rowContainer, targetElement, possibleValues) {
+	const fuse = new Fuse(possibleValues, {
+		threshold:0.4,
+		includeScore:true
+	});
+	const suggestionList = rowContainer.querySelector('.suggestionList');
+	suggestionList.style.display="block";
+	targetElement.addEventListener("input", () => {
+		const query = targetElement.value.trim();
+		suggestionList.innerHTML = "";
+		if (query === "") { return; }
+
+		let results = fuse.search(query, {limit:5});
+		results.forEach(result => {
+			const item = document.createElement("li");
+			item.textContent = result.item;
+			suggestionList.appendChild(item);
+		});
+
+	});
+}
+
+function makeNumericalSuggestions(rowContainer, targetElement, possibleValues) {
+	const suggestionList = rowContainer.querySelector('.suggestionList');
+	targetElement.addEventListener("input", () => {
+		const query = targetElement.value.trim();
+		suggestionList.innerHTML = "";
+		if (query === "") { return; }
+		const maxItem = document.createElement('li');
+		maxItem.textContent = "Maximum: " + possibleValues[1];
+		const minItem = document.createElement('li');
+		minItem.textContent = "Minimum: " + possibleValues[0];
+		suggestionList.appendChild(minItem);
+		suggestionList.appendChild(maxItem);
+	});
+}
+
+function makeDateSuggestions(rowContainer, targetElement, possibleValues) {
+	const minDate = possibleValues[0];
+	const maxDate = possibleValues[1];
+	flatpickr(targetElement, {
+		minDate,
+		maxDate,
+		dateFormat:"Y-m-d"
+	});
+	return flatpickr;
 }
 
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
@@ -241,7 +284,7 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 		const valueInput = rowContainer.querySelector('.condition-value-input');
 		
 		if (!valueInput) { return; }
-		const currentValue = valueInput.value;
+		valueInput.value = "";
 		valueInput.innerHTML = "";
 		
 		let columnSelectType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, colSelect.value);
@@ -253,50 +296,30 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases, 
 															stepResultsArray, database, colSelect.value);
 				
-				if (columnSelectType === "character varying"){
-					databasePossibleValues.forEach(value => {
-						if (!possibleValues.includes(value)) {
-							possibleValues.push(value);
-						}
-					});
-				} else {
-					databasePossibleValues.forEach(value => {
-						if (!possibleValues.includes(value)) {
-							possibleValues.push(value);
-						}
-					});
-				}
-				
+				databasePossibleValues.forEach(value => {
+					if (!possibleValues.includes(value)) {
+						possibleValues.push(value);
+					}
+				});
 			});
 		}
+
+		let suggestions = rowContainer.querySelector('.suggestionList');
+		suggestions.innerHTML = "";
 		
-		const fuse = new Fuse(possibleValues, {
-			threshold:0.4,
-			includeScore:true,
-		});
-		const suggestionList = rowContainer.querySelector('.suggestionList');
-		
-		valueInput.addEventListener("input", () => {
-			const query = valueInput.value.trim();
-			suggestionList.innerHTML = "";
-			if (query === "") { return; }
-			
-			let results = [];
-			if (columnSelectType === "character varying") {
-				results = fuse.search(query, {limit:5});
-			} else {
-				results = possibleValues;
+		if (columnSelectType === "character varying") {
+			if (valueInput._flatpickr) {
+				valueInput._flatpickr.destroy();
 			}
-			results.forEach(result => {
-				const item = document.createElement("li");
-				if (columnSelectType === "character varying") {
-					item.textContent = result.item;
-				} else {
-					item.textContent = result;
-				}
-				suggestionList.appendChild(item);
-			});
-		});	
+			makeStringSuggestions(rowContainer, valueInput, possibleValues);
+		} else if (["real", "integer", "time without timezone"].includes(columnSelectType)) {
+			if (valueInput._flatpickr) {
+				valueInput._flatpickr.destroy();
+			}
+			makeNumericalSuggestions(rowContainer, valueInput, possibleValues);
+		} else if (columnSelectType === "date") {
+			makeDateSuggestions(rowContainer, valueInput, possibleValues);
+		}
 		
 	});
 }
