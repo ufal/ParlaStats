@@ -13,15 +13,19 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 	columns.forEach(column => {
 		if (typeof column === 'object') {
 			if (column.alias && !aliases[stepIndex].includes(column.alias)) {
+				let real = metaInformation.columns.find(col => col.column === column.real);
 				let aliasesEntry = {
 					"real":column.real,
 					"alias":column.alias,
-					"agg_func":column.agg_func
+					"agg_func":column.agg_func,
+					"type":real.type,
+					"possibleValues":real.data
 				}
 				aliases[stepIndex].push(aliasesEntry);
 			}
 		}
 	});
+	console.log(aliases);
 }
 
 export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex) {
@@ -33,9 +37,11 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 	columns.forEach(column => {
 		let columnType = "";
 		let queryPart = "";
+		let possibleValues = [];
 		let stepResult = {
 			"queryPart":"",
-			"type":""
+			"type":"",
+			"possibleValues":[]
 		};
 		if (typeof column === 'object') {
 			// check artificial columns
@@ -50,9 +56,16 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 			metaInformation.columns.forEach(entry => {
 				if (entry.column === column.real) {
 					columnType = entry.type;
+					possibleValues = entry.data;
 				}
 			});
 			
+			if (columnType === "") {
+				const entry = aliases[stepIndex].find(col => col.alias === column.alias);
+				columnType = entry.type;
+				possibleValues = entry.possibleValues;
+			}
+
 			// Else
 			if (columnType === "") {
 				columnType = "NoAggregation";
@@ -74,6 +87,7 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 			metaInformation.columns.forEach(entry => {
 				if (entry.column === column) {
 					columnType = entry.type;
+					possibleValues = entry.data;
 				}
 			});
 
@@ -81,8 +95,10 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 		}
 		stepResult.queryPart = queryPart;
 		stepResult.type = columnType;
+		stepResult.possibleValues = possibleValues;
 		stepResultsArray[stepIndex].push(stepResult);
 	});
+	console.log(stepResultsArray);
 }
 
 export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, stepsCount) {
