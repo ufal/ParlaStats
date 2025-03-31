@@ -156,12 +156,10 @@ function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectVa
 					}
 				});
 				if (!columnType) {
-					const colEntry = metaInformation.columns.find(col => col.column === realValue);
-					if (colEntry) {
-						columnType = colEntry.type;
-					}
+					columnType = aliasEntry.type;
 				}
 			}
+			
 		});
 	}
 	if (!columnType) {
@@ -171,7 +169,6 @@ function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectVa
 		}
 	}
 	if (!columnType) {
-		console.log(selectValue);
 		for (let i = 0; i < stepIndex; i++) {
 			if (stepResultsArray[i]) {
 				stepResultsArray[i].forEach(result => {
@@ -271,6 +268,51 @@ function makeDateSuggestions(rowContainer, targetElement, possibleValues) {
 		dateFormat:"Y-m-d"
 	});
 	return flatpickr;
+}
+
+export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, stepResultsArray, stepIndex, currentLanguage) {
+	let compatibleColumns = [];
+	const rowContainer = targetElement.closest('.repeatable-row');
+	const columnSelect = rowContainer.querySelector('.column-select-conditions');
+	const selectValueType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, columnSelect.value);
+	targetElement.innerHTML = "";
+	// Include aliases
+	userDefinedAliases[stepIndex].forEach(aliasEntry => {
+		if (selectValueType === aliasEntry.type) {
+			compatibleColumns.push(aliasEntry.alias);
+		}
+	});
+	
+	// Artificial columns
+	Object.keys(artificialColumns).forEach(key => {
+		if (artificialColumns[key].type === selectValueType) {
+			compatibleColumns.push(key);
+			}
+	});
+
+	// Step results
+	for (let i = 0; i < stepIndex; i++) {
+		stepResultsArray[i].forEach(result => {
+			if (result.type === selectValueType) {
+				compatibleColumns.push(result.queryPart);
+			}
+		});
+	}
+
+	// Database tables
+	metaInformation.columns.forEach(col => {
+		if (col.type === selectValueType) {
+			compatibleColumns.push(col.column);
+		}
+	});
+	compatibleColumns.forEach(col => {
+		const option = document.createElement('option');
+		option.value = col;
+		if (translations[col]){
+			option.textContent = translations[col][currentLanguage];
+			targetElement.appendChild(option);
+		}
+	});
 }
 
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {

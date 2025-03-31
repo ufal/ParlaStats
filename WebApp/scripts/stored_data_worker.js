@@ -13,6 +13,7 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 	columns.forEach(column => {
 		if (typeof column === 'object') {
 			if (column.alias && !aliases[stepIndex].includes(column.alias)) {
+				
 				let real = metaInformation.columns.find(col => col.column === column.real);
 				let aliasesEntry = {
 					"real":column.real,
@@ -25,7 +26,6 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 			}
 		}
 	});
-	console.log(aliases);
 }
 
 export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex) {

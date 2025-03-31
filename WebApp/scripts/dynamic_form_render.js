@@ -238,6 +238,8 @@ function renderConditions(container, step, stepIndex) {
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
 		conditionColumnTableSelect.className = `column-select-conditions`;
+			
+		const valueColumnOffering = document.createElement('select');
 
 		// Offer user columns from available databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.filtering.column, conditionColumnTableSelect,
@@ -254,16 +256,23 @@ function renderConditions(container, step, stepIndex) {
 		// Offer user column that are being selected in other steps
 		Utilities.addStepResultsOfferings(conditionColumnTableSelect, stepResultArray, stepIndex, currentLanguage);
 
+		const defaultOption = document.createElement('option');
+		defaultOption.value = '';
+		defaultOption.textContent = translations[''][currentLanguage];
+		conditionColumnTableSelect.appendChild(defaultOption);
+
 		if (!condition.column) {
-			condition.column = conditionColumnTableSelect.options[0].value;
-			conditionColumnTableSelect.value = conditionColumnTableSelect.options[0].value;
+			condition.column = '';
+			conditionColumnTableSelect.value = '';
 		} else {
 			conditionColumnTableSelect.value = condition.column;
 		}
-
+		
 		conditionColumnTableSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
 			Utilities.UpdateConditionValuePossibilities(userDefinedAliases, stepResultArray, queryObject.target_databases);
+			Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray, 
+				                                 stepIndex, currentLanguage);
 		});
 		
 		const conditionOperatorSelect = document.createElement('select');
@@ -302,6 +311,7 @@ function renderConditions(container, step, stepIndex) {
 		conditionRow.appendChild(conditionColumnTableSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInput);
+		conditionRow.appendChild(valueColumnOffering);
 		conditionRow.appendChild(suggestionList);
 		conditionRow.appendChild(removeConditionButton);
 		
