@@ -78,7 +78,10 @@ class Person:
     def __init__(self, personID, sex, birth):
         self.personID=personID
         self.sex=sex
-        self.birth=birth
+        if (birth == ''):
+            self.birth = None
+        else:
+            self.birth=birth
         self.name_records=[]
         self.affiliation_records=[]
     

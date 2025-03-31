@@ -30,7 +30,7 @@ class DatabaseTableCreator(DatabaseOperator):
                 CREATE TABLE IF NOT EXISTS Person (
                     person_id VARCHAR(100) PRIMARY KEY,
                     sex VARCHAR(1),
-                    birth VARCHAR(20)
+                    birth DATE
                 )
                 """,
                 """
