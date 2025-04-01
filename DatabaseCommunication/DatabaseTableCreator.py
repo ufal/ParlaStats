@@ -89,7 +89,8 @@ class DatabaseTableCreator(DatabaseOperator):
                     FOREIGN KEY (organisation_id)
                         REFERENCES organisation (organisation_id)
                 )
-                """
+                """,
+                
                 ]
         try:
             with self.connection.cursor() as cursor:
@@ -98,6 +99,23 @@ class DatabaseTableCreator(DatabaseOperator):
                     if self.log:
                         print(f"{command} done.")
 
+            self.connection.commit()
+        except (psycopg2.DatabaseError, Exception) as error:
+            print(error)
+    
+    def create_materialized_view(self):
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute("""
+                CREATE MATERIALIZED VIEW artificial_columns AS 
+                SELECT
+                    id AS id,
+                    date,
+                    EXTRACT(MONTH FROM date)::INT AS month,
+                    TO_CHAR (date, 'Day') AS day_of_the_week,
+                    EXTRACT(YEAR FROM date)::INT AS year
+                FROM speech;
+                """)
             self.connection.commit()
         except (psycopg2.DatabaseError, Exception) as error:
             print(error)

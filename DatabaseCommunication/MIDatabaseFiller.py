@@ -2,6 +2,7 @@
 
 import psycopg2
 from DatabaseCommunication.DatabaseOperator import DatabaseOperator
+from psycopg2.extras import execute_values
 
 class MIDatabaseFiller(DatabaseOperator):
     def __init__(self):
@@ -44,6 +45,21 @@ class MIDatabaseFiller(DatabaseOperator):
                 """, (schema, table, table, schema))
                 return database_cursor.fetchall()
     
+    def __fetch_artificial_columns(self, database_name):
+        database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
+        with psycopg2.connect(**database_config) as database_connection:
+            with database_connection.cursor() as database_cursor:
+                database_cursor.execute("""
+                    SELECT DISTINCT
+                        month,
+                        day_of_the_week,
+                        year
+                    FROM artificial_columns;
+                """)
+                return database_cursor.fetchall()
+        
+            
+
     def update_metadata(self):
         with self.connection_meta.cursor() as meta_cursor:
             databases = self.__fetch_databases()
@@ -57,9 +73,13 @@ class MIDatabaseFiller(DatabaseOperator):
                     table_id = meta_cursor.fetchone()
                     if table_id: table_id = table_id[0]
                     
-                    print(self.__fetch_columns(database, schema, table))
                     for column_name, data_type in self.__fetch_columns(database, schema, table):
                         meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (table_id, column_name, data_type))
+                if (database != "postgres"):
+                    execute_values(meta_cursor, 
+                                   """INSERT INTO artificial_columns (month, day_of_the_week, year) VALUES %s
+                                      ON CONFLICT (month, day_of_the_week, year) DO NOTHING""",
+                                   self.__fetch_artificial_columns(database))
             self.connection_meta.commit()
 
 

@@ -148,7 +148,8 @@ class mainDriver:
                 self.databaseInserter.insert_affiliation_records(persons[person][0].affiliation_records, person)
 
             self.__parse_speech_files()
-        
+        db_table_creator = DatabaseTableCreator(self.database_config)
+        db_table_creator.create_materialized_view()
         return persons, organisations
 
 def main(args):

@@ -38,6 +38,14 @@ class MIDatabaseTableCreator(DatabaseOperator):
                     data_type TEXT NOT NULL
                 )
 
+                """,
+                """
+                CREATE TABLE IF NOT EXISTS artificial_columns (
+                    month INTEGER,
+                    day_of_the_week TEXT,
+                    year INTEGER,
+                    PRIMARY KEY (month, day_of_the_week, year)
+                );
                 """
                 ]
         try:
