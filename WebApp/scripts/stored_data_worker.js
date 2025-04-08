@@ -98,7 +98,6 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 		stepResult.possibleValues = possibleValues;
 		stepResultsArray[stepIndex].push(stepResult);
 	});
-	console.log(stepResultsArray);
 }
 
 export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, stepsCount) {
@@ -118,9 +117,10 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 				selectOption.textContent = aliasEntry.alias;
 				columnSelect.appendChild(selectOption);
 			});
+			console.log(aliases.index);
 			let languageSelectField = document.getElementById('languageSelection');
 			let currentLanguage = languageSelectField.value;
-			for (var i = 0; i < index; i++) {
+			for (var i = 0; i < index - 1; i++) {
 				stepResultsArray[i].forEach(stepResult => {
 					 const selectOption = document.createElement('option');
 					selectOption.className = "user-specific";

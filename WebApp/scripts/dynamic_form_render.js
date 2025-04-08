@@ -242,7 +242,7 @@ function renderConditions(container, step, stepIndex) {
 		const valueColumnOffering = document.createElement('select');
 
 		// Offer user columns from available databases
-		Utilities.addDatabaseColumnOfferings(metaInformation.filtering.column, conditionColumnTableSelect,
+		Utilities.addDatabaseColumnOfferings(metaInformation.columns, conditionColumnTableSelect,
 		                                     currentLanguage);
 
 		// Offer user template columns
@@ -365,7 +365,7 @@ function renderOrderBy(container, step, stepIndex) {
 		const orderByAggregationSelect = document.createElement('select');
 		orderByAggregationSelect.className = "agg-select";
 		// Make aggregation functions offerings
-		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.order_by, orderByAggregationSelect,
+		Utilities.makeAggregationFunctionSelect(metaInformation.columns, orderByAggregationSelect,
 		                                        currentLanguage, 
 		                                        queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column,
 		                                        aggregationFunctionTypeMapping, userDefinedAliases[stepIndex], stepResultArray);
@@ -394,7 +394,7 @@ function renderOrderBy(container, step, stepIndex) {
 		}
 
 		// Offer user columns from available databases
-		Utilities.addDatabaseColumnOfferings(metaInformation.aggregation.order_by,
+		Utilities.addDatabaseColumnOfferings(metaInformation.columns,
 		                                     orderByTableSelect,
 		                                     currentLanguage);
 
@@ -504,7 +504,7 @@ function renderGroupBy(container, step, stepIndex) {
 		// Offer aggregation functions
 		const groupByAggregationSelect = document.createElement('select');
 		groupByAggregationSelect.className = "agg-select";
-		Utilities.makeAggregationFunctionSelect(metaInformation.aggregation.group_by, groupByAggregationSelect, currentLanguage,
+		Utilities.makeAggregationFunctionSelect(metaInformation.columns, groupByAggregationSelect, currentLanguage,
 									  queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex],
 		 							  aggregationFunctionTypeMapping, userDefinedAliases[stepIndex], stepResultArray);
 		
@@ -531,7 +531,7 @@ function renderGroupBy(container, step, stepIndex) {
 		}
 
 		// Offer user columns available in databases
-		Utilities.addDatabaseColumnOfferings(metaInformation.aggregation.group_by, groupByTableSelect, currentLanguage);
+		Utilities.addDatabaseColumnOfferings(metaInformation.columns, groupByTableSelect, currentLanguage);
 		
 		// Offer user template columns
 		Utilities.addArtificialColumnOfferings(groupByTableSelect, currentLanguage);

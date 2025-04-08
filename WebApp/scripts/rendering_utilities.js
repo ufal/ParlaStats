@@ -210,6 +210,17 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 			}
 		}
 	}
+	// Check artificialColumns
+	if (!found) {
+		Object.keys(artificialColumns).forEach(key => {
+			if (artificialColumns[key].formula === selectValue) {
+				console.log(selectValue);
+				const columnEntry = metaInformation.columns.find(col => col.column === `artificial_columns.${key}`);
+				possibleValues = columnEntry["data"][database];
+				found = true;
+			}
+		});
+	}
 	if (!found) {
 		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
 		if (columnEntry) {

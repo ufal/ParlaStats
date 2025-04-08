@@ -1,15 +1,15 @@
 let artificialColumns = {
 	"month": {
 		"formula":"EXTRACT(MONTH FROM speech.date)",
-		"type":"date"
+		"type":"integer"
 	},
 	"year": {
 		"formula":"EXTRACT(YEAR FROM speech.date)",
-		"type":"date"
+		"type":"integer"
 	},
 	"day_of_the_week": {
 		"formula":"EXTRACT(DOW FROM speech.date)",
-		"type":"date"
+		"type":"integer"
 	},
 	"words_per_minute": {
 		"formula":"(speech.token_count / (speech.total_duration / 60000))",
