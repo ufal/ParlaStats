@@ -108,11 +108,9 @@ class DatabaseTableCreator(DatabaseOperator):
             with self.connection.cursor() as cursor:
                 cursor.execute("""
                 CREATE MATERIALIZED VIEW artificial_columns AS 
-                SELECT
-                    id AS id,
-                    date,
+                SELECT DISTINCT
                     EXTRACT(MONTH FROM date)::INT AS month,
-                    TO_CHAR (date, 'Day') AS day_of_the_week,
+                    EXTRACT(DOW FROM date)::INT AS day_of_the_week,
                     EXTRACT(YEAR FROM date)::INT AS year
                 FROM speech;
                 """)

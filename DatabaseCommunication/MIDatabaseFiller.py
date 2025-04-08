@@ -45,6 +45,20 @@ class MIDatabaseFiller(DatabaseOperator):
                 """, (schema, table, table, schema))
                 return database_cursor.fetchall()
     
+    def __fetch_materialized_view_columns(self, database_name, schema):
+        database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
+        with psycopg2.connect(**database_config) as database_connection:
+            with database_connection.cursor() as database_cursor:
+                database_cursor.execute("""
+                                           SELECT a.attname as column_name, pg_catalog.format_type(a.atttypid, a.atttypmod) as data_type
+                                           FROM pg_attribute a
+                                           JOIN pg_class c ON a.attrelid = c.oid
+                                           WHERE c.relname = 'artificial_columns'
+                                              AND a.attnum > 0
+                                              AND NOT a.attisdropped;
+                                        """, (schema,))
+                return database_cursor.fetchall()
+    
     def __fetch_artificial_columns(self, database_name):
         database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
         with psycopg2.connect(**database_config) as database_connection:
@@ -63,6 +77,7 @@ class MIDatabaseFiller(DatabaseOperator):
     def update_metadata(self):
         with self.connection_meta.cursor() as meta_cursor:
             databases = self.__fetch_databases()
+            databases = [db for db in databases if db != 'postgres']
             for database in databases:
                 meta_cursor.execute("INSERT INTO databases (database_name) VALUES (%s) ON CONFLICT (database_name) DO NOTHING RETURNING id;", (database,))
                 database_id = meta_cursor.fetchone()
@@ -75,11 +90,17 @@ class MIDatabaseFiller(DatabaseOperator):
                     
                     for column_name, data_type in self.__fetch_columns(database, schema, table):
                         meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (table_id, column_name, data_type))
-                if (database != "postgres"):
-                    execute_values(meta_cursor, 
-                                   """INSERT INTO artificial_columns (month, day_of_the_week, year) VALUES %s
-                                      ON CONFLICT (month, day_of_the_week, year) DO NOTHING""",
-                                   self.__fetch_artificial_columns(database))
+                
+                # Add artificial columns
+                meta_cursor.execute("INSERT INTO tables (database_id, schema_name, table_name) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (database_id, 'public', 'artificial_columns'))
+
+                for column_name, data_type in self.__fetch_materialized_view_columns(database, schema):
+                    meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (6, column_name, data_type))
+                # if (database != "postgres"):
+                #     execute_values(meta_cursor, 
+                #                    """INSERT INTO artificial_columns (month, day_of_the_week, year) VALUES %s
+                #                       ON CONFLICT (month, day_of_the_week, year) DO NOTHING""",
+                #                    self.__fetch_artificial_columns(database))
             self.connection_meta.commit()
 
 

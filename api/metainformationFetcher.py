@@ -48,7 +48,7 @@ class metainformationFetcher:
                         with db_connection.cursor() as db_cursor:
                             for entry in table_columns:
                                 column_split = entry["column"].split('.');
-                                if (entry["type"] in ["character varying"]):
+                                if (entry["type"] in ["character varying", "text"]):
                                     db_cursor.execute(f"SELECT DISTINCT {column_split[1]} FROM {column_split[0]};")
                                     available_values = [row[0] for row in db_cursor.fetchall()]
                                     if (len(available_values) < 1000):
@@ -67,17 +67,12 @@ class metainformationFetcher:
                                             entry["data"][database] = [ "None","None" ]
                                     else:
                                         entry["data"][database] = [ fetched_data[0][0], fetched_data[0][1] ]
-
+                
+                               
                 json_response = {
                     "available_databases": available_databases,
                     "columns": table_columns,
-                    "aggregation": {
-                        "group_by": table_columns,
-                        "order_by": table_columns
-                    },
-                    "filtering": {
-                        "column": table_columns
-                    }
+                    
                 }
 
                 return json_response
@@ -86,7 +81,8 @@ class metainformationFetcher:
 
 def main(args):
     # pprint.pprint(metainformationFetcher.make_metainformation_JSON())
-    _ = metainformationFetcher.make_metainformation_JSON()
+
+    pprint.pprint(metainformationFetcher.make_metainformation_JSON())
 if __name__ == "__main__":
     main(args_parser.parse_args())
 
