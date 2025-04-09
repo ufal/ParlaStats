@@ -96,6 +96,9 @@ function renderForm() {
 	inputJSONTextarea.placeholder = UItranslations.inputJSONPlaceholder[currentLanguage];
 	let outputJSONTextarea = document.getElementById("outputJSON");
 	outputJSONTextarea.placeholder = UItranslations.outputJSONPlaceholder[currentLanguage];
+	
+	const selects = document.querySelectorAll('select');
+	M.FormSelect.init(selects);
 }
 
 function renderStepsSection(container) {
@@ -130,31 +133,36 @@ function renderStepsSection(container) {
 		
 		// Columns
 		const columnsDiv = document.createElement('div');
-		columnsDiv.className = `columns_steps_${stepIndex}`;
+		columnsDiv.className = `columns`;
 		renderColumns(columnsDiv, step, stepIndex);
 		stepRow.appendChild(columnsDiv);
 
 		// Aggregation
 		const aggregationDiv = document.createElement('div');
-		aggregationDiv.className = `aggregation_steps_${stepIndex}`;
+		aggregationDiv.className = `aggregation`;
 		renderAggregation(aggregationDiv, step, stepIndex);
 		stepRow.appendChild(aggregationDiv);
 		
 		// Filtering
 		const filteringDiv = document.createElement('div');
-		filteringDiv.className = `filtering_steps_${stepIndex}`;
+		filteringDiv.className = `filtering`;
 		renderFiltering(filteringDiv, step, stepIndex);
 		stepRow.appendChild(filteringDiv);
 
 		// Limit
 		const limitDiv = document.createElement('div');
-		limitDiv.className = `limit_steps_${stepIndex}`;
+		limitDiv.className = `limit`;
 		renderLimit(limitDiv, step, stepIndex);
 		stepRow.appendChild(limitDiv);
 
-		const removeStepButton = document.createElement('button');
-		removeStepButton.type = 'button';
-		removeStepButton.textContent = '-';
+		// const removeStepButton = document.createElement('button');
+		// removeStepButton.type = 'button';
+		// removeStepButton.textContent = '-';
+		const removeStepButton = document.createElement('a');
+		removeStepButton.classList.add('waves-effect');
+		removeStepButton.classList.add('waves-dark');
+		removeStepButton.classList.add('btn');
+		removeStepButton.textContent = "Remove step";
 		removeStepButton.onclick = () => {
 			queryObject.steps.splice(stepIndex, 1);
 			stepResultArray.splice(stepIndex, 1);
@@ -168,8 +176,12 @@ function renderStepsSection(container) {
 		
 	});
 
-	const addStepButton = document.createElement('button');
-	addStepButton.type = 'button';
+	// const addStepButton = document.createElement('button');
+	// addStepButton.type = 'button';
+	const addStepButton = document.createElement('a');
+	addStepButton.classList.add('waves-effect');
+	addStepButton.classList.add('waves-dark');
+	addStepButton.classList.add('btn');
 	addStepButton.textContent = UItranslations.AddStepButtonText[currentLanguage];
 	addStepButton.onclick = () => {
 		queryObject.steps.push({
@@ -212,7 +224,7 @@ function renderLimit(container, step, stepIndex) {
 function renderFiltering(container, step, stepIndex) {
 	const filteringTitle = document.createElement('h3');
 	filteringTitle.textContent = UItranslations.FilteringSectionTitle[currentLanguage];
-	container.appendChild(filteringTitle);
+	// container.appendChild(filteringTitle);
 
 	const conditionsDiv = document.createElement('div');
 	conditionsDiv.className = 'conditions';
@@ -222,7 +234,7 @@ function renderFiltering(container, step, stepIndex) {
 }
 
 function renderConditions(container, step, stepIndex) {
-	const conditionsTitle = document.createElement('h3');
+	const conditionsTitle = document.createElement('h6');
 	conditionsTitle.textContent = UItranslations.ConditionsSectionTitle[currentLanguage];
 	container.appendChild(conditionsTitle);
 
@@ -300,9 +312,13 @@ function renderConditions(container, step, stepIndex) {
 		const suggestionList = document.createElement('ul');
 		suggestionList.className = "suggestionList";
 
-		const removeConditionButton = document.createElement('button');
-		removeConditionButton.type = 'button';
-		removeConditionButton.textContent = '-';
+		// const removeConditionButton = document.createElement('button');
+		// removeConditionButton.type = 'button';
+		const removeConditionButton = document.createElement('a');
+		removeConditionButton.classList.add('wave-effect');
+		removeConditionButton.classList.add('wave-dark');
+		removeConditionButton.classList.add('btn');
+		removeConditionButton.textContent = 'Remove Condition';
 		removeConditionButton.onclick = () => {
 			queryObject.steps[stepIndex].filtering.conditions.splice(conditionIndex, 1);
 			renderForm();
@@ -318,8 +334,13 @@ function renderConditions(container, step, stepIndex) {
 		conditionsContainer.appendChild(conditionRow);
 	});
 
-	const addConditionButton = document.createElement('button');
-	addConditionButton.type = 'button';
+	// const addConditionButton = document.createElement('button');
+	// addConditionButton.type = 'button';
+	const addConditionButton = document.createElement('a');
+	addConditionButton.classList.add("wave-effect");
+	addConditionButton.classList.add("wave-dark");
+	addConditionButton.classList.add("btn");
+	addConditionButton.textContent = "Add condition";
 	addConditionButton.textContent = UItranslations.AddConditionButtonText[currentLanguage];
 	addConditionButton.onclick = () => {
 		queryObject.steps[stepIndex].filtering.conditions.push({column:"", operator:"=", value:""});
@@ -333,7 +354,7 @@ function renderConditions(container, step, stepIndex) {
 function renderAggregation(container, step, stepIndex) {
 	const aggregationTitle = document.createElement('h3');
 	aggregationTitle.textContent = UItranslations.AggregationSectionTitle[currentLanguage];
-	container.appendChild(aggregationTitle);
+	// container.appendChild(aggregationTitle);
 
 	const groupByDiv = document.createElement('div');
 	groupByDiv.className = 'group-by';
@@ -348,7 +369,7 @@ function renderAggregation(container, step, stepIndex) {
 }
 
 function renderOrderBy(container, step, stepIndex) {
-	const orderByTitle = document.createElement('h3');
+	const orderByTitle = document.createElement('h6');
 	orderByTitle.textContent = UItranslations.OrderBySectionTitle[currentLanguage];
 	container.appendChild(orderByTitle);
 
@@ -455,9 +476,13 @@ function renderOrderBy(container, step, stepIndex) {
 			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].direction = orderByDirectionSelect.value;
 		});
 		
-		const removeOrderByButton = document.createElement('button');
-		removeOrderByButton.type = 'button';
-		removeOrderByButton.textContent = '-';
+		// const removeOrderByButton = document.createElement('button');
+		// removeOrderByButton.type = 'button';
+		const removeOrderByButton = document.createElement('a');
+		removeOrderByButton.classList.add('wave-effect');
+		removeOrderByButton.classList.add('wave-dark');
+		removeOrderByButton.classList.add('btn');
+		removeOrderByButton.textContent = 'Remove order by';
 		removeOrderByButton.onclick = () => {
 			queryObject.steps[stepIndex].aggregation.order_by.splice(orderByIndex, 1);
 			renderForm();
@@ -472,8 +497,12 @@ function renderOrderBy(container, step, stepIndex) {
 		orderByContainer.appendChild(orderByRow);
 	});
 
-	const addOrderByButton = document.createElement('button');
-	addOrderByButton.type = 'button';
+	// const addOrderByButton = document.createElement('button');
+	// addOrderByButton.type = 'button';
+	const addOrderByButton = document.createElement('a');
+	addOrderByButton.classList.add('wave-effect');
+	addOrderByButton.classList.add('wave-dark');
+	addOrderByButton.classList.add('btn');
 	addOrderByButton.textContent = UItranslations.AddOrderByButtonText[currentLanguage];
 	addOrderByButton.onclick = () => {
 		queryObject.steps[stepIndex].aggregation.order_by.push({column:"", direction:"ASC"});
@@ -485,7 +514,7 @@ function renderOrderBy(container, step, stepIndex) {
 }
 
 function renderGroupBy(container, step, stepIndex) {
-	const groupByTitle = document.createElement('h3');
+	const groupByTitle = document.createElement('h6');
 	groupByTitle.textContent = UItranslations.GroupBySectionTitle[currentLanguage];
 	container.appendChild(groupByTitle);
 
@@ -574,8 +603,12 @@ function renderGroupBy(container, step, stepIndex) {
 	
 		// ========================== NEW VERSION END ==============================
 		
-		const removeGroupByButton = document.createElement('button');
-		removeGroupByButton.type = 'button';
+		// const removeGroupByButton = document.createElement('button');
+		// removeGroupByButton.type = 'button';
+		const removeGroupByButton = document.createElement('a');
+		removeGroupByButton.classList.add('wave-effect');
+		removeGroupByButton.classList.add('wave-dark');
+		removeGroupByButton.classList.add('btn');
 		removeGroupByButton.textContent = '-';
 		removeGroupByButton.onclick = () => {
 			queryObject.steps[stepIndex].aggregation.group_by.splice(gbColumnIndex, 1);
@@ -587,8 +620,12 @@ function renderGroupBy(container, step, stepIndex) {
 		groupByContainer.appendChild(groupByRow);
 	});
 
-	const addGroupByButton = document.createElement('button');
-	addGroupByButton.type = 'button';
+	// const addGroupByButton = document.createElement('button');
+	// addGroupByButton.type = 'button';
+	const addGroupByButton = document.createElement('a');
+	addGroupByButton.classList.add('wave-effect');
+	addGroupByButton.classList.add('wave-dark');
+	addGroupByButton.classList.add('btn');
 	addGroupByButton.textContent = UItranslations.AddGroupByButtonText[currentLanguage];
 	addGroupByButton.onclick = () => {
 			queryObject.steps[stepIndex].aggregation.group_by.push("");
@@ -599,7 +636,7 @@ function renderGroupBy(container, step, stepIndex) {
 	}
 
 	function renderColumns(container, step, stepIndex) {
-		const columnsTitle = document.createElement('h3');
+		const columnsTitle = document.createElement('h6');
 		columnsTitle.textContent = UItranslations.columnsHeader[currentLanguage];
 		container.appendChild(columnsTitle);
 
@@ -710,9 +747,13 @@ function renderGroupBy(container, step, stepIndex) {
 		
 			// ====================== NEW VERSION END ================================
 
-			const removeColumnButton = document.createElement('button');
-			removeColumnButton.type = 'button';
-			removeColumnButton.textContent = '-';
+			// const removeColumnButton = document.createElement('button');
+			// removeColumnButton.type = 'button';
+			const removeColumnButton = document.createElement('a');
+			removeColumnButton.classList.add('wave-effect');
+			removeColumnButton.classList.add('wave-dark');
+			removeColumnButton.classList.add('btn');
+			removeColumnButton.textContent = 'Remove group by';
 			removeColumnButton.onclick = () => {
 				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
 				renderForm();
@@ -736,8 +777,12 @@ function renderGroupBy(container, step, stepIndex) {
 			columnsContainer.appendChild(columnRow);
 		});
 
-		const addColumnButton = document.createElement('button');
-		addColumnButton.type = 'button';
+		// const addColumnButton = document.createElement('button');
+		// addColumnButton.type = 'button';
+		const addColumnButton = document.createElement('a');
+		addColumnButton.classList.add('wave-effect');
+		addColumnButton.classList.add('wave-dark');
+		addColumnButton.classList.add('btn');
 		addColumnButton.textContent = UItranslations.addColumnButtonText[currentLanguage];
 		addColumnButton.onclick = () => {
 		queryObject.steps[stepIndex].columns.push("");
@@ -757,7 +802,7 @@ function renderTargetSection(container) {
 	// Target databases
 	const targetDatabasesDiv = document.createElement('div');
 	targetDatabasesDiv.className = 'targetDatabase(s)';
-	const targetDatabaseTitle = document.createElement('h3');
+	const targetDatabaseTitle = document.createElement('h6');
 	targetDatabaseTitle.textContent = UItranslations.targetDatabaseTitle[currentLanguage];
 	targetDatabasesDiv.appendChild(targetDatabaseTitle);
 
@@ -788,9 +833,13 @@ function renderTargetSection(container) {
 			queryObject.target_databases[databaseIndex] = newInput.value;
 		});
 		// ======================= END NEW ==============================
-		const removeButton = document.createElement('button');
-		removeButton.type = 'button';
-		removeButton.textContent = '-';
+		// const removeButton = document.createElement('button');
+		// removeButton.type = 'button';
+		const removeButton = document.createElement('a');
+		removeButton.classList.add('wave-effect');
+		removeButton.classList.add('wave-dark');
+		removeButton.classList.add('btn');
+		removeButton.textContent = 'Remove target database';
 		removeButton.onclick = () => {
 			queryObject.target_databases.splice(databaseIndex, 1);
 			renderForm();
@@ -800,8 +849,12 @@ function renderTargetSection(container) {
 		targetDatabasesContainer.appendChild(row);
 	});
 
-	const addButton = document.createElement('button');
-	addButton.type = 'button';
+	// const addButton = document.createElement('button');
+	// addButton.type = 'button';
+	const addButton = document.createElement('a');
+	addButton.classList.add('wave-effect');
+	addButton.classList.add('wave-dark');
+	addButton.classList.add('btn');
 	addButton.textContent = UItranslations.targetDatabaseAddButton[currentLanguage];
 	addButton.onclick = () => {
 		queryObject.target_databases.push("");

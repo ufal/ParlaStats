@@ -1,0 +1,24 @@
+.tabs .tab a {
+	
+	color:#e0e0e0 !important;
+	background-color:#5C8374 !important;
+}
+.tabs .tab a.active {
+	color:#e0e0e0 !important;
+	background-color:#1B4242 !important;
+}
+.tabs .tab a:hover {
+	color:#e0e0e0 !important;
+	background-color:#1B4242 !important;
+}
+.container {
+	margin-top:20px;
+}
+.tabs .indicator {
+	background-color:#9EC8B9 !important;	
+}
+
+.nav-wrapper {
+	color:#e0e0e0 !important; 
+	background-color:#1B4242 !important;
+}

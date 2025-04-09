@@ -1,162 +1,207 @@
 body {
 	font-family: Arial, sans-serif;
-	margin: 20px;
-	background-color: #f9f9f9;
-	display:flex;
-	font-size:0.5em;
+	background-color:#092635;
+	color:#e0e0e0;
 }
 
 h1 {
 	text-align: center;
 	color: #333;
 }
-.container {
-	display:flex;
-	flex-direction:row;
-	gap:20px;
-}
+
 .form-wrapper {
 	flex:1;
 	min-width:400px;
 }
-.textarea-wrapper {
-	flex:1;
-	display:flex;
-	flex-direction:column;
-	gap:10px;
-}
 
 textarea {
 	
-	resize:none;
+	resize:auto;
 	white-space:pre;
 	font-family:monospace;
 	width:400px;
 	height:100%;
 }
 
-.form-section {
-	margin-bottom:20px;
-	padding:15px;
-	border-radius: 8px;
-	border: 2px solid #ccc;
-	box-shadow: 0 5px 5px rgba(0,0,0,0.1);
-	background-color: #ccf2ff;
-	justify-content:center;
+.btn {
+	color:#e0e0e0 !important;
+	background-color:#1B4242 !important
 }
 
-.target-database {
-	background-color:#f9f9f9;
-	border: 2px solid #ebc77c;
+#formContainer {
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#1B4242
 }
 
-.repeatable-row-step{
-	width=50%;
-
-	font-size=1.5em;
-	background-color:#f9f9f9;
-	border: 2px solid #ffcb66;
-	border-radius:5px;
-	padding:15px;
-	margin-bottom:20px;
+.repeatable-row-step {
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#5C8374
 }
 
-.goal{
-	border: 2px solid #b6d4ff;
-	padding:10px;
-	margin-bottom:15px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
+select {
+	color:#e0e0e0 !important;
 }
 
 .columns {
-	border:2px solid #82c995;
-	padding:10px;
-	margin-bottom:10px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
-}
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#1B4242;
+	margin-bottom:0.5em;
 
-.aggregation {
-	border:2px solid #c6a6f2;
-	padding:10px;
-	margin-bottom:15px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
 }
-
 .group-by {
-	border:2px solid #7b9ef5;
-	padding:5px;
-	margin-bottom:10px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#1B4242;
+	margin-bottom:0.5em;
 }
-
 .order-by {
-	border: 2px solid #8778d8;
-	padding:5px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#1B4242;
+	margin-bottom:0.5em;
 }
-
-.filtering {
-	border: 2px solid #ffb2d2;
-	padding:10px;
-	margin-bottom:15px;
-	background-color:#f9f9f9;
-	font-size=1.5em;
-	border-radius:5px;
-}
-
 .conditions {
-	border: 2px solid #ffa1d8;
-	padding: 5px;
-	background-color:#f9f9f9;
-	font-size=1.5em;
-	border-radius:5px;
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#1B4242;
+	margin-bottom:0.5em;
 }
-
-.conditions-entry {
-	border: 2px dashed #ff81d8;
-	padding: 5px;
-	margin-bottom:5px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
-}
-
 .limit {
-	border: 2px solid #ffa37b;
-	padding:10px;
-	background-color:#f9f9f9;
-	font-size=1.5em;border-radius:5px;
+	padding:1em;
+	color:#e0e0e0;
+	background-color:#1B4242;
+	margin-bottom:0.5em;
 }
+.repeatable-row {
+	margin:0.5em;
+	padding:0.5em;
+	color:#e0e0e0;
+	background-color:#5C8374;
+}
+/* 	margin-bottom:20px; */
+/* 	padding:15px; */
+/* 	border-radius: 8px; */
+/* 	border: 2px solid #ccc; */
+/* 	box-shadow: 0 5px 5px rgba(0,0,0,0.1); */
+/* 	background-color: #ccf2ff; */
+/* 	justify-content:center; */
+/* } */
 
-button {
-	font-size:10px;
-}
+/* .target-database { */
+/* 	background-color:#f9f9f9; */
+/* 	border: 2px solid #ebc77c; */
+/* } */
 
-label {
-	font-size:10px;
-}
-input {
-	font-size:10px;
-}
-table {
-	border: 1px solid;
-	border-collapse: collapse;
-}
-th {
-	padding 8px;
-	border: 1px solid #000000;
-	background-color: "#f2f2f2";
-}
-td {
-	padding 8px;
-	border: 1px solid #000000;
-}
-#responseDataTable {
-	overflow-y: auto;
-	width: 400px;
-	max-height: 300px;
-}
+/* .repeatable-row-step{ */
+/* 	width=50%; */
+
+/* 	font-size=1.5em; */
+/* 	background-color:#f9f9f9; */
+/* 	border: 2px solid #ffcb66; */
+/* 	border-radius:5px; */
+/* 	padding:15px; */
+/* 	margin-bottom:20px; */
+/* } */
+
+/* .goal{ */
+/* 	border: 2px solid #b6d4ff; */
+/* 	padding:10px; */
+/* 	margin-bottom:15px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* .columns { */
+/* 	border:2px solid #82c995; */
+/* 	padding:10px; */
+/* 	margin-bottom:10px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* .aggregation { */
+/* 	border:2px solid #c6a6f2; */
+/* 	padding:10px; */
+/* 	margin-bottom:15px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* .group-by { */
+/* 	border:2px solid #7b9ef5; */
+/* 	padding:5px; */
+/* 	margin-bottom:10px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* .order-by { */
+/* 	border: 2px solid #8778d8; */
+/* 	padding:5px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* .filtering { */
+/* 	border: 2px solid #ffb2d2; */
+/* 	padding:10px; */
+/* 	margin-bottom:15px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em; */
+/* 	border-radius:5px; */
+/* } */
+
+/* .conditions { */
+/* 	border: 2px solid #ffa1d8; */
+/* 	padding: 5px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em; */
+/* 	border-radius:5px; */
+/* } */
+
+/* .conditions-entry { */
+/* 	border: 2px dashed #ff81d8; */
+/* 	padding: 5px; */
+/* 	margin-bottom:5px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* .limit { */
+/* 	border: 2px solid #ffa37b; */
+/* 	padding:10px; */
+/* 	background-color:#f9f9f9; */
+/* 	font-size=1.5em;border-radius:5px; */
+/* } */
+
+/* button { */
+/* 	font-size:10px; */
+/* } */
+
+/* label { */
+/* 	font-size:10px; */
+/* } */
+/* input { */
+/* 	font-size:10px; */
+/* } */
+/* table { */
+/* 	border: 1px solid; */
+/* 	border-collapse: collapse; */
+/* } */
+/* th { */
+/* 	padding 8px; */
+/* 	border: 1px solid #000000; */
+/* 	background-color: "#f2f2f2"; */
+/* } */
+/* td { */
+/* 	padding 8px; */
+/* 	border: 1px solid #000000; */
+/* } */
+/* #responseDataTable { */
+/* 	overflow-y: auto; */
+/* 	width: 400px; */
+/* 	max-height: 300px; */
+/* } */

@@ -6,35 +6,105 @@
     <title>Dynamic JSON Form</title>
     <link rel="stylesheet" href="styles/form.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">	
+	<link rel="stylesheet" href="styles/tabs.css"> 
+
+	<!-- Rendering scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 	<script type="module" src="scripts/dynamic_form_render.js" defer></script>
 	<script type="module" src="scripts/metaInformation.js" defer></script>
 	<script type="module" src="scripts/stored_data_worker.js" defer></script>
 	<script type="module" src="scripts/translations.js" defer></script>
-	<script type="module" src="scripts/artificialColumns.js" defer></script>
+	<script type="module" src="scripts/artificialColumns.js" defer></script>	
 	<script type="module" src="scripts/rendering_utilities.js" defer></script>
+	
+	<!-- Styling scripts -->
+	<!-- <script src=scripts/styling_scripts/tab_toggler.js></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-
-	<h1>Dynamic JSON Query Form</h1>
-	<div class="container">
-		<div class="textarea-wrapper">
-			<h2 id="inputJSONtitle">Input JSON</h2>
-			<textarea id="inputJSON" placeholder="Paste input JSON query here"></textarea>
-			<button id="loadButton" type="button">Load Query</button>
+	<nav>
+		<div class="nav-wrapper #26a69a">
+			<a href="#" class="brand-logo center">ParlaStats statistical tool</a>
+			<ul id="nav-mobile" class="left-hide-on-med-and-down">
+				<li><a href="#input">Manual Query</a></li>
+				<li><a href="#form">Query Form</a></li>
+				<li><a href="#output">Query Preview</a></li>
+				<li><a href="#result">Results</a></li>
+			</ul>
 		</div>
-		<div class="form-wrapper">	
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs">
+					<li class="tab col s3"><a href="#input">Manual Query</a></li>
+					<li class="tab col s3"><a href="#form">Query Form</a></li>
+					<li class="tab col s3"><a href="#output">Query Preview</a></li>
+					<li class="tab col s3"><a href="#result">Results</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="input" class="col s12">
+			<div class="input-field">
+				<h5 id="inputJSONtitle">Manual Query</h5>
+				<textarea id="inputJSON" placeholder="Paste input JSON query here"></textarea>
+				<label for="inputJSONtitle">Input JSON</label>
+				<!-- <button id="loadButton" type="button">Load Query</button> -->
+			</div>
+			<a class="waves-effect waves-light btn" id="loadButton">Load Query</a>
+		</div>
+		<div id="form" class="col s12">
+			<h5>Query Form</h5>
 			<div id="formContainer"></div>
 		</div>
-		<div class="textarea-wrapper">
-			<h2 id="outputJSONtitle">Output JSON</h2>
-			<textarea id="outputJSON" placeholder="Generated JSON query"></textarea>
-			<button id="generateButton" type="button">Generate Query</button>
-			<button id="sendQueryButton" type="button">Send Query</button>
-			<div id="responseDataTable"/>	
+		<div id="output" class="col s12">
+			<div class="input-field">
+				<h5 id="outputJSONtitle">Query Preview</h5>
+				<textarea id="outputJSON" placeholder="Generated JSON query"></textarea>
+				<label for="outputJSON">Query Preview</label>
+				<!-- <button id="generateButton" type="button">Generate Query</button> -->
+			</div>
+			<a class="waves-effect waves-light btn" id="generateButton">Generate Query</a>
+		</div>
+		<div id="result" class="col s12"> 
+			<h5>Results</h5>
+			<div id="responseDataTable"></div>
+			<a class="waves-effect waves-light btn" id="sendQueryButton">Send Query</a>	
 		</div>
 	</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.tabs');
+			M.Tabs.init(elems);
+		});
+	</script>
+	<!-- <h1>Dynamic JSON Query Form</h1> -->
+	<!-- <div class="tab-header"> -->
+	<!-- 	<button data-tab="input">Input JSON</button> -->
+	<!-- 	<button data-tab="form" class="active">Form</button> -->
+	<!-- 	<button data-tab="output">Output JSON</button> -->
+	<!-- 	<button data-tab="result">Results</button> -->
+	<!-- </div> -->
+	<!-- <div class="container"> -->
+	<!-- 	<div class="tab-content" id="input"> -->
+	<!-- 		<h2 id="inputJSONtitle">Input JSON</h2> -->
+			
+	<!-- 	</div> -->
+	<!-- 	<div class="tab-content active" id="form"> -->	
+	<!-- 	</div> -->
+	<!-- 	<div class="tab-content" id="output"> -->
+	<!-- 		<h2 id="outputJSONtitle">Output JSON</h2> -->
+	<!-- 		<textarea id="outputJSON" placeholder="Generated JSON query"></textarea> -->
+	<!-- 		<button id="generateButton" type="button">Generate Query</button> -->
+	<!-- 	</div> -->
+	<!-- 	<div class="tab-content" id="result"> -->
+	<!-- 		<button id="sendQueryButton" type="button">Send Query</button> -->
+	<!-- 		<div id="responseDataTable"/> -->
+	<!-- 	</div> -->
+	<!-- </div> -->
 	
 </body>
 </html>
