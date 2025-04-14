@@ -103,6 +103,7 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				targetElement.appendChild(selectOption);
 			});
 		}
+		index++;
 	});
 }
 
@@ -136,6 +137,7 @@ export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray
 		} else { aggSelect.value = ""; } 
 
 	});
+	
 
 }
 

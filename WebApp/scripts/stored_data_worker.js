@@ -6,7 +6,7 @@ let translations = getTranslations();
 let artificialColumns = getArtificialColumns();
 let metaInformation = getMetaInformation();
 
-export function storeAliases(jsonQuery, aliases, stepIndex) {
+export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 	aliases[stepIndex] = [];
 	const targetStep = jsonQuery.steps[stepIndex];
 	const columns = targetStep.columns;
@@ -15,6 +15,17 @@ export function storeAliases(jsonQuery, aliases, stepIndex) {
 			if (column.alias && !aliases[stepIndex].includes(column.alias)) {
 				
 				let real = metaInformation.columns.find(col => col.column === column.real);
+				if (!real) {
+					for (let i = 0; i < stepIndex; i++) {
+						if (stepResultsArray[i]) {
+							stepResultsArray[i].forEach(result => {
+								if (result.queryPart === column.real) {
+									real = result;
+								}
+							});
+						}
+					}
+				}
 				let aliasesEntry = {
 					"real":column.real,
 					"alias":column.alias,
@@ -100,9 +111,43 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 	});
 }
 
+export function updateColumnsOfferings(userDefinedAliases, stepResultsArray, stepIndex) {
+	console.log(stepIndex, stepResultsArray.length);
+	for (let index = stepIndex; index < stepResultsArray.length; index++) {
+		let columnOffering = document.querySelectorAll(`.column-select-${index}`);
+		columnOffering.forEach(columnSelect => {
+			const selectedOption = columnSelect.value;
+			const options = columnSelect.querySelectorAll('option.user-specific');
+			options.forEach(op => op.remove());
+
+			let aliases = userDefinedAliases[index];
+			aliases.forEach(aliasEntry => {
+				const selectOption = document.createElement('option');
+				selectOption.className = "user-specific";
+				selectOption.value = aliasEntry.alias;
+				selectOption.textContent = aliasEntry.alias;
+				columnSelect.appendChild(selectOption);
+			});
+			let currentLanguage = document.getElementById('languageSelection').value;
+			for (let i = 0; i < index; i++) {
+				stepResultsArray[i].forEach(res => {
+					const selectOption = document.createElement('option');
+					selectOption.className = "user-specific";
+					selectOption.value = res.queryPart;
+					selectOption.textContent = translateStepResults(res.queryPart, translations, artificialColumns, 
+						                                            currentLanguage);
+					columnSelect.appendChild(selectOption);
+				});
+			}
+			columnSelect.value = selectedOption;
+			M.FormSelect.init(columnSelect);
+		});
+	}
+}
+
 export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, stepsCount) {
-	for (var index = 0; index < stepsCount; index++) {
-		let columnOfferings = document.querySelectorAll(`.column-select`);
+	for (var index = 0; index <= stepsCount; index++) {
+		let columnOfferings = document.querySelectorAll(`.column-select-${index}`);
 		columnOfferings.forEach(columnSelect => {
 			const selectedOption = columnSelect.value;
 			const options = columnSelect.querySelectorAll('option.user-specific');
@@ -117,20 +162,23 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 				selectOption.textContent = aliasEntry.alias;
 				columnSelect.appendChild(selectOption);
 			});
-			console.log(aliases.index);
 			let languageSelectField = document.getElementById('languageSelection');
 			let currentLanguage = languageSelectField.value;
-			for (var i = 0; i < index - 1; i++) {
+			// console.log(index);
+			for (var i = 0; i < index; i++) {
 				stepResultsArray[i].forEach(stepResult => {
-					 const selectOption = document.createElement('option');
+					const selectOption = document.createElement('option');
 					selectOption.className = "user-specific";
-					selectOption.value = stepResult;
-					selectOption.textContent = translateStepResults(stepResult, translations, artificialColumns,
+					selectOption.value = stepResult.queryPart;
+					selectOption.textContent = translateStepResults(stepResult.queryPart, translations, artificialColumns,
 					                                                currentLanguage);
+					console.log(selectOption);
 					columnSelect.appendChild(selectOption);
+					// console.log(selectOption.value);
 				});
 			}
 			columnSelect.value = selectedOption;
+			M.FormSelect.init(columnSelect);
 		});
 		
 	}

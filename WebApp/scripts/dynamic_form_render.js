@@ -1,5 +1,5 @@
 import { getMetaInformation } from './metaInformation.js'; 
-import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
+import { storeAliases, storeStepResults, updateColumnsOfferings2, updateColumnsOfferings } from './stored_data_worker.js' 
 import { getTranslations, getUITranslations, translateStepResults } from './translations.js'
 import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
@@ -285,6 +285,7 @@ function renderConditions(container, step, stepIndex) {
 			Utilities.UpdateConditionValuePossibilities(userDefinedAliases, stepResultArray, queryObject.target_databases);
 			Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray, 
 				                                 stepIndex, currentLanguage);
+			M.FormSelect.init(valueColumnOffering);
 		});
 		
 		const conditionOperatorSelect = document.createElement('select');
@@ -457,7 +458,7 @@ function renderOrderBy(container, step, stepIndex) {
 			Utilities.updateAllAggregationSelects(userDefinedAliases, stepResultArray, 
 												  aggregationFunctionTypeMapping,
 												  currentLanguage);
-
+			M.FormSelect.init(orderByAggregationSelect);
 		});
 		
 		const orderByDirectionSelect = document.createElement('select');
@@ -597,7 +598,7 @@ function renderGroupBy(container, step, stepIndex) {
 			Utilities.updateAllAggregationSelects(userDefinedAliases, stepResultArray,
 												  aggregationFunctionTypeMapping,
 												  currentLanguage);		
-			
+			M.FormSelect.init(groupByAggregationSelect);
 		});
 		
 	
@@ -651,7 +652,7 @@ function renderGroupBy(container, step, stepIndex) {
 			// ######################## NOTES END #########################
 			// let columnParts = column.split('.');
 			const columnTableSelect = document.createElement('select');
-			columnTableSelect.className = "column-select";
+			columnTableSelect.className = `column-select-${stepIndex}`;
 			// Alias input field
 			const aliasInputField = document.createElement('input');
 			aliasInputField.type = 'text';
@@ -667,7 +668,7 @@ function renderGroupBy(container, step, stepIndex) {
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
 					queryObject.steps[stepIndex].columns[columnIndex].alias = aliasInputField.value;
 				}
-				storeAliases(queryObject, userDefinedAliases, stepIndex);
+				storeAliases(queryObject, userDefinedAliases, stepResultArray, stepIndex);
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 				updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			});
@@ -732,7 +733,7 @@ function renderGroupBy(container, step, stepIndex) {
 			
 
 			// Store changes
-			columnTableSelect.addEventListener('change', () => {
+			columnTableSelect.addEventListener('change', function(event) {
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
 				aggregationFunctionSelect.value = "";
@@ -740,7 +741,19 @@ function renderGroupBy(container, step, stepIndex) {
 													  aggregationFunctionTypeMapping,
 													  currentLanguage);
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
-				updateColumnsOfferings2(userDefinedAliases, stepResultArray, stepIndex);
+				
+				console.log(event.target.selectedOptions[0].value);
+				updateColumnsOfferings(userDefinedAliases, stepResultArray, stepIndex);
+				console.log(event.target.selectedOptions[0].value);
+				// columnTableSelect.querySelectorAll('option.user-specific').forEach(option => {
+				// 	console.log(event.target.selectedOptions[0].value);
+				// 	console.log(option.value);
+				// 	if (option.value === event.target.selectedOptions[0].value) {
+				// 		console.log("WTF")
+				// 	}
+				// });
+				M.FormSelect.init(aggregationFunctionSelect);
+
 			});
 
 			
@@ -758,7 +771,7 @@ function renderGroupBy(container, step, stepIndex) {
 				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
 				renderForm();
 			}
-			storeAliases(queryObject, userDefinedAliases, stepIndex);
+			storeAliases(queryObject, userDefinedAliases, stepResultArray, stepIndex);
 			storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 			updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 			if (!column) {
@@ -895,7 +908,7 @@ generateButton.onclick = () => {
 	const jsonString = JSON.stringify(queryObject, null, 2);
 	outputJsonField.value = jsonString;
 
-	// autoResizeTextarea(outputJsonField);
+	autoResizeTextarea(outputJsonField);
 };
 
 const sendQueryButton = document.getElementById('sendQueryButton');
