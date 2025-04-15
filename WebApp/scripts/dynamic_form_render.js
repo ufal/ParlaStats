@@ -252,22 +252,28 @@ function renderConditions(container, step, stepIndex) {
 		conditionColumnTableSelect.className = `column-select-conditions`;
 			
 		const valueColumnOffering = document.createElement('select');
+		valueColumnOffering.addEventListener('change', () => {
+			queryObject.steps[stepIndex].filtering.conditions.conditionIndex.value = valueColumnOffering.value;
+		});
 
 		// Offer user columns from available databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, conditionColumnTableSelect,
 		                                     currentLanguage);
+		
+		Utilities.addDatabaseColumnOfferings(metaInformation.columns, valueColumnOffering);
 
 		// Offer user template columns
 		Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
-
+		Utitities.addArtificialColumnOfferings(valueColumnOffering, currentLanguage);
 		// Offer user aliases defined within this step
 		if (userDefinedAliases[stepIndex]) {
 			Utilities.addUserDefinedAliases(conditionColumnTableSelect, userDefinedAliases[stepIndex]);
+			Utilities.addUserDefinedAliases(valueColumnOffering, userDefinedAliases[stepIndex]);
 		}
 
 		// Offer user column that are being selected in other steps
 		Utilities.addStepResultsOfferings(conditionColumnTableSelect, stepResultArray, stepIndex, currentLanguage);
-
+		Utilities.addStepResultsOfferings(valueColumnOffering, stepResultArray, stepIndex, currentLanguage);
 		const defaultOption = document.createElement('option');
 		defaultOption.value = '';
 		defaultOption.textContent = translations[''][currentLanguage];
@@ -301,31 +307,21 @@ function renderConditions(container, step, stepIndex) {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].operator = conditionOperatorSelect.value;
 		});
 
-		// const conditionValueInput = document.createElement('input');
-		// conditionValueInput.className = "condition-value-input";
-		// conditionValueInput.type = 'text';
-		// conditionValueInput.placeholder = 'Value';
-		// conditionValueInput.value = condition.value;
-		// conditionValueInput.addEventListener('input', () => {
-		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
-		// });
 		const conditionValueInputDiv = document.createElement('div');
 		conditionValueInputDiv.className = "input-field";
 		const conditionValueInput = document.createElement('input');
 		conditionValueInput.className = "autocomplete";
 		conditionValueInput.placeholder = "Enter value here."
 		
-		if (condition.value) { conditionValueInput.value = condition.value; }
+		if (condition.value) { 
+				conditionValueInput.value = condition.value;	 
+		}
 		conditionValueInput.addEventListener('input', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
 		});
 		conditionValueInputDiv.appendChild(conditionValueInput);
 
-		const suggestionList = document.createElement('ul');
-		suggestionList.className = "suggestionList";
-
-		// const removeConditionButton = document.createElement('button');
-		// removeConditionButton.type = 'button';
+		
 		const removeConditionButton = document.createElement('a');
 		removeConditionButton.classList.add('wave-effect');
 		removeConditionButton.classList.add('wave-dark');
@@ -340,7 +336,6 @@ function renderConditions(container, step, stepIndex) {
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInputDiv);
 		conditionRow.appendChild(valueColumnOffering);
-		conditionRow.appendChild(suggestionList);
 		conditionRow.appendChild(removeConditionButton);
 		
 		conditionsContainer.appendChild(conditionRow);
@@ -421,7 +416,7 @@ function renderOrderBy(container, step, stepIndex) {
 		});
 
 		if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
-			orderByAggregationSelect.value = queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func;
+			orderByAggregationSelect.value = translations[queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func][currentLanguage];
 		} else {
 			orderByAggregationSelect.value = "";
 		}
@@ -451,9 +446,9 @@ function renderOrderBy(container, step, stepIndex) {
 			orderByTableSelect.value = "";
 		} else {
 			if (typeof orderByEntry.column === "object") {
-				orderByTableSelect.value = orderByEntry.column.real;
+				orderByTableSelect.value = translations[orderByEntry.column.real][currentLanguage];
 			} else {
-				orderByTableSelect.value = orderByEntry.column;
+				orderByTableSelect.value = translations[orderByEntry.column][currentLanguage];
 			}
 		}
 
