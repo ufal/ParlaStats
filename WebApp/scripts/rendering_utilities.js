@@ -225,6 +225,7 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 	}
 	if (!found) {
 		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
+		console.log(database, columnEntry, selectValue);
 		if (columnEntry) {
 			possibleValues = columnEntry["data"][database];		
 		} 
@@ -328,54 +329,49 @@ export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, st
 	});
 }
 
+
+
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
 	const columnSelects = document.querySelectorAll('.column-select-conditions');
 	columnSelects.forEach(colSelect => {
 		const rowContainer = colSelect.closest('.repeatable-row');
 		if (!rowContainer) { return; }
-		
 		let stepIndex = rowContainer.getAttribute('data-step-index');
 		stepIndex = stepIndex !== null ? parseInt(stepIndex, 10) : null;
-		const valueInput = rowContainer.querySelector('.condition-value-input');
-		
-		if (!valueInput) { return; }
-		valueInput.value = "";
-		valueInput.innerHTML = "";
-		
+		const valueInput = rowContainer.querySelector('.autocomplete');
+
 		let columnSelectType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, colSelect.value);
-		
-		let possibleValues = []
-		
+
+		let possibleValues = {};
+
 		if (databases) {
 			databases.forEach(database => {
-				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases, 
-															stepResultsArray, database, colSelect.value);
-				
+				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases,
+				                                               stepResultsArray, database, colSelect.value);
+				console.log(databasePossibleValues);
 				databasePossibleValues.forEach(value => {
-					if (!possibleValues.includes(value)) {
-						possibleValues.push(value);
+					if (!Object.keys(possibleValues).includes(value)) {
+						possibleValues[value] = null;
 					}
 				});
 			});
 		}
-
-		let suggestions = rowContainer.querySelector('.suggestionList');
-		suggestions.innerHTML = "";
 		
-		if (columnSelectType === "character varying") {
-			if (valueInput._flatpickr) {
-				valueInput._flatpickr.destroy();
-			}
-			makeStringSuggestions(rowContainer, valueInput, possibleValues);
-		} else if (["real", "integer", "time without timezone"].includes(columnSelectType)) {
-			if (valueInput._flatpickr) {
-				valueInput._flatpickr.destroy();
-			}
-			makeNumericalSuggestions(rowContainer, valueInput, possibleValues);
-		} else if (columnSelectType === "date") {
-			makeDateSuggestions(rowContainer, valueInput, possibleValues);
-		}
+		const existingInstance = M.Autocomplete.getInstance(valueInput);
+		if (existingInstance) { console.log("Yes")}
 		
+		setTimeout(() => {
+			M.Autocomplete.init(valueInput, {
+				data: possibleValues,
+				limit: 5,
+				minLength: ["text", "character varying"].includes(columnSelectType) ? 1 : 0,
+				onAutocomplete: function(val) {
+					console.log(`User selected: ${val}`)
+				}
+			});
+		}, 100);
+		 	
 	});
+	
 }
 

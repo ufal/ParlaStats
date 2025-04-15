@@ -301,14 +301,25 @@ function renderConditions(container, step, stepIndex) {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].operator = conditionOperatorSelect.value;
 		});
 
+		// const conditionValueInput = document.createElement('input');
+		// conditionValueInput.className = "condition-value-input";
+		// conditionValueInput.type = 'text';
+		// conditionValueInput.placeholder = 'Value';
+		// conditionValueInput.value = condition.value;
+		// conditionValueInput.addEventListener('input', () => {
+		// 	queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
+		// });
+		const conditionValueInputDiv = document.createElement('div');
+		conditionValueInputDiv.className = "input-field";
 		const conditionValueInput = document.createElement('input');
-		conditionValueInput.className = "condition-value-input";
-		conditionValueInput.type = 'text';
-		conditionValueInput.placeholder = 'Value';
-		conditionValueInput.value = condition.value;
+		conditionValueInput.className = "autocomplete";
+		conditionValueInput.placeholder = "Enter value here."
+		
+		if (condition.value) { conditionValueInput.value = condition.value; }
 		conditionValueInput.addEventListener('input', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
 		});
+		conditionValueInputDiv.appendChild(conditionValueInput);
 
 		const suggestionList = document.createElement('ul');
 		suggestionList.className = "suggestionList";
@@ -327,7 +338,7 @@ function renderConditions(container, step, stepIndex) {
 
 		conditionRow.appendChild(conditionColumnTableSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
-		conditionRow.appendChild(conditionValueInput);
+		conditionRow.appendChild(conditionValueInputDiv);
 		conditionRow.appendChild(valueColumnOffering);
 		conditionRow.appendChild(suggestionList);
 		conditionRow.appendChild(removeConditionButton);
