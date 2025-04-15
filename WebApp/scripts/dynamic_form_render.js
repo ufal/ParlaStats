@@ -264,7 +264,7 @@ function renderConditions(container, step, stepIndex) {
 
 		// Offer user template columns
 		Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
-		Utitities.addArtificialColumnOfferings(valueColumnOffering, currentLanguage);
+		Utilities.addArtificialColumnOfferings(valueColumnOffering, currentLanguage);
 		// Offer user aliases defined within this step
 		if (userDefinedAliases[stepIndex]) {
 			Utilities.addUserDefinedAliases(conditionColumnTableSelect, userDefinedAliases[stepIndex]);
