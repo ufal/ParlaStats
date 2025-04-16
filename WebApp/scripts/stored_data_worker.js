@@ -26,12 +26,20 @@ export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 						}
 					}
 				}
+				if (!real) {
+					Object.keys(artificialColumns).forEach(key => {
+						if (artificialColumns[key].formula === column.real) {
+							real = artificialColumns[key];
+						}
+					});
+				}
+				let data = (real.data) ? real.data : [];
 				let aliasesEntry = {
 					"real":column.real,
 					"alias":column.alias,
 					"agg_func":column.agg_func,
 					"type":real.type,
-					"possibleValues":real.data
+					"possibleValues":data
 				}
 				aliases[stepIndex].push(aliasesEntry);
 			}
@@ -112,7 +120,6 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 }
 
 export function updateColumnsOfferings(userDefinedAliases, stepResultsArray, stepIndex) {
-	console.log(stepIndex, stepResultsArray.length);
 	for (let index = stepIndex; index < stepResultsArray.length; index++) {
 		let columnOffering = document.querySelectorAll(`.column-select-${index}`);
 		columnOffering.forEach(columnSelect => {
@@ -172,7 +179,6 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 					selectOption.value = stepResult.queryPart;
 					selectOption.textContent = translateStepResults(stepResult.queryPart, translations, artificialColumns,
 					                                                currentLanguage);
-					console.log(selectOption);
 					columnSelect.appendChild(selectOption);
 					// console.log(selectOption.value);
 				});

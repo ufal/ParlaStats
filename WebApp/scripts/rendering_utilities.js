@@ -331,6 +331,28 @@ export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, st
 }
 
 
+function resetField(targetElement) {
+	const acInstance = M.Autocomplete.getInstance(targetElement);
+	if (acInstance) {
+		acInstance.destroy();
+		targetElement.classList.remove('autocomplete');
+		return;
+	}
+	const dateInstance = M.Datepicker.getInstance(targetElement);
+	if (dateInstance) {
+		dateInstance.destroy();
+		targetElement.classList.remove('datepicker');
+		return;
+	}
+	const timeInstance = M.Timepicker.getInstance(targetElement);
+	if (timeInstance) {
+		timeInstance.destroy();
+		targetElement.classList.remove('timepicker');
+		return;
+	}
+	return;
+}
+
 
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
 	const columnSelects = document.querySelectorAll('.column-select-conditions');
@@ -339,7 +361,7 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 		if (!rowContainer) { return; }
 		let stepIndex = rowContainer.getAttribute('data-step-index');
 		stepIndex = stepIndex !== null ? parseInt(stepIndex, 10) : null;
-		const valueInput = rowContainer.querySelector('.autocomplete');
+		const valueInput = rowContainer.querySelector('.value-input');
 
 		let columnSelectType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, colSelect.value);
 
@@ -349,7 +371,6 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 			databases.forEach(database => {
 				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases,
 				                                               stepResultsArray, database, colSelect.value);
-				console.log(databasePossibleValues);
 				databasePossibleValues.forEach(value => {
 					if (!Object.keys(possibleValues).includes(value)) {
 						possibleValues[value] = null;
@@ -357,20 +378,64 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 				});
 			});
 		}
-		
-		const existingInstance = M.Autocomplete.getInstance(valueInput);
-		if (existingInstance) { console.log("Yes")}
-		
-		setTimeout(() => {
+		console.log(valueInput);
+		valueInput.value = "";
+		if (columnSelectType === "date") {
+			resetField(valueInput);
+			valueInput.classList.add('datepicker');
+			valueInput.placeholder = "Pick a date";
+			console.log(new Date(Object.keys(possibleValues)[0]), new Date(Object.keys(possibleValues)[1]));
+			M.Datepicker.init(valueInput, {
+				format: 'yyyy-mm-dd',
+				autoClose: true,
+				defaultDate: new Date(Object.keys(possibleValues)[0]),
+				setDefaultDate: true,
+				minDate: new Date(Object.keys(possibleValues)[0]),
+				maxDate: new Date(Object.keys(possibleValues)[1]),
+				onSelect: function(date) {
+					valueInput.dispatchEvent(new Event('input', {bubbles:true}));
+				}
+			});
+		} else if (["text", "character varying"].includes(columnSelectType)) {
+			resetField(valueInput);
+			valueInput.classList.add('autocomplete');
+			valueInput.placeholder = "Enter value here.";
 			M.Autocomplete.init(valueInput, {
 				data: possibleValues,
 				limit: 5,
-				minLength: ["text", "character varying"].includes(columnSelectType) ? 1 : 0,
+				minLength:1,
 				onAutocomplete: function(val) {
-					console.log(`User selected: ${val}`)
+					valueInput.dispatchEvent(new Event('input', {bubbles:true}));
 				}
 			});
-		}, 100);
+		} else if (columnSelectType === "time without time zone") {
+			resetField(valueInput);
+			valueInput.classList.add('datepicker');
+			valueInput.placeholder = "Pick a time.";
+			M.Timepicker.init(valueInput, {
+				twelveHour:false,
+				autoClose:true,
+				defaultTime: 'now',
+				onSelect: function(val) {
+					valueInput.dispatchEvent(new Event('input', {bubbles:true}));
+				},
+				onCloseStart: function(val) {
+					valueInput.dispatchEvent(new Event('input', {bubbles:true}));
+				}
+			});
+		} else {
+			resetField(valueInput);
+			valueInput.placeholder = `Enter a number. Max:${Object.keys(possibleValues)[1]} Min: ${Object.keys(possibleValues)[0]}`
+		}
+		
+		// M.Autocomplete.init(valueInput, {
+		// 	data: possibleValues,
+		// 	limit: 5,
+		// 	minLength: ["text", "character varying"].includes(columnSelectType) ? 1 : 0,
+		// 	onAutocomplete: function(val) {
+		// 		console.log(`User selected: ${val}`)
+		// 	}
+		// });
 		 	
 	});
 	

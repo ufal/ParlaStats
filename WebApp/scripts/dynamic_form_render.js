@@ -312,7 +312,8 @@ function renderConditions(container, step, stepIndex) {
 		const conditionValueInputDiv = document.createElement('div');
 		conditionValueInputDiv.className = "input-field";
 		const conditionValueInput = document.createElement('input');
-		conditionValueInput.className = "autocomplete";
+		conditionValueInput.classList.add("autocomplete");
+		conditionValueInput.classList.add("value-input");
 		conditionValueInput.placeholder = "Enter value here."
 		
 		if (condition.value) {
@@ -330,7 +331,8 @@ function renderConditions(container, step, stepIndex) {
 			}
 		}
 		conditionValueInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
+			console.log("Here");
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
 		});
 		conditionValueInputDiv.appendChild(conditionValueInput);
 
