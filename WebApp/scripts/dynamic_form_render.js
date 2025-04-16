@@ -253,14 +253,14 @@ function renderConditions(container, step, stepIndex) {
 			
 		const valueColumnOffering = document.createElement('select');
 		valueColumnOffering.addEventListener('change', () => {
-			queryObject.steps[stepIndex].filtering.conditions.conditionIndex.value = valueColumnOffering.value;
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = valueColumnOffering.value;
 		});
 
 		// Offer user columns from available databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, conditionColumnTableSelect,
 		                                     currentLanguage);
 		
-		Utilities.addDatabaseColumnOfferings(metaInformation.columns, valueColumnOffering);
+		Utilities.addDatabaseColumnOfferings(metaInformation.columns, valueColumnOffering, currentLanguage);
 
 		// Offer user template columns
 		Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
@@ -284,6 +284,8 @@ function renderConditions(container, step, stepIndex) {
 			conditionColumnTableSelect.value = '';
 		} else {
 			conditionColumnTableSelect.value = condition.column;
+			// Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray,
+			                                     // stepIndex, currentLanguage);
 		}
 		
 		conditionColumnTableSelect.addEventListener('change', () => {
@@ -313,8 +315,19 @@ function renderConditions(container, step, stepIndex) {
 		conditionValueInput.className = "autocomplete";
 		conditionValueInput.placeholder = "Enter value here."
 		
-		if (condition.value) { 
+		if (condition.value) {
+			let done = false;
+			let options = valueColumnOffering.querySelectorAll('option');
+			options.forEach(option => {
+				if (option.value === condition.value) {
+					conditionValueInput.value = "";
+					valueColumnOffering.value = condition.value; 
+					done=true; }
+			});
+			if (!done) {
+				valueColumnOffering.value = "";
 				conditionValueInput.value = condition.value;	 
+			}
 		}
 		conditionValueInput.addEventListener('input', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = conditionValueInput.value;
@@ -446,9 +459,9 @@ function renderOrderBy(container, step, stepIndex) {
 			orderByTableSelect.value = "";
 		} else {
 			if (typeof orderByEntry.column === "object") {
-				orderByTableSelect.value = translations[orderByEntry.column.real][currentLanguage];
+				orderByTableSelect.value = orderByEntry.column.real;
 			} else {
-				orderByTableSelect.value = translations[orderByEntry.column][currentLanguage];
+				orderByTableSelect.value = orderByEntry.column;
 			}
 		}
 
@@ -748,16 +761,8 @@ function renderGroupBy(container, step, stepIndex) {
 													  currentLanguage);
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 				
-				console.log(event.target.selectedOptions[0].value);
 				updateColumnsOfferings(userDefinedAliases, stepResultArray, stepIndex);
-				console.log(event.target.selectedOptions[0].value);
-				// columnTableSelect.querySelectorAll('option.user-specific').forEach(option => {
-				// 	console.log(event.target.selectedOptions[0].value);
-				// 	console.log(option.value);
-				// 	if (option.value === event.target.selectedOptions[0].value) {
-				// 		console.log("WTF")
-				// 	}
-				// });
+				
 				M.FormSelect.init(aggregationFunctionSelect);
 
 			});

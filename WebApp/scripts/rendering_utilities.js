@@ -100,6 +100,7 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				selectOption.value = column.queryPart;
 				selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
 				                                                currentLanguage);
+				console.log(selectOption);
 				targetElement.appendChild(selectOption);
 			});
 		}

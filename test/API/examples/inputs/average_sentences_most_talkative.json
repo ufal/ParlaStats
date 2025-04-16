@@ -46,7 +46,7 @@
 					{
 						"column":"person.person_id",
 						"operator":"=",
-						"value":"step_result/find_most_talkative/speech.person_id"
+						"value":"step_result/find_most_talkative/person.person_id"
 					},
 					{
 						"column":"speech.date",

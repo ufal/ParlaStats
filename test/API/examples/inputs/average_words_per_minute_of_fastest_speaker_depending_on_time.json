@@ -59,7 +59,7 @@
 					{
 						"column":"person.person_id",
 						"operator":"=",
-						"value":"step_result/get_fastest_speaker/speech.person_id"
+						"value":"step_result/get_fastest_speaker/person.person_id"
 					}
 				]
 			},
