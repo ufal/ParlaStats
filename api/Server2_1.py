@@ -1,6 +1,6 @@
 #!usr/bin/python3
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from flask.json.provider import JSONProvider
 import psycopg2
 from configparser import ConfigParser
@@ -12,6 +12,7 @@ from datetime import datetime, time, date
 import sys
 from metainformationFetcher import metainformationFetcher
 from SQLBuilder import SQLBuilder
+from collections import OrderedDict
 
 class CustomJSONifier(JSONEncoder):
     """
@@ -130,8 +131,74 @@ def query():
 """
 @app.route('/metainformation')
 def get_metainformation_JSON():
-    print(jsonify(metainformationFetcher.make_metainformation_JSON()))
     return jsonify(metainformationFetcher.make_metainformation_JSON())
 
+"""
+=================================================================================================================
+############################ METADATA ENDPOINTS #################################################################
+=================================================================================================================
+"""
+@app.route('/meta_text')
+def provide_textual_suggestions():
+    field = request.args.get("field", "").strip()
+    q = request.args.get("q", "").strip()
+    limit = request.args.get("limit", 10, type=int)
+    target_databases = request.args.get("dbs", None).split(',')
+    if not ('.' in field):
+        abort(400, f"Unknown field: {field}")
+    if not q:
+        return jsonify([])
+
+    field = field.split('.')
+    table = field[0]
+    column = field[1]
+    pattern = f"{q}%"
+
+    rows = []
+    SQL_query = (
+        f"SELECT DISTINCT {column} AS value "
+        f"FROM {table} "
+        f"WHERE {column} ILIKE %(pattern)s "
+        f"ORDER BY {column} "
+        f"LIMIT %(limit)s "
+    )
+    for database in target_databases:
+        with connect_to_database(f'../DatabaseCommunication/{database}.ini') as db_connection:
+            with db_connection.cursor() as cursor:
+                cursor.execute(SQL_query, {"pattern": pattern, "limit": limit})
+                rows.extend(r[0] for r in cursor.fetchall())
+
+    uniq = list(OrderedDict.fromkeys(rows))
+    return jsonify([{"value": v} for v in uniq])
+
+@app.route('/meta_numeric')
+def provide_numeric_sggestions():
+    field = request.args.get("field", "").strip()
+    target_databases = request.args.get("dbs", None).split(',')
+    if not ('.' in field):
+        abort(400, f"Unknown field: {field}")
+    
+    field = field.split('.')
+    table = field[0]
+    column = field[1]
+    
+    SQL_query = (
+        f"SELECT MAX({column}) AS maximum, MIN({column}) AS minimum "
+        f"FROM {table} "
+    )
+    
+    rows = []
+    for database in target_databases:
+        with connect_to_database(f'../DatabaseCommunication/{database}.ini') as db_connection:
+            with db_connection.cursor() as cursor:
+                cursor.execute(SQL_query)
+                rows.extend((database,r) for r in cursor.fetchall())
+    
+    print(rows)
+    res = [{res[0]: {"max":res[1][0], "min":res[1][1]} for res in rows}]
+
+
+    print(res)
+    return jsonify(res)
 if __name__ == "__main__":
     app.run(debug=True)
