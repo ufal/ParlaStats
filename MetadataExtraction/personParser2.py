@@ -26,10 +26,24 @@ class Affiliation:
     party=str()
 
     def __init__(self, since=None, to=None, role=None, party=None):
-        self.since = since
+        
+        if (since == ''):
+            self.since = None;
+        elif ('-' not in since):
+            self.since = f'{since}-01-01'       
+
+        else:
+            self.since = since
         self.party = party
         self.role = role
-        self.to = to
+        
+        if (to == ''):
+            self.to = None
+        elif ('-' not in to):
+            self.to = f'{to}-12-31'       
+
+        else:
+            self.to = to
 
 class PersonName:
     """
@@ -80,6 +94,8 @@ class Person:
         self.sex=sex
         if (birth == ''):
             self.birth = None
+        elif ('-' not in birth):
+            self.birth = f'{birth}-01-01'
         else:
             self.birth=birth
         self.name_records=[]

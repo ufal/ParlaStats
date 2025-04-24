@@ -7,6 +7,7 @@ from lxml import etree
 import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
+
 # LEGACY METADATA EXTRACTION
 from MetadataExtraction.personParser import personParser
 from MetadataExtraction.orgParser import organisationParser
@@ -20,10 +21,10 @@ from DatabaseCommunication.DatabaseTableCreator import DatabaseTableCreator
 from DatabaseCommunication.DatabaseInserter import DatabaseInserter
 
 args_parser = argparse.ArgumentParser()
-args_parser.add_argument("--root", type=str, default="../ParCzech.TEI.ana/ParCzech.ana.xml", help="Path to the corpus root file.")
+args_parser.add_argument("--root", type=str, help="Path to the corpus root file.")
 args_parser.add_argument("--query_file", type=str, default=None, help="Path to the file with querries to run ")
 args_parser.add_argument("--query_mode", action="store_true", help="Set this flag if you wish to present some queries to the database.")
-args_parser.add_argument("--database", type=str, default="DatabaseCommunication/parczech4_0.ini", help="File with target database details")
+args_parser.add_argument("--database", type=str, help="File with target database details")
 args_parser.add_argument("--create_tables", action="store_true", help="Set this flag to create database tables.")
 args_parser.add_argument("--legacy", action="store_true", help="Set this flag to use legacy (non-XSLT) metadata extraction")
 
@@ -44,20 +45,23 @@ class mainDriver:
         else: 
             speech_parser = speechParser2()
 
-        teiCorpus = xml.dom.minidom.parse(self.corpus_root)
-        transcript_files = teiCorpus.getElementsByTagName('xi:include')
+        teiCorpus = xml.dom.minidom.parse(self.corpus_root).childNodes[0]
+        transcript_files = [
+            child for child in teiCorpus.childNodes
+            if child.nodeName == "xi:include"
+        ]
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
-            if ref[0:2] == "ps":
-                filePath = self.source + '/' + ref
+            
+            filePath = self.source + '/' + ref
 
-                contents = None
-                if self.legacy:
-                    contents = speech_parser.process_file(filePath)
-                else:
-                    contents = speech_parser.pipeline(filePath)
-                if contents:
-                    self.databaseInserter.insert_speeches(contents)            
+            contents = None
+            if self.legacy:
+                contents = speech_parser.process_file(filePath)
+            else:
+                contents = speech_parser.pipeline(filePath)
+            if contents:
+                self.databaseInserter.insert_speeches(contents)            
                 
     def __parse_persons_file(self, file, source_corpus):
         persons = None
