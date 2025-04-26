@@ -152,7 +152,7 @@ def provide_textual_suggestions():
     field = field.split('.')
     table = field[0]
     column = field[1]
-    pattern = f"{q}%"
+    pattern = f"%{q}%%"
 
     rows = []
     SQL_query = (

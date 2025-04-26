@@ -42,19 +42,14 @@ class metainformationFetcher:
                                 JOIN tables t ON c.table_id = t.id;
                                """)
 
-                table_columns = [{ "column":f"{row[0]}.{row[1]}", "type":row[2], "data":{}} for row in meta_cursor.fetchall()]
+                table_columns = [{ "column":f"{row[0]}.{row[1]}", "type":row[2], "data":{} } for row in meta_cursor.fetchall()]
                 for database in available_databases:
                     with metainformationFetcher.connect_to_database(f'../DatabaseCommunication/{database}.ini') as db_connection:
                         with db_connection.cursor() as db_cursor:
                             for entry in table_columns:
                                 column_split = entry["column"].split('.');
                                 if (entry["type"] in ["character varying", "text"]):
-                                    db_cursor.execute(f"SELECT DISTINCT {column_split[1]} FROM {column_split[0]};")
-                                    available_values = [row[0] for row in db_cursor.fetchall()]
-                                    if (len(available_values) < 1000):
-                                        entry["data"][database] = available_values
-                                    else:
-                                        entry["data"][database] = "None"
+                                    entry["data"][database] = []
                                 else:
                                     db_cursor.execute(f"SELECT MIN({column_split[1]}) AS minimum, MAX ({column_split[1]}) AS maximum FROM {column_split[0]}")
                                     fetched_data = [(row[0], row[1]) for row in db_cursor.fetchall()]
