@@ -32,7 +32,8 @@ class DatabaseInserter(DatabaseOperator):
                 if len(p.sex) > 1:
                     p.sex = 'U'
                 
-                cursor.execute(PersonCommands.INSERT_ALL,(p.personID, p.sex, p.birth))
+                else:    
+                    cursor.execute(PersonCommands.INSERT_ALL,(p.personID, p.sex, p.birth))
                 self.__insert_name_records(p.name_records,p.personID, cursor)
             self.connection.commit()
     
@@ -114,6 +115,9 @@ class DatabaseInserter(DatabaseOperator):
         with self.connection.cursor() as cursor:
             for author in speeches:
                 for s in speeches[author]:
+                    if (len(s.speakerID) == 0):
+                        print(f"Warning: Speech {s.speechID} has no who attribute!")
+                        continue
                     cursor.execute(SpeechCommands.INSERT_ALL, (s.speechID,
                                                                s.when,
                                                                str(s.tokens),

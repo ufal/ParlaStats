@@ -56,7 +56,7 @@ class MIDatabaseFiller(DatabaseOperator):
                                            WHERE c.relname = 'artificial_columns'
                                               AND a.attnum > 0
                                               AND NOT a.attisdropped;
-                                        """, (schema,))
+                                        """)
                 return database_cursor.fetchall()
     
     def __fetch_artificial_columns(self, database_name):
