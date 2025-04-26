@@ -5,6 +5,8 @@ import { getTranslations, translateStepResults } from './translations.js'
 let artificialColumns = getArtificialColumns();
 let metaInformation = getMetaInformation();
 let translations = getTranslations();
+let testServerURL="http://127.0.0.1:5000/meta"
+
 
 export function addDatabaseColumnOfferings(offerings, targetElement, currentLanguage) {
 	offerings.forEach(item => {
@@ -237,57 +239,11 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 	
 }
 
-function makeStringSuggestions(rowContainer, targetElement, possibleValues) {
-	const fuse = new Fuse(possibleValues, {
-		threshold:0.4,
-		includeScore:true
-	});
-	const suggestionList = rowContainer.querySelector('.suggestionList');
-	suggestionList.style.display="block";
-	targetElement.addEventListener("input", () => {
-		const query = targetElement.value.trim();
-		suggestionList.innerHTML = "";
-		if (query === "") { return; }
-
-		let results = fuse.search(query, {limit:5});
-		results.forEach(result => {
-			const item = document.createElement("li");
-			item.textContent = result.item;
-			suggestionList.appendChild(item);
-		});
-
-	});
-}
-
-function makeNumericalSuggestions(rowContainer, targetElement, possibleValues) {
-	const suggestionList = rowContainer.querySelector('.suggestionList');
-	targetElement.addEventListener("input", () => {
-		const query = targetElement.value.trim();
-		suggestionList.innerHTML = "";
-		if (query === "") { return; }
-		const maxItem = document.createElement('li');
-		maxItem.textContent = "Maximum: " + possibleValues[1];
-		const minItem = document.createElement('li');
-		minItem.textContent = "Minimum: " + possibleValues[0];
-		suggestionList.appendChild(minItem);
-		suggestionList.appendChild(maxItem);
-	});
-}
-
-function makeDateSuggestions(rowContainer, targetElement, possibleValues) {
-	const minDate = possibleValues[0];
-	const maxDate = possibleValues[1];
-	flatpickr(targetElement, {
-		minDate,
-		maxDate,
-		dateFormat:"Y-m-d"
-	});
-	return flatpickr;
-}
-
 export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, stepResultsArray, stepIndex, currentLanguage) {
 	let compatibleColumns = [];
+	console.log(targetElement)
 	const rowContainer = targetElement.closest('.repeatable-row');
+	console.log(rowContainer);
 	const columnSelect = rowContainer.querySelector('.column-select-conditions');
 	const selectValueType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, columnSelect.value);
 	targetElement.innerHTML = "";
@@ -353,6 +309,32 @@ function resetField(targetElement) {
 	return;
 }
 
+export async function UpdateConditionValuePossibilities2(valueInput, columnSelectValue, userDefinedAliases, stepResultArray, stepIndex, databases) {
+	let columnSelectType = getColumnType(stepIndex, userDefinedAliases, stepResultArray, columnSelectValue)
+	const target_databases = databases.join(',');
+	let res = null;
+	if (["character varying", "text"].includes(columnSelectType)) {
+		res = await fetch(
+			`${testServerURL}_text?field=${columnSelectValue}&dbs=${target_databases}&q=${encodeURIComponent(valueInput.value)}&limit=12`
+		);
+	
+		let possibleValues = {}
+		const list = await res.json()
+		list.forEach(entry => {
+			possibleValues[entry.value] = null;
+		});
+		M.Autocomplete.init(valueInput, {
+			data: possibleValues,
+			limit:10,
+			minLength: 1,
+			onAutocomplete: function (val) {
+				valueInput.dispatchEvent(new Event('input', {bubbles:true}));
+			}
+
+		});
+	}
+	
+}
 
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
 	const columnSelects = document.querySelectorAll('.column-select-conditions');
@@ -438,6 +420,5 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 		// });
 		 	
 	});
-	
 }
 

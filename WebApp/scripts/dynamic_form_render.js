@@ -249,13 +249,13 @@ function renderConditions(container, step, stepIndex) {
 		// TODO: Repeated code at 181-188 and 194-201
 		// ######################## NOTES END #########################
 		const conditionColumnTableSelect = document.createElement('select');
-		conditionColumnTableSelect.className = `column-select-conditions`;
+		conditionColumnTableSelect.classList.add(`column-select-conditions`);
 			
 		const valueColumnOffering = document.createElement('select');
 		valueColumnOffering.addEventListener('change', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = valueColumnOffering.value;
 		});
-
+		
 		// Offer user columns from available databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, conditionColumnTableSelect,
 		                                     currentLanguage);
@@ -278,23 +278,25 @@ function renderConditions(container, step, stepIndex) {
 		defaultOption.value = '';
 		defaultOption.textContent = translations[''][currentLanguage];
 		conditionColumnTableSelect.appendChild(defaultOption);
+		conditionColumnTableSelect.addEventListener('change', () => {
+			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
+			
+			Utilities.UpdateConditionValuePossibilities(userDefinedAliases, stepResultArray, queryObject.target_databases)
+
+			Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray, 
+				                                 stepIndex, currentLanguage);
+			
+			M.FormSelect.init(valueColumnOffering);
+		});
 
 		if (!condition.column) {
 			condition.column = '';
 			conditionColumnTableSelect.value = '';
 		} else {
 			conditionColumnTableSelect.value = condition.column;
-			// Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray,
-			                                     // stepIndex, currentLanguage);
 		}
 		
-		conditionColumnTableSelect.addEventListener('change', () => {
-			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
-			Utilities.UpdateConditionValuePossibilities(userDefinedAliases, stepResultArray, queryObject.target_databases);
-			Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray, 
-				                                 stepIndex, currentLanguage);
-			M.FormSelect.init(valueColumnOffering);
-		});
+		
 		
 		const conditionOperatorSelect = document.createElement('select');
 		const operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN", "NOT IN", "IS NOT"];
@@ -329,10 +331,12 @@ function renderConditions(container, step, stepIndex) {
 				valueColumnOffering.value = "";
 				conditionValueInput.value = condition.value;	 
 			}
+			conditionValueInput.dispatchEvent(new Event('input', {bubbles:true}));
 		}
 		conditionValueInput.addEventListener('input', () => {
-			console.log("Here");
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
+			Utilities.UpdateConditionValuePossibilities2(conditionValueInput, conditionColumnTableSelect.value,
+			                                             userDefinedAliases, stepResultArray, stepIndex, queryObject.target_databases)
 		});
 		conditionValueInputDiv.appendChild(conditionValueInput);
 
@@ -346,7 +350,8 @@ function renderConditions(container, step, stepIndex) {
 			queryObject.steps[stepIndex].filtering.conditions.splice(conditionIndex, 1);
 			renderForm();
 		};
-
+		
+		
 		conditionRow.appendChild(conditionColumnTableSelect);
 		conditionRow.appendChild(conditionOperatorSelect);
 		conditionRow.appendChild(conditionValueInputDiv);
@@ -465,6 +470,7 @@ function renderOrderBy(container, step, stepIndex) {
 			} else {
 				orderByTableSelect.value = orderByEntry.column;
 			}
+			orderByTableSelect.dispatchEvent(new Event('change'));
 		}
 
 		// Offer aggregation function options based on selected column type
@@ -567,7 +573,7 @@ function renderGroupBy(container, step, stepIndex) {
 					"agg_func":groupByAggregationSelect.value
 				}
 			} else if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "object") {
-				if (event.target.selectedOptions[0]. value === "") {
+				if (event.target.selectedOptions[0].value === "") {
 					queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
 				} else {
 					queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex].agg_func = groupByAggregationSelect.value;
@@ -609,6 +615,7 @@ function renderGroupBy(container, step, stepIndex) {
 			} else if (typeof gbColumn === "string") {
 				groupByTableSelect.value = gbColumn;
 			}
+			groupByTableSelect.dispatchEvent(new Event('change'));
 		}
 
 		// Update aggregation offerings based on selected column type
@@ -779,7 +786,7 @@ function renderGroupBy(container, step, stepIndex) {
 			removeColumnButton.classList.add('wave-effect');
 			removeColumnButton.classList.add('wave-dark');
 			removeColumnButton.classList.add('btn');
-			removeColumnButton.textContent = 'Remove group by';
+			removeColumnButton.textContent = 'Remove Column';
 			removeColumnButton.onclick = () => {
 				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
 				renderForm();
@@ -848,11 +855,16 @@ function renderTargetSection(container) {
 			option.textContent = databaseName;
 			newInput.appendChild(option);
 		});
-		
+
+		const defaultOption = document.createElement('option');
+		defaultOption.value = '';
+		defaultOption.textContent = translations[''][currentLanguage];
+		newInput.appendChild(defaultOption);
 		if (!queryObject.target_databases[databaseIndex]) {
-			newInput.value = newInput.options[0].value;
+			newInput.value = '';
 		} else {
 			newInput.value = queryObject.target_databases[databaseIndex];
+			newInput.dispatchEvent(new Event('change'));
 		}
 
 		newInput.addEventListener('change', () => {
@@ -947,7 +959,8 @@ sendQueryButton.onclick = async () => {
 }
 
 function visualizeResponseInTable(responseData) {
-	const visualizationDiv = document.getElementById("responseDataTable");
+	const visualizationDiv = document.getElementById("results-table-wrapper");
+	console.log(visualizationDiv);
 	visualizationDiv.innerHTML = '';
 	var table = document.createElement("table");
 	var tableHeader = document.createElement("thead");
