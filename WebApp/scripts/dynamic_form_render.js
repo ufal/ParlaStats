@@ -3,6 +3,7 @@ import { storeAliases, storeStepResults, updateColumnsOfferings2, updateColumnsO
 import { getTranslations, getUITranslations, translateStepResults } from './translations.js'
 import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
+import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -946,15 +947,16 @@ sendQueryButton.onclick = async () => {
 			body: query
 		}
 		const response = await fetch(testServerURL, queryWrapped);
+		console.log("here");	
 		if (!response.ok) {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
 		const responseData = await response.json();
-		visualizeResponseInTable(responseData);
+		// visualizeResponseInTable(responseData);
+		visualizeAsTable(responseData);
 		// document.getElementById("responseJSON").textContent = JSON.stringify(responseData, null, 2);
 	} catch (error) {
-		// document.getElementById("responseJSON").textContent = `Error ${error}`;
-
+		console.log(error);
 	}
 }
 
