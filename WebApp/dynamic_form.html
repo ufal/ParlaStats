@@ -8,7 +8,9 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">	
 	<link rel="stylesheet" href="styles/tabs.css"> 
-
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="styles/tables.css">
 	<!-- Rendering scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -20,10 +22,18 @@
 	<script type="module" src="scripts/rendering_utilities.js" defer></script>
 	
 	<!-- Styling scripts -->
-	<!-- <script src=scripts/styling_scripts/tab_toggler.js></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<!-- Results visualization scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>	
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+	<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+
+	<script type="module" src="scripts/visualization_scrpits/visualize_as_tables.js" defer></script>
 </head>
 <body>
+	
 	<nav>
 		<div class="nav-wrapper #26a69a">
 			<a href="#" class="brand-logo center">ParlaStats statistical tool</a>
@@ -35,55 +45,58 @@
 			</ul>
 		</div>
 	</nav>
-
-	<div class="container">
-		<div class="row">
-			<div class="col s12">
-				<ul class="tabs">
-					<li class="tab col s4"><a href="#input">Manual Query</a></li>
-					<li class="tab col s4"><a href="#form">Query Form</a></li>
-					<li class="tab col s4"><a href="#output">Query Preview</a></li>
-				</ul>
+	<div class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s4"><a href="#input">Manual Query</a></li>
+						<li class="tab col s4"><a href="#form">Query Form</a></li>
+						<li class="tab col s4"><a href="#output">Query Preview</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="input" class="col s12">
+				<div class="input-field">
+					<h5 id="inputJSONtitle">Manual Query</h5>
+					<textarea id="inputJSON" placeholder="Paste input JSON query here"></textarea>
+					<label for="inputJSONtitle">Input JSON</label>
+					<!-- <button id="loadButton" type="button">Load Query</button> -->
+				</div>
+				<a class="waves-effect waves-light btn" id="loadButton">Load Query</a>
+			</div>
+			<div id="form" class="col s12">
+				<h5>Query Form</h5>
+				<a class="waves-effect waves-light btn" id="sendQueryButton">Send Query</a>
+				<div id="formContainer"></div>
+			</div>
+			<div id="output" class="col s12">
+				<div class="input-field">
+					<h5 id="outputJSONtitle">Query Preview</h5>
+					<textarea id="outputJSON" placeholder="Generated JSON query"></textarea>
+					<label for="outputJSON">Query Preview</label>
+					<!-- <button id="generateButton" type="button">Generate Query</button> -->
+				</div>
+				<a class="waves-effect waves-light btn" id="generateButton">Generate Query</a>
 			</div>
 		</div>
-		<div id="input" class="col s12">
-			<div class="input-field">
-				<h5 id="inputJSONtitle">Manual Query</h5>
-				<textarea id="inputJSON" placeholder="Paste input JSON query here"></textarea>
-				<label for="inputJSONtitle">Input JSON</label>
-				<!-- <button id="loadButton" type="button">Load Query</button> -->
+		<div class="container" id="results">
+			
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s6"><a href="#table">Results Table</a></li>
+						<li class="tab col s6"><a href="#graph">Results Graph</a></li>
+					</ul>
+				</div>
 			</div>
-			<a class="waves-effect waves-light btn" id="loadButton">Load Query</a>
-		</div>
-		<div id="form" class="col s12">
-			<h5>Query Form</h5>
-			<a class="waves-effect waves-light btn" id="sendQueryButton">Send Query</a>
-			<div id="formContainer"></div>
-		</div>
-		<div id="output" class="col s12">
-			<div class="input-field">
-				<h5 id="outputJSONtitle">Query Preview</h5>
-				<textarea id="outputJSON" placeholder="Generated JSON query"></textarea>
-				<label for="outputJSON">Query Preview</label>
-				<!-- <button id="generateButton" type="button">Generate Query</button> -->
+			<h5>Results Tables</h5>
+			<div id="table" class="col s12">
+				<div id="results-table-wrapper"></div>
 			</div>
-			<a class="waves-effect waves-light btn" id="generateButton">Generate Query</a>
-		</div>
-	</div>
-	<div class="container" id="results">
-		<div class="row">
-			<div class="col s12">
-				<ul class="tabs">
-					<li class="tab col s6"><a href="#table">Results Table</a></li>
-					<li class="tab col s6"><a href="#graph">Results Graph</a></li>
-				</ul>
+			<div id="graph" class="col s12">
+				<div id="results-graph-wrapper"></div>
 			</div>
-		</div>
-		<div id="table" class="col s12">
-			<div id="results-table-wrapper"></div>
-		</div>
-		<div id="graph" class="col s12">
-			<div id="grpah-wrapper"></div>
 		</div>
 	</div>
 	<script>

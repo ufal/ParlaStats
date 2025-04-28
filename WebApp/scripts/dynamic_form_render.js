@@ -104,7 +104,7 @@ function renderForm() {
 
 function renderStepsSection(container) {
 	// Title
-	const stepsTitle = document.createElement('h2');
+	const stepsTitle = document.createElement('h5');
 	stepsTitle.textContent = UItranslations.StepsTitle[currentLanguage];
 	container.appendChild(stepsTitle);
 
@@ -829,7 +829,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 function renderTargetSection(container) {
 	// Title
-	const targetTitle = document.createElement('h2');
+	const targetTitle = document.createElement('h5');
 	targetTitle.textContent = UItranslations.targetDatabaseSectionTitle[currentLanguage];
 	container.appendChild(targetTitle);
 

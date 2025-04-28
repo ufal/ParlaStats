@@ -1,6 +1,6 @@
 export function visualizeAsTable(response) {
 	const targetElement = document.getElementById('results-table-wrapper')
-	console.log(response);
+	targetElement.innerHTML = "";
 	response.forEach(({ database, data}) => {
 		
 		if (!Array.isArray(data) || !data.length) return;
@@ -14,6 +14,7 @@ export function visualizeAsTable(response) {
 		const tableElement = document.createElement('table');
 		tableElement.id = `table-${database}`;
 		tableElement.classList.add('display');
+		tableElement.classList.add('striped');
 		tableElement.style="width:100%";
 		tableDiv.appendChild(tableElement);
 
@@ -24,7 +25,7 @@ export function visualizeAsTable(response) {
 
 		const columns = Object.keys(data[0]).map(c => ({
 			data: c.includes('.') ? c.replace(/\./g, '\\.') : c, 
-			titile: c
+			title: c
 		}));
 		
 		console.log(columns);
@@ -36,9 +37,7 @@ export function visualizeAsTable(response) {
 			responsive:true, 
 			pageLength:10, 
 			lengthMenu: [5, 10, 25, 50, 100],
-			layout: {
-				topStart: 'buttons'
-			},
+			layout: { topStart: 'buttons' },
 			buttons: {
 				dom: {
 					button: { className: 'btn waves-effect waves-light' }
@@ -46,7 +45,7 @@ export function visualizeAsTable(response) {
 				buttons: [
 					{
 						extend:'csv',
-						text: '<i class="material-iconse left">download</i>CSV'
+						text: 'Export as CSV'
 					}
 				]
 			}
