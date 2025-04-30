@@ -1,0 +1,20 @@
+.table-div {
+	padding:1em;
+}
+
+.dt-input{
+	border-right: none !important;
+	border-left: none !important;
+	border-top: none !important;
+	box-shadow: none !important;
+}
+.dt-paging-button,
+.dt-paging > nav {
+	background-color: #1B4242 !important;
+}
+table.striped > tbody > tr:nth-child(odd) {
+	background-color:#092635;
+	filter: brightness(1.18); 
+}
+
+
