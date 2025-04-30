@@ -4,6 +4,7 @@ import { getTranslations, getUITranslations, translateStepResults } from './tran
 import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
+import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -99,8 +100,42 @@ function renderForm() {
 	outputJSONTextarea.placeholder = UItranslations.outputJSONPlaceholder[currentLanguage];
 	
 	const selects = document.querySelectorAll('select');
-	M.FormSelect.init(selects);
+	initializeSelects(selects);
+	
 }
+
+function initializeSelects(selects) {
+	M.FormSelect.init(selects, { dropdownOptions: {constrainWidth: false }});
+
+	const textHolder = document.createElement('span');
+		document.body.appendChild(textHolder);
+		textHolder.class = 'select-text-holder';
+
+	selects.forEach(sel => {
+		const adapt = () => {
+			requestAnimationFrame(() => {
+				const wrapper = sel.parentElement;
+				const input = wrapper.querySelector('input.select-dropdown');	
+				const options = wrapper.querySelector('ul');
+				const selected = options.querySelector('.selected');
+				const span = selected.querySelector('span');
+				textHolder.style.font = getComputedStyle(input).font;
+				textHolder.textContent = span.textContent;
+				const currWidth = textHolder.offsetWidth + 40;
+				console.log(currWidth);
+				input.style.width = currWidth + 'px';
+				wrapper.style.width = currWidth + 'px';	
+			});
+			
+		};
+			
+		adapt();
+		sel.addEventListener('change', adapt);
+		
+	});
+	
+}
+
 
 function renderStepsSection(container) {
 	// Title
@@ -163,7 +198,7 @@ function renderStepsSection(container) {
 		removeStepButton.classList.add('waves-effect');
 		removeStepButton.classList.add('waves-dark');
 		removeStepButton.classList.add('btn');
-		removeStepButton.textContent = "Remove step";
+		removeStepButton.textContent = "-";
 		removeStepButton.onclick = () => {
 			queryObject.steps.splice(stepIndex, 1);
 			stepResultArray.splice(stepIndex, 1);
@@ -183,7 +218,7 @@ function renderStepsSection(container) {
 	addStepButton.classList.add('waves-effect');
 	addStepButton.classList.add('waves-dark');
 	addStepButton.classList.add('btn');
-	addStepButton.textContent = UItranslations.AddStepButtonText[currentLanguage];
+	addStepButton.textContent = '+';
 	addStepButton.onclick = () => {
 		queryObject.steps.push({
 			goal: '',
@@ -243,7 +278,7 @@ function renderConditions(container, step, stepIndex) {
 	conditionsContainer.className = 'repeatable-container';
 	step.filtering.conditions.forEach((condition, conditionIndex) => {
 		const conditionRow = document.createElement('div');
-		conditionRow.className = 'repeatable-row';
+		conditionRow.className = 'repeatable-row-inline';
 		conditionRow.setAttribute('data-step-index', stepIndex);
 		// ========================== NEW VERSION BEGIN ===========================
 		// ######################## NOTES BEGIN #######################
@@ -346,7 +381,7 @@ function renderConditions(container, step, stepIndex) {
 		removeConditionButton.classList.add('wave-effect');
 		removeConditionButton.classList.add('wave-dark');
 		removeConditionButton.classList.add('btn');
-		removeConditionButton.textContent = 'Remove Condition';
+		removeConditionButton.textContent = '-';
 		removeConditionButton.onclick = () => {
 			queryObject.steps[stepIndex].filtering.conditions.splice(conditionIndex, 1);
 			renderForm();
@@ -368,8 +403,7 @@ function renderConditions(container, step, stepIndex) {
 	addConditionButton.classList.add("wave-effect");
 	addConditionButton.classList.add("wave-dark");
 	addConditionButton.classList.add("btn");
-	addConditionButton.textContent = "Add condition";
-	addConditionButton.textContent = UItranslations.AddConditionButtonText[currentLanguage];
+	addConditionButton.textContent = '+';
 	addConditionButton.onclick = () => {
 		queryObject.steps[stepIndex].filtering.conditions.push({column:"", operator:"=", value:""});
 		renderForm();
@@ -405,7 +439,7 @@ function renderOrderBy(container, step, stepIndex) {
 	orderByContainer.className = 'repeatable-container';
 	step.aggregation.order_by.forEach((orderByEntry, orderByIndex) => {
 		const orderByRow = document.createElement('div');
-		orderByRow.className = 'repeatable-row';
+		orderByRow.className = 'repeatable-row-inline';
 		orderByRow.setAttribute('data-step-index', stepIndex);
 		const orderByTableSelect = document.createElement('select');
 		orderByTableSelect.className = `column-select`;
@@ -511,7 +545,7 @@ function renderOrderBy(container, step, stepIndex) {
 		removeOrderByButton.classList.add('wave-effect');
 		removeOrderByButton.classList.add('wave-dark');
 		removeOrderByButton.classList.add('btn');
-		removeOrderByButton.textContent = 'Remove order by';
+		removeOrderByButton.textContent = '-';
 		removeOrderByButton.onclick = () => {
 			queryObject.steps[stepIndex].aggregation.order_by.splice(orderByIndex, 1);
 			renderForm();
@@ -532,7 +566,7 @@ function renderOrderBy(container, step, stepIndex) {
 	addOrderByButton.classList.add('wave-effect');
 	addOrderByButton.classList.add('wave-dark');
 	addOrderByButton.classList.add('btn');
-	addOrderByButton.textContent = UItranslations.AddOrderByButtonText[currentLanguage];
+	addOrderByButton.textContent = '+';
 	addOrderByButton.onclick = () => {
 		queryObject.steps[stepIndex].aggregation.order_by.push({column:"", direction:"ASC"});
 		renderForm();
@@ -552,7 +586,7 @@ function renderGroupBy(container, step, stepIndex) {
 	step.aggregation.group_by.forEach((gbColumn, gbColumnIndex) => {
 		// let gbColumnParts = gbColumn.split('.');
 		const groupByRow = document.createElement('div');
-		groupByRow.className = 'repeatable-row';
+		groupByRow.className = 'repeatable-row-inline';
 		groupByRow.setAttribute('data-step-index', stepIndex);
 		// =========================== NEW VERSION BEGIN ============================
 		const groupByTableSelect = document.createElement('select');
@@ -656,7 +690,7 @@ function renderGroupBy(container, step, stepIndex) {
 	addGroupByButton.classList.add('wave-effect');
 	addGroupByButton.classList.add('wave-dark');
 	addGroupByButton.classList.add('btn');
-	addGroupByButton.textContent = UItranslations.AddGroupByButtonText[currentLanguage];
+	addGroupByButton.textContent = '+';
 	addGroupByButton.onclick = () => {
 			queryObject.steps[stepIndex].aggregation.group_by.push("");
 			renderForm();
@@ -674,7 +708,7 @@ function renderGroupBy(container, step, stepIndex) {
 		columnsContainer.className = 'repeatable-container';
 		step.columns.forEach((column, columnIndex) => {
 			const columnRow = document.createElement('div');
-			columnRow.className = 'repeatable-row';
+			columnRow.className = 'repeatable-row-inline';
 			columnRow.setAttribute('data-step-index', stepIndex);
 			// ====================== NEW VERSION BEGIN ==============================
 			// ######################## NOTES BEGIN #######################
@@ -787,7 +821,7 @@ function renderGroupBy(container, step, stepIndex) {
 			removeColumnButton.classList.add('wave-effect');
 			removeColumnButton.classList.add('wave-dark');
 			removeColumnButton.classList.add('btn');
-			removeColumnButton.textContent = 'Remove Column';
+			removeColumnButton.textContent = '-';
 			removeColumnButton.onclick = () => {
 				queryObject.steps[stepIndex].columns.splice(columnIndex, 1);
 				renderForm();
@@ -817,7 +851,7 @@ function renderGroupBy(container, step, stepIndex) {
 		addColumnButton.classList.add('wave-effect');
 		addColumnButton.classList.add('wave-dark');
 		addColumnButton.classList.add('btn');
-		addColumnButton.textContent = UItranslations.addColumnButtonText[currentLanguage];
+		addColumnButton.textContent = '+';
 		addColumnButton.onclick = () => {
 		queryObject.steps[stepIndex].columns.push("");
 		renderForm();
@@ -878,7 +912,7 @@ function renderTargetSection(container) {
 		removeButton.classList.add('wave-effect');
 		removeButton.classList.add('wave-dark');
 		removeButton.classList.add('btn');
-		removeButton.textContent = 'Remove target database';
+		removeButton.textContent = '-';
 		removeButton.onclick = () => {
 			queryObject.target_databases.splice(databaseIndex, 1);
 			renderForm();
@@ -894,7 +928,7 @@ function renderTargetSection(container) {
 	addButton.classList.add('wave-effect');
 	addButton.classList.add('wave-dark');
 	addButton.classList.add('btn');
-	addButton.textContent = UItranslations.targetDatabaseAddButton[currentLanguage];
+	addButton.textContent = '+';
 	addButton.onclick = () => {
 		queryObject.target_databases.push("");
 		renderForm();
@@ -952,9 +986,9 @@ sendQueryButton.onclick = async () => {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
 		const responseData = await response.json();
-		// visualizeResponseInTable(responseData);
 		visualizeAsTable(responseData);
-		// document.getElementById("responseJSON").textContent = JSON.stringify(responseData, null, 2);
+		visualizeAsGraph(responseData, queryObject, 'bar');
+		bindButtons(responseData, queryObject);
 	} catch (error) {
 		console.log(error);
 	}
@@ -962,7 +996,6 @@ sendQueryButton.onclick = async () => {
 
 function visualizeResponseInTable(responseData) {
 	const visualizationDiv = document.getElementById("results-table-wrapper");
-	console.log(visualizationDiv);
 	visualizationDiv.innerHTML = '';
 	var table = document.createElement("table");
 	var tableHeader = document.createElement("thead");
