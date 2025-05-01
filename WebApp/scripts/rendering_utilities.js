@@ -242,7 +242,7 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, stepResultsArray, stepIndex, currentLanguage) {
 	let compatibleColumns = [];
 	console.log(targetElement)
-	const rowContainer = targetElement.closest('.repeatable-row');
+	const rowContainer = targetElement.closest('.repeatable-row-inline');
 	console.log(rowContainer);
 	const columnSelect = rowContainer.querySelector('.column-select-conditions');
 	const selectValueType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, columnSelect.value);

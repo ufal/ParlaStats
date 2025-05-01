@@ -52,20 +52,24 @@ textarea {
 	background-color:#5C8374
 }
 
-input {
-	display:inline-block;
-}
 
 .select-wrapper {
 	color:#e0e0e0 !important;
 	width:auto !important;
 	display: inline-block !important;
 	white-space:nowrap !important;
+	margin-top:0px !important;
 }
 
+.value-input {
+	margin-bottom:0px !important;
+}
+input {
+	margin-bottom:0px !important;
+}
 .select-text-holder {
 	position:absolute;
-	visibility:hidden;
+	visibility:hidden !important;
 	white-space:nowrap;
 }
 
@@ -112,6 +116,9 @@ input {
 	color:#e0e0e0;
 	background-color:#5C8374;
 	display:flex;
+	align-items:center;
+	gap:1rem;
+	flex-wrap:nowrap;
 }
 
 

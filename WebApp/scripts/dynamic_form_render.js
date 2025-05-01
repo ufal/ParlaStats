@@ -43,6 +43,12 @@ let UItranslations = getUITranslations();
 let artificialColumns = getArtificialColumns();
 // ==================================================================
 
+function updatePreview() {
+	const QueryPreview = document.getElementById('inputJSON');
+	QueryPreview.textContent = JSON.stringify(queryObject, null, 2);
+	autoResizeTextarea(QueryPreview);
+}
+
 function renderForm() {
 	const container = document.getElementById('formContainer');
 	container.innerHTML = '';
@@ -88,16 +94,16 @@ function renderForm() {
 	inputJSONtitle.textContent = UItranslations.inputJsonTitle[currentLanguage];
 	let loadQueryButton = document.getElementById("loadButton");
 	loadQueryButton.textContent = UItranslations.loadQueryButton[currentLanguage];
-	let generateQueryButton = document.getElementById("generateButton");
-	generateButton.textContent = UItranslations.GenerateQueryButtonText[currentLanguage];
-	let outputJSONtitle = document.getElementById("outputJSONtitle");
-	outputJSONtitle.textContent = UItranslations.OutputJSONTitle[currentLanguage];
+	// let generateQueryButton = document.getElementById("generateButton");
+	// generateButton.textContent = UItranslations.GenerateQueryButtonText[currentLanguage];
+	// let outputJSONtitle = document.getElementById("outputJSONtitle");
+	// outputJSONtitle.textContent = UItranslations.OutputJSONTitle[currentLanguage];
 	let sendQueryButton = document.getElementById("sendQueryButton");
 	sendQueryButton.textContent = UItranslations.SendQueryButtonText[currentLanguage];
 	let inputJSONTextarea = document.getElementById("inputJSON");
 	inputJSONTextarea.placeholder = UItranslations.inputJSONPlaceholder[currentLanguage];
-	let outputJSONTextarea = document.getElementById("outputJSON");
-	outputJSONTextarea.placeholder = UItranslations.outputJSONPlaceholder[currentLanguage];
+	// let outputJSONTextarea = document.getElementById("outputJSON");
+	// outputJSONTextarea.placeholder = UItranslations.outputJSONPlaceholder[currentLanguage];
 	
 	const selects = document.querySelectorAll('select');
 	initializeSelects(selects);
@@ -107,9 +113,7 @@ function renderForm() {
 function initializeSelects(selects) {
 	M.FormSelect.init(selects, { dropdownOptions: {constrainWidth: false }});
 
-	const textHolder = document.createElement('span');
-		document.body.appendChild(textHolder);
-		textHolder.class = 'select-text-holder';
+	const textHolder = document.querySelector('.select-text-holder');
 
 	selects.forEach(sel => {
 		const adapt = () => {
@@ -118,20 +122,21 @@ function initializeSelects(selects) {
 				const input = wrapper.querySelector('input.select-dropdown');	
 				const options = wrapper.querySelector('ul');
 				const selected = options.querySelector('.selected');
+				console.log(options);
 				const span = selected.querySelector('span');
 				textHolder.style.font = getComputedStyle(input).font;
 				textHolder.textContent = span.textContent;
 				const currWidth = textHolder.offsetWidth + 40;
 				console.log(currWidth);
 				input.style.width = currWidth + 'px';
-				wrapper.style.width = currWidth + 'px';	
+				wrapper.style.width = currWidth + 'px';
+
 			});
 			
 		};
 			
 		adapt();
-		sel.addEventListener('change', adapt);
-		
+		sel.addEventListener('change', adapt);	
 	});
 	
 }
@@ -148,7 +153,19 @@ function renderStepsSection(container) {
 
 	queryObject.steps.forEach((step, stepIndex) => {
 		userDefinedAliases.push([]);
-		const stepRow = document.createElement('div');
+		const stepRow = document.createElement('details');
+		stepRow.setAttribute('open', '');
+		const summary = document.createElement('summary');
+		let columnsToBeReturned = '';
+		queryObject.steps[stepIndex].columns.forEach(col => {
+			if (typeof(col) === "object") { 
+				columnsToBeReturned += col.alias ? ` ${col.alias}` : ` ${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`
+			} else {
+				columnsToBeReturned += ` ${translations[col][currentLanguage]}`
+			}
+		});
+		summary.textContent = `${queryObject.steps[stepIndex].goal} -> ${columnsToBeReturned}`
+		stepRow.appendChild(summary)
 		stepRow.className = 'repeatable-row-step';
 		stepRow.setAttribute('data-step-index', stepIndex);
 		// Goal of the step
@@ -162,6 +179,7 @@ function renderStepsSection(container) {
 		goalInput.value = step.goal;
 		goalInput.addEventListener('input',  () => {
 			queryObject.steps[stepIndex].goal = goalInput.value;
+			updatePreview();
 		});
 		goalDiv.appendChild(goalLabel);
 		goalDiv.appendChild(goalInput);
@@ -191,9 +209,7 @@ function renderStepsSection(container) {
 		renderLimit(limitDiv, step, stepIndex);
 		stepRow.appendChild(limitDiv);
 
-		// const removeStepButton = document.createElement('button');
-		// removeStepButton.type = 'button';
-		// removeStepButton.textContent = '-';
+		
 		const removeStepButton = document.createElement('a');
 		removeStepButton.classList.add('waves-effect');
 		removeStepButton.classList.add('waves-dark');
@@ -250,6 +266,7 @@ function renderLimit(container, step, stepIndex) {
 	limitInput.addEventListener('input', () => {
 		const value =parseInt(limitInput.value, 10);
 		queryObject.steps[stepIndex].limit = isNaN(value) ? "" : value;
+		updatePreview();
 	});
 	if (queryObject.steps[stepIndex].limit != "") {
 		limitInput.value = queryObject.steps[stepIndex].limit;
@@ -290,6 +307,7 @@ function renderConditions(container, step, stepIndex) {
 		const valueColumnOffering = document.createElement('select');
 		valueColumnOffering.addEventListener('change', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = valueColumnOffering.value;
+			updatePreview();
 		});
 		
 		// Offer user columns from available databases
@@ -323,6 +341,7 @@ function renderConditions(container, step, stepIndex) {
 				                                 stepIndex, currentLanguage);
 			
 			M.FormSelect.init(valueColumnOffering);
+			updatePreview();
 		});
 
 		if (!condition.column) {
@@ -345,6 +364,7 @@ function renderConditions(container, step, stepIndex) {
 		conditionOperatorSelect.value = condition.operator;
 		conditionOperatorSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].operator = conditionOperatorSelect.value;
+			updatePreview();
 		});
 
 		const conditionValueInputDiv = document.createElement('div');
@@ -373,6 +393,7 @@ function renderConditions(container, step, stepIndex) {
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
 			Utilities.UpdateConditionValuePossibilities2(conditionValueInput, conditionColumnTableSelect.value,
 			                                             userDefinedAliases, stepResultArray, stepIndex, queryObject.target_databases)
+			updatePreview();
 		});
 		conditionValueInputDiv.appendChild(conditionValueInput);
 
@@ -468,6 +489,7 @@ function renderOrderBy(container, step, stepIndex) {
 					queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column.agg_func = orderByAggregationSelect.value;
 				}
 			}
+			updatePreview();
 		});
 
 		if (typeof queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].column === "object") {
@@ -521,6 +543,7 @@ function renderOrderBy(container, step, stepIndex) {
 												  aggregationFunctionTypeMapping,
 												  currentLanguage);
 			M.FormSelect.init(orderByAggregationSelect);
+			updatePreview();
 		});
 		
 		const orderByDirectionSelect = document.createElement('select');
@@ -537,6 +560,7 @@ function renderOrderBy(container, step, stepIndex) {
 		orderByDirectionSelect.value = orderByEntry.direction || 'ASC';
 		orderByDirectionSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].aggregation.order_by[orderByIndex].direction = orderByDirectionSelect.value;
+			updatePreview();
 		});
 		
 		// const removeOrderByButton = document.createElement('button');
@@ -614,6 +638,7 @@ function renderGroupBy(container, step, stepIndex) {
 					queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex].agg_func = groupByAggregationSelect.value;
 				}
 			}
+			updatePreview();
 		});
 
 		if (typeof queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] === "object") {
@@ -662,6 +687,7 @@ function renderGroupBy(container, step, stepIndex) {
 												  aggregationFunctionTypeMapping,
 												  currentLanguage);		
 			M.FormSelect.init(groupByAggregationSelect);
+			updatePreview();
 		});
 		
 	
@@ -734,6 +760,7 @@ function renderGroupBy(container, step, stepIndex) {
 				storeAliases(queryObject, userDefinedAliases, stepResultArray, stepIndex);
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 				updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
+				updatePreview();
 			});
 
 			// Aggregation function select
@@ -754,6 +781,7 @@ function renderGroupBy(container, step, stepIndex) {
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
 						queryObject.steps[stepIndex].columns[columnIndex].agg_func = aggregationFunctionSelect.value;
 				}
+				updatePreview();
 			});
 
 			// Load aggregation function and alias into form fields
@@ -808,6 +836,7 @@ function renderGroupBy(container, step, stepIndex) {
 				updateColumnsOfferings(userDefinedAliases, stepResultArray, stepIndex);
 				
 				M.FormSelect.init(aggregationFunctionSelect);
+				updatePreview();
 
 			});
 
@@ -904,6 +933,7 @@ function renderTargetSection(container) {
 
 		newInput.addEventListener('change', () => {
 			queryObject.target_databases[databaseIndex] = newInput.value;
+			updatePreview();
 		});
 		// ======================= END NEW ==============================
 		// const removeButton = document.createElement('button');
@@ -947,6 +977,7 @@ function renderTargetSection(container) {
 	descriptionInput.value = queryObject.description;
 	descriptionInput.addEventListener('input', () => {
 		queryObject.description = descriptionInput.value;
+		updatePreview();
 	});
 	descriptionDiv.appendChild(descriptionLabel);
 	descriptionDiv.appendChild(descriptionInput);
@@ -962,14 +993,14 @@ function loadQuery(jsonString) {
 }
 
 
-const generateButton = document.getElementById('generateButton');
-generateButton.onclick = () => {
-	const outputJsonField = document.getElementById('outputJSON');
-	const jsonString = JSON.stringify(queryObject, null, 2);
-	outputJsonField.value = jsonString;
+// const generateButton = document.getElementById('generateButton');
+// generateButton.onclick = () => {
+// 	const outputJsonField = document.getElementById('outputJSON');
+// 	const jsonString = JSON.stringify(queryObject, null, 2);
+// 	outputJsonField.value = jsonString;
 
-	autoResizeTextarea(outputJsonField);
-};
+// 	autoResizeTextarea(outputJsonField);
+// };
 
 const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = async () => {
@@ -1030,18 +1061,15 @@ function visualizeResponseInTable(responseData) {
 }
 
 function autoResizeTextarea(textarea) {
-	textarea.style.width = 'auto';
-	textarea.style.height = 'auto';
-
-	textarea.style.height = textarea.scrollHeight + 'px';
-	textarea.style.width = textarea.scrollWidth + 'px';
+	textarea.style.height = '1000px';
+	textarea.style.width = '800px';
 }
 
 const inputJsonField = document.getElementById('inputJSON');
-const outputJsonField = document.getElementById('outputJSON');
+// const outputJsonField = document.getElementById('outputJSON');
 
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
-outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
+// outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
 
 const loadButton = document.getElementById('loadButton');
 loadButton.onclick = () => {

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.min.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="styles/tables.css">
 	<link rel="stylesheet" href="styles/graphs.css">
+	<link rel="stylesheet" href="styles/collapsible.css">
 	<!-- Rendering scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -55,9 +56,8 @@
 			<div class="row">
 				<div class="col s12">
 					<ul class="tabs">
-						<li class="tab col s4"><a href="#input">Manual Query</a></li>
-						<li class="tab col s4"><a href="#form">Query Form</a></li>
-						<li class="tab col s4"><a href="#output">Query Preview</a></li>
+						<li class="tab col s6"><a href="#input">Manual Query</a></li>
+						<li class="tab col s6"><a href="#form">Query Form</a></li>
 					</ul>
 				</div>
 			</div>
@@ -74,15 +74,6 @@
 				<h5>Query Form</h5>
 				<a class="waves-effect waves-light btn" id="sendQueryButton">Send Query</a>
 				<div id="formContainer"></div>
-			</div>
-			<div id="output" class="col s12">
-				<div class="input-field">
-					<h5 id="outputJSONtitle">Query Preview</h5>
-					<textarea id="outputJSON" placeholder="Generated JSON query"></textarea>
-					<label for="outputJSON">Query Preview</label>
-					<!-- <button id="generateButton" type="button">Generate Query</button> -->
-				</div>
-				<a class="waves-effect waves-light btn" id="generateButton">Generate Query</a>
 			</div>
 		</div>
 		<div class="container" id="results">
@@ -129,6 +120,6 @@
 			M.Tabs.init(elems);
 		});
 	</script>
-	
+	<span class="select-text-holder"></span>
 </body>
 </html>
