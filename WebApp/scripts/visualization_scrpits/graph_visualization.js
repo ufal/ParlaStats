@@ -15,6 +15,22 @@ const zoom = {
 	}
 };
 
+const colorCache = new Map();
+const yAxisPositions = ['left', 'right'];
+
+function columnsColorHash(str) {
+	if (colorCache.has(str)) { return colorCache.get(str) }
+	let hash = 5381;
+	for (let i = 0; i < str.length; i++) {
+		hash = (hash<<5) + hash + str.charCodeAt(i);
+	}
+	const hue = Math.abs(hash) % 360;
+
+	const hsl = `hsl(${hue},70%,40%)`;
+	colorCache.set(str, hsl);
+	return hsl;
+}
+
 export function visualizeAsGraph(responseData, queryObject, type) {
 	const targetElement = document.getElementById('results-graph-wrapper');
 	targetElement.innerHTML = "";
@@ -28,8 +44,6 @@ export function visualizeAsGraph(responseData, queryObject, type) {
 		graphDiv.appendChild(dbHeader);
 		graphDiv.classList.add('graph-div');
 		
-		
-		
 		const labelColumns = getLabels(queryObject);
 		labelColumns.forEach(labelColumn => {
 			const canvas = document.createElement('canvas');
@@ -38,14 +52,26 @@ export function visualizeAsGraph(responseData, queryObject, type) {
 			const labels = data.map(r => String(r[labelColumn] ?? ''));
 
 			const valueColumns = Object.keys(data[0]).filter(column => column !== labelColumn);
-		
+			var scales = {};
+			
+			let i=0;
 			const datasets = valueColumns.map(col => ({
 				label : col,
 				data : data.map(r => +r[col]),
-				borderWidth : 2,
-				backroundColor: `hsla(${Math.random()*360}, 70%,60%,.4)`,
-				borderColor: `hsla(${Math.random()*360},70%, 40%, 1)` 
+				borderWidth : 1,
+				backgroundColor: columnsColorHash(col),
+				borderColor: columnsColorHash(col),
+				yAxisID:'y_'+ i++
 			}));
+			i = 0;
+			datasets.forEach(dataset => {
+				scales['y_'+ i++] = {
+					position:yAxisPositions[i%2],
+					ticks: {
+						color:dataset.backgroundColor
+					}
+				};
+			});
 			console.log(labels);
 			new Chart(canvas, {
 				type:type,
@@ -54,6 +80,9 @@ export function visualizeAsGraph(responseData, queryObject, type) {
 					plugins: { zoom },
 					responsive:true, 
 					interaction:{mode:'index', intersect:false} 
+				},
+				scales: {
+					...scales
 				}
 			});
 		});
