@@ -73,7 +73,7 @@ class SQLBuilder:
         sql_query += self.parse_conditions(json_query["filtering"]["conditions"], 
                                            step_results)
         
-        sql_query += self.parse_group_by(json_query["aggregation"]["group_by"])
+        sql_query += self.parse_group_by(json_query["aggregation"]["group_by"], json_query["columns"])
         sql_query += self.parse_order_by(json_query["aggregation"]["order_by"])
         sql_query += self.parse_limit(json_query["limit"])
 
@@ -93,23 +93,39 @@ class SQLBuilder:
             order_clause = " ORDER BY "
             for ob in order_by:
                 if (isinstance(ob['column'], str)):
-                    order_clause += f"{ob['column']} {ob['direction']}"
+                    order_clause += f" {ob['column']} {ob['direction']}, "
                 elif (isinstance(ob['column'], dict)):
-                    order_clause += f"{ob['column']['agg_func']}({ob['column']['real']})"
-                    order_clause += f" {ob['direction']} "
+                    order_clause += f" {ob['column']['agg_func']}({ob['column']['real']}) "
+                    order_clause += f" {ob['direction']}, "
             res += order_clause
-        return res
+        return res[:-2]
 
-    def parse_group_by(self, group_by):
+    def parse_group_by(self, group_by, columns):
         res = ""
-        if group_by:
-            group_clause = " GROUP BY "
+        artificial_group_by = False;
+        for column in columns:
+            if (isinstance(column, dict) and column["agg_func"] != ""):
+                artificial_group_by = True;
+        
+        group_clause = " GROUP BY "
+        
+        if (artificial_group_by):
+            for column in columns:
+                if (isinstance(column, dict) and column["agg_func"] == ""):
+                    group_clause += f"{column['alias']}, "
+                elif isinstance(column, str):
+                    group_clause += f"{column}, "
+
+
+        if (group_by):
             for gb in group_by:
                 if (isinstance(gb, str)):
                     group_clause += f'{gb}, '
                 elif (isinstance(gb, dict)):
                     group_by_clause += f"{gb['agg_func']}(gb['real']), "
-            res += group_clause
+        
+        if (group_clause != " GROUP BY "): res += group_clause
+
         return res[:-2]
 
     def parse_conditions(self, conditions, step_results):

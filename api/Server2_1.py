@@ -53,11 +53,9 @@ sql_builder = SQLBuilder()
 
 def connect_to_database(db_ini_path=args.db):
     parser = ConfigParser()
-    print(db_ini_path)
     parser.read(db_ini_path)
     config = {}
     if parser.has_section("postgresql"):
-        print("here")
         parameters = parser.items("postgresql")
         for parameter in parameters:
             config[parameter[0]] = parameter[1]
@@ -104,7 +102,6 @@ def query():
         try:
             for step in json_query['steps']:
                 sql_query, params = sql_builder.buildSQLQuery(step, step_results)
-                print(sql_query)
                 cursor.execute(sql_query, params)
                 step_results[step['goal']] = cursor.fetchall()
         except ValueError as e:
@@ -119,9 +116,7 @@ def query():
             elif (isinstance(column, dict)): columns.append(column["alias"])
         # columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
         response = [dict(zip(columns, row)) for row in results]
-        res.append(database)
-        res.append(format_output(response))
-        print(res)
+        res.append({"database": database, "data":format_output(response)})
     return jsonify(res)
 
 """
