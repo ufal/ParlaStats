@@ -64,6 +64,7 @@ class SQLBuilder:
     
     def buildSQLQuery(self, json_query, step_results):
         sql_query = "SELECT "
+        # print(step_results)
         sql_query += self.parse_columns(json_query["columns"])
         joins = self.determine_joins(json_query["columns"],
                                 json_query["filtering"]["conditions"],
@@ -78,6 +79,7 @@ class SQLBuilder:
         sql_query += self.parse_limit(json_query["limit"])
 
         parameters = [cond['value'] for cond in json_query["filtering"]["conditions"] if not cond['value'].startswith("step_result.")]
+        
         return sql_query, parameters
     
     def parse_limit(self, limit):
@@ -110,9 +112,13 @@ class SQLBuilder:
         group_clause = " GROUP BY "
         
         if (artificial_group_by):
+            print(columns)
             for column in columns:
-                if (isinstance(column, dict) and column["agg_func"] == ""):
-                    group_clause += f"{column['alias']}, "
+                if (isinstance(column, dict) and (column["agg_func"] == "" or column["agg_func"] == "DISTINCT")):
+                    if (column["alias"]):
+                        group_clause += f"{column['alias']}, "
+                    else:
+                        group_clause += f"{column['real']}, "
                 elif isinstance(column, str):
                     group_clause += f"{column}, "
 
@@ -154,7 +160,8 @@ class SQLBuilder:
         res = ""
         for column in columns:
             if (isinstance(column, str)):
-                res += column + ', '
+                if ('step_result' not in column):
+                    res += column + ', '
             if (isinstance(column, dict)):
                 real_part = column["real"]
                 res_temp = real_part

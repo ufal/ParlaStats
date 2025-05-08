@@ -102,6 +102,7 @@ def query():
         try:
             for step in json_query['steps']:
                 sql_query, params = sql_builder.buildSQLQuery(step, step_results)
+                print(sql_query)
                 cursor.execute(sql_query, params)
                 step_results[step['goal']] = cursor.fetchall()
         except ValueError as e:
@@ -115,7 +116,16 @@ def query():
             if (isinstance(column, str)): columns.append(column)
             elif (isinstance(column, dict)): columns.append(column["alias"])
         # columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
+        response = []
+        for column in columns:
+            if 'step_result' in column:
+                parts = column.split('/')
+                results.extend(step_results[parts[1]])
+
+        print(results)
         response = [dict(zip(columns, row)) for row in results]
+        # print(step_results)
+        # print(response)
         res.append({"database": database, "data":format_output(response)})
     return jsonify(res)
 
