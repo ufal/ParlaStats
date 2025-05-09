@@ -108,6 +108,15 @@ function renderForm() {
 	const selects = document.querySelectorAll('select');
 	initializeSelects(selects);
 	
+	document.querySelectorAll('details').forEach(details => {
+		const saved = localStorage.getItem('details:' + details.id);
+		if (saved !== null) { details.open = saved === 'open'; }
+
+		details.addEventListener('toggle', () => {
+			console.log('details toggle hit');
+			localStorage.setItem('details:' + details.id, details.open ? 'open' : 'closed');
+		});
+	});
 }
 
 function initializeSelects(selects) {
@@ -122,12 +131,10 @@ function initializeSelects(selects) {
 				const input = wrapper.querySelector('input.select-dropdown');	
 				const options = wrapper.querySelector('ul');
 				const selected = options.querySelector('.selected');
-				console.log(options);
 				const span = selected.querySelector('span');
 				textHolder.style.font = getComputedStyle(input).font;
 				textHolder.textContent = span.textContent;
 				const currWidth = textHolder.offsetWidth + 40;
-				console.log(currWidth);
 				input.style.width = currWidth + 'px';
 				wrapper.style.width = currWidth + 'px';
 
@@ -154,6 +161,7 @@ function renderStepsSection(container) {
 	queryObject.steps.forEach((step, stepIndex) => {
 		userDefinedAliases.push([]);
 		const stepRow = document.createElement('details');
+		stepRow.id = `step_${stepIndex}`;
 		stepRow.setAttribute('open', '');
 		const summary = document.createElement('summary');
 		let columnsToBeReturned = '';
@@ -1012,7 +1020,6 @@ sendQueryButton.onclick = async () => {
 			body: query
 		}
 		const response = await fetch(testServerURL, queryWrapped);
-		console.log("here");	
 		if (!response.ok) {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
@@ -1084,6 +1091,9 @@ loadButton.onclick = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
-	metaInformation = getMetaInformation()
+	metaInformation = getMetaInformation();
+	console.log('aftermeta');
 	
 });
+
+
