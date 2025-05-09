@@ -167,9 +167,14 @@ function renderStepsSection(container) {
 		let columnsToBeReturned = '';
 		queryObject.steps[stepIndex].columns.forEach(col => {
 			if (typeof(col) === "object") { 
-				columnsToBeReturned += col.alias ? ` ${col.alias}` : ` ${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`
+				columnsToBeReturned += col.alias ? ` ${col.alias}` : ` ${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
 			} else {
-				columnsToBeReturned += ` ${translations[col][currentLanguage]}`
+				console.log(col);
+				if (col.includes('step_result')) {
+					columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);
+				} else {
+					columnsToBeReturned += ` ${translations[col][currentLanguage]}`; 
+				}
 			}
 		});
 		summary.textContent = `${queryObject.steps[stepIndex].goal} -> ${columnsToBeReturned}`
