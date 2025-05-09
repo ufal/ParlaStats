@@ -5,6 +5,7 @@ import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
+import { createPreviewUpdateEvent } from './customEvents.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -164,20 +165,35 @@ function renderStepsSection(container) {
 		stepRow.id = `step_${stepIndex}`;
 		stepRow.setAttribute('open', '');
 		const summary = document.createElement('summary');
-		let columnsToBeReturned = '';
-		queryObject.steps[stepIndex].columns.forEach(col => {
-			if (typeof(col) === "object") { 
-				columnsToBeReturned += col.alias ? ` ${col.alias}` : ` ${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
-			} else {
-				console.log(col);
-				if (col.includes('step_result')) {
-					columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);
-				} else {
-					columnsToBeReturned += ` ${translations[col][currentLanguage]}`; 
+		// let columnsToBeReturned = '';
+		stepRow.addEventListener('UpdateStepPreview', () => {
+			let columnsToBeReturned = '';
+			queryObject.steps[stepIndex].columns.forEach(col => {
+				var hit = false;
+				if (typeof(col) === "object") {
+					columnsToBeReturned += col.alias ? ` ${col.alias}` : `${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
+					hit = true;
 				}
-			}
+				if (!hit) {
+					Object.keys(artificialColumns).forEach(key => {
+						if (artificialColumns[key].formula === col) {
+							columnsToBeReturned += ` ${translations[key][currentLanguage]}`;
+							hit = true;
+							return;
+						}
+					});
+				}
+				if (!hit && col.includes('step_result')) {
+					columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);		
+				}
+				if (!hit) {
+					columnsToBeReturned += ` ${translations[col][currentLanguage]}`;
+				}
+			});
+			const stepSummary = stepRow.querySelector('summary');
+			stepSummary.textContent = `${queryObject.steps[stepIndex].goal} -> ${columnsToBeReturned}`;
 		});
-		summary.textContent = `${queryObject.steps[stepIndex].goal} -> ${columnsToBeReturned}`
+		
 		stepRow.appendChild(summary)
 		stepRow.className = 'repeatable-row-step';
 		stepRow.setAttribute('data-step-index', stepIndex);
@@ -760,7 +776,7 @@ function renderGroupBy(container, step, stepIndex) {
 			aliasInputField.type = 'text';
 			aliasInputField.placeholder = 'Type alias here.'
 			
-			aliasInputField.addEventListener('input', () => {
+			aliasInputField.addEventListener('input', (e) => {
 				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
 					queryObject.steps[stepIndex].columns[columnIndex] = {
 						"real":columnTableSelect.value,
@@ -774,6 +790,8 @@ function renderGroupBy(container, step, stepIndex) {
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 				updateColumnsOfferings2(userDefinedAliases, stepResultArray, queryObject.steps.length);
 				updatePreview();
+				const ev = createPreviewUpdateEvent(42);
+				e.currentTarget.dispatchEvent(ev);
 			});
 
 			// Aggregation function select
@@ -784,7 +802,7 @@ function renderGroupBy(container, step, stepIndex) {
 			                              aggregationFunctionTypeMapping, userDefinedAliases[stepIndex], stepResultArray);
 			
 			// Store selected aggregation function
-			aggregationFunctionSelect.addEventListener('change', () => {
+			aggregationFunctionSelect.addEventListener('change', (e) => {
 				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
 					queryObject.steps[stepIndex].columns[columnIndex] = {
 						"real":columnTableSelect.value,
@@ -795,6 +813,8 @@ function renderGroupBy(container, step, stepIndex) {
 						queryObject.steps[stepIndex].columns[columnIndex].agg_func = aggregationFunctionSelect.value;
 				}
 				updatePreview();
+				const ev = createPreviewUpdateEvent(42);
+				e.currentTarget.dispatchEvent(ev);
 			});
 
 			// Load aggregation function and alias into form fields
@@ -837,7 +857,8 @@ function renderGroupBy(container, step, stepIndex) {
 			
 
 			// Store changes
-			columnTableSelect.addEventListener('change', function(event) {
+			// columnTableSelect.addEventListener('change', function(event) {
+			columnTableSelect.addEventListener('change', (e) => {
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
 				aggregationFunctionSelect.value = "";
@@ -850,7 +871,8 @@ function renderGroupBy(container, step, stepIndex) {
 				
 				M.FormSelect.init(aggregationFunctionSelect);
 				updatePreview();
-
+				const ev = createPreviewUpdateEvent(42);
+				e.currentTarget.dispatchEvent(ev);
 			});
 
 			
