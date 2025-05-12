@@ -55,6 +55,7 @@ class DatabaseTableCreator(DatabaseOperator):
                     named_entity_count INTEGER,
                     role VARCHAR(100),
                     person_id VARCHAR(100),
+                    term VARCHAR(10),
                     total_duration REAL,
                     earliest_timestamp TIME,
                     latest_timestamp TIME,

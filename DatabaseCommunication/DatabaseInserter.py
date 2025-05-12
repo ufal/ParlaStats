@@ -125,6 +125,7 @@ class DatabaseInserter(DatabaseOperator):
                                                                str(s.named_entity_refferences),
                                                                s.role[1:],
                                                                s.speakerID[1:],
+                                                               s.term,
                                                                s.total_duration,
                                                                s.earliest_timeline,
                                                                s.latest_timeline,
