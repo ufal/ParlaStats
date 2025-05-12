@@ -25,11 +25,12 @@ class Speech:
     earliest_timeline = str()
     latest_timeline = str()
 
-    def __init__(self, tokens, sentences, NE_refs, role, speech_id, speaker, when):
+    def __init__(self, tokens, sentences, NE_refs, role, speech_id, speaker, when, term):
         self.tokens = tokens
         self.sentences = sentences
         self.named_entity_refferences = NE_refs
         self.role = role
+        self.term = term
         self.speechID = speech_id
         self.speakerID = speaker
         self.when = when
@@ -89,7 +90,8 @@ class Speech:
         result += f"earliest timeline: {self.earliest_timeline}\n"
         result += f"latest timeline: {self.latest_timeline}\n"
         result += f"time start: {self.time_start}\n"
-        result += f"time end: {self.time_end}"
+        result += f"time end: {self.time_end}\n"
+        result += f"term: {self.term}"
         return result
 
 class speechParser2:
@@ -117,7 +119,8 @@ class speechParser2:
                                    row["role"],
                                    row["ID"],
                                    row["personID"],
-                                   row["date"])
+                                   row["date"],
+                                   row["term"])
                 
                 if row['ID'] not in invalid_speeches:
                     if (len(timestamps_info) > 0):

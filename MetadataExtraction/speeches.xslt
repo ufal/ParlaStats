@@ -7,8 +7,9 @@
 	<xsl:output method="text" encoding="UTF-8" />
 	
 	<xsl:template match="tei:TEI">
-		<xsl:text>ID,date,tokenCount,sentencesCount,namedEntityCount,role,personID&#10;</xsl:text>
+		<xsl:text>ID,date,tokenCount,sentencesCount,namedEntityCount,role,personID,term&#10;</xsl:text>
 		<xsl:variable name="date" select="tei:teiHeader/tei:profileDesc/tei:settingDesc/tei:setting/tei:date/@when" />
+		<xsl:variable name="term" select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:meeting[contains(@ana, 'parla.term')]/@n" />
 		<xsl:for-each select="//tei:u">
 			<xsl:value-of select="@xml:id" />
 			<xsl:text>,</xsl:text>
@@ -18,6 +19,8 @@
 			<xsl:value-of select="@ana" />
 			<xsl:text>,</xsl:text>
 			<xsl:value-of select="@who" />
+			<xsl:text>,</xsl:text>
+			<xsl:value-of select="$term" />
 			<xsl:text>&#10;</xsl:text>
 		</xsl:for-each>
 	</xsl:template>
