@@ -112,7 +112,6 @@ class SQLBuilder:
         group_clause = " GROUP BY "
         
         if (artificial_group_by):
-            print(columns)
             for column in columns:
                 if (isinstance(column, dict) and (column["agg_func"] == "" or column["agg_func"] == "DISTINCT")):
                     if (column["alias"]):
