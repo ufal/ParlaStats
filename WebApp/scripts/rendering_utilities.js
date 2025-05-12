@@ -102,7 +102,6 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				selectOption.value = column.queryPart;
 				selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
 				                                                currentLanguage);
-				console.log(selectOption);
 				targetElement.appendChild(selectOption);
 			});
 		}
@@ -219,7 +218,6 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 	if (!found) {
 		Object.keys(artificialColumns).forEach(key => {
 			if (artificialColumns[key].formula === selectValue) {
-				console.log(selectValue);
 				const columnEntry = metaInformation.columns.find(col => col.column === `artificial_columns.${key}`);
 				possibleValues = columnEntry["data"][database];
 				found = true;
@@ -228,7 +226,6 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 	}
 	if (!found) {
 		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
-		console.log(database, columnEntry, selectValue);
 		if (columnEntry) {
 			possibleValues = columnEntry["data"][database];		
 		} 
@@ -241,9 +238,7 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 
 export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, stepResultsArray, stepIndex, currentLanguage) {
 	let compatibleColumns = [];
-	console.log(targetElement)
 	const rowContainer = targetElement.closest('.repeatable-row-inline');
-	console.log(rowContainer);
 	const columnSelect = rowContainer.querySelector('.column-select-conditions');
 	const selectValueType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, columnSelect.value);
 	targetElement.innerHTML = "";
@@ -360,13 +355,10 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 				});
 			});
 		}
-		console.log(valueInput);
-		valueInput.value = "";
 		if (columnSelectType === "date") {
 			resetField(valueInput);
 			valueInput.classList.add('datepicker');
 			valueInput.placeholder = "Pick a date";
-			console.log(new Date(Object.keys(possibleValues)[0]), new Date(Object.keys(possibleValues)[1]));
 			M.Datepicker.init(valueInput, {
 				format: 'yyyy-mm-dd',
 				autoClose: true,

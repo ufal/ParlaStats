@@ -114,7 +114,6 @@ function renderForm() {
 		if (saved !== null) { details.open = saved === 'open'; }
 
 		details.addEventListener('toggle', () => {
-			console.log('details toggle hit');
 			localStorage.setItem('details:' + details.id, details.open ? 'open' : 'closed');
 		});
 	});
@@ -132,6 +131,7 @@ function initializeSelects(selects) {
 				const input = wrapper.querySelector('input.select-dropdown');	
 				const options = wrapper.querySelector('ul');
 				const selected = options.querySelector('.selected');
+				console.log(selected);
 				const span = selected.querySelector('span');
 				textHolder.style.font = getComputedStyle(input).font;
 				textHolder.textContent = span.textContent;
@@ -419,9 +419,21 @@ function renderConditions(container, step, stepIndex) {
 			conditionValueInput.dispatchEvent(new Event('input', {bubbles:true}));
 		}
 		conditionValueInput.addEventListener('input', () => {
-			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
+			if (conditionValueInput.value.includes(',')) {
+				let split = conditionValueInput.value.split(',');
+				let toQuery = '';
+				split.forEach(item => {
+					toQuery += `'${item}',`
+				});
+				
+				toQuery = `(${toQuery.substring(0, toQuery.length-1)})`;
+				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = toQuery;
+			} else {
+				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
+			}
 			Utilities.UpdateConditionValuePossibilities2(conditionValueInput, conditionColumnTableSelect.value,
 			                                             userDefinedAliases, stepResultArray, stepIndex, queryObject.target_databases)
+			
 			updatePreview();
 		});
 		conditionValueInputDiv.appendChild(conditionValueInput);
@@ -1119,7 +1131,6 @@ loadButton.onclick = () => {
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
 	metaInformation = getMetaInformation();
-	console.log('aftermeta');
 	
 });
 
