@@ -1049,10 +1049,25 @@ function loadQuery(jsonString) {
 // 	autoResizeTextarea(outputJsonField);
 // };
 
+function autofillAliases(query) {
+	const copy = structuredClone(query);
+	copy.steps.forEach(step => {
+		const columns = step.columns;
+		columns.forEach(column => {
+			if (typeof(column) === 'object') {
+				if (column.alias === "") {
+					column.alias = `${column.agg_func}_${column.real.replaceAll('.', '_')}`;
+				}
+			}
+		});
+	});
+	return copy;
+}
+
 const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = async () => {
 	try {
-		const query = JSON.stringify(queryObject, null, 2);
+		const query = JSON.stringify(autofillAliases(queryObject), null, 2);
 		const queryWrapped = {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
