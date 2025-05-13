@@ -35,12 +35,11 @@ function pivotChart(rows, labelKeys) {
 	const allKeys = Object.keys(rows[0] || {});
 	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number');
 	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
-
+	console.log(numericKeys);
 	const labels = [ ...new Map(
-		rows.map(r => [labelKeys.map(k => r[k]).join('|'),
-		               labelKeys.map(k => r[k])])
+		rows.map(r => [labelKeys.map(k => r[k].replaceAll('_', ' ')).join('|'),
+		               labelKeys.map(k => r[k].replaceAll('_', ' '))])
 	).values()];
-
 	let datasets = [];
 	const find = (pred, key) => (rows.find(pred) || {}) ?? null;
 	if (labelKeys.length === 1 && catKeys.length) {
@@ -53,20 +52,20 @@ function pivotChart(rows, labelKeys) {
 			label: String(val),
 			data: labels.map(([lab]) => 
 					(rows.find(r => r[labelKeys[0]] == lab &&
-					                r[seriesKey] == val) || {})[numericKeys[0]] ?? null),
+					                r[seriesKey] == val) || {})[numericKeys[0].replaceAll(' ', '_')] ?? null),
 			yAxisID:`y_${i}`,
 			backgroundColor: columnsColorHash(String(val))
 		}));
 	} else {
 		datasets = numericKeys.map((key, i) => ({
-			label: key,
+			label: key.replaceAll('_', ' '),
 			data: labels.map(tuple => 
 						(rows.find(r => labelKeys.every((k,idx) => r[k] === tuple[idx])) || {})[key] ?? null),
 			backgroundColor: columnsColorHash(key),
 			yAxisID:`y_${i}`
 		}));
 	}
-	console.log(datasets);
+	// console.log(datasets);
 	return {labels, datasets: datasets };
 }
 
@@ -76,7 +75,7 @@ export function visualizeAsGraph(responseData, queryObject, type) {
 	responseData.forEach(({database, data}) => {
 		
 		if (!Array.isArray(data) || !data.length) return;
-		console.log(data);
+		// console.log(data);
 		const graphDiv = document.createElement('div');
 		const dbHeader = document.createElement('h5');
 		dbHeader.textContent = `${database}`;

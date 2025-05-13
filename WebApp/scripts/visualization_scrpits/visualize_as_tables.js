@@ -25,11 +25,9 @@ export function visualizeAsTable(response) {
 
 		const columns = Object.keys(data[0]).map(c => ({
 			data: c.includes('.') ? c.replace(/\./g, '\\.') : c, 
-			title: c
+			title: c.replaceAll('_', ' ')
 		}));
 		
-		console.log(columns);
-		console.log(data);
 	
 		new DataTable(tableElement, { 
 			data, 

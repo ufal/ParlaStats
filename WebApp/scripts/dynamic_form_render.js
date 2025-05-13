@@ -792,7 +792,7 @@ function renderGroupBy(container, step, stepIndex) {
 				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
 					queryObject.steps[stepIndex].columns[columnIndex] = {
 						"real":columnTableSelect.value,
-						"alias":aliasInputField.value,
+						"alias":aliasInputField.value.replaceAll(' ', '_'),
 						"agg_func":aggregationFunctionSelect.value
 					};
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
@@ -818,7 +818,7 @@ function renderGroupBy(container, step, stepIndex) {
 				if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "string") {
 					queryObject.steps[stepIndex].columns[columnIndex] = {
 						"real":columnTableSelect.value,
-						"alias":aliasInputField.value,
+						"alias":aliasInputField.value.replaceAll(' ', '_'),
 						"agg_func":aggregationFunctionSelect.value
 					}
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
@@ -831,7 +831,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 			// Load aggregation function and alias into form fields
 			if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
-				aliasInputField.value = queryObject.steps[stepIndex].columns[columnIndex].alias;
+				aliasInputField.value = queryObject.steps[stepIndex].columns[columnIndex].alias.replaceAll('_', ' ');
 				aggregationFunctionSelect.value = queryObject.steps[stepIndex].columns[columnIndex].agg_func;
 			} else {
 				aliasInputField.value = "";
