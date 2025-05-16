@@ -179,6 +179,10 @@ let translations = {
 		"en":"Speaker gender",
 		"cs":"Pohlaví mluvčího"
 	},
+	"speech.term": {
+		"en":"Election term",
+		"cs":"Volební období"
+	},
 	"persname.surname": {
 		"en":"Speaker surname",
 		"cs":"Přijmení mluvčího"
