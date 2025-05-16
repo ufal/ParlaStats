@@ -93,18 +93,12 @@ function renderForm() {
 
 	let inputJSONtitle = document.getElementById("inputJSONtitle");
 	inputJSONtitle.textContent = UItranslations.inputJsonTitle[currentLanguage];
-	let loadQueryButton = document.getElementById("loadButton");
-	loadQueryButton.textContent = UItranslations.loadQueryButton[currentLanguage];
-	// let generateQueryButton = document.getElementById("generateButton");
-	// generateButton.textContent = UItranslations.GenerateQueryButtonText[currentLanguage];
-	// let outputJSONtitle = document.getElementById("outputJSONtitle");
-	// outputJSONtitle.textContent = UItranslations.OutputJSONTitle[currentLanguage];
+	
 	let sendQueryButton = document.getElementById("sendQueryButton");
 	sendQueryButton.textContent = UItranslations.SendQueryButtonText[currentLanguage];
 	let inputJSONTextarea = document.getElementById("inputJSON");
 	inputJSONTextarea.placeholder = UItranslations.inputJSONPlaceholder[currentLanguage];
-	// let outputJSONTextarea = document.getElementById("outputJSON");
-	// outputJSONTextarea.placeholder = UItranslations.outputJSONPlaceholder[currentLanguage];
+	
 	
 	const selects = document.querySelectorAll('select');
 	initializeSelects(selects);
@@ -1132,16 +1126,20 @@ const inputJsonField = document.getElementById('inputJSON');
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
 // outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
 
-const loadButton = document.getElementById('loadButton');
-loadButton.onclick = () => {
-	const inputJsonField = document.getElementById('inputJSON');
-	const inputJSON = inputJsonField.value.trim();
-	if (inputJSON) {
-		loadQuery(inputJSON);	
-	} else {
-		alert("Paste a JSON before loading.")
-	}
-};
+// const loadButton = document.getElementById('loadButton');
+// loadButton.onclick = () => {
+// 	const inputJsonField = document.getElementById('inputJSON');
+// 	const inputJSON = inputJsonField.value.trim();
+// 	if (inputJSON) {
+// 		try {
+// 			loadQuery(inputJSON);
+// 		} catch (error) {
+// 			alert("Please make sure you are pasting a valid JSON query!");
+// 		}
+// 	} else {
+// 		alert("Paste a JSON before loading.")
+// 	}
+// };
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
@@ -1149,4 +1147,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	
 });
 
+const manualQueryToggle = document.getElementById('manual_query_toggle');
+manualQueryToggle.onclick = () => {
+	const queryTextArea = document.getElementById('inputJSON');
+	queryTextArea.value = JSON.stringify(queryObject, null, 2);
+}
+
+const dFormToggle = document.getElementById('dynamic_form_toggle');
+dFormToggle.onclick = () => {
+	const queryTextArea = document.getElementById('inputJSON');
+	try {
+		loadQuery(queryTextArea.value.trim());
+	} catch (error) {
+		alert("Please make sure you are trying to paste a valid JSON query!");
+	}
+}
 
