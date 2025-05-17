@@ -36,10 +36,24 @@ function pivotChart(rows, labelKeys) {
 	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number');
 	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
 	console.log(numericKeys);
+	console.log(rows);
+	console.log(labelKeys);
 	const labels = [ ...new Map(
-		rows.map(r => [labelKeys.map(k => r[k].replaceAll('_', ' ')).join('|'),
-		               labelKeys.map(k => r[k].replaceAll('_', ' '))])
+		rows.map(r => [
+			labelKeys.map(k => {
+				if (typeof(r[k]) === 'string') { 
+					return r[k].replaceAll('_', ' ')
+				} 
+				else { return String(r[k]);}
+			}).join('|'),
+		    labelKeys.map(k => {
+				if (typeof(r[k]) === 'string') {
+					return r[k].replaceAll('_', ' ')
+				}
+				else {return String(r[k]);} 
+			})])
 	).values()];
+	console.log(labels)
 	let datasets = [];
 	const find = (pred, key) => (rows.find(pred) || {}) ?? null;
 	if (labelKeys.length === 1 && catKeys.length) {
@@ -53,7 +67,7 @@ function pivotChart(rows, labelKeys) {
 			data: labels.map(([lab]) => 
 					(rows.find(r => r[labelKeys[0]] == lab &&
 					                r[seriesKey] == val) || {})[numericKeys[0].replaceAll(' ', '_')] ?? null),
-			yAxisID:`y_${i}`,
+			// yAxisID:`y_${i}`,
 			backgroundColor: columnsColorHash(String(val))
 		}));
 	} else {
@@ -62,7 +76,7 @@ function pivotChart(rows, labelKeys) {
 			data: labels.map(tuple => 
 						(rows.find(r => labelKeys.every((k,idx) => r[k] === tuple[idx])) || {})[key] ?? null),
 			backgroundColor: columnsColorHash(key),
-			yAxisID:`y_${i}`
+			// yAxisID:`y_${i}`
 		}));
 	}
 	// console.log(datasets);
@@ -107,9 +121,9 @@ export function visualizeAsGraph(responseData, queryObject, type) {
 				plugins: { zoom },
 				responsive: true,
 				interaction:{mode:'index', intersect:false},
-				scales: {
-					...scales
-				}
+				// scales: {
+				// 	...scales
+				// }
 			}
 		});
 		// labelColumns.forEach(labelColumn => {

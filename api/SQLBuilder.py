@@ -19,7 +19,7 @@ class SQLBuilder:
             ("person", "persname") : ("person_id", "person_id"),
             ("person", "affiliation") : ("person_id", "person_id"),
             ("person", "speech") : ("person_id", "person_id"),
-            ("affiliation", "organisation") : ("organisation_id", "organisation_id")
+            ("affiliation", "organisation") : ("organisation_id", "organisation_id"),
         }
         self.SPEECH_TIME_COLUMNS = ["time_start", "time_end", "earliest_timestamp", "latest_timestamp"]
     
@@ -97,7 +97,10 @@ class SQLBuilder:
                 if (isinstance(ob['column'], str)):
                     order_clause += f" {ob['column']} {ob['direction']}, "
                 elif (isinstance(ob['column'], dict)):
-                    order_clause += f" {ob['column']['agg_func']}({ob['column']['real']}) "
+                    if (ob['column']['agg_func'] == 'COUNT'):
+                        order_clause += f" COUNT(DISTINCT {ob['column']['real']}) "
+                    else:
+                        order_clause += f" {ob['column']['agg_func']}({ob['column']['real']}) "
                     order_clause += f" {ob['direction']}, "
             res += order_clause
         return res[:-2]
@@ -166,7 +169,9 @@ class SQLBuilder:
                 res_temp = real_part
                 alias = column["alias"]
                 aggregation_function = column["agg_func"]
-                if (aggregation_function != ""): res_temp = f"{aggregation_function}({real_part})"
+                if (aggregation_function == 'COUNT'):
+                    res_temp = f"COUNT(DISTINCT {real_part})"
+                elif (aggregation_function != ""): res_temp = f"{aggregation_function}({real_part})"
                 if (alias != ""): res_temp += f" AS {alias}"
                 res += res_temp + ', '
         return res[:-2]

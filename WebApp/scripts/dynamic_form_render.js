@@ -18,9 +18,9 @@ let queryObject = {
 // what types can use what aggregation functions
 let aggregationFunctionTypeMapping = {
 	"real":["SUM", "AVG", "MIN", "MAX", "COUNT", ""],
-	"date":["MIN", "MAX", "COUNT","DISTINCT", ""],
-	"character varying":["COUNT", "DISTINCT", ""],
-	"time without time zone":["MIN", "MAX", "COUNT", "DISTINCT", ""],
+	"date":["MIN", "MAX", "COUNT", ""],
+	"character varying":["COUNT",  ""],
+	"time without time zone":["MIN", "MAX", "COUNT",  ""],
 	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT", ""],
 	"NoAggregation":[""]
 }
