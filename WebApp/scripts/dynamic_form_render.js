@@ -85,7 +85,6 @@ function renderForm() {
 	renderTargetSection(targetSection);
 	renderStepsSection(stepsSection);
 	
-	
 	form.appendChild(languageSelectDiv);
 	form.appendChild(targetSection);
 	form.appendChild(stepsSection);
@@ -248,7 +247,8 @@ function renderStepsSection(container) {
 
 		stepsContainer.appendChild(stepRow);
 		storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex)
-		
+		const ev = createPreviewUpdateEvent(42);
+	    stepRow.dispatchEvent(ev);
 	});
 
 	// const addStepButton = document.createElement('button');
@@ -1069,6 +1069,14 @@ sendQueryButton.onclick = async () => {
 		}
 		const response = await fetch(testServerURL, queryWrapped);
 		if (!response.ok) {
+			const tableDiv = document.getElementById('results-table-wrapper');
+			const graphDiv = document.getElementById('results-graph-wrapper');
+			tableDiv.innerHTML = "";
+			graphDiv.innerHTML = "";
+			const message =  document.createElement('h5');
+			message.textContent = 'This query caused an internal error.';
+			tableDiv.appendChild(message);
+			graphDiv.appendChild(message);
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
 		const responseData = await response.json();

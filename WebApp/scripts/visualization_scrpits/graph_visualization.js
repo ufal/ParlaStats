@@ -86,6 +86,12 @@ function pivotChart(rows, labelKeys) {
 export function visualizeAsGraph(responseData, queryObject, type) {
 	const targetElement = document.getElementById('results-graph-wrapper');
 	targetElement.innerHTML = "";
+	if (responseData.length === 0) {
+		const message = document.createElement('h5');
+		message.textContent = 'Nothing to visualize';
+		targetElement.appendChild(message);
+		return;
+	}
 	responseData.forEach(({database, data}) => {
 		
 		if (!Array.isArray(data) || !data.length) return;

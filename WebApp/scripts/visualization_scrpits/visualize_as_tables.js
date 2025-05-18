@@ -1,6 +1,12 @@
 export function visualizeAsTable(response) {
 	const targetElement = document.getElementById('results-table-wrapper')
 	targetElement.innerHTML = "";
+	if (response.length === 0) {
+		const message = document.createElement('h5');
+		message.textContent = "Nothing to show";
+		targetElement.appendChild(message);
+		return;
+	}
 	response.forEach(({ database, data}) => {
 		
 		if (!Array.isArray(data) || !data.length) return;
