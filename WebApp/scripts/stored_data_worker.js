@@ -65,11 +65,10 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 		if (typeof column === 'object') {
 			// check artificial columns
 			Object.keys(artificialColumns).forEach(entry => {
-				if (entry.formula === column.real) {
+				if (artificialColumns[entry].formula === column.real) {
 					columnType = entry.type;
 				}
 			});
-			
 			
 			// check metaInformation
 			metaInformation.columns.forEach(entry => {

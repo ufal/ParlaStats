@@ -274,6 +274,22 @@ let translations = {
 	"words_per_minute": {
 		"en":"Words per minute",
 		"cs":"Počet slov za minutu"
+	},
+	"EXTRACT(MONTH FROM speech.date)": {
+		"en":"Month",
+		"cs":"Měsíc"
+	},
+	"EXTRACT(YEAR FROM speech.date)": {
+		"en":"Year",
+		"cs":"Rok"
+	},
+	"EXTRACT(DOW FROM speech.date)": {
+		"en":"Day of the week",
+		"cs":"Den v týdnu"
+	},
+	"(speech.token_count / (speech.total_duration / 60000))": {
+		"en":"Words per minute",
+		"cs":"Počet slov za minutu"
 	}
 }
 

@@ -164,6 +164,7 @@ function renderStepsSection(container) {
 			queryObject.steps[stepIndex].columns.forEach(col => {
 				var hit = false;
 				if (typeof(col) === "object") {
+					console.log(col.real);
 					columnsToBeReturned += col.alias ? ` ${col.alias}` : `${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
 					hit = true;
 				}

@@ -32,7 +32,7 @@ export function addArtificialColumnOfferings( targetElement, currentLanguage) {
 
 export function makeAggregationFunctionSelect(availableColumns, targetElement, currentLanguage, forField,
 											  typeMapping, userDefinedAliases, stepResultArray) {
-	let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', 'DISTINCT', ""];
+	let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', ""];
 	let currentField = forField;
 	if (currentField) {
 		if (typeof currentField === "object") {
