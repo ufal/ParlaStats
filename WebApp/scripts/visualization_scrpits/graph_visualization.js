@@ -1,3 +1,5 @@
+import { getTranslations } from '../translations.js'
+
 const zoom = {
 	pan: {
 		enabled: true,
@@ -17,6 +19,8 @@ const zoom = {
 
 const colorCache = new Map();
 const yAxisPositions = ['left', 'right'];
+const translations = getTranslations();
+
 
 function columnsColorHash(str) {
 	if (colorCache.has(str)) { return colorCache.get(str) }
@@ -31,7 +35,7 @@ function columnsColorHash(str) {
 	return hsl;
 }
 
-function pivotChart(rows, labelKeys) {
+function pivotChart(rows, labelKeys, currentLanguage) {
 	const allKeys = Object.keys(rows[0] || {});
 	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number');
 	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
@@ -42,12 +46,18 @@ function pivotChart(rows, labelKeys) {
 		rows.map(r => [
 			labelKeys.map(k => {
 				if (typeof(r[k]) === 'string') { 
+					if (Object.keys(translations).includes(r[k])) {
+						return translations[r[k]][currentLanguage];
+					}
 					return r[k].replaceAll('_', ' ')
 				} 
 				else { return String(r[k]);}
 			}).join('|'),
 		    labelKeys.map(k => {
 				if (typeof(r[k]) === 'string') {
+					if (Object.keys(translations).includes(r[k])) {
+						return translations[r[k]][currentLanguage];
+					}
 					return r[k].replaceAll('_', ' ')
 				}
 				else {return String(r[k]);} 
@@ -72,7 +82,7 @@ function pivotChart(rows, labelKeys) {
 		}));
 	} else {
 		datasets = numericKeys.map((key, i) => ({
-			label: key.replaceAll('_', ' '),
+			label: Object.keys(translations).includes(key) ? translations[key][currentLanguage] : key.replaceAll('_', ' '),
 			data: labels.map(tuple => 
 						(rows.find(r => labelKeys.every((k,idx) => r[k] === tuple[idx])) || {})[key] ?? null),
 			backgroundColor: columnsColorHash(key),
@@ -83,7 +93,7 @@ function pivotChart(rows, labelKeys) {
 	return {labels, datasets: datasets };
 }
 
-export function visualizeAsGraph(responseData, queryObject, type) {
+export function visualizeAsGraph(responseData, queryObject, type, currentLanguage) {
 	const targetElement = document.getElementById('results-graph-wrapper');
 	targetElement.innerHTML = "";
 	if (responseData.length === 0) {
@@ -105,7 +115,7 @@ export function visualizeAsGraph(responseData, queryObject, type) {
 		const labelColumns = getLabels(queryObject);
 		const canvas = document.createElement('canvas');
 		graphDiv.appendChild(canvas);
-		const graphContents = pivotChart(data, labelColumns);
+		const graphContents = pivotChart(data, labelColumns, currentLanguage);
 		
 		var d = pivotChart(data, labelColumns);
 		var datasets=d.datasets;

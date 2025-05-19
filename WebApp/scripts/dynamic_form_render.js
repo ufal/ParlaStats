@@ -791,7 +791,7 @@ function renderGroupBy(container, step, stepIndex) {
 						"agg_func":aggregationFunctionSelect.value
 					};
 				} else if (typeof queryObject.steps[stepIndex].columns[columnIndex] === "object") {
-					queryObject.steps[stepIndex].columns[columnIndex].alias = aliasInputField.value;
+					queryObject.steps[stepIndex].columns[columnIndex].alias = aliasInputField.value.replaceAll(' ', '_');
 				}
 				storeAliases(queryObject, userDefinedAliases, stepResultArray, stepIndex);
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
@@ -1050,6 +1050,11 @@ function autofillAliases(query) {
 		const columns = step.columns;
 		columns.forEach(column => {
 			if (typeof(column) === 'object') {
+				Object.keys(artificialColumns).forEach(key => {
+					if (column.real === artificialColumns[key].formula && column.alias === "") {
+						column.alias = `${column.agg_func}_${key}`;
+					}
+				});
 				if (column.alias === "") {
 					column.alias = `${column.agg_func}_${column.real.replaceAll('.', '_')}`;
 				}
@@ -1074,14 +1079,16 @@ sendQueryButton.onclick = async () => {
 			const graphDiv = document.getElementById('results-graph-wrapper');
 			tableDiv.innerHTML = "";
 			graphDiv.innerHTML = "";
-			const message =  document.createElement('h5');
-			message.textContent = 'This query caused an internal error.';
-			tableDiv.appendChild(message);
-			graphDiv.appendChild(message);
+			const graphMessage = document.createElement('h5');
+			const tableMessage = document.createElement('h5');
+			tableMessage.textContent = 'This query caused an internal error.';
+			graphMessage.textContent = 'This query caused an internal error.';
+			tableDiv.appendChild(tableMessage);
+			graphDiv.appendChild(graphMessage);
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
 		const responseData = await response.json();
-		visualizeAsTable(responseData);
+		visualizeAsTable(responseData, currentLanguage);
 		visualizeAsGraph(responseData, queryObject, 'bar');
 		bindButtons(responseData, queryObject);
 	} catch (error) {
