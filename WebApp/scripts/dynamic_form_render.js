@@ -1089,7 +1089,7 @@ sendQueryButton.onclick = async () => {
 		}
 		const responseData = await response.json();
 		visualizeAsTable(responseData, currentLanguage);
-		visualizeAsGraph(responseData, queryObject, 'bar');
+		visualizeAsGraph(responseData, queryObject, 'bar', currentLanguage);
 		bindButtons(responseData, queryObject);
 	} catch (error) {
 		console.log(error);

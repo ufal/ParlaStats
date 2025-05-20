@@ -35,13 +35,30 @@ function columnsColorHash(str) {
 	return hsl;
 }
 
-function pivotChart(rows, labelKeys, currentLanguage) {
+function augmentLabels(currentLanguage, key) {
+	let res = "";
+	let parts = key.split('_');
+	console.log(parts);
+	Object.keys(translations).forEach(k => {
+		if (parts[0] === k) { res += translations[parts[0]][currentLanguage]; }
+		let rest = parts.slice(1);
+		console.log(k, rest.join('.'));
+		let col = `${rest[0]}.${rest.slice(1).join('_')}`;
+		if (col === k) {
+			res += ` ${translations[k][currentLanguage]}`;
+		} 	
+	});
+	if (res === "") {
+		res = key;
+	}
+	return res
+}
+
+function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
 	const allKeys = Object.keys(rows[0] || {});
-	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number');
-	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
+	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number' && !labelKeys.includes(k));
 	console.log(numericKeys);
-	console.log(rows);
-	console.log(labelKeys);
+	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
 	const labels = [ ...new Map(
 		rows.map(r => [
 			labelKeys.map(k => {
@@ -63,34 +80,35 @@ function pivotChart(rows, labelKeys, currentLanguage) {
 				else {return String(r[k]);} 
 			})])
 	).values()];
-	console.log(labels)
-	let datasets = [];
-	const find = (pred, key) => (rows.find(pred) || {}) ?? null;
-	if (labelKeys.length === 1 && catKeys.length) {
-		/* ========== NEW: handle many numeric keys ========== */
-		const seriesKey   = catKeys[0];                 // e.g. 'year'
-		const seriesVals  = [...new Set(rows.map(r => r[seriesKey]))];
+	
+	const splitKey = splitKeys.length ? '_join_' : allKeys.find(k => !labelKeys.includes(k) && isNaN(+rows[0][k]))
+	const withDerived = splitKeys.length 
+		? rows.map(r => ({ ...r,
+		                  ['_join_']: splitKeys.map(k => r[k]).join(' ') }))
+		: rows;
 
-			
-		datasets = seriesVals.map((val , i) => ({
-			label: String(val),
-			data: labels.map(([lab]) => 
-					(rows.find(r => r[labelKeys[0]] == lab &&
-					                r[seriesKey] == val) || {})[numericKeys[0].replaceAll(' ', '_')] ?? null),
-			// yAxisID:`y_${i}`,
-			backgroundColor: columnsColorHash(String(val))
-		}));
-	} else {
-		datasets = numericKeys.map((key, i) => ({
-			label: Object.keys(translations).includes(key) ? translations[key][currentLanguage] : key.replaceAll('_', ' '),
-			data: labels.map(tuple => 
-						(rows.find(r => labelKeys.every((k,idx) => r[k] === tuple[idx])) || {})[key] ?? null),
-			backgroundColor: columnsColorHash(key),
-			// yAxisID:`y_${i}`
-		}));
-	}
-	// console.log(datasets);
-	return {labels, datasets: datasets };
+
+	let datasets = [];
+	let i = 0;
+	const splitVals = [... new Set(withDerived.map(r => r[splitKey]))]
+	splitVals.forEach((splitVal, iSplit) => {
+		numericKeys.forEach((numKey, iNum) => {
+			let l = splitVal ? `${splitVal} - ${augmentLabels(currentLanguage, numKey)}`
+			             : `${augmentLabels(currentLanguage, numKey)}`;
+			datasets.push({
+				label: l,
+				yAxisID : `y_${iNum}`,
+				data : labels.map(([lab]) => {
+					const row = withDerived.find(r => {
+						return (r[labelKeys[0]] == lab && r[splitKey] === splitVal)});
+					return row ? +row[numKey] : null;
+				}),
+				backgroundColor: columnsColorHash(`${splitVal} - ${numKey}`)
+			});
+		});
+	});
+
+	return {labels, datasets };
 }
 
 export function visualizeAsGraph(responseData, queryObject, type, currentLanguage) {
@@ -103,9 +121,8 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		return;
 	}
 	responseData.forEach(({database, data}) => {
-		
+	
 		if (!Array.isArray(data) || !data.length) return;
-		// console.log(data);
 		const graphDiv = document.createElement('div');
 		const dbHeader = document.createElement('h5');
 		dbHeader.textContent = `${database}`;
@@ -113,78 +130,48 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		graphDiv.classList.add('graph-div');
 		
 		const labelColumns = getLabels(queryObject);
+		let name = [];
+		if (Object.keys(data[0]).includes('persname.forename') &&
+		    Object.keys(data[0]).includes('persname.surname')) {
+			name.push('persname.forename');
+			name.push('persname.surname');
+		}
 		const canvas = document.createElement('canvas');
 		graphDiv.appendChild(canvas);
-		const graphContents = pivotChart(data, labelColumns, currentLanguage);
+		const graphContents = pivotChart(data, labelColumns, currentLanguage, name);
 		
-		var d = pivotChart(data, labelColumns);
+		var d = graphContents;
 		var datasets=d.datasets;
 		var scales = {};
 		let i = 0;
 		datasets.forEach(dataset => {
-			scales['y_'+ i++] = {
-				position:yAxisPositions[i%2],
-				ticks: {
-					color:dataset.backgorundColor
-				}
-			};
+			let includeScale = true;
+			labelColumns.forEach(k => {
+				
+			if (dataset.label.includes(k)) { includeScale = false; }
+				if (k.includes(' - ')) { includeScale = false; }
+			});
+			if (includeScale) {
+				scales['y_'+ i++] = {
+					position:yAxisPositions[i%2],
+					ticks: {
+						color:dataset.backgorundColor
+					}
+				};
+			}
 		});
-
 		new Chart(canvas, {
 			type:type,
-			data: pivotChart(data, labelColumns),
+			data: graphContents,
 			options: {
 				plugins: { zoom },
 				responsive: true,
 				interaction:{mode:'index', intersect:false},
-				// scales: {
-				// 	...scales
-				// }
+				scales: {
+					...scales
+				}
 			}
 		});
-		// labelColumns.forEach(labelColumn => {
-		// 	const canvas = document.createElement('canvas');
-		// 	graphDiv.appendChild(canvas);
-			
-		// 	const labels = data.map(r => labelColumns.map(c => r[c]));
-
-		// 	const valueColumns = Object.keys(data[0]).filter(column => !labelColumns.includes(column));
-		// 	var scales = {};
-			
-		// 	let i=0;
-		// 	const datasets = valueColumns.map(col => ({
-		// 		label : col,
-		// 		data : data.map(r => +r[col]),
-		// 		borderWidth : 1,
-		// 		backgroundColor: columnsColorHash(col),
-		// 		borderColor: columnsColorHash(col),
-		// 		yAxisID:'y_'+ i++
-		// 	}));
-		// 	i = 0;
-		// 	datasets.forEach(dataset => {
-		// 		scales['y_'+ i++] = {
-		// 			position:yAxisPositions[i%2],
-		// 			ticks: {
-		// 				color:dataset.backgroundColor
-		// 			}
-		// 		};
-		// 	});
-			
-			
-		// 	new Chart(canvas, {
-		// 		type:type,
-		// 		data: {labels, datasets },
-		// 		options: {
-		// 			plugins: { zoom },
-		// 			responsive:true, 
-		// 			interaction:{mode:'index', intersect:false} 
-		// 		},
-		// 		scales: {
-		// 			...scales
-		// 		}
-		// 	});
-		// });
-		
 		
 		targetElement.appendChild(graphDiv);
 	});
@@ -195,7 +182,6 @@ function getLabels2(queryObject) {
 	let labels = [];
 	const lastStep = queryObject.steps[queryObject.steps.length - 1];
 	const groupBySection = lastStep.aggregation.group_by;
-	console.log(groupBySection);
 	groupBySection.forEach(entry => {
 		labels.push(entry);
 	});
@@ -225,5 +211,5 @@ export function bindButtons(responseData, queryObject) {
 	lineButton.onclick =() => {
 		visualizeAsGraph(responseData, queryObject, 'line');
 	};
-
 }
+
