@@ -11,7 +11,8 @@ import json
 from datetime import datetime, time, date
 import sys
 from metainformationFetcher import metainformationFetcher
-from SQLBuilder import SQLBuilder
+# from SQLBuilder import SQLBuilder
+from SQLBuilder2 import SQLBuilder
 from collections import OrderedDict
 
 class CustomJSONifier(JSONEncoder):
@@ -96,34 +97,61 @@ def query():
     target_databases = json_query["target_databases"]
     res = []
     for database in target_databases:
-        step_results = {}
         connection = connect_to_database(f"{args.db}{database}.ini")
         cursor = connection.cursor()
-        try:
-            for step in json_query['steps']:
-                sql_query, params = sql_builder.buildSQLQuery(step, step_results)
-                cursor.execute(sql_query, params)
-                step_results[step['goal']] = cursor.fetchall()
-        except ValueError as e:
-            return jsonify({"error": str(e)}), 400
-        cursor.close()
-        connection.close()
-        final_step_name = json_query['steps'][-1]['goal']
-        results = step_results[final_step_name]
-        columns = []
-        for column in json_query['steps'][-1]['columns']:
-            if (isinstance(column, str)): columns.append(column)
-            elif (isinstance(column, dict)): columns.append(column["alias"])
-        # columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
-        response = []
-        for column in columns:
-            if 'step_result' in column:
-                parts = column.split('/')
-                results.extend(step_results[parts[1]])
+
+        cte_snippets, all_params = [], []
+        exposed_cols = {}
+        for step in json_query["steps"]:
+            snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
+            cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
+            all_params.extend(params)
+            exposed_cols[step["goal"]] = outcols
+        
+        final_step = json_query["steps"][-1]["goal"]
+        full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
+        print("SQL:\n", full_sql)
+        print("params:", all_params)
+        with open('sql.txt', 'w') as f:
+            f.write(full_sql)
+        cursor.execute(full_sql, all_params)
+        columns = [d.name for d in cursor.description]
+        rows = cursor.fetchall()
+
+        res.append({"database": database,
+                     "data": format_output([dict(zip(columns,r)) for r in rows])})
+    # for database in target_databases:
+    #     step_results = {}
+    #     connection = connect_to_database(f"{args.db}{database}.ini")
+    #     cursor = connection.cursor()
+    #     try:
+    #         for step in json_query['steps']:
+    #             sql_query, params = sql_builder.buildSQLQuery(step, step_results)
+    #             ctes.append()
+    #             print(f'SQL: {sql_query}')
+    #             print(f'Parameters: {params}')
+    #             cursor.execute(sql_query, params)
+    #             step_results[step['goal']] = cursor.fetchall()
+    #     except ValueError as e:
+    #         return jsonify({"error": str(e)}), 400
+    #     cursor.close()
+    #     connection.close()
+    #     final_step_name = json_query['steps'][-1]['goal']
+    #     results = step_results[final_step_name]
+    #     columns = []
+    #     for column in json_query['steps'][-1]['columns']:
+    #         if (isinstance(column, str)): columns.append(column)
+    #         elif (isinstance(column, dict)): columns.append(column["alias"])
+    #     # columns = [col.split(' AS ')[-1] for col in json_query['steps'][-1]['columns']]
+    #     response = []
+    #     for column in columns:
+    #         if 'step_result' in column:
+    #             parts = column.split('/')
+    #             results.extend(step_results[parts[1]])
 
         
-        response = [dict(zip(columns, row)) for row in results]
-        res.append({"database": database, "data":format_output(response)})
+    #     response = [dict(zip(columns, row)) for row in results]
+    #     res.append({"database": database, "data":format_output(response)})
     return jsonify(res)
 
 """

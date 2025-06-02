@@ -1,0 +1,354 @@
+import re
+import copy
+from collections import OrderedDict
+
+class SQLBuilder:
+    
+    STEPREF = re.compile(r"^step_result/(?P<step>\w+)[./](?P<col>[\w./]+)$")
+    AUGMENTED_STEPREF = re.compile(r"^(?P<step>\w+)[./](?P<col>[\w./]+)$")
+    COLREF = re.compile(r"^\w+[.]\w+$")
+    SPECIAL_VALUES = ['NULL']
+
+    def __init__(self):
+        self.TABLE_MATCHING = {
+            "person":[],
+            "persname":["person"], # speech IS EXPERIMENTAL
+            "organisation":[],
+            "affiliation":["person", "organisation"],
+            "speech":["person"]
+        }
+        self.TABLE_JOIN_CONDITIONS = {
+            ("person", "persname") : ("person_id", "person_id"),
+            ("person", "affiliation") : ("person_id", "person_id"),
+            ("person", "speech") : ("person_id", "person_id"),
+            ("affiliation", "organisation") : ("organisation_id", "organisation_id")
+        }
+        self.SPEECH_TIME_COLUMNS = ["time_start", "time_end", "earliest_timestamp", "latest_timestamp"]
+
+    def _detect_dependencies(self, step: dict, exposed_cols: dict) -> list[tuple]:
+        deps = []
+        def register(prev: str, ref: str):
+            remote = self._resolve_exposed(prev, ref, exposed_cols, need="exposed")
+
+            # local = self._find_local_real(step, remote, ref)
+            local = self._pick_correct_local_column(step, prev, ref, remote, exposed_cols)
+            deps.append((prev, local, remote))
+
+        def scan_token(token: str):
+            m = self.AUGMENTED_STEPREF.match(token)
+            if m:
+                print(f'TOKEN {token}')
+            if m and m.group('step') not in self.TABLE_MATCHING:
+                register(m.group("step"), m.group("col"))
+
+        for col in step["columns"]:
+            if isinstance(col,str):
+                scan_token(col)
+            else:
+                scan_token(col.get('real', ""))
+                if isinstance(col.get('alias'), str):
+                    scan_token(col['alias'])
+
+        for cond in step['filtering']['conditions']:
+            scan_token(cond['value'])
+
+        return deps
+
+    def _find_local_real(self, step_dict: dict, remote: str, ref: str) -> str:
+        for col in step_dict['columns']:
+            if isinstance(col, dict) and col.get('alias') == remote:
+                real = col['real']
+                print(f"REF: {ref}")
+                # if real.split('.')[0] == ref.split('/')[1]:
+                #     continue
+                return real
+        
+        return ref.split('/')[-1]
+
+    def _pick_correct_local_column(self, step: dict, prev_step: str, ref_col: str, remote_alias: str, exposed: dict) -> str:
+        for col in step['columns']:
+            if not isinstance(col, dict):
+                continue
+            if isinstance(col, dict) and col.get('alias') == remote_alias:
+                real = col['real']
+                if not real.startswith(f'{prev_step}.'):
+                    return real
+        
+        remote_real = exposed[prev_step].get(remote_alias)['real']
+        if remote_real:
+            return remote_real
+
+        return ref_col
+
+    def _inject_dep_joins(self, core_sql, deps):
+        print(f"DEPS: {deps}")
+        if not deps:
+            return core_sql
+       
+
+        where_pos = core_sql.lower().find(" where ")
+        search_scope = core_sql[: where_pos if where_pos != -1 else len(core_sql)]
+        from_match = re.search(r"\bFROM\b", core_sql, re.I)
+        insert_at = from_match.end()
+
+        from_pos = re.search(r"\bWHERE\b", core_sql, re.I).end() - 5
+        join_snippets = []
+        for prev, local, remote in deps:
+            print(f"LOCAL: {local}")
+            print(f"PREV: {prev}")
+            print(f"REMOTE: {remote}")
+            col_name = local.split('.')[-1]
+            if local.startswith(f"{prev}."):
+                alias = None
+                for m in re.finditer(rf"\b(\w+)\.{re.escape(col_name)}\b", search_scope):
+                    if m.group(1) != prev:
+                        alias = m.group(1)
+                        break
+                if not alias:
+                    alias = re.search(r"\bFROM\s+(\w+)", core_sql, re.I).group(1)
+                local = f"{alias}.{col_name}"
+
+            join_snippets.append(f" JOIN {prev} ON {local} = {prev}.{remote}")
+        return core_sql[:from_pos] + "".join(join_snippets) + " " + core_sql[from_pos:]
+
+    def build_step_cte(self, step: dict, exposed_cols: dict) -> tuple[str, list, dict]:
+        step = copy.deepcopy(step)
+        
+
+        for cond in step["filtering"]["conditions"]:
+            new_val = self.inline_step_ref(cond["value"], exposed_cols)
+            if new_val: cond["value"] = new_val
+
+        new_cols = []
+
+        for col in step["columns"]:
+            if isinstance(col, str) and (m := self.STEPREF.fullmatch(col)):
+                exposed_name = self._resolve_exposed(m.group('step'), m.group('col'), exposed_cols, need="exposed")
+                new_cols.append({
+                    "real":f"{m.group('step')}.{exposed_name}",
+                    "alias":exposed_name,
+                    "agg_func":""
+                })
+                
+                
+            else:
+                new_cols.append(col)
+                
+
+        step["columns"] = new_cols
+
+        core_sql, params = self.buildSQLQuery(step, exposed_cols)
+
+        sql = self._inject_dep_joins(core_sql, self._detect_dependencies(step, exposed_cols))
+
+        exposed = {}
+        for col in step['columns']:
+            if isinstance(col, str):
+                real = col
+                alias = col.split('.')[-1]
+            else:
+                real = col['real']
+                alias = col.get('alias') or real.split('.')[-1]
+
+            exposed_key = alias
+            exposed[exposed_key] = {
+                "exposed":alias,
+                "real":real
+            }
+            exposed[real] = exposed[exposed_key]
+            exposed[real.split('.')[-1]] = exposed[exposed_key]
+
+        return sql, params, exposed
+
+    def inline_step_ref(self, val: str, exposed_cols: dict) -> str | None:
+        m = self.STEPREF.match(val)
+        if not m:
+            return None
+        print(f"VAL: {val}")
+        step, ref_col = m.group('step'), m.group('col')
+        if step not in exposed_cols:
+            raise ValueError(f"Unknown step '{step}' in {val}.")
+        print(f"STEP: {step}", f"COL: {ref_col}")
+        real_name = self._resolve_exposed(step, ref_col, exposed_cols)
+        if ('.' in real_name):
+            real_name = real_name.split('.')[-1]
+        return f"(SELECT {real_name} FROM {step})"
+
+    def _resolve_exposed(self, step: str, ref_col: str, exposed_cols: dict, need="exposed") -> str:
+        entry = exposed_cols.get(step, {}).get(ref_col)
+        
+        if not entry:
+            key = ref_col.split('.')[-1]
+            entry = exposed_cols.get(step, {}).get(key)
+
+        if not entry:
+            _fail_unknown(step, ref_col, exposed_cols)
+        
+        return entry[need]
+
+    @staticmethod
+    def _fail_unknown(step: str, ref: str, mapping: dict):
+        print(f"MAPPING: {mapping}")
+        print(f"REF: {ref}")
+        raise ValueError(
+            f"Step '{step}' does not expose a column called '{ref}'. "
+            f"Available: {', '.join(mapping.get(step,{}).keys())}"
+        )
+
+    def buildSQLQuery(self, json_query: dict, exposed_cols: dict | None = None) -> tuple[str, list]:
+        exposed_cols = exposed_cols or {}
+        
+        select_part = self.parse_columns(json_query['columns'])
+        joins_part = self.parse_joins(
+            self.determine_joins(
+                json_query['columns'],
+                json_query['filtering']['conditions'],
+                json_query['aggregation']['group_by'],
+            )
+        )
+        where_part, params = self.parse_conditions(json_query['filtering']['conditions'], exposed_cols)
+        group_part = self.parse_group_by(json_query['aggregation']['group_by'], json_query['columns'])
+        order_part = self.parse_order_by(json_query['aggregation']['order_by'])
+        limit_part = self.parse_limit(json_query.get('limit'))
+
+        sql = f"SELECT {select_part}{joins_part}{where_part}{group_part}{order_part}{limit_part}"
+        print("RESULTING SQL: ", sql)
+        return sql, params
+        
+    def parse_limit(self, limit):
+        return f" LIMIT {limit}" if limit else ""
+
+    def parse_order_by(self, order_by):
+        if not order_by:
+            return ""
+        parts = []
+        for ob in order_by:
+            col = ob['column']
+            direction = ob['direction']
+            if isinstance(col, str):
+                parts.append(f"{col} {direction}")
+            else:
+                func = col['agg_func']
+                real = col['real']
+                if func == 'COUNT':
+                    parts.append(f"COUNT(DISTINCT {real}) {direction}")
+                else:
+                    parts.append(f"{func}({real}) {direction}")
+        return " ORDER BY " + ", ".join(parts)
+
+    def parse_group_by(self, group_by, columns):
+        items = []
+        need_artificial = any(
+            isinstance(c, dict) and c.get("agg_func") not in ("", None, "DISTINCT")
+            for c in columns
+        )
+
+        if need_artificial:
+            for c in columns:
+                if isinstance(c, dict):
+                    if c.get("agg_func") in ("", None, "DISTINCT"):
+                        items.append(c.get('alias') or c["real"])
+                else:
+                    items.append(c)
+
+        if group_by:
+            items.extend(group_by)
+
+        uniq = list(OrderedDict.fromkeys(items))
+        return f" GROUP BY {', '.join(uniq)}" if uniq else ""
+
+    def parse_conditions(self, conditions, exposed_cols):
+        if not conditions:
+            return "", []
+        fragments, params = [], []
+        for cond in conditions:
+            col, op, val = cond['column'], cond['operator'], cond['value']
+            
+            if isinstance(val, str) and val.lstrip().upper().startswith("(SELECT"):
+                val_sql = val
+            else:
+                
+                        
+                inlined = self.inline_step_ref(val, exposed_cols)
+                if inlined:
+                    val_sql = inlined
+                elif self.COLREF.match(val) and not val.startswith("'"):
+                    val_sql = val
+                else:
+                    val_sql = "%s"
+                    literal = val.strip("'") if isinstance(val, str) else val
+                    if (',' in literal):
+                        val_sql = literal;
+                    elif (literal in self.SPECIAL_VALUES):
+                        val_sql = literal;
+                    else:
+                        params.append(literal)
+
+            fragments.append(f"{col} {op} {val_sql}")
+            
+        return " WHERE " + " AND ".join(fragments), params
+
+    def determine_joins(self, columns, conditions, group_by):
+        required = set()
+        tables = self.TABLE_MATCHING.keys()
+
+        for table in tables:
+            for col in columns:
+                if isinstance(col, str):
+                    if table in col:
+                        required.add(table)
+                elif isinstance(col, dict):
+                    if table in col["real"]:
+                        required.add(table)
+
+            for gb in group_by or []:
+                if table in gb:
+                    required.add(table)
+
+            for cond in conditions:
+                if table in cond["column"] or table in cond["value"]:
+                    required.add(table)
+
+        joins = []
+        required.discard("person")
+        for table in required:
+            if table in self.TABLE_MATCHING and "person" in self.TABLE_MATCHING[table]:
+                joins.append(("person", table))
+            elif table == "organisation":
+                if ("person", "affiliation") not in joins:
+                    joins.append(("person", "affiliation"))
+                joins.append(("affiliation", table))
+            else:
+                raise ValueError(f"Unsupported join path for table '{table}'.")
+        return joins
+
+    def parse_joins(self, joins):
+        res = " FROM person "
+        for left, right in joins:
+            lcol, rcol = self.TABLE_JOIN_CONDITIONS[(left, right)]
+            res += f"LEFT JOIN {right} ON {left}.{lcol} = {right}.{rcol} "
+        return res
+
+    def parse_columns(self, columns):
+        out = []
+        for col in columns:
+            if isinstance(col, str):
+                if "step_result" not in col:
+                    out.append(col)
+                if len(col.split('.')) > 2: 
+                    out.append(f"{col.split('.')[0]}.{col.split('.')[2]}")
+            else:
+                real = col["real"]
+                alias = col.get("alias", "")
+                func = col.get("agg_func", "")
+                expr = real
+                if func == "COUNT":
+                    expr = f"COUNT(DISTINCT {real})"
+                elif func:
+                    expr = f"{func}({real})"
+                if alias:
+                    expr += f" AS {alias}"
+                    
+                out.append(expr)
+        return ", ".join(out)
+
