@@ -3,7 +3,7 @@ import {getTranslations} from '../translations.js'
 const translations = getTranslations();
 
 export function visualizeAsTable(response, currentLanguage) {
-	const targetElement = document.getElementById('results-table-wrapper')
+	const targetElement = document.getElementById('results-table-wrapper');
 	targetElement.innerHTML = "";
 	if (response.length === 0) {
 		const message = document.createElement('h5');
@@ -37,8 +37,6 @@ export function visualizeAsTable(response, currentLanguage) {
 			data: c.includes('.') ? c.replace(/\./g, '\\.') : c, 
 			title: Object.keys(translations).includes(c) ? translations[c][currentLanguage] : c.replaceAll('_', ' ')
 		}));
-		console.log(`Columns: ${columns}.`)
-		console.log(columns[0]);
 		new DataTable(tableElement, { 
 			data, 
 			columns, 
