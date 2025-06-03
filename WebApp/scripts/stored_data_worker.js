@@ -77,13 +77,15 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 					possibleValues = entry.data;
 				}
 			});
-			
+
 			if (columnType === "") {
 				const entry = aliases[stepIndex].find(col => col.alias === column.alias);
-				columnType = entry.type;
-				possibleValues = entry.possibleValues;
+				if (entry) {
+					columnType = entry.type;
+					possibleValues = entry.possibleValues;
+				}
 			}
-
+			
 			// Else
 			if (columnType === "") {
 				columnType = "NoAggregation";

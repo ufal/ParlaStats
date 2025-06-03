@@ -4,7 +4,7 @@ import { getTranslations, getUITranslations, translateStepResults } from './tran
 import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
-import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
+import { visualizeAsGraph, bindButtons, visualizeAsGraph2 } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
@@ -124,7 +124,6 @@ function initializeSelects(selects) {
 				const input = wrapper.querySelector('input.select-dropdown');	
 				const options = wrapper.querySelector('ul');
 				const selected = options.querySelector('.selected');
-				console.log(selected);
 				const span = selected.querySelector('span');
 				textHolder.style.font = getComputedStyle(input).font;
 				textHolder.textContent = span.textContent;
@@ -164,7 +163,6 @@ function renderStepsSection(container) {
 			queryObject.steps[stepIndex].columns.forEach(col => {
 				var hit = false;
 				if (typeof(col) === "object") {
-					console.log(col.real);
 					columnsToBeReturned += col.alias ? ` ${col.alias}` : `${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
 					hit = true;
 				}
@@ -177,8 +175,10 @@ function renderStepsSection(container) {
 						}
 					});
 				}
+				
 				if (!hit && col.includes('step_result')) {
 					columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);		
+					hit = true;
 				}
 				if (!hit) {
 					columnsToBeReturned += ` ${translations[col][currentLanguage]}`;
@@ -1089,7 +1089,7 @@ sendQueryButton.onclick = async () => {
 		}
 		const responseData = await response.json();
 		visualizeAsTable(responseData, currentLanguage);
-		visualizeAsGraph(responseData, queryObject, 'bar', currentLanguage);
+		visualizeAsGraph2(responseData, queryObject, 'bar', currentLanguage);
 		bindButtons(responseData, queryObject);
 	} catch (error) {
 		console.log(error);
