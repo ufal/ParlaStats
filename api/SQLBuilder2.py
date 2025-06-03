@@ -36,8 +36,6 @@ class SQLBuilder:
 
         def scan_token(token: str):
             m = self.AUGMENTED_STEPREF.match(token)
-            if m:
-                print(f'TOKEN {token}')
             if m and m.group('step') not in self.TABLE_MATCHING:
                 register(m.group("step"), m.group("col"))
 
@@ -58,9 +56,6 @@ class SQLBuilder:
         for col in step_dict['columns']:
             if isinstance(col, dict) and col.get('alias') == remote:
                 real = col['real']
-                print(f"REF: {ref}")
-                # if real.split('.')[0] == ref.split('/')[1]:
-                #     continue
                 return real
         
         return ref.split('/')[-1]
@@ -81,7 +76,6 @@ class SQLBuilder:
         return ref_col
 
     def _inject_dep_joins(self, core_sql, deps):
-        print(f"DEPS: {deps}")
         if not deps:
             return core_sql
        
@@ -94,9 +88,6 @@ class SQLBuilder:
         from_pos = re.search(r"\bWHERE\b", core_sql, re.I).end() - 5
         join_snippets = []
         for prev, local, remote in deps:
-            print(f"LOCAL: {local}")
-            print(f"PREV: {prev}")
-            print(f"REMOTE: {remote}")
             col_name = local.split('.')[-1]
             if local.startswith(f"{prev}."):
                 alias = None
@@ -118,7 +109,7 @@ class SQLBuilder:
         for cond in step["filtering"]["conditions"]:
             new_val = self.inline_step_ref(cond["value"], exposed_cols)
             if new_val: cond["value"] = new_val
-
+        #================= AUGMENT COLUMNS =========================
         new_cols = []
 
         for col in step["columns"]:
@@ -129,14 +120,51 @@ class SQLBuilder:
                     "alias":exposed_name,
                     "agg_func":""
                 })
-                
-                
+                               
             else:
                 new_cols.append(col)
                 
-
         step["columns"] = new_cols
+        #===========================================================
+        #================ AUGMENT GROUP BY =========================
+        if "aggregation" in step and step["aggregation"].get("group_by"):
+            new_group_by = []
+            
+            for gb in step["aggregation"]["group_by"]:
+                if isinstance(gb, str) and (m := self.STEPREF.fullmatch(gb)):
+                    alias = self._resolve_exposed(m.group('step'), m.group('col'), exposed_cols, need="exposed")
+                    new_group_by.append(alias)
 
+                elif isinstance(gb, dict):
+                    real = gb.get("real","")
+                    if isinstance(real, str) and (m := self.STEPREF.fullmatch(real)):
+                        alias = self._resolve_exposed(m.group('step'), m.group('col'), exposed_cols, need="exposed")
+                        new_group_by.append(alias)
+                    else:
+                        new_group_by.append(gb)
+                else:
+                    new_group_by.append(gb)
+            step["aggregation"]["group_by"] = new_group_by
+        #===========================================================
+        #=============== AUGMENT ORDER BY ==========================
+        if "aggregation" in step and step["aggregation"].get("order_by"):
+            new_order_by = []
+
+            for ob in step["aggregation"]["order_by"]:
+                if isinstance(ob, str) and (m := self.STEPREF.fullmatch(ob)):
+                    alias = self._resolve_exposed(m.group('step'), m.group('col'), exposed_cols, need="exposed")
+                    new_order_by.append(alias)
+                elif isinstance(ob, dict):
+                    real = ob.get("real", "")
+                    if isinstance(real, str) and (m := self.STEPREF.fullmatch(real)):
+                        alias = self._resolve_exposed(m.group('step'), m.group('col'), exposed_cols, need="exposed")
+                        new_order_by.append(alias)
+                    else:
+                        new_order_by.append(ob)
+                else:
+                    new_order_by.append(ob)
+            step["aggregation"]["order_by"] = new_order_by
+        #===========================================================
         core_sql, params = self.buildSQLQuery(step, exposed_cols)
 
         sql = self._inject_dep_joins(core_sql, self._detect_dependencies(step, exposed_cols))
@@ -164,11 +192,9 @@ class SQLBuilder:
         m = self.STEPREF.match(val)
         if not m:
             return None
-        print(f"VAL: {val}")
         step, ref_col = m.group('step'), m.group('col')
         if step not in exposed_cols:
             raise ValueError(f"Unknown step '{step}' in {val}.")
-        print(f"STEP: {step}", f"COL: {ref_col}")
         real_name = self._resolve_exposed(step, ref_col, exposed_cols)
         if ('.' in real_name):
             real_name = real_name.split('.')[-1]
@@ -182,14 +208,12 @@ class SQLBuilder:
             entry = exposed_cols.get(step, {}).get(key)
 
         if not entry:
-            _fail_unknown(step, ref_col, exposed_cols)
+            self._fail_unknown(step, ref_col, exposed_cols)
         
         return entry[need]
 
     @staticmethod
     def _fail_unknown(step: str, ref: str, mapping: dict):
-        print(f"MAPPING: {mapping}")
-        print(f"REF: {ref}")
         raise ValueError(
             f"Step '{step}' does not expose a column called '{ref}'. "
             f"Available: {', '.join(mapping.get(step,{}).keys())}"
@@ -212,7 +236,6 @@ class SQLBuilder:
         limit_part = self.parse_limit(json_query.get('limit'))
 
         sql = f"SELECT {select_part}{joins_part}{where_part}{group_part}{order_part}{limit_part}"
-        print("RESULTING SQL: ", sql)
         return sql, params
         
     def parse_limit(self, limit):
@@ -252,7 +275,11 @@ class SQLBuilder:
                     items.append(c)
 
         if group_by:
-            items.extend(group_by)
+            for gb in group_by:
+                if isinstance(gb, str):
+                    items.append(gb)
+                else:
+                    items.append(gb['real'])
 
         uniq = list(OrderedDict.fromkeys(items))
         return f" GROUP BY {', '.join(uniq)}" if uniq else ""
