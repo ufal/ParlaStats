@@ -42,6 +42,7 @@ let translations = getTranslations();
 let currentLanguage = "en";
 let UItranslations = getUITranslations();
 let artificialColumns = getArtificialColumns();
+let debugMode = false;
 // ==================================================================
 
 function updatePreview() {
@@ -110,6 +111,7 @@ function renderForm() {
 			localStorage.setItem('details:' + details.id, details.open ? 'open' : 'closed');
 		});
 	});
+
 }
 
 function initializeSelects(selects) {
@@ -1068,9 +1070,14 @@ const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = async () => {
 	try {
 		const query = JSON.stringify(autofillAliases(queryObject), null, 2);
+		
+		const query_headers = debugMode ? 
+			{ "Content-Type": "application/json", "X-Debug": "True" } :
+			{"Content-Type": "application/json", "X-Debug": "False" };
+
 		const queryWrapped = {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: query_headers,
 			body: query
 		}
 		const response = await fetch(testServerURL, queryWrapped);
@@ -1088,8 +1095,9 @@ sendQueryButton.onclick = async () => {
 			throw new Error(`HTTP Error! Status: ${response.status}`);
 		}
 		const responseData = await response.json();
-		visualizeAsTable(responseData, currentLanguage);
-		visualizeAsGraph2(responseData, queryObject, 'bar', currentLanguage);
+		let data = debugMode ? responseData.RESPONSE : responseData;
+		visualizeAsTable(data, currentLanguage);
+		visualizeAsGraph2(data, queryObject, 'bar', currentLanguage);
 		bindButtons(responseData, queryObject);
 	} catch (error) {
 		console.log(error);
@@ -1140,28 +1148,21 @@ const inputJsonField = document.getElementById('inputJSON');
 // const outputJsonField = document.getElementById('outputJSON');
 
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
-// outputJsonField.addEventListener('input', () => autoResizeTextarea(outputJsonField));
 
-// const loadButton = document.getElementById('loadButton');
-// loadButton.onclick = () => {
-// 	const inputJsonField = document.getElementById('inputJSON');
-// 	const inputJSON = inputJsonField.value.trim();
-// 	if (inputJSON) {
-// 		try {
-// 			loadQuery(inputJSON);
-// 		} catch (error) {
-// 			alert("Please make sure you are pasting a valid JSON query!");
-// 		}
-// 	} else {
-// 		alert("Paste a JSON before loading.")
-// 	}
-// };
 
 document.addEventListener("DOMContentLoaded", () => {
 	renderForm();
 	metaInformation = getMetaInformation();
 	
 });
+
+const debugToggle = document.getElementById('debug-toggle');
+console.log(debugToggle);
+debugToggle.addEventListener('click', () => {
+	debugMode = !debugMode
+	debugToggle.textContent = debugMode ? 'Debug ON' : 'Debug OFF';
+});
+
 
 const manualQueryToggle = document.getElementById('manual_query_toggle');
 manualQueryToggle.onclick = () => {
