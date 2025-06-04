@@ -104,19 +104,36 @@ def query():
 
         cte_snippets, all_params = [], []
         exposed_cols = {}
-        for step in json_query["steps"]:
-            snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
-            cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
-            all_params.extend(params)
-            exposed_cols[step["goal"]] = outcols
         
-        final_step = json_query["steps"][-1]["goal"]
-        full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
-        # print("SQL:\n", full_sql)
-        # print("params:", all_params)
-        with open('sql.txt', 'w') as f:
-            f.write(full_sql)
-        cursor.execute(full_sql, all_params)
+        try:
+            for step in json_query["steps"]:
+                snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
+                cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
+                all_params.extend(params)
+                exposed_cols[step["goal"]] = outcols
+        
+            final_step = json_query["steps"][-1]["goal"]
+            full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
+            # print("SQL:\n", full_sql)
+            # print("params:", all_params)
+            with open('sql.txt', 'w') as f:
+                f.write(full_sql)
+        except:
+            bad_json_response = {
+                "error_message": "Server received malformed JSON query",
+                "query":json_query
+            }
+            return jsonify(bad_json_response)
+        
+        try:
+            cursor.execute(full_sql, all_params)
+        except:
+            bad_sql_response = {
+                "error_message": "Server produced invalid SQL query",
+                "query": full_sql
+            }
+            return jsonify(bad_sql_response)
+
         columns = [d.name for d in cursor.description]
         rows = cursor.fetchall()
 

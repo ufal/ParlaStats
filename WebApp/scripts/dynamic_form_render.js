@@ -1067,6 +1067,17 @@ function autofillAliases(query) {
 	return copy;
 }
 
+function autoResizeTextarea(textarea) {
+	textarea.style.resize = 'none';
+	textarea.style.overflow = 'hidden';
+	textarea.style.height = 'auto';
+	textarea.style.width = 'auto';
+	requestAnimationFrame(() => {
+		textarea.style.height = textarea.scrollHeight + 'px';
+		textarea.style.width = textarea.scrollWidth + 'px';
+	});
+}
+
 const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = async () => {
 	try {
@@ -1082,20 +1093,37 @@ sendQueryButton.onclick = async () => {
 			body: query
 		}
 		const response = await fetch(testServerURL, queryWrapped);
-		if (!response.ok) {
+		const responseData = await response.json();
+		if (responseData.error_message) {
 			const tableDiv = document.getElementById('results-table-wrapper');
 			const graphDiv = document.getElementById('results-graph-wrapper');
 			tableDiv.innerHTML = "";
 			graphDiv.innerHTML = "";
-			const graphMessage = document.createElement('h5');
 			const tableMessage = document.createElement('h5');
-			tableMessage.textContent = 'This query caused an internal error.';
-			graphMessage.textContent = 'This query caused an internal error.';
+			const graphMessage = document.createElement('h5');
+			tableMessage.textContent = responseData.error_message;
+			graphMessage.textContent = responseData.error_message;
 			tableDiv.appendChild(tableMessage);
 			graphDiv.appendChild(graphMessage);
-			throw new Error(`HTTP Error! Status: ${response.status}`);
+
+			const dataQueryTextArea = document.createElement('textarea');
+			if (responseData.error_message.includes("JSON")) {
+				console.log(JSON.stringify(responseData.query, null, 2));
+				dataQueryTextArea.value = JSON.stringify(responseData.query, null, 2);
+				dataQueryTextArea.style.width = '800px';
+				dataQueryTextArea.style.height = '500px';
+			} else {
+				dataQueryTextArea.value = responseData.query;
+				autoResizeTextarea(dataQueryTextArea);
+			}
+			
+
+			// tableDiv.appendChild(dataQueryTextArea);
+			graphDiv.appendChild(dataQueryTextArea);
+			
+			return;
 		}
-		const responseData = await response.json();
+		
 		let data = debugMode ? responseData.RESPONSE : responseData;
 		visualizeAsTable(data, currentLanguage);
 		visualizeAsGraph2(data, queryObject, 'bar', currentLanguage);
@@ -1108,14 +1136,7 @@ sendQueryButton.onclick = async () => {
 	}
 }
 
-function autoResizeTextarea(textarea) {
-	textarea.style.height = 'auto';
-	textarea.style.width = 'auto';
-	requestAnimationFrame(() => {
-		textarea.style.height = textarea.scrollHeight+'px';
-		textarea.style.width = textarea.scrollWidth+'px';
-	});
-}
+
 
 const inputJsonField = document.getElementById('inputJSON');
 // const outputJsonField = document.getElementById('outputJSON');

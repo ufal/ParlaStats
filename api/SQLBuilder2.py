@@ -99,7 +99,7 @@ class SQLBuilder:
                     alias = re.search(r"\bFROM\s+(\w+)", core_sql, re.I).group(1)
                 local = f"{alias}.{col_name}"
 
-            join_snippets.append(f" JOIN {prev} ON {local} = {prev}.{remote}")
+            join_snippets.append(f" JOIN {prev} ON {local} = {prev}.{remote} \n")
         return core_sql[:from_pos] + "".join(join_snippets) + " " + core_sql[from_pos:]
 
     def build_step_cte(self, step: dict, exposed_cols: dict) -> tuple[str, list, dict]:
@@ -235,7 +235,7 @@ class SQLBuilder:
         order_part = self.parse_order_by(json_query['aggregation']['order_by'])
         limit_part = self.parse_limit(json_query.get('limit'))
 
-        sql = f"SELECT {select_part}{joins_part}{where_part}{group_part}{order_part}{limit_part}"
+        sql = f"    SELECT {select_part}{joins_part}{where_part}{group_part}{order_part}{limit_part}"
         return sql, params
         
     def parse_limit(self, limit):
@@ -249,14 +249,14 @@ class SQLBuilder:
             col = ob['column']
             direction = ob['direction']
             if isinstance(col, str):
-                parts.append(f"{col} {direction}")
+                parts.append(f"{col} {direction} \n")
             else:
                 func = col['agg_func']
                 real = col['real']
                 if func == 'COUNT':
-                    parts.append(f"COUNT(DISTINCT {real}) {direction}")
+                    parts.append(f"COUNT(DISTINCT {real}) {direction} \n")
                 else:
-                    parts.append(f"{func}({real}) {direction}")
+                    parts.append(f"{func}({real}) {direction} \n")
         return " ORDER BY " + ", ".join(parts)
 
     def parse_group_by(self, group_by, columns):
@@ -277,12 +277,12 @@ class SQLBuilder:
         if group_by:
             for gb in group_by:
                 if isinstance(gb, str):
-                    items.append(gb)
+                    items.append(gb + ' \n')
                 else:
-                    items.append(gb['real'])
+                    items.append(gb['real'] + ' \n')
 
         uniq = list(OrderedDict.fromkeys(items))
-        return f" GROUP BY {', '.join(uniq)}" if uniq else ""
+        return f"     GROUP BY {', '.join(uniq)}" if uniq else ""
 
     def parse_conditions(self, conditions, exposed_cols):
         if not conditions:
@@ -311,9 +311,9 @@ class SQLBuilder:
                     else:
                         params.append(literal)
 
-            fragments.append(f"{col} {op} {val_sql}")
+            fragments.append(f"{col} {op} {val_sql} \n")
             
-        return " WHERE " + " AND ".join(fragments), params
+        return "      WHERE " + "          AND ".join(fragments), params
 
     def determine_joins(self, columns, conditions, group_by):
         required = set()
@@ -350,10 +350,10 @@ class SQLBuilder:
         return joins
 
     def parse_joins(self, joins):
-        res = " FROM person "
+        res = " FROM person \n  "
         for left, right in joins:
             lcol, rcol = self.TABLE_JOIN_CONDITIONS[(left, right)]
-            res += f"LEFT JOIN {right} ON {left}.{lcol} = {right}.{rcol} "
+            res += f"    LEFT JOIN {right} ON {left}.{lcol} = {right}.{rcol} \n"
         return res
 
     def parse_columns(self, columns):
