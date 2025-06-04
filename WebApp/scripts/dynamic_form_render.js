@@ -6,6 +6,7 @@ import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
 import { visualizeAsGraph, bindButtons, visualizeAsGraph2 } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
+import { addDebugInfo } from './debuggingSupport.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -1099,49 +1100,21 @@ sendQueryButton.onclick = async () => {
 		visualizeAsTable(data, currentLanguage);
 		visualizeAsGraph2(data, queryObject, 'bar', currentLanguage);
 		bindButtons(responseData, queryObject);
+		if (debugMode) {
+			addDebugInfo(responseData);
+		}
 	} catch (error) {
 		console.log(error);
 	}
 }
 
-function visualizeResponseInTable(responseData) {
-	const visualizationDiv = document.getElementById("results-table-wrapper");
-	visualizationDiv.innerHTML = '';
-	var table = document.createElement("table");
-	var tableHeader = document.createElement("thead");
-	var headerRow = document.createElement("tr");
-
-	// Header Construction
-	var columnNames = Object.keys(responseData[1][0]);
-
-	columnNames.forEach(columnName => {
-		var th = document.createElement("th");
-		th.textContent = columnName;
-		headerRow.appendChild(th);
-	});
-
-	tableHeader.appendChild(headerRow);
-	table.appendChild(tableHeader)
-	
-	// Body construction
-	var tableBody = document.createElement("tbody");
-	responseData[1].forEach(row => {
-		var tableRow = document.createElement("tr");
-		columnNames.forEach(columnName => {
-			var td = document.createElement("td");
-			td.textContent = row[columnName];
-			tableRow.appendChild(td);
-		});
-		tableBody.appendChild(tableRow);
-	});
-	table.appendChild(tableBody);
-	visualizationDiv.appendChild(table);
-
-}
-
 function autoResizeTextarea(textarea) {
-	textarea.style.height = '1000px';
-	textarea.style.width = '800px';
+	textarea.style.height = 'auto';
+	textarea.style.width = 'auto';
+	requestAnimationFrame(() => {
+		textarea.style.height = textarea.scrollHeight+'px';
+		textarea.style.width = textarea.scrollWidth+'px';
+	});
 }
 
 const inputJsonField = document.getElementById('inputJSON');
