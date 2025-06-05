@@ -4,7 +4,7 @@ import { getTranslations, getUITranslations, translateStepResults } from './tran
 import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
-import { visualizeAsGraph, bindButtons, visualizeAsGraph2 } from './visualization_scrpits/graph_visualization.js'
+import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
 import { addDebugInfo } from './debuggingSupport.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================

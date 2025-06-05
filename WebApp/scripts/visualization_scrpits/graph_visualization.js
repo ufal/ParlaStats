@@ -53,10 +53,8 @@ function augmentLabels(currentLanguage, key) {
 }
 
 function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
-	console.log("Label Keys", labelKeys);
 	const allKeys = Object.keys(rows[0] || {});
 	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number' && !labelKeys.includes(k));
-	console.log(numericKeys);
 	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
 	const labels = [ ...new Map(
 		rows.map(r => [
@@ -96,11 +94,14 @@ function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
 			datasets.push({
 				label: l,
 				yAxisID : `y_${iNum}`,
-				data : labels.map(([lab]) => {
-					const row = withDerived.find(r => {
-						return (r[labelKeys[0]] == lab && r[splitKey] === splitVal)});
-					return row ? +row[numKey] : null;
+				data: labels.map(tuple => {
+					const row = withDerived.find(r => 
+						labelKeys.every((k, i) => r[k] == tuple[i]) &&
+						(splitKey ? r[splitKey] === splitVal : true)
+					);
+					return row ? + row[numKey] : null;
 				}),
+				
 				backgroundColor: columnsColorHash(`${splitVal} - ${numKey}`)
 			});
 		});
@@ -118,7 +119,6 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		return;
 	}
 	responseData.forEach(({database, data}) => {
-		console.log(data);
 		if (!Array.isArray(data) || !data.length) return;
 		const graphDiv = document.createElement('div');
 		const dbHeader = document.createElement('h5');
@@ -144,7 +144,6 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		datasets.forEach(dataset => {
 			let includeScale = true;
 			labelColumns.forEach(k => {
-			console.log(k);	
 			if (dataset.label.includes(k)) { includeScale = false; }
 				if (k.includes(' - ')) { includeScale = false; }
 			});
@@ -251,85 +250,19 @@ function determineLabels(data, queryObject, currentLanguage) {
 			return col;
 		}
 	});
-	console.log(columns_parsed);
-	console.log(group_by_cols_parsed);
+	
 	const label_columns = columns_parsed.filter(col => { 
 		if (group_by_cols_parsed.includes(col)) {
 			return col.toLowerCase;
 		}
 	});
-	console.log(label_columns);
 	const labels = data.map(row => {
-		console.log(row);
 		return Object.entries(row)
 			.filter(([key, val]) => label_columns.includes(key.toLowerCase()) && isNaN(val))
 			.map(([_, val]) => val)
 			.join('-')
 	});
-	console.log()
-	console.log(labels);
 	return labels
 
-}
-
-export function visualizeAsGraph2(responseData, queryObject, type, currentLanguage) {
-	const targetElement = document.getElementById('results-graph-wrapper');
-	targetElement.innerHTML = "";
-	if (responseData.length === 0) {
-		const message = document.createElement('h5');
-		message.textContent = 'Nothing to visualize';
-		targetElement.appendChild(message);
-		return;
-	}
-	const databases = [... new Set(responseData.map(row => row.database))]
-	databases.forEach((database, graphIndex) => {
-		const dataa = responseData[graphIndex].data;
-		
-		const title = document.createElement('h5');
-		title.textContent = `${database} - ${queryObject.description}`;
-		targetElement.appendChild(title);
-
-		const canvas = document.createElement('canvas');
-		canvas.id = `chart-${graphIndex}`;
-		targetElement.appendChild(canvas);
-		const labels = determineLabels(dataa, queryObject, currentLanguage);
-		
-		const numericKeys = Object.keys(dataa[0]).filter(k => typeof dataa[0][k] === 'number')
-
-		const datasets = numericKeys.map((key, i) => ({
-			label: key,
-			data: dataa.map(row => row[key]),
-			backgroundColor: columnsColorHash(key),
-			yAxisID: key
-
-		}));
-
-		const yAxes = numericKeys.map((key, i) => ({
-			id:key,
-			type:'linear',
-			position: i % 2 === 0 ? 'left' : 'right',
-			beginAtZero:true,
-			ticks: {
-				color: columnsColorHash(key)
-			}
-		}));
-
-		new Chart(canvas.getContext('2d'), {
-			type:type,
-			data: {
-				labels: labels,
-				datasets: datasets
-			},
-			options: {
-				responsive: true,
-				interaction: {
-					mode: 'index',
-					intersect: false
-				},
-				scales: Object.fromEntries(yAxes.map(axis => [axis.id, axis]))
-			}
-		});
-
-	});
 }
 
