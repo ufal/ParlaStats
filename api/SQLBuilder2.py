@@ -120,6 +120,14 @@ class SQLBuilder:
                     "alias":exposed_name,
                     "agg_func":""
                 })
+
+            elif isinstance(col, str) and '.' in col:
+                alias_sql = f'"{col.replace("\"","\"\"")}"'
+                new_cols.append({
+                    "real":col,
+                    "alias":alias_sql,
+                    "agg_func":""
+                })
                                
             else:
                 new_cols.append(col)
@@ -196,8 +204,13 @@ class SQLBuilder:
         if step not in exposed_cols:
             raise ValueError(f"Unknown step '{step}' in {val}.")
         real_name = self._resolve_exposed(step, ref_col, exposed_cols)
-        if ('.' in real_name):
+        
+        if real_name.startswith('"') and real_name.endswith('"'):
+            pass
+
+        elif ('.' in real_name):
             real_name = real_name.split('.')[-1]
+        
         return f"(SELECT {real_name} FROM {step})"
 
     def _resolve_exposed(self, step: str, ref_col: str, exposed_cols: dict, need="exposed") -> str:
