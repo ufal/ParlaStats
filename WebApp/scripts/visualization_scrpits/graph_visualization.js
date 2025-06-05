@@ -53,8 +53,10 @@ function augmentLabels(currentLanguage, key) {
 }
 
 function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
+	console.log("Label Keys", labelKeys);
 	const allKeys = Object.keys(rows[0] || {});
 	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number' && !labelKeys.includes(k));
+	console.log(numericKeys);
 	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
 	const labels = [ ...new Map(
 		rows.map(r => [
@@ -116,10 +118,11 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		return;
 	}
 	responseData.forEach(({database, data}) => {
+		console.log(data);
 		if (!Array.isArray(data) || !data.length) return;
 		const graphDiv = document.createElement('div');
 		const dbHeader = document.createElement('h5');
-		dbHeader.textContent = `${database}`;
+		dbHeader.textContent = `${database} - ${queryObject.description}`;
 		graphDiv.appendChild(dbHeader);
 		graphDiv.classList.add('graph-div');
 		
@@ -141,7 +144,7 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		datasets.forEach(dataset => {
 			let includeScale = true;
 			labelColumns.forEach(k => {
-				
+			console.log(k);	
 			if (dataset.label.includes(k)) { includeScale = false; }
 				if (k.includes(' - ')) { includeScale = false; }
 			});
@@ -189,7 +192,12 @@ function getLabels(queryObject) {
 	let labels = [];
 	columnSection.forEach(entry => {
 		if (groupBySection.includes(entry)) {
-			labels.push(entry);
+			if (entry.includes('step_result')) {
+				const split_entry = entry.split('/');
+				labels.push(split_entry[split_entry.length-1]);
+			} else {
+				labels.push(entry);
+			}
 		}
 	});
 	return labels;
@@ -243,15 +251,23 @@ function determineLabels(data, queryObject, currentLanguage) {
 			return col;
 		}
 	});
-
-	const label_columns = columns_parsed.filter(col => group_by_cols_parsed.includes(col))
-	const labels = data.map(row => 
-		Object.entries(row)
-			.filter(([key, val]) => label_columns.includes(key) && isNaN(val))
+	console.log(columns_parsed);
+	console.log(group_by_cols_parsed);
+	const label_columns = columns_parsed.filter(col => { 
+		if (group_by_cols_parsed.includes(col)) {
+			return col.toLowerCase;
+		}
+	});
+	console.log(label_columns);
+	const labels = data.map(row => {
+		console.log(row);
+		return Object.entries(row)
+			.filter(([key, val]) => label_columns.includes(key.toLowerCase()) && isNaN(val))
 			.map(([_, val]) => val)
 			.join('-')
-	);
-
+	});
+	console.log()
+	console.log(labels);
 	return labels
 
 }

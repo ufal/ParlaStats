@@ -1126,7 +1126,7 @@ sendQueryButton.onclick = async () => {
 		
 		let data = debugMode ? responseData.RESPONSE : responseData;
 		visualizeAsTable(data, currentLanguage);
-		visualizeAsGraph2(data, queryObject, 'bar', currentLanguage);
+		visualizeAsGraph(data, queryObject, 'bar', currentLanguage);
 		bindButtons(responseData, queryObject);
 		if (debugMode) {
 			addDebugInfo(responseData);
