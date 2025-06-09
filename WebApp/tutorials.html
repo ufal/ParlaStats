@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ParalStats tutorilas</title>
+		<link rel="stylesheet" href="styles/form.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link rel="stylesheet" href="styles/tabs.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.min.css">
+		<link rel="stylesheet" href="styles/collapsible.css">
+		<link rel="stylesheet" href="styles/UI.css">
+
+		<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	<body>
+		<nav class="nav-extended">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo center">ParlaStats</a>
+				<ul id="nav-mobile" class="left-hide-on-med_and_down">
+					<li><a id="home-page" href="landing_page.html">Home</a></li>
+					<li><a id="dynamic-form" href="dynamic_form.html">Tools</a></li>
+					<li><a id="tutorials" href="tutorials.html">Tutorials</a></li>
+					<li><a id="github" href="https://github.com/ufal/ParlaStats">GitHub</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="zig-zag-container left">
+			<div id="getting-started" class="textdiv">
+				<h2>Getting started</h2>
+				<p class="common-text">
+					To get started with making a query to the data, enter the "Tools" tab by clicking it
+					in the top navigation bar. <br>
+					There you will see the form for querying the data as well as a section where results
+					will be displayed after you send it. <br>
+					For starters, you can choose the database you wish to query (database = corpus) in the
+					"Target Databases" section <br>
+					by clicking the '+' button and then selecting from the available options. <br>
+					You can select multiple corpora this way, then the results will be separated for 
+					each one you selected. <br>
+					However, be careful when targeting ParCzech and some other ParlaMint corpora at once as 
+					some features ParCzech offers may not be available for those of ParlaMint, namely those related
+					to audio recordings.
+
+				</p>
+			</div>
+			<div class="image-placeholder">
+				<img src="image/getting_started1.png" alt="Tools tab location" class="image-box">
+				<p class="image-description">Tools location</p>
+			
+				<img src="image/getting_started2.png" alt="Initial form" class="image-box" style="width:70em; height:30em;">
+				<p class="image-description" style="width:70em;">Initial form</p>
+			</div>
+		</div>
+		<div class="zig-zag-container right">
+			<div id="first-steps" class="textdiv">
+				<h2>First steps</h2>
+				<p class="common-text">
+					When desigining the querying system we had to take into account the techonology
+					used in back-end database access, so the two would work together nicely. <br>
+					That essentialy determined the step-like structure of the queries. You can add a step by
+					clicking the '+' button underneath the "Steps" title. Each step then will have multiple sections discussed below. <br>		
+				</p>
+				<h4>Step Name</h4>
+				<p class="common-text">
+					First one will be the name of the step. In case your query will have multiple steps, this
+					field is used to distinct between them and accessing the reuslts from one step within
+					another.
+				</p>
+				<h4>Columns</h4>
+				<p class="common-text">
+					Here you can choose what do you wish to select from the database i.e. number of words in speeches
+					Speakers and their various parameters like name, birthdate, political organization affiliations.
+				</p>
+				<h4>Group By</h4>
+				<p class="common-text">
+					Here you can specify how you wish the results of the step to be grouped. I.E. group by year, election term, etc.
+				</p>
+				<h4>Order By</h4>
+				<p class="common-text">
+					Here you can determine how the results of the step should be ordered. I.E. according to some numerical value selected in columns section.
+				</p>
+				<h4>Conditions</h4>
+				<p class="common-text">
+					Here you can impose some filters on the results of the step, I.E. specify election term, speakers, organizations you are 
+					interested in or provide intervals for numeric values etc.
+				</p>
+				<h4>Limit</h4>
+				<p class="common-text">
+					Specify how many of the resulting rows is to be returned from the step.
+				</p>
+			</div>
+			<div class="image-placeholder">
+				<img src="image/blank_step.png" alt="Blank step" class="image-box" style="width:auto; height:auto;">
+				<p class="image-description" style="width:80em;">Blank step</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ParlaStats landing page</title>
+		<link rel="stylesheet" href="styles/form.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">	
+		<link rel="stylesheet" href="styles/tabs.css"> 
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css"/>
+		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.min.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="styles/tables.css">
+		<link rel="stylesheet" href="styles/graphs.css">
+		<link rel="stylesheet" href="styles/collapsible.css">
+		<link rel="stylesheet" href="styles/UI.css">
+		<!-- Rendering scripts -->
+		<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<!-- Styling scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	</head>
+	<body>
+		<nav class="nav-extended">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo center">ParlaStats</a>
+				<ul id="nav-mobile" class="left-hide-on-med-and-down">
+					<li><a id="home-page" href="landing_page.html">Home</a></li>
+					<li><a id="dynamic-form" href="dynamic_form.html">Tools</a></li>
+					<li><a id="tutorials" href="tutorials.html">Tutorials</a></li>
+					<li><a id="github" href="https://github.com/ufal/ParlaStats">GitHub</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="zig-zag-container left">
+			<div id='landing-text' class="textdiv">
+				<h2>Welcome to ParlaStats!</h2>
+				<p class="common-text">
+					Welcome to ParlaStats a statistical tool made for analysis of parliamentary discourse<br/>
+					from multiple (not only) European countries. This tool is built on top of the comparable corpora <br/>
+					of the <a href="https://www.clarin.eu/parlamint">ParlaMint project</a> with an extention for czech data utilizing the ParlaMint-based </br>
+					improved corpus <a href="https://ufal.mff.cuni.cz/parczech">ParCzech</a>. It was build (and is being built) as a bachelor thesis </br>
+					at <a href="https://ufal.mff.cuni.cz/">UFAL MFF</a> supervised by <a href="https://ufal.mff.cuni.cz/barbora-vidova-hladka">doc. Mgr. Barbora Vidová Hladká, Ph.D.</a>
+					and <a href="https://ufal.mff.cuni.cz/matyas-kopp">Bc. Matyáš Kopp</a>.
+
+				<p>
+			</div>
+		</div>
+		<div class="zig-zag-container right">
+		<div id="current-capabilities" class="textdiv">
+			<h2>Current capabilities</h2>
+				<p class="common-text">
+					As of current state of the art, the application can work with the earlier mentioned improved
+					czech corpus </br> <a href="https://ufal.mff.cuni.cz/parczech">ParCzech</a>, 
+					Slovenian and Ukrainian <a href="https://www.clarin.si/repository/xmlui/handle/11356/1912">ParlaMint corpora</a>. </br></br>
+					You can query these datasets using the application's querying interface accessible </br>
+					under the "Tools" tab in the left part of the navigation bar. There, you will be presented with a form
+					in which you can specify </br> what are you looking for, what conditions should the results satisfy, how
+					should they be grouped and ordered. </br>
+					After constructing and sending the Query you can see the results visualized as table, that
+					allows for exporting the data in </br> "excel-like" CSV format. In addition to that, all results
+					are visualized into a bar (primary) and a line chart accessible under the "GRAPH" tab. </br>
+					The graph allows for zooming in and out, and option of excluding certain data by clicking them
+					at the legend of the graph at the top.
+				</p>
+			</div>
+		</div>
+		<div class="zig-zag-container left">
+			<div id="feedback" class="textdiv">
+				<h2>Feedback and Improvement</h2>
+				<p class="common-text">
+					As mentioned above, this application is developed as a bachelor's thesis and is meant to be
+					some sort of base for my </br> master's thesis at MFF CUNI. This means, it may not always
+					function as desired, may crash or display wrong results. Naturally, I tried (and keep trying) to
+					eliminate these shortcomings but it just happens that something slips under my radar. </br>
+					In case yours is better than mine, and the application manage to crumble under your requests,
+					please let me know at <a href="mailto:matejbaco95@gmail.com">matejbaco95@gmail.com</a>. Where
+					you filled up the query form, there is a "Manual Query" tab with some scary looking stuff
+					in it. It would help me a lot, if in the error report, along with curses, threats and what not,
+					you included this too! </br>
+					In case you do not find the contents of "Manual Query" scary, please feel free to play with
+					the debug mode, for more information please see "Tutorial" tab in the top-level navigation menu.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -23,7 +23,9 @@ h1 {
 .container {
 	padding:1em;
 }
-
+.tabs {
+	background-color:#1B4242;
+}
 textarea {
 	color:#e0e0e0;
 	resize:auto;
