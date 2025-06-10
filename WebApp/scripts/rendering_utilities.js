@@ -333,8 +333,9 @@ export async function UpdateConditionValuePossibilities2(valueInput, columnSelec
 
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
 	const columnSelects = document.querySelectorAll('.column-select-conditions');
+	console.log(columnSelects.length);
 	columnSelects.forEach(colSelect => {
-		const rowContainer = colSelect.closest('.repeatable-row');
+		const rowContainer = colSelect.closest('.repeatable-container');
 		if (!rowContainer) { return; }
 		let stepIndex = rowContainer.getAttribute('data-step-index');
 		stepIndex = stepIndex !== null ? parseInt(stepIndex, 10) : null;
@@ -355,6 +356,7 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 				});
 			});
 		}
+		console.log(columnSelectType);
 		if (columnSelectType === "date") {
 			resetField(valueInput);
 			valueInput.classList.add('datepicker');
