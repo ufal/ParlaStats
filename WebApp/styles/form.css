@@ -51,7 +51,8 @@ textarea {
 .repeatable-row-step {
 	padding:1em;
 	color:#e0e0e0;
-	background-color:#5C8374
+	background-color:#5C8374;
+	box-shadow: 1px 1px 10px black;
 }
 
 
@@ -111,6 +112,7 @@ input {
 	padding:0.5em;
 	color:#e0e0e0;
 	background-color:#5C8374;
+	box-shadow: 1px 1px 10px black;
 }
 .repeatable-row-inline {
 	margin:0.5em;
@@ -120,7 +122,8 @@ input {
 	display:flex;
 	align-items:center;
 	gap:1rem;
-	flex-wrap:nowrap;
+	flex-wrap:nowrap;	
+	box-shadow: 1px 1px 10px black;;
 }
 
 

@@ -12,11 +12,15 @@
 		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.min.css">
 		<link rel="stylesheet" href="styles/collapsible.css">
 		<link rel="stylesheet" href="styles/UI.css">
-
+		<link rel="stylesheet" href="styles/tabs.css">
+		
 		<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script type="module" src="scripts/translations.js" defer></script>
+		<script src="scripts/tutorials.js" defer></script>
+		
 	</head>
 	<body>
 		<nav class="nav-extended">
@@ -30,75 +34,169 @@
 				</ul>
 			</div>
 		</nav>
-		<div class="zig-zag-container left">
-			<div id="getting-started" class="textdiv">
-				<h2>Getting started</h2>
-				<p class="common-text">
-					To get started with making a query to the data, enter the "Tools" tab by clicking it
-					in the top navigation bar. <br>
-					There you will see the form for querying the data as well as a section where results
-					will be displayed after you send it. <br>
-					For starters, you can choose the database you wish to query (database = corpus) in the
-					"Target Databases" section <br>
-					by clicking the '+' button and then selecting from the available options. <br>
-					You can select multiple corpora this way, then the results will be separated for 
-					each one you selected. <br>
-					However, be careful when targeting ParCzech and some other ParlaMint corpora at once as 
-					some features ParCzech offers may not be available for those of ParlaMint, namely those related
-					to audio recordings.
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs">
+						<li id="form-toggle" class="tab col s6"><a href="#from-tutorial" class="active">Making a Query</a></li>
+						<li id="res-toggle" class="tab col s6"><a href="#res-tutorial">Viewing results</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+		<div id="form-tutorial" class="col s12 active">
+			<div class="zig-zag-container left">
+				<div id="getting-started" class="textdiv">
+					<h2>Getting started</h2>
+					<p class="common-text">
+						To get started with making a query to the data, enter the "Tools" tab by clicking it
+						in the top navigation bar. <br>
+						There you will see the form for querying the data as well as a section where results
+						will be displayed after you send it. <br>
+						For starters, you can choose the database you wish to query (database = corpus) in the
+						"Target Databases" section <br>
+						by clicking the '+' button and then selecting from the available options. <br>
+						You can select multiple corpora this way, then the results will be separated for 
+						each one you selected. <br>
+						However, be careful when targeting ParCzech and some other ParlaMint corpora at once as 
+						some features ParCzech offers may not be available for those of ParlaMint, namely those related
+						to audio recordings.
 
-				</p>
-			</div>
-			<div class="image-placeholder">
-				<img src="image/getting_started1.png" alt="Tools tab location" class="image-box">
-				<p class="image-description">Tools location</p>
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/getting_started1.png" alt="Tools tab location" class="image-box">
+					<p class="image-description">Tools location</p>
 			
-				<img src="image/getting_started2.png" alt="Initial form" class="image-box" style="width:70em; height:30em;">
-				<p class="image-description" style="width:70em;">Initial form</p>
+					<img src="image/getting_started2.png" alt="Initial form" class="image-box" style="width:70em; height:30em;">
+					<p class="image-description" style="width:70em;">Initial form</p>
+				</div>
+			</div>
+			<div class="zig-zag-container right">
+				<div id="first-steps" class="textdiv">
+					<h2>First steps</h2>
+					<p class="common-text">
+						When desigining the querying system we had to take into account the techonology
+						used in back-end database access, so the two would work together nicely. <br>
+						That essentialy determined the step-like structure of the queries. You can add a step by
+						clicking the '+' button underneath the "Steps" title. Each step then will have multiple sections discussed below. <br>		
+						At the top of each step, you see all the columns returned by it, marked with an arrow (->). If you named your step then
+						It will have the form "your_step_name" -> "returned_columns". In case the step got long you can collapse it by clicking the
+						preview of returned columns.
+					</p>
+					<h4>Step Name</h4>
+					<p class="common-text">
+						First one will be the name of the step. In case your query will have multiple steps, this
+						field is used to distinct between them and accessing the reuslts from one step within
+						another.
+					</p>
+					<h4>Columns</h4>
+					<p class="common-text">
+						Here you can choose what do you wish to select from the database i.e. number of words in speeches
+						Speakers and their various parameters like name, birthdate, political organization affiliations.
+					</p>
+					<h4>Group By</h4>
+					<p class="common-text">
+						Here you can specify how you wish the results of the step to be grouped. I.E. group by year, election term, etc.
+					</p>
+					<h4>Order By</h4>
+					<p class="common-text">
+						Here you can determine how the results of the step should be ordered. I.E. according to some numerical value selected in columns section.
+					</p>
+					<h4>Conditions</h4>
+					<p class="common-text">
+						Here you can impose some filters on the results of the step, I.E. specify election term, speakers, organizations you are 
+						interested in or provide intervals for numeric values etc.
+					</p>
+					<h4>Limit</h4>
+					<p class="common-text">
+						Specify how many of the resulting rows is to be returned from the step.
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/blank_step.png" alt="Blank step" class="image-box" style="width:auto; height:auto;">
+					<p class="image-description" style="width:80em;">Blank step</p>
+				</div>
+			</div>
+			<div class="zig-zag-container left">
+				<div id="columns" class="textdiv">
+					<h2>Columns</h2>
+					<p class="common-text">
+						Here you can select what data are you interested in from target corpora. <br>
+						We call the data columns as that is the way we have it stored in backend database, for each
+						entry you see in select options, there is a column in a database.
+						In addition you may select an aggregation function like sum, average, maximum or minimum
+						and count. <br>
+						Each of these is applied to values of selected column.
+						You can rename the column locally as you wish using the "Alias" field.
+						In all subsequent selects, then you will be able to select your aliased column.
+						As before you can add more by clicking the '+' button or remove existing by clicking the '-' button.
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/columnSelection.png" alt="Column selection" class="image-box" style="width:70%; height:70%;">
+					<p class="image-description" style="width:60em;">Column selection</p>
+				</div>
+			</div>
+			<div class="zig-zag-container right">
+				<div id="group-by" class="textdiv">
+					<h2>Group By</h2>
+					<p class="common-text">
+						Here you can select which columns you wish results to be grouped by. <br>
+						You can select new columns or reuse those you selected in previous section.
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/groupBySection.png" alt="Group by section" class="image-box" style="width:70%; height:70%;">
+					<p class=image-description style="width:50em;">Group By Section</p>
+				</div>
+			</div>
+			<div class="zig-zag-container left">
+				<div id="order-by" class="textdiv">
+					<h2>Order By</h2>
+					<p class="common-text">
+						Here you can specify which columns should be the results ordered by. <br>
+						If you choose to order by textual column, it will be ordered according to alphabet. <br>
+						If you choose to order by multiple columns, they are processed from top to bottom, meaning if you order by speaker's name and then
+						for example year, first the results are ordered according to alphabetical order of speaker names, then by year keeping the
+						alphabetical order of speakers.
+						You may select whether you wish to order in the ascending or descending manner.
+						When you send the query, get results and you do not like the ordering, the table then allows for reordering based on result columns.
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/orderBySection.png" alt="Order by section" class="image-box" style="width:50%; height:50%;">
+					<p class="image-description" style="width:40em;">Order By Section</p>
+					<img src="image/resultTableOrdering.png" alt="Results ordering options" class="image-box" style="width:auto; height:auto;">
+					<p class="image-description" style="width:90em;">Results ordering</p>
+				
+				</div>
+			</div>
+			<div class="zig-zag-container right">
+				<div id="conditions" class="textdiv">
+					<h2>Conditions</h2>
+					<p class="common-text">
+						Here you may filter the results based on values of columns. <br>
+						I.e you may mark out a time frame, or specific election term, speakers etc.
+						Each condition consists of a column, operator and value.
+						Value can be either typed in or selected from another column.
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/conditionSection.png" alt="Conditions section" class="image-box" style="width:70%; height:70%;">
+					<p class="image-description" style="width:55em;">Conditions Section</p>
+				</div>
 			</div>
 		</div>
-		<div class="zig-zag-container right">
-			<div id="first-steps" class="textdiv">
-				<h2>First steps</h2>
-				<p class="common-text">
-					When desigining the querying system we had to take into account the techonology
-					used in back-end database access, so the two would work together nicely. <br>
-					That essentialy determined the step-like structure of the queries. You can add a step by
-					clicking the '+' button underneath the "Steps" title. Each step then will have multiple sections discussed below. <br>		
-				</p>
-				<h4>Step Name</h4>
-				<p class="common-text">
-					First one will be the name of the step. In case your query will have multiple steps, this
-					field is used to distinct between them and accessing the reuslts from one step within
-					another.
-				</p>
-				<h4>Columns</h4>
-				<p class="common-text">
-					Here you can choose what do you wish to select from the database i.e. number of words in speeches
-					Speakers and their various parameters like name, birthdate, political organization affiliations.
-				</p>
-				<h4>Group By</h4>
-				<p class="common-text">
-					Here you can specify how you wish the results of the step to be grouped. I.E. group by year, election term, etc.
-				</p>
-				<h4>Order By</h4>
-				<p class="common-text">
-					Here you can determine how the results of the step should be ordered. I.E. according to some numerical value selected in columns section.
-				</p>
-				<h4>Conditions</h4>
-				<p class="common-text">
-					Here you can impose some filters on the results of the step, I.E. specify election term, speakers, organizations you are 
-					interested in or provide intervals for numeric values etc.
-				</p>
-				<h4>Limit</h4>
-				<p class="common-text">
-					Specify how many of the resulting rows is to be returned from the step.
-				</p>
-			</div>
-			<div class="image-placeholder">
-				<img src="image/blank_step.png" alt="Blank step" class="image-box" style="width:auto; height:auto;">
-				<p class="image-description" style="width:80em;">Blank step</p>
-			</div>
+		<div id="res-tutorial" class="col s12">
+			
 		</div>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				var elems = document.querySelectorAll('.tabs');
+				M.Tabs.init(elems);
+
+			});
+		</script>
 	</body>
 </html>
