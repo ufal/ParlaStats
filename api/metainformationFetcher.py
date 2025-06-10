@@ -39,7 +39,8 @@ class metainformationFetcher:
                 meta_cursor.execute("""
                                 SELECT DISTINCT t.table_name, c.column_name, c.data_type
                                 FROM columns c
-                                JOIN tables t ON c.table_id = t.id;
+                                JOIN tables t ON c.table_id = t.id
+                                ORDER BY t.table_name;
                                """)
 
                 table_columns = [{ "column":f"{row[0]}.{row[1]}", "type":row[2], "data":{} } for row in meta_cursor.fetchall()]
