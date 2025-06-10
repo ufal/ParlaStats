@@ -161,6 +161,7 @@ function renderStepsSection(container) {
 		stepRow.setAttribute('open', '');
 		const summary = document.createElement('summary');
 		// let columnsToBeReturned = '';
+		stepRow.appendChild(summary)
 		stepRow.addEventListener('UpdateStepPreview', () => {
 			let columnsToBeReturned = '';
 			queryObject.steps[stepIndex].columns.forEach(col => {
@@ -191,7 +192,6 @@ function renderStepsSection(container) {
 			stepSummary.textContent = `${queryObject.steps[stepIndex].goal} -> ${columnsToBeReturned}`;
 		});
 		
-		stepRow.appendChild(summary)
 		stepRow.className = 'repeatable-row-step';
 		stepRow.setAttribute('data-step-index', stepIndex);
 		// Goal of the step
@@ -202,10 +202,10 @@ function renderStepsSection(container) {
 		const goalInput = document.createElement('input');
 		goalInput.type = 'text';
 		goalInput.placeholder = UItranslations.StepNameInputPlaceholder[currentLanguage];
-		goalInput.value = step.goal;
+		goalInput.value = step.goal === "" ? `step${stepIndex}` : step.goal;
 		goalInput.addEventListener('input',  () => {
 			queryObject.steps[stepIndex].goal = goalInput.value;
-			updatePreview();
+			createPreviewUpdateEvent(42);
 		});
 		goalDiv.appendChild(goalLabel);
 		goalDiv.appendChild(goalInput);
@@ -264,7 +264,7 @@ function renderStepsSection(container) {
 	addStepButton.textContent = '+';
 	addStepButton.onclick = () => {
 		queryObject.steps.push({
-			goal: '',
+			goal: `step${queryObject.steps.length}`,
 			columns: [],
 			aggregation: {
 				group_by: [],
