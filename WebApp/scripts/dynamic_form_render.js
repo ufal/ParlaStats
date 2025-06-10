@@ -1070,11 +1070,12 @@ function autofillAliases(query) {
 function autoResizeTextarea(textarea) {
 	textarea.style.resize = 'none';
 	textarea.style.overflow = 'hidden';
-	textarea.style.height = 'auto';
-	textarea.style.width = 'auto';
+	textarea.style.width = "auto";
+	textarea.style.height= "auto";
+	console.log('auto resize triggered');
 	requestAnimationFrame(() => {
 		textarea.style.height = textarea.scrollHeight + 'px';
-		textarea.style.width = textarea.scrollWidth + 'px';
+		textarea.style.width = textarea.scrollWidth  + 'px';
 	});
 }
 
@@ -1162,6 +1163,7 @@ const manualQueryToggle = document.getElementById('manual_query_toggle');
 manualQueryToggle.onclick = () => {
 	const queryTextArea = document.getElementById('inputJSON');
 	queryTextArea.value = JSON.stringify(queryObject, null, 2);
+	autoResizeTextarea(queryTextArea);
 }
 
 const dFormToggle = document.getElementById('dynamic_form_toggle');
