@@ -7,6 +7,7 @@ import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
 import { addDebugInfo } from './debuggingSupport.js'
+import { loadConfig } from '../config/config.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -32,9 +33,15 @@ let userDefinedAliases = []
 
 // array of columns for selection for each step
 let stepResultArray = []
+
 // server connection specialization
-let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query";
-let testServerURL = "http://127.0.0.1:5000/query";
+// let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query";
+// let testServerURL = "http://127.0.0.1:5000/query";
+
+let serverURL = "";
+loadConfig().then(config => {
+	 serverURL = config.API_URL;
+});
 
 // json where metainformation about available databases is to be stored
 let metaInformation = {};
@@ -729,7 +736,6 @@ function renderGroupBy(container, step, stepIndex) {
 			updatePreview();
 		});
 		
-	
 		// ========================== NEW VERSION END ==============================
 		
 		// const removeGroupByButton = document.createElement('button');
@@ -1093,7 +1099,8 @@ sendQueryButton.onclick = async () => {
 			headers: query_headers,
 			body: query
 		}
-		const response = await fetch(testServerURL, queryWrapped);
+		console.log(serverURL);
+		const response = await fetch(serverURL, queryWrapped);
 		const responseData = await response.json();
 		if (responseData.error_message) {
 			const tableDiv = document.getElementById('results-table-wrapper');

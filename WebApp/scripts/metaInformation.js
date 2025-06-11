@@ -1,4 +1,10 @@
-let databaseInfoRouteGeneral = "http://127.0.0.1:5000/metainformation";
+import { loadConfig } from '../config/config.js'
+
+let databaseInfoRouteGeneral = "";
+
+loadConfig().then(config => {
+	databaseInfoRouteGeneral = response.METAINFORMATION_URL;
+});
 
 
 async function storeMetainformation() {

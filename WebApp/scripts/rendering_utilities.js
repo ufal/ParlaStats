@@ -1,14 +1,19 @@
 import { getArtificialColumns } from './artificialColumns.js'
 import { getMetaInformation } from './metaInformation.js'
 import { getTranslations, translateStepResults } from './translations.js'
+import { loadConfig } from '../config/config.js'
 
 let artificialColumns = getArtificialColumns();
 let metaInformation = getMetaInformation();
 let translations = getTranslations();
-let testServerURL="http://127.0.0.1:5000/meta"
+let serverURL = ""
 
+loadConfig().then(config => {
+	serverURL = config.META_URL;	
+});
 
 export function addDatabaseColumnOfferings(offerings, targetElement, currentLanguage) {
+	// console.log('offerings', offerings);
 	offerings.forEach(item => {
 		const selectOption = document.createElement('option');
 		selectOption.value = item.column;
@@ -310,7 +315,7 @@ export async function UpdateConditionValuePossibilities2(valueInput, columnSelec
 	let res = null;
 	if (["character varying", "text"].includes(columnSelectType)) {
 		res = await fetch(
-			`${testServerURL}_text?field=${columnSelectValue}&dbs=${target_databases}&q=${encodeURIComponent(valueInput.value)}&limit=12`
+			`${serverURL}_text?field=${columnSelectValue}&dbs=${target_databases}&q=${encodeURIComponent(valueInput.value)}&limit=12`
 		);
 	
 		let possibleValues = {}
