@@ -360,9 +360,10 @@ class SQLBuilder:
                 joins.append(("affiliation", table))
             else:
                 raise ValueError(f"Unsupported join path for table '{table}'.")
-        return joins
+        return set(joins)
 
     def parse_joins(self, joins):
+        
         res = " FROM person \n  "
         for left, right in joins:
             lcol, rcol = self.TABLE_JOIN_CONDITIONS[(left, right)]
