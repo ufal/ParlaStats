@@ -16,15 +16,7 @@
 	<!-- Rendering scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-	<script type="module" src="scripts/dynamic_form_render.js" defer></script>
-	<script type="module" src="scripts/metaInformation.js" defer></script>
-	<script type="module" src="scripts/stored_data_worker.js" defer></script>
-	<script type="module" src="scripts/translations.js" defer></script>
-	<script type="module" src="scripts/artificialColumns.js" defer></script>	
-	<script type="module" src="scripts/rendering_utilities.js" defer></script>
-	<script type="module" src="scripts/customEvents.js" defer></script>
-	<script type="module" src="config/config.js" defer></script>
-	<!-- Styling scripts -->
+	
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 	
 	<!-- Results visualization scripts -->
@@ -32,12 +24,21 @@
 	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
 	<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
-	<script type="module" src="scripts/visualization_scrpits/visualize_as_tables.js" defer></script>
 	
 	<!-- Charts -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
-		
+	
+	<!-- Custom scripts -->
+	<script type = "module">
+		import { loadConfig } from './config/config.js'
+		import { metaInformationPromise } from './scripts/metaInformation.js'
+
+		await loadConfig();
+		await metaInformationPromise;
+
+		await import('./scripts/dynamic_form_render.js');
+	</script>	
 </head>
 <body>
 	
@@ -58,8 +59,9 @@
 			<div class="row">
 				<div class="col s12">
 					<ul class="tabs">
-						<li id="dynamic_form_toggle" class="tab col s6"><a href="#form">Query Form</a></li>
-						<li id="manual_query_toggle" class="tab col s6"><a href="#input">Manual Query</a></li>
+						<li id="dynamic_form_toggle" class="tab col s4"><a href="#form">Query Form</a></li>
+						<li id="manual_query_toggle" class="tab col s4"><a href="#input">Manual Query</a></li>
+						<li id="sample-queries" class="tab col s4"><a href="#samples">Sample Queries</a></li>
 					</ul>
 				</div>
 			</div>
@@ -75,6 +77,9 @@
 				<h5>Query Form</h5>
 				<a class="waves-effect waves-light btn" id="sendQueryButton">Send Query</a>
 				<div id="formContainer"></div>
+			</div>
+			<div id="samples">
+
 			</div>
 		</div>
 		<div class="container" id="results">
