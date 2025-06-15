@@ -1,29 +1,22 @@
-import { loadConfig } from '../config/config.js'
+import{ loadConfig } from '../config/config.js'
 
-let databaseInfoRouteGeneral = "";
+const { METAINFORMATION_URL } = await loadConfig();
 
-loadConfig().then(config => {
-	databaseInfoRouteGeneral = response.METAINFORMATION_URL;
-});
+let cached;
 
-
-async function storeMetainformation() {
-	try {
-		const response = await fetch(databaseInfoRouteGeneral);
-		const responseJSON = await response.json();
-		console.log(responseJSON);
-		localStorage.setItem("metaInformation", JSON.stringify(responseJSON))
-	} catch (error) {
-		console.log(error);
-		console.error("Error fetching metaInformation");
-		return []
+export async function loadMetainformation() {
+	if (cached) {
+		return cached;
 	}
+	const res = await fetch(METAINFORMATION_URL);
+	if (!res.ok) throw new Error(`Metainformation fetch failed (${res.status})`);
+	cached = await res.json();
+	return cached;
 }
 
-export function getMetaInformation() {
-	const metaInformation = localStorage.getItem("metaInformation");
-	return metaInformation ? JSON.parse(metaInformation) : [];
-}
+export const metaInformationPromise = loadMetainformation();
 
-// document.addEventListener("DOMContentLoaded", storeAvailableDatabases);
-document.addEventListener("DOMContentLoaded", storeMetainformation);
+export function getMetainformation() {
+	if (!cached) throw new Error('Call loadMetainformation() first!');
+	return cached;
+}

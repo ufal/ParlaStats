@@ -1,16 +1,20 @@
 import { getArtificialColumns } from './artificialColumns.js'
-import { getMetaInformation } from './metaInformation.js'
 import { getTranslations, translateStepResults } from './translations.js'
 import { loadConfig } from '../config/config.js'
+import { metaInformationPromise } from './metaInformation.js'
+
+const metaInformation = await metaInformationPromise;
+const { META_URL } = await loadConfig();
+const serverURL = META_URL;
 
 let artificialColumns = getArtificialColumns();
-let metaInformation = getMetaInformation();
+// let metaInformation = getMetaInformation();
 let translations = getTranslations();
-let serverURL = ""
 
-loadConfig().then(config => {
-	serverURL = config.META_URL;	
-});
+
+// let serverURL = getAPIURLS().META_URL;
+
+// let serverURL = 'http://127.0.0.1:5000/meta'; 
 
 export function addDatabaseColumnOfferings(offerings, targetElement, currentLanguage) {
 	// console.log('offerings', offerings);

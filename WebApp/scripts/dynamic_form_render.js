@@ -1,4 +1,5 @@
-import { getMetaInformation } from './metaInformation.js'; 
+import { metaInformationPromise } from './metaInformation.js' 
+import { loadConfig } from '../config/config.js'
 import { storeAliases, storeStepResults, updateColumnsOfferings2, updateColumnsOfferings } from './stored_data_worker.js' 
 import { getTranslations, getUITranslations, translateStepResults } from './translations.js'
 import { getArtificialColumns } from './artificialColumns.js'
@@ -7,7 +8,6 @@ import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
 import { addDebugInfo } from './debuggingSupport.js'
-import { loadConfig } from '../config/config.js'
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -36,15 +36,17 @@ let stepResultArray = []
 
 // server connection specialization
 // let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query";
-// let testServerURL = "http://127.0.0.1:5000/query";
+// let serverURL = "http://127.0.0.1:5000/query";
+const { API_URL } = await loadConfig();
+const serverURL = API_URL;
 
-let serverURL = "";
-loadConfig().then(config => {
-	 serverURL = config.API_URL;
-});
+const metaInformation = await metaInformationPromise;
+
+
+// await loadConfig()
+// let serverURL = getAPIURLS().API_URL;
 
 // json where metainformation about available databases is to be stored
-let metaInformation = {};
 
 let translations = getTranslations();
 let currentLanguage = "en";
@@ -1152,10 +1154,8 @@ const inputJsonField = document.getElementById('inputJSON');
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 	renderForm();
-	metaInformation = getMetaInformation();
-	
 });
 
 const debugToggle = document.getElementById('debug-toggle');
@@ -1182,4 +1182,3 @@ dFormToggle.onclick = () => {
 		alert("Please make sure you are trying to paste a valid JSON query!");
 	}
 }
-

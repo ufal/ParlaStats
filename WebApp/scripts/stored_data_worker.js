@@ -1,10 +1,10 @@
 import { getTranslations, translateStepResults } from './translations.js' 
 import { getArtificialColumns } from './artificialColumns.js'
-import { getMetaInformation } from './metaInformation.js'
+import { metaInformationPromise } from './metaInformation.js'
 
 let translations = getTranslations();
-let artificialColumns = getArtificialColumns();
-let metaInformation = getMetaInformation();
+const artificialColumns = getArtificialColumns();
+const metaInformation = await metaInformationPromise;
 
 export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 	aliases[stepIndex] = [];
