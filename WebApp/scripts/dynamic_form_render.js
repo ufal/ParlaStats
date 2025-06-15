@@ -11,7 +11,6 @@ import { addDebugInfo } from './debuggingSupport.js'
 
 export function loadQuery(jsonString) {
 	queryObject = JSON.parse(jsonString);
-	console.log('Query object', queryObject);
 	const manualQueryTextArea =  document.getElementById('inputJSON');
 	inputJSON.value = jsonString;
 	renderForm();
@@ -466,9 +465,19 @@ function renderConditions(container, step, stepIndex) {
 			} else {
 				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
 			}
-			Utilities.UpdateConditionValuePossibilities2(conditionValueInput, conditionColumnTableSelect.value,
-			                                             userDefinedAliases, stepResultArray, stepIndex, queryObject.target_databases)
-			
+			// Utilities.UpdateConditionValuePossibilities(conditionValueInput, conditionColumnTableSelect.value, queryObject.target_databases)
+			const colType = Utilities.getColumnType(stepIndex, userDefinedAliases, stepResultArray,
+													conditionColumnTableSelect.value);
+			console.log('colType', colType);
+			if (['character varying', 'text'].includes(colType)) {
+				 Utilities.UpdateConditionValuePossibilities2(
+					conditionValueInput,
+					conditionColumnTableSelect.value,
+					userDefinedAliases,
+					stepResultArray,
+					stepIndex,
+					queryObject.target_databases);
+			} 
 			updatePreview();
 		});
 		conditionValueInputDiv.appendChild(conditionValueInput);
@@ -1105,7 +1114,6 @@ function autoResizeTextarea(textarea) {
 	textarea.style.overflow = 'hidden';
 	textarea.style.width = "auto";
 	textarea.style.height= "auto";
-	console.log('auto resize triggered');
 	requestAnimationFrame(() => {
 		textarea.style.height = textarea.scrollHeight + 'px';
 		textarea.style.width = textarea.scrollWidth  + 'px';
@@ -1126,7 +1134,6 @@ sendQueryButton.onclick = async () => {
 			headers: query_headers,
 			body: query
 		}
-		console.log(serverURL);
 		const response = await fetch(serverURL, queryWrapped);
 		const responseData = await response.json();
 		if (responseData.error_message) {
@@ -1143,7 +1150,6 @@ sendQueryButton.onclick = async () => {
 
 			const dataQueryTextArea = document.createElement('textarea');
 			if (responseData.error_message.includes("JSON")) {
-				console.log(JSON.stringify(responseData.query, null, 2));
 				dataQueryTextArea.value = JSON.stringify(responseData.query, null, 2);
 				dataQueryTextArea.style.width = '800px';
 				dataQueryTextArea.style.height = '500px';
@@ -1189,7 +1195,6 @@ await addSampleQueries();
 
 
 const debugToggle = document.getElementById('debug-toggle');
-console.log(debugToggle);
 debugToggle.addEventListener('click', () => {
 	debugMode = !debugMode
 	debugToggle.textContent = debugMode ? 'Debug ON' : 'Debug OFF';

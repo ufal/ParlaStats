@@ -152,7 +152,7 @@ export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray
 
 }
 
-function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectValue) {
+export function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectValue) {
 	let columnType = null;
 	Object.keys(artificialColumns).forEach(key => {
 		if (artificialColumns[key].formula === selectValue) {
@@ -201,6 +201,7 @@ function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectVa
 function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, database, selectValue) {
 	let possibleValues = [];
 	let found = false;
+	console.log(selectValue);
 	if (stepIndex !== null && userDefinedAliases[stepIndex]) {
 		userDefinedAliases[stepIndex].forEach(aliasEntry => {
 			if (aliasEntry.alias === selectValue) {
@@ -237,8 +238,10 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
 		if (columnEntry) {
 			possibleValues = columnEntry["data"][database];		
+			found = true;	
 		} 
 	}
+	console.log(found);
 	return possibleValues;
 
 	
@@ -344,7 +347,7 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 	const columnSelects = document.querySelectorAll('.column-select-conditions');
 	console.log(columnSelects.length);
 	columnSelects.forEach(colSelect => {
-		const rowContainer = colSelect.closest('.repeatable-container');
+		const rowContainer = colSelect.closest('.repeatable-row-inline');
 		if (!rowContainer) { return; }
 		let stepIndex = rowContainer.getAttribute('data-step-index');
 		stepIndex = stepIndex !== null ? parseInt(stepIndex, 10) : null;
@@ -358,6 +361,8 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 			databases.forEach(database => {
 				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases,
 				                                               stepResultsArray, database, colSelect.value);
+				console.log("Database", database)
+				console.log(database, colSelect,databasePossibleValues);
 				databasePossibleValues.forEach(value => {
 					if (!Object.keys(possibleValues).includes(value)) {
 						possibleValues[value] = null;
