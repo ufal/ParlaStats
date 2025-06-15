@@ -8,6 +8,17 @@ import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
 import { addDebugInfo } from './debuggingSupport.js'
+
+export function loadQuery(jsonString) {
+	queryObject = JSON.parse(jsonString);
+	console.log('Query object', queryObject);
+	const manualQueryTextArea =  document.getElementById('inputJSON');
+	inputJSON.value = jsonString;
+	renderForm();
+}
+
+import { addSampleQueries } from './sample_queries.js'
+
 // ================ SOME GLOBAL DATA DECLARATION ====================
 
 // json holding the query itself
@@ -127,30 +138,47 @@ function renderForm() {
 function initializeSelects(selects) {
 	M.FormSelect.init(selects, { dropdownOptions: {constrainWidth: false }});
 
-	const textHolder = document.querySelector('.select-text-holder');
+	let ruler = document.getElementById('__selectRuler__');
+	if (!ruler) {
+		ruler = document.createElement('span');
+		ruler.id = '__selectRuler__';
+		ruler.style.cssText = 'position:absolute; visibility:hidden; white-space:nowrap;';
+		document.body.appendChild(ruler);
+	}
+	
 
 	selects.forEach(sel => {
-		const adapt = () => {
-			requestAnimationFrame(() => {
-				const wrapper = sel.parentElement;
-				const input = wrapper.querySelector('input.select-dropdown');	
-				const options = wrapper.querySelector('ul');
-				const selected = options.querySelector('.selected');
-				const span = selected.querySelector('span');
-				textHolder.style.font = getComputedStyle(input).font;
-				textHolder.textContent = span.textContent;
-				const currWidth = textHolder.offsetWidth + 40;
-				input.style.width = currWidth + 'px';
-				wrapper.style.width = currWidth + 'px';
-
-			});
-			
+		const wrapper = sel.parentElement;
+		const input = wrapper.querySelector('input.select-dropdown');
+		const measure = txt => {
+			ruler.style.font = getComputedStyle(input).font;
+			ruler.textContent = txt;
+			return ruler.offsetWidth;
 		};
-			
-		adapt();
-		sel.addEventListener('change', adapt);	
+
+		const computeWidest = () => {
+			const optionSpans = wrapper.querySelector('ul li span')?.length
+				? wrapper.querySelectorAll('ul li span')
+				: sel.querySelectorAll('option');
+		
+			let max = 0;
+			optionSpans.forEach(node => {
+				const w = measure(node.textContent || node.label || node.innerText);
+				if (w > max) { max = w;}
+			});
+			return max;
+		}
+
+		const applyWidth = () => {
+			const w = computeWidest() + 40;
+			input.style.width = w + 'px';
+			wrapper.style.width = w + 'px';
+		}
+
+		applyWidth();
+
+		sel.addEventListener('change', applyWidth);
 	});
-	
 }
 
 
@@ -1040,10 +1068,7 @@ function renderTargetSection(container) {
 	
 }
 
-function loadQuery(jsonString) {
-	queryObject = JSON.parse(jsonString);
-	renderForm();
-}
+
 
 
 // const generateButton = document.getElementById('generateButton');
@@ -1154,9 +1179,14 @@ const inputJsonField = document.getElementById('inputJSON');
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
 
 
-document.addEventListener("DOMContentLoaded", async () => {
-	renderForm();
-});
+
+// document.addEventListener("DOMContentLoaded", async () => {
+// 	renderForm();
+// 	await addSampleQueries();
+// });
+renderForm();
+await addSampleQueries();
+
 
 const debugToggle = document.getElementById('debug-toggle');
 console.log(debugToggle);
