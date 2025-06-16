@@ -16,24 +16,55 @@ let translations = getTranslations();
 
 // let serverURL = 'http://127.0.0.1:5000/meta'; 
 
+// export function makePrettySelect(metaInformation);
+
+
 export function addDatabaseColumnOfferings(offerings, targetElement, currentLanguage) {
-	// console.log('offerings', offerings);
+	let data = {
+		"speech":[],
+		"person":[],
+		"affiliation":[],
+		"organization":[]
+	}
 	offerings.forEach(item => {
-		const selectOption = document.createElement('option');
-		selectOption.value = item.column;
-		if (translations[item.column]) {
-			selectOption.textContent = translations[item.column][currentLanguage];
-			targetElement.appendChild(selectOption);
+		let parts = item.column.split('.');
+		if (["speech", "artificial_columns"].includes(parts[0])) {
+			data["speech"].push(item);
+		} else if (["person", "persname"].includes(parts[0])) {
+			data["person"].push(item);
+		} else if (parts[0] === "affiliation") {
+			data["affiliation"].push(item);
+		} else if (parts[0] === "organisation") {
+			data["organization"].push(item);
 		}
 	});
+
+	for (const groupLabel in data) {
+		const optionGroup = document.createElement('optgroup');
+		optionGroup.label = groupLabel;
+		optionGroup.className = groupLabel;
+		data[groupLabel].forEach(item => {
+			if (translations[item.column]) {
+				const option = document.createElement('option');
+				option.value = item.column;
+				console.log(item.column);
+				option.textContent = translations[item.column][currentLanguage];
+				optionGroup.appendChild(option);	
+			}
+		});
+		targetElement.appendChild(optionGroup);
+	}
 }
 
 export function addArtificialColumnOfferings( targetElement, currentLanguage) {
+	console.log(targetElement);
+	const optionGroup = targetElement.querySelector('.speech');
+	console.log(optionGroup);
 	Object.keys(artificialColumns).forEach(item => {
 		const selectOption = document.createElement('option');
 		selectOption.value = artificialColumns[item].formula;
 		selectOption.textContent = translations[item][currentLanguage];
-		targetElement.appendChild(selectOption);
+		optionGroup.appendChild(selectOption);
 	});
 }
 
@@ -91,17 +122,23 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 }
 
 export function addUserDefinedAliases(targetElement, userDefinedAliases) {
+	const userDefinedOptionGroup = document.createElement('optgroup');
+	userDefinedOptionGroup.label = "User defined";
+	
 	userDefinedAliases.forEach(aliasEntry => {
 		const selectOption = document.createElement('option');
 		selectOption.className = "user-specific";
 		selectOption.value = aliasEntry.alias;
 		selectOption.textContent = aliasEntry.alias;
-		targetElement.appendChild(selectOption);
+		userDefinedOptionGroup.appendChild(selectOption);
 	});
+	targetElement.appendChild(userDefinedOptionGroup);
 }
 
 
 export function addStepResultsOfferings(targetElement, stepResultArray, stepIndex, currentLanguage) {
+	const stepResultsOptionGroup = document.createElement('optgroup');
+	stepResultsOptionGroup.label = "Other steps"
 	let index = 0;
 	stepResultArray.forEach(step => {
 		if (index < stepIndex) {
@@ -111,11 +148,12 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				selectOption.value = column.queryPart;
 				selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
 				                                                currentLanguage);
-				targetElement.appendChild(selectOption);
+				stepResultsOptionGroup.appendChild(selectOption);
 			});
 		}
 		index++;
 	});
+	targetElement.appendChild(stepResultsOptionGroup);
 }
 
 export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray, aggregationTypeMapping, currentLanguage) {
