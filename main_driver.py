@@ -50,6 +50,7 @@ class mainDriver:
             child for child in teiCorpus.childNodes
             if child.nodeName == "xi:include"
         ]
+        
         for elem in tqdm.tqdm(transcript_files, leave=False, desc="Iterationg thorugh transcript_files"):
             ref = elem.getAttribute("href")
             
@@ -62,7 +63,9 @@ class mainDriver:
                 contents = speech_parser.pipeline(filePath)
             if contents:
                 self.databaseInserter.insert_speeches(contents)            
-                
+        
+        self.databaseInserter.insert_speech_organizations()         
+    
     def __parse_persons_file(self, file, source_corpus):
         persons = None
         
