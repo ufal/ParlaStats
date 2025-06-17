@@ -16,3 +16,15 @@ class SpeechCommands(StrEnum):
                  INSERT INTO speech(id, date, token_count, sentence_count, named_entity_count, role, person_id, term, total_duration, earliest_timestamp, latest_timestamp, unaligned_tokens, time_spoken, time_silent, time_unknown, time_start, time_end)
                  VALUES(%s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING
                  """
+    INSERT_ORGANIZATION = """
+                          INSERT INTO speech_affiliation (speech_id, affiliation_id)
+                          SELECT s.id, a.aff_id
+                          FROM speech AS s
+                          JOIN affiliation AS a
+                            ON a.person_id = s.person_id
+                            AND s.date >= a.since
+                            AND (a.until IS NULL OR s.date <= a.until)
+                          ON CONFLICT DO NOTHING;
+                          CREATE INDEX idx_sa_speech ON speech_affiliation (speech_id);
+                          CREATE INDEX idx_sa_affil ON speech_affiliation (affiliation_id);
+                          """

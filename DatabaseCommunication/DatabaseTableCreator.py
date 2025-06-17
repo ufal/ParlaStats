@@ -65,7 +65,6 @@ class DatabaseTableCreator(DatabaseOperator):
                     time_unknown REAL,
                     time_start TIME,
                     time_end TIME,
-
                     FOREIGN KEY (person_id)
                         REFERENCES Person (person_id)
                 )
@@ -91,6 +90,17 @@ class DatabaseTableCreator(DatabaseOperator):
                         REFERENCES organisation (organisation_id)
                 )
                 """,
+                """
+                CREATE TABLE IF NOT EXISTS speech_affiliation (
+                    speech_id VARCHAR(100),
+                    affiliation_id SERIAL,
+                    FOREIGN KEY (speech_id)
+                        REFERENCES speech (id),
+                    FOREIGN KEY (affiliation_id)
+                        REFERENCES affiliation (aff_id),
+                    PRIMARY KEY (speech_id, affiliation_id)
+                )
+                """
                 
                 ]
         try:

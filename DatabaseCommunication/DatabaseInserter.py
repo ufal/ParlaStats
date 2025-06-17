@@ -134,6 +134,12 @@ class DatabaseInserter(DatabaseOperator):
                                                                s.time_silent,
                                                                s.time_unknown,
                                                                s.time_start,
-                                                               s.time_end))
-
+                                                               s.time_end))   
             self.connection.commit()
+    
+    def insert_speech_organizations(self):
+        with self.connection.cursor() as cursor:
+            cursor.execute(SpeechCommands.INSERT_ORGANIZATION)
+        
+        self.connection.commit()
+
