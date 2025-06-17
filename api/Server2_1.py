@@ -1,5 +1,6 @@
 #!usr/bin/python3
 
+import os
 from flask import Flask, request, jsonify, abort
 from flask.json.provider import JSONProvider
 import psycopg2
@@ -226,5 +227,23 @@ def provide_numeric_sggestions():
 
     print(res)
     return jsonify(res)
+"""
+=================================================================================================================
+######################### SAMPLE QUERIES ########################################################################
+=================================================================================================================
+"""
+@app.route('/samples')
+def get_sample_queries():
+    res = []
+    test_directory_path = "../test/API/examples/inputs"
+    files = os.listdir("../test/API/examples/inputs")
+    for f in files:
+        with open(os.path.join(test_directory_path, f), 'r') as file:
+            res.append({
+                "filename":f,
+                "contents":file.read()
+            })
+    return jsonify(res)
+
 if __name__ == "__main__":
     app.run(debug=True)

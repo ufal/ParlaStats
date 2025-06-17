@@ -15,13 +15,16 @@ class SQLBuilder:
             "persname":["person"], # speech IS EXPERIMENTAL
             "organisation":[],
             "affiliation":["person", "organisation"],
-            "speech":["person"]
+            "speech":["person"],
+            "speech_affiliation":["speech", "affiliation"]
         }
         self.TABLE_JOIN_CONDITIONS = {
             ("person", "persname") : ("person_id", "person_id"),
             ("person", "affiliation") : ("person_id", "person_id"),
             ("person", "speech") : ("person_id", "person_id"),
-            ("affiliation", "organisation") : ("organisation_id", "organisation_id")
+            ("affiliation", "organisation") : ("organisation_id", "organisation_id"),
+            ("speech", "speech_affiliation") : ("id", "speech_id"),
+            ("speech_affiliation", "affiliation") : ("affiliation_id", "aff_id")
         }
         self.SPEECH_TIME_COLUMNS = ["time_start", "time_end", "earliest_timestamp", "latest_timestamp"]
 
@@ -354,13 +357,28 @@ class SQLBuilder:
         for table in required:
             if table in self.TABLE_MATCHING and "person" in self.TABLE_MATCHING[table]:
                 joins.append(("person", table))
+            
+            elif table == "speech_affiliation":
+                if (("speech", "speech_affiliation") not in joins):
+                    joins.append(("speech", "speech_affiliation"))
+
+            elif (table == "affiliation" and ("speech", "speech_affiliation") in joins):
+                if (("speech_affiliation", "affiliation") not in joins):
+                    joins.append(("speech_affiliation", "affiliation"))
+            
             elif table == "organisation":
-                if ("person", "affiliation") not in joins:
-                    joins.append(("person", "affiliation"))
-                joins.append(("affiliation", table))
+                if ("speech", "speech_affiliation") not in joins:
+                    joins.append(("speech", "speech_affiliation"))
+                if ("speech_affiliation", "affiliation") not in joins:
+                    joins.append(("speech_affiliation", "affiliation"))
+                joins.append(("affiliation","organisation"))
             else:
                 raise ValueError(f"Unsupported join path for table '{table}'.")
-        return set(joins)
+        final_joins = []
+        for item in joins:
+            if item not in final_joins:
+                final_joins.append(item)
+        return final_joins
 
     def parse_joins(self, joins):
         
