@@ -38,7 +38,6 @@ export function addDatabaseColumnOfferings(offerings, targetElement, currentLang
 			data["organization"].push(item);
 		}
 	});
-
 	for (const groupLabel in data) {
 		const optionGroup = document.createElement('optgroup');
 		optionGroup.label = groupLabel;
@@ -47,7 +46,6 @@ export function addDatabaseColumnOfferings(offerings, targetElement, currentLang
 			if (translations[item.column]) {
 				const option = document.createElement('option');
 				option.value = item.column;
-				console.log(item.column);
 				option.textContent = translations[item.column][currentLanguage];
 				optionGroup.appendChild(option);	
 			}
@@ -57,9 +55,7 @@ export function addDatabaseColumnOfferings(offerings, targetElement, currentLang
 }
 
 export function addArtificialColumnOfferings( targetElement, currentLanguage) {
-	console.log(targetElement);
 	const optionGroup = targetElement.querySelector('.speech');
-	console.log(optionGroup);
 	Object.keys(artificialColumns).forEach(item => {
 		const selectOption = document.createElement('option');
 		selectOption.value = artificialColumns[item].formula;
@@ -239,7 +235,6 @@ export function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, s
 function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, database, selectValue) {
 	let possibleValues = [];
 	let found = false;
-	console.log(selectValue);
 	if (stepIndex !== null && userDefinedAliases[stepIndex]) {
 		userDefinedAliases[stepIndex].forEach(aliasEntry => {
 			if (aliasEntry.alias === selectValue) {
@@ -399,8 +394,6 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 			databases.forEach(database => {
 				let databasePossibleValues = getPossibleValues(stepIndex, userDefinedAliases,
 				                                               stepResultsArray, database, colSelect.value);
-				console.log("Database", database)
-				console.log(database, colSelect,databasePossibleValues);
 				databasePossibleValues.forEach(value => {
 					if (!Object.keys(possibleValues).includes(value)) {
 						possibleValues[value] = null;
@@ -408,7 +401,6 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 				});
 			});
 		}
-		console.log(columnSelectType);
 		if (columnSelectType === "date") {
 			resetField(valueInput);
 			valueInput.classList.add('datepicker');

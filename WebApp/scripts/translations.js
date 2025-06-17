@@ -293,11 +293,11 @@ let translations = {
 	}
 }
 
-function storeUITranslations() {
+export function storeUITranslations() {
 	localStorage.setItem("UItranslations", JSON.stringify(UItranslations));
 }
 
-function storeTranslations() {
+export function storeTranslations() {
 	localStorage.setItem("translations", JSON.stringify(translations));
 }
 
@@ -331,6 +331,5 @@ export function getUITranslations() {
 	return UItranslations ? JSON.parse(UItranslations) : [];
 }
 
-document.addEventListener("DOMContentLoaded", storeTranslations);
-document.addEventListener("DOMContentLoaded", storeUITranslations);
+
 

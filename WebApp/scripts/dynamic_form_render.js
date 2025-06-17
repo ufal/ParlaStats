@@ -1,7 +1,7 @@
 import { metaInformationPromise } from './metaInformation.js' 
 import { loadConfig } from '../config/config.js'
 import { storeAliases, storeStepResults, updateColumnsOfferings2, updateColumnsOfferings } from './stored_data_worker.js' 
-import { getTranslations, getUITranslations, translateStepResults } from './translations.js'
+import { getTranslations, getUITranslations, translateStepResults, storeTranslations, storeUITranslations } from './translations.js'
 import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
@@ -18,7 +18,11 @@ export function loadQuery(jsonString) {
 
 import { addSampleQueries } from './sample_queries.js'
 
+storeTranslations();
+storeUITranslations();
+
 // ================ SOME GLOBAL DATA DECLARATION ====================
+
 
 // json holding the query itself
 let queryObject = {
