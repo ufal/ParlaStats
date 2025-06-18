@@ -102,7 +102,8 @@ function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
 					return row ? + row[numKey] : null;
 				}),
 				
-				backgroundColor: columnsColorHash(`${splitVal} - ${numKey}`)
+				backgroundColor: columnsColorHash(`${splitVal} - ${numKey}`),
+				borderColor:     columnsColorHash(`${splitVal} - ${numKey}`)
 			});
 		});
 	});
@@ -139,23 +140,23 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 		
 		var d = graphContents;
 		var datasets=d.datasets;
-		var scales = {};
-		let i = 0;
+		const scales = {};
 		datasets.forEach(dataset => {
-			let includeScale = true;
-			labelColumns.forEach(k => {
-			if (dataset.label.includes(k)) { includeScale = false; }
-				if (k.includes(' - ')) { includeScale = false; }
-			});
-			if (includeScale) {
-				scales['y_'+ i++] = {
-					position:yAxisPositions[i%2],
-					ticks: {
-						color:dataset.backgorundColor
-					}
-				};
+			const axisId = dataset.yAxisID;
+			const color = dataset.backgroundColor;
+			console.log(axisId);
+			const n = +axisId.split('_')[1] || 0;
+			scales[axisId] = {
+				position: yAxisPositions[n % 2],
+				ticks: { color: color },
+				border: { color: color },
+				grid: { color: Chart.helpers
+							   .color(color)
+					           .alpha(0.15)
+					           .rgbString() }
 			}
 		});
+		
 		new Chart(canvas, {
 			type:type,
 			data: graphContents,
