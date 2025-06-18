@@ -27,7 +27,7 @@ class SQLBuilder:
             ("speech_affiliation", "affiliation") : ("affiliation_id", "aff_id")
         }
         self.SPEECH_TIME_COLUMNS = ["time_start", "time_end", "earliest_timestamp", "latest_timestamp"]
-
+        self.join_end = 0;
     def _detect_dependencies(self, step: dict, exposed_cols: dict) -> list[tuple]:
         deps = []
         def register(prev: str, ref: str):
@@ -87,8 +87,10 @@ class SQLBuilder:
         search_scope = core_sql[: where_pos if where_pos != -1 else len(core_sql)]
         from_match = re.search(r"\bFROM\b", core_sql, re.I)
         insert_at = from_match.end()
-
-        from_pos = re.search(r"\bWHERE\b", core_sql, re.I).end() - 5
+        
+        from_pos = re.search(r"\bWHERE\b", core_sql, re.I)
+        print("JOIN END",self.join_end)
+        from_pos = from_pos.end() if from_pos else self.join_end
         join_snippets = []
         for prev, local, remote in deps:
             col_name = local.split('.')[-1]
@@ -101,7 +103,7 @@ class SQLBuilder:
                 if not alias:
                     alias = re.search(r"\bFROM\s+(\w+)", core_sql, re.I).group(1)
                 local = f"{alias}.{col_name}"
-
+            print(core_sql[from_pos:])
             join_snippets.append(f" JOIN {prev} ON {local} = {prev}.{remote} \n")
         return core_sql[:from_pos] + "".join(join_snippets) + " " + core_sql[from_pos:]
 
@@ -237,7 +239,7 @@ class SQLBuilder:
 
     def buildSQLQuery(self, json_query: dict, exposed_cols: dict | None = None) -> tuple[str, list]:
         exposed_cols = exposed_cols or {}
-        
+        self.join_end = 0
         select_part = self.parse_columns(json_query['columns'])
         joins_part = self.parse_joins(
             self.determine_joins(
@@ -246,6 +248,7 @@ class SQLBuilder:
                 json_query['aggregation']['group_by'],
             )
         )
+        self.join_end = len(f"    SELECT {select_part}{joins_part}")
         where_part, params = self.parse_conditions(json_query['filtering']['conditions'], exposed_cols)
         group_part = self.parse_group_by(json_query['aggregation']['group_by'], json_query['columns'])
         order_part = self.parse_order_by(json_query['aggregation']['order_by'])

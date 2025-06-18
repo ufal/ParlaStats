@@ -115,11 +115,9 @@ def query():
         
             final_step = json_query["steps"][-1]["goal"]
             full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
-            # print("SQL:\n", full_sql)
-            # print("params:", all_params)
             with open('sql.txt', 'w') as f:
                 f.write(full_sql)
-        except:
+        except Exception as e:
             bad_json_response = {
                 "error_message": "Server received malformed JSON query",
                 "query":json_query
