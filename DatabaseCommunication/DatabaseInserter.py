@@ -142,4 +142,10 @@ class DatabaseInserter(DatabaseOperator):
             cursor.execute(SpeechCommands.INSERT_ORGANIZATION)
         
         self.connection.commit()
+    
+    def insert_artificial_columns(self):
+        with self.connection.cursor() as cursor:
+            cursor.execute(SpeechCommands.INSERT_ARTIFICIAL_COLUMNS)
+
+        self.connection.commit()
 

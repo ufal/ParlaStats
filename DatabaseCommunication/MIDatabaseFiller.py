@@ -45,7 +45,7 @@ class MIDatabaseFiller(DatabaseOperator):
                 """, (schema, table, table, schema))
                 return database_cursor.fetchall()
     
-    def __fetch_materialized_view_columns(self, database_name, schema):
+    def __fetch_materialized_view_columns(self, database_name):
         database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
         with psycopg2.connect(**database_config) as database_connection:
             with database_connection.cursor() as database_cursor:
@@ -88,13 +88,13 @@ class MIDatabaseFiller(DatabaseOperator):
                     table_id = meta_cursor.fetchone()
                     if table_id: table_id = table_id[0]
                     
-                    for column_name, data_type in self.__fetch_columns(database, schema, table):
+                    for column_name, data_type in self.__fetch_columns(database,schema, table):
                         meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (table_id, column_name, data_type))
                 
                 # Add artificial columns
                 meta_cursor.execute("INSERT INTO tables (database_id, schema_name, table_name) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (database_id, 'public', 'artificial_columns'))
 
-                for column_name, data_type in self.__fetch_materialized_view_columns(database, schema):
+                for column_name, data_type in self.__fetch_materialized_view_columns(database):
                     meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (6, column_name, data_type))
                 # if (database != "postgres"):
                 #     execute_values(meta_cursor, 
