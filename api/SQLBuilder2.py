@@ -5,7 +5,7 @@ from collections import OrderedDict
 class SQLBuilder:
     
     STEPREF = re.compile(r"^step_result/(?P<step>\w+)[./](?P<col>[\w./]+)$")
-    AUGMENTED_STEPREF = re.compile(r"^(?P<step>\w+)[./](?P<col>[\w./]+)$")
+    AUGMENTED_STEPREF = re.compile(r"^(?P<step>\w+)[./]\"(?P<col>[\w./]+)\"$")
     COLREF = re.compile(r"^\w+[.]\w+$")
     SPECIAL_VALUES = ['NULL']
 
@@ -28,8 +28,10 @@ class SQLBuilder:
         }
         self.SPEECH_TIME_COLUMNS = ["time_start", "time_end", "earliest_timestamp", "latest_timestamp"]
         self.join_end = 0;
+    
     def _detect_dependencies(self, step: dict, exposed_cols: dict) -> list[tuple]:
         deps = []
+        print(exposed_cols)
         def register(prev: str, ref: str):
             remote = self._resolve_exposed(prev, ref, exposed_cols, need="exposed")
 
@@ -39,20 +41,26 @@ class SQLBuilder:
 
         def scan_token(token: str):
             m = self.AUGMENTED_STEPREF.match(token)
+            print("TOKEN", token)
+            print("MATCH", m)
             if m and m.group('step') not in self.TABLE_MATCHING:
                 register(m.group("step"), m.group("col"))
-
+        print("STEP COLUMNS",step["columns"])
         for col in step["columns"]:
             if isinstance(col,str):
+                
                 scan_token(col)
             else:
+                print("COLUMN",col)
+                print("COLUMN REAL", col.get("real",""))
                 scan_token(col.get('real', ""))
+
                 if isinstance(col.get('alias'), str):
                     scan_token(col['alias'])
 
         for cond in step['filtering']['conditions']:
             scan_token(cond['value'])
-
+        print(deps)
         return deps
 
     def _find_local_real(self, step_dict: dict, remote: str, ref: str) -> str:
@@ -90,7 +98,7 @@ class SQLBuilder:
         
         from_pos = re.search(r"\bWHERE\b", core_sql, re.I)
         print("JOIN END",self.join_end)
-        from_pos = from_pos.end() if from_pos else self.join_end
+        from_pos = from_pos.end() - 5 if from_pos else self.join_end
         join_snippets = []
         for prev, local, remote in deps:
             col_name = local.split('.')[-1]
@@ -103,7 +111,6 @@ class SQLBuilder:
                 if not alias:
                     alias = re.search(r"\bFROM\s+(\w+)", core_sql, re.I).group(1)
                 local = f"{alias}.{col_name}"
-            print(core_sql[from_pos:])
             join_snippets.append(f" JOIN {prev} ON {local} = {prev}.{remote} \n")
         return core_sql[:from_pos] + "".join(join_snippets) + " " + core_sql[from_pos:]
 
@@ -123,6 +130,7 @@ class SQLBuilder:
                 new_cols.append({
                     "real":f"{m.group('step')}.{exposed_name}",
                     "alias":exposed_name,
+                    "alias_step":m.group('step'),
                     "agg_func":""
                 })
 
@@ -139,6 +147,23 @@ class SQLBuilder:
                 
         step["columns"] = new_cols
         #===========================================================
+        only_proj_refs = all(
+            isinstance(c, dict) 
+            and c.get("alias_step")
+            and c["real"].startswith(f"{c['alias_step']}.")
+            for c in step["columns"]
+        ) and not step["filtering"]["conditions"]
+
+        if only_proj_refs:
+            prev = step["columns"][0]["alias_step"]
+            select_list = ", ".join(
+                f"{prev}.{c['alias']} AS {c['alias']}" for c in step["columns"]
+            )
+            sql = f"SELECT {select_list} FROM {prev}"
+            params = []
+            exposed = {c["alias"]: {"exposed": c["alias"], "real": c["alias"] }
+                        for c in step["columns"]}
+            return sql, params, exposed
         #================ AUGMENT GROUP BY =========================
         if "aggregation" in step and step["aggregation"].get("group_by"):
             new_group_by = []
@@ -267,15 +292,16 @@ class SQLBuilder:
         for ob in order_by:
             col = ob['column']
             direction = ob['direction']
+            nulls = " NULLS LAST " if direction == 'DESC' else " NULLS FIRST "
             if isinstance(col, str):
-                parts.append(f"{col} {direction} \n")
+                parts.append(f"{col} {direction} {nulls}\n")
             else:
                 func = col['agg_func']
                 real = col['real']
                 if func == 'COUNT':
-                    parts.append(f"COUNT(DISTINCT {real}) {direction} \n")
+                    parts.append(f"COUNT(DISTINCT {real}) {direction} {nulls} \n")
                 else:
-                    parts.append(f"{func}({real}) {direction} \n")
+                    parts.append(f"{func}({real}) {direction} {nulls} \n")
         return " ORDER BY " + ", ".join(parts)
 
     def parse_group_by(self, group_by, columns):
@@ -337,7 +363,7 @@ class SQLBuilder:
     def determine_joins(self, columns, conditions, group_by):
         required = set()
         tables = self.TABLE_MATCHING.keys()
-
+        
         for table in tables:
             for col in columns:
                 if isinstance(col, str):
@@ -362,6 +388,8 @@ class SQLBuilder:
                 joins.append(("person", table))
             
             elif table == "speech_affiliation":
+                if (("person", "speech") not in joins):
+                    joins.append("person", "speech")
                 if (("speech", "speech_affiliation") not in joins):
                     joins.append(("speech", "speech_affiliation"))
 
@@ -370,10 +398,13 @@ class SQLBuilder:
                     joins.append(("speech_affiliation", "affiliation"))
             
             elif table == "organisation":
-                if ("speech", "speech_affiliation") not in joins:
-                    joins.append(("speech", "speech_affiliation"))
-                if ("speech_affiliation", "affiliation") not in joins:
-                    joins.append(("speech_affiliation", "affiliation"))
+                if (("person", "speech") in joins):
+                    if ("speech", "speech_affiliation") not in joins:
+                        joins.append(("speech", "speech_affiliation"))
+                    if ("speech_affiliation", "affiliation") not in joins:
+                        joins.append(("speech_affiliation", "affiliation"))
+                if (("person", "affiliation") and ("speech_affiliation", "affiliation") not in joins):
+                    joins.append(("person", "affiliation"))
                 joins.append(("affiliation","organisation"))
             else:
                 raise ValueError(f"Unsupported join path for table '{table}'.")

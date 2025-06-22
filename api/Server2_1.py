@@ -4,6 +4,8 @@ import os
 from flask import Flask, request, jsonify, abort
 from flask.json.provider import JSONProvider
 import psycopg2
+import math
+from decimal import Decimal
 from configparser import ConfigParser
 from argparse import ArgumentParser
 import decimal
@@ -23,6 +25,8 @@ class CustomJSONifier(JSONEncoder):
     encode types like TIME
     """
     def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
         if isinstance(obj, (datetime, time, date)):
             return obj.isoformat()
         return super().default(obj)
@@ -106,23 +110,23 @@ def query():
         cte_snippets, all_params = [], []
         exposed_cols = {}
         
-        try:
-            for step in json_query["steps"]:
-                snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
-                cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
-                all_params.extend(params)
-                exposed_cols[step["goal"]] = outcols
+        # try:
+        for step in json_query["steps"]:
+            snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
+            cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
+            all_params.extend(params)
+            exposed_cols[step["goal"]] = outcols
         
-            final_step = json_query["steps"][-1]["goal"]
-            full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
-            with open('sql.txt', 'w') as f:
-                f.write(full_sql)
-        except Exception as e:
-            bad_json_response = {
-                "error_message": "Server received malformed JSON query",
-                "query":json_query
-            }
-            return jsonify(bad_json_response)
+        final_step = json_query["steps"][-1]["goal"]
+        full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
+        with open('sql.txt', 'w') as f:
+            f.write(full_sql)
+        # except Exception as e:
+        #     bad_json_response = {
+        #         "error_message": "Server received malformed JSON query",
+        #         "query":json_query
+        #     }
+        #     return jsonify(bad_json_response)
         
         try:
             cursor.execute(full_sql, all_params)
@@ -135,9 +139,20 @@ def query():
 
         columns = [d.name for d in cursor.description]
         rows = cursor.fetchall()
+        
+        placeholder = math.inf
+        safe_rows = [
+            dict(zip(columns,(placeholder if v is None else v for v in r)))
+            for r in rows
+        ]
+        
+        json_ready_rows = [
+            {k: (0 if v is placeholder else v) for k,v in row.items()}
+            for row in safe_rows
+        ]
 
         res.append({"database": database,
-                     "data": format_output([dict(zip(columns,r)) for r in rows])})
+                    "data": format_output(json_ready_rows)})
     
     if (not debug):
         return jsonify(res)
