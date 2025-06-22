@@ -65,7 +65,7 @@ class mainDriver:
                 self.databaseInserter.insert_speeches(contents)            
         
         self.databaseInserter.insert_speech_organizations()         
-    
+        self.databaseInserter.insert_artificial_columns()
     def __parse_persons_file(self, file, source_corpus):
         persons = None
         
