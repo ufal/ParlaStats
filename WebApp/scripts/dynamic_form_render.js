@@ -2,7 +2,7 @@ import { metaInformationPromise } from './metaInformation.js'
 import { loadConfig } from '../config/config.js'
 import { storeAliases, storeStepResults, updateColumnsOfferings2, updateColumnsOfferings } from './stored_data_worker.js' 
 import { getTranslations, getUITranslations, translateStepResults, storeTranslations, storeUITranslations } from './translations.js'
-import { getArtificialColumns } from './artificialColumns.js'
+// import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
@@ -38,7 +38,9 @@ let aggregationFunctionTypeMapping = {
 	"character varying":["COUNT",  ""],
 	"time without time zone":["MIN", "MAX", "COUNT",  ""],
 	"integer":["SUM", "AVG", "MIN", "MAX", "COUNT", ""],
+	"numeric":["SUM", "AVG", "MIN", "MAX", "COUNT", ""],
 	"NoAggregation":[""]
+	
 }
 
 
@@ -65,7 +67,7 @@ const metaInformation = await metaInformationPromise;
 let translations = getTranslations();
 let currentLanguage = "en";
 let UItranslations = getUITranslations();
-let artificialColumns = getArtificialColumns();
+// let artificialColumns = getArtificialColumns();
 let debugMode = false;
 // ==================================================================
 
@@ -210,18 +212,19 @@ function renderStepsSection(container) {
 					columnsToBeReturned += col.alias ? ` ${col.alias}` : `${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
 					hit = true;
 				}
-				if (!hit) {
-					Object.keys(artificialColumns).forEach(key => {
-						if (artificialColumns[key].formula === col) {
-							columnsToBeReturned += ` ${translations[key][currentLanguage]}`;
-							hit = true;
-							return;
-						}
-					});
-				}
+				// if (!hit) {
+				// 	Object.keys(artificialColumns).forEach(key => {
+				// 		if (artificialColumns[key].formula === col) {
+				// 			columnsToBeReturned += ` ${translations[key][currentLanguage]}`;
+				// 			hit = true;
+				// 			return;
+				// 		}
+				// 	});
+				// }
 				
 				if (!hit && col.includes('step_result')) {
-					columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);		
+					// columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);		
+					columnsToBeReturned += translateStepResults(col, translations, currentLanguage);
 					hit = true;
 				}
 				if (!hit) {
@@ -384,8 +387,8 @@ function renderConditions(container, step, stepIndex) {
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, valueColumnOffering, currentLanguage);
 
 		// Offer user template columns
-		Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
-		Utilities.addArtificialColumnOfferings(valueColumnOffering, currentLanguage);
+		// Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
+		// Utilities.addArtificialColumnOfferings(valueColumnOffering, currentLanguage);
 		// Offer user aliases defined within this step
 		if (userDefinedAliases[stepIndex]) {
 			Utilities.addUserDefinedAliases(conditionColumnTableSelect, userDefinedAliases[stepIndex]);
@@ -593,7 +596,7 @@ function renderOrderBy(container, step, stepIndex) {
 		                                     currentLanguage);
 
 		// Offer user template columns
-		Utilities.addArtificialColumnOfferings(orderByTableSelect, currentLanguage);
+		// Utilities.addArtificialColumnOfferings(orderByTableSelect, currentLanguage);
 
 		// Offer user aliases defined within the same step
 		Utilities.addUserDefinedAliases(orderByTableSelect, userDefinedAliases[stepIndex]);
@@ -740,7 +743,7 @@ function renderGroupBy(container, step, stepIndex) {
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, groupByTableSelect, currentLanguage);
 		
 		// Offer user template columns
-		Utilities.addArtificialColumnOfferings(groupByTableSelect, currentLanguage);
+		// Utilities.addArtificialColumnOfferings(groupByTableSelect, currentLanguage);
 
 		// Offer user aliases defined within this step
 		
@@ -889,7 +892,7 @@ function renderGroupBy(container, step, stepIndex) {
 			Utilities.addDatabaseColumnOfferings(metaInformation.columns, columnTableSelect, currentLanguage);
 			
 			// Offer the user choice of template columns
-			Utilities.addArtificialColumnOfferings(columnTableSelect, currentLanguage);
+			// Utilities.addArtificialColumnOfferings(columnTableSelect, currentLanguage);
 
 			// Offer results of previous steps
 			Utilities.addStepResultsOfferings(columnTableSelect, stepResultArray, stepIndex, currentLanguage);
@@ -1099,11 +1102,11 @@ function autofillAliases(query) {
 		const columns = step.columns;
 		columns.forEach(column => {
 			if (typeof(column) === 'object') {
-				Object.keys(artificialColumns).forEach(key => {
-					if (column.real === artificialColumns[key].formula && column.alias === "") {
-						column.alias = `${column.agg_func}_${key}`;
-					}
-				});
+				// Object.keys(artificialColumns).forEach(key => {
+				// 	if (column.real === artificialColumns[key].formula && column.alias === "") {
+				// 		column.alias = `${column.agg_func}_${key}`;
+				// 	}
+				// });
 				if (column.alias === "") {
 					column.alias = `${column.agg_func}_${column.real.replaceAll('.', '_')}`;
 				}

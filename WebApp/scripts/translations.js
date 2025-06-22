@@ -183,6 +183,22 @@ let translations = {
 		"en":"Election term",
 		"cs":"Volební období"
 	},
+	"speech.artif_wpm": {
+		"en":"Words per Minute",
+		"cs":"Počet slov za minutu"
+	},
+	"speech.artif_dow": {
+		"en":"Day of the week",
+		"cs":"Den v týdnu"
+	},
+	"speech.artif_month": {
+		"en":"Month",
+		"cs":"Měsíc"
+	},
+	"speech.artif_year": {
+		"en":"Year",
+		"cs":"Rok"
+	},
 	"persname.surname": {
 		"en":"Speaker surname",
 		"cs":"Přijmení mluvčího"
@@ -306,15 +322,15 @@ export function getTranslations() {
 	return translations ? JSON.parse(translations) : [];
 }
 
-export function translateStepResults(stepResult, translations, artificialColumns, currentLanguage) {
+export function translateStepResults(stepResult, translations, currentLanguage) {
 	let parts = stepResult.split('/');
 	let result = `${parts[1]}->`
 	if (parts.length == 3) {
-		Object.keys(artificialColumns).forEach(key => {
-			if (artificialColumns[key].formula === parts[2]) {
-				result += translations[key][currentLanguage];
-			} 		
-		});
+		// Object.keys(artificialColumns).forEach(key => {
+		// 	if (artificialColumns[key].formula === parts[2]) {
+		// 		result += translations[key][currentLanguage];
+		// 	} 		
+		// });
 		if (result === `${parts[1]}->`) {
 			if (!(parts[2] in translations)) {
 				result += parts[2];

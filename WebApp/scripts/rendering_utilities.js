@@ -1,4 +1,4 @@
-import { getArtificialColumns } from './artificialColumns.js'
+// import { getArtificialColumns } from './artificialColumns.js'
 import { getTranslations, translateStepResults } from './translations.js'
 import { loadConfig } from '../config/config.js'
 import { metaInformationPromise } from './metaInformation.js'
@@ -7,7 +7,7 @@ const metaInformation = await metaInformationPromise;
 const { META_URL } = await loadConfig();
 const serverURL = META_URL;
 
-let artificialColumns = getArtificialColumns();
+// let artificialColumns = getArtificialColumns();
 // let metaInformation = getMetaInformation();
 let translations = getTranslations();
 
@@ -54,15 +54,15 @@ export function addDatabaseColumnOfferings(offerings, targetElement, currentLang
 	}
 }
 
-export function addArtificialColumnOfferings( targetElement, currentLanguage) {
-	const optionGroup = targetElement.querySelector('.speech');
-	Object.keys(artificialColumns).forEach(item => {
-		const selectOption = document.createElement('option');
-		selectOption.value = artificialColumns[item].formula;
-		selectOption.textContent = translations[item][currentLanguage];
-		optionGroup.appendChild(selectOption);
-	});
-}
+// export function addArtificialColumnOfferings( targetElement, currentLanguage) {
+// 	const optionGroup = targetElement.querySelector('.speech');
+// 	Object.keys(artificialColumns).forEach(item => {
+// 		const selectOption = document.createElement('option');
+// 		selectOption.value = artificialColumns[item].formula;
+// 		selectOption.textContent = translations[item][currentLanguage];
+// 		optionGroup.appendChild(selectOption);
+// 	});
+// }
 
 
 
@@ -75,18 +75,18 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 			currentField = currentField.real;
 		}
 		let currentFieldMeta = "";
-		Object.keys(artificialColumns).forEach(key => {
-			if (artificialColumns[key].formula === currentField) {
-				currentFieldMeta = artificialColumns[key].type;
-			}
-		});
+		// Object.keys(artificialColumns).forEach(key => {
+		// 	if (artificialColumns[key].formula === currentField) {
+		// 		currentFieldMeta = artificialColumns[key].type;
+		// 	}
+		// });
 		userDefinedAliases.forEach(item => {
 			if (currentField === item.alias) {
-				Object.keys(artificialColumns).forEach(key => {
-					if (item.real === artificialColumns[key].formula) {
-						currentFieldMeta = artificialColumns[key].type;
-					}
-				});
+				// Object.keys(artificialColumns).forEach(key => {
+				// 	if (item.real === artificialColumns[key].formula) {
+				// 		currentFieldMeta = artificialColumns[key].type;
+				// 	}
+				// });
 				if (currentFieldMeta === "") {
 					currentFieldMeta = availableColumns.find(col => col.column === item.real).type;
 				}
@@ -102,12 +102,19 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 			});
 		}
 		if (currentFieldMeta === "") {
-			currentFieldMeta = availableColumns.find(col => col.column === currentField).type;
+			let currentCol = availableColumns.find(col => col.column === currentField);
+			console.log(currentCol);
+			if (currentCol) {
+				currentFieldMeta = currentCol.type;
+			}
 		}
 		if (currentFieldMeta !== "") {
 			aggFOptions = typeMapping[currentFieldMeta];
 		}
+		console.log(currentFieldMeta);
+	
 	}
+	console.log(aggFOptions);
 	aggFOptions.forEach(option => {
 		const aggFOption = document.createElement('option');
 		aggFOption.value = option;
@@ -142,8 +149,9 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				const selectOption = document.createElement('option');
 				selectOption.className = "user-specific";
 				selectOption.value = column.queryPart;
-				selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
-				                                                currentLanguage);
+				// selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
+				//                                                 currentLanguage);
+				selectOption.textContent = translateStepResults(column.queryPart, translations, currentLanguage);
 				stepResultsOptionGroup.appendChild(selectOption);
 			});
 		}
@@ -188,20 +196,20 @@ export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray
 
 export function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectValue) {
 	let columnType = null;
-	Object.keys(artificialColumns).forEach(key => {
-		if (artificialColumns[key].formula === selectValue) {
-			columnType = artificialColumns[key].type;
-		}
-	});
+	// Object.keys(artificialColumns).forEach(key => {
+	// 	if (artificialColumns[key].formula === selectValue) {
+	// 		columnType = artificialColumns[key].type;
+	// 	}
+	// });
 	if (!columnType && stepIndex !== null && userDefinedAliases[stepIndex]) {
 		userDefinedAliases[stepIndex].forEach(aliasEntry => {
 			if (aliasEntry.alias === selectValue) {
 				const realValue = aliasEntry.real;
-				Object.keys(artificialColumns).forEach(key => {
-					if (artificialColumns[key].formula === realValue) {
-						columnType = artificialColumns[key].type;
-					}
-				});
+				// Object.keys(artificialColumns).forEach(key => {
+				// 	if (artificialColumns[key].formula === realValue) {
+				// 		columnType = artificialColumns[key].type;
+				// 	}
+				// });
 				if (!columnType) {
 					columnType = aliasEntry.type;
 				}
@@ -259,13 +267,13 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 	}
 	// Check artificialColumns
 	if (!found) {
-		Object.keys(artificialColumns).forEach(key => {
-			if (artificialColumns[key].formula === selectValue) {
-				const columnEntry = metaInformation.columns.find(col => col.column === `artificial_columns.${key}`);
-				possibleValues = columnEntry["data"][database];
-				found = true;
-			}
-		});
+		// Object.keys(artificialColumns).forEach(key => {
+		// 	if (artificialColumns[key].formula === selectValue) {
+		// 		const columnEntry = metaInformation.columns.find(col => col.column === `artificial_columns.${key}`);
+		// 		possibleValues = columnEntry["data"][database];
+		// 		found = true;
+		// 	}
+		// });
 	}
 	if (!found) {
 		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
@@ -295,11 +303,11 @@ export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, st
 	});
 	
 	// Artificial columns
-	Object.keys(artificialColumns).forEach(key => {
-		if (artificialColumns[key].type === selectValueType) {
-			compatibleColumns.push(key);
-			}
-	});
+	// Object.keys(artificialColumns).forEach(key => {
+	// 	if (artificialColumns[key].type === selectValueType) {
+	// 		compatibleColumns.push(key);
+	// 		}
+	// });
 
 	// Step results
 	for (let i = 0; i < stepIndex; i++) {

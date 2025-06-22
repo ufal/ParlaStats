@@ -1,9 +1,9 @@
 import { getTranslations, translateStepResults } from './translations.js' 
-import { getArtificialColumns } from './artificialColumns.js'
+// import { getArtificialColumns } from './artificialColumns.js'
 import { metaInformationPromise } from './metaInformation.js'
 
 let translations = getTranslations();
-const artificialColumns = getArtificialColumns();
+// const artificialColumns = getArtificialColumns();
 const metaInformation = await metaInformationPromise;
 
 export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
@@ -12,9 +12,11 @@ export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 	const columns = targetStep.columns;
 	columns.forEach(column => {
 		if (typeof column === 'object') {
+			console.log(column);
 			if (column.alias && !aliases[stepIndex].includes(column.alias)) {
 				
 				let real = metaInformation.columns.find(col => col.column === column.real);
+				console.log("ALIAS", columns.alias);
 				if (!real) {
 					for (let i = 0; i < stepIndex; i++) {
 						if (stepResultsArray[i]) {
@@ -26,13 +28,13 @@ export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 						}
 					}
 				}
-				if (!real) {
-					Object.keys(artificialColumns).forEach(key => {
-						if (artificialColumns[key].formula === column.real) {
-							real = artificialColumns[key];
-						}
-					});
-				}
+				// if (!real) {
+				// 	Object.keys(artificialColumns).forEach(key => {
+				// 		if (artificialColumns[key].formula === column.real) {
+				// 			real = artificialColumns[key];
+				// 		}
+				// 	});
+				// }
 				let data = (real.data) ? real.data : [];
 				let aliasesEntry = {
 					"real":column.real,
@@ -64,11 +66,11 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 		};
 		if (typeof column === 'object') {
 			// check artificial columns
-			Object.keys(artificialColumns).forEach(entry => {
-				if (artificialColumns[entry].formula === column.real) {
-					columnType = entry.type;
-				}
-			});
+			// Object.keys(artificialColumns).forEach(entry => {
+			// 	if (artificialColumns[entry].formula === column.real) {
+			// 		columnType = entry.type;
+			// 	}
+			// });
 			
 			// check metaInformation
 			metaInformation.columns.forEach(entry => {
@@ -97,11 +99,11 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 			}
 		} else if (typeof column === 'string') {
 			// check artificial columns
-			Object.keys(artificialColumns).forEach(entry => {
-				if (entry.formula === column.real) {
-					columnType = entry.type;
-				}
-			});
+			// Object.keys(artificialColumns).forEach(entry => {
+			// 	if (entry.formula === column.real) {
+			// 		columnType = entry.type;
+			// 	}
+			// });
 			
 			// check metaInformation
 			metaInformation.columns.forEach(entry => {
@@ -142,8 +144,7 @@ export function updateColumnsOfferings(userDefinedAliases, stepResultsArray, ste
 					const selectOption = document.createElement('option');
 					selectOption.className = "user-specific";
 					selectOption.value = res.queryPart;
-					selectOption.textContent = translateStepResults(res.queryPart, translations, artificialColumns, 
-						                                            currentLanguage);
+					selectOption.textContent = translateStepResults(res.queryPart, translations, currentLanguage);
 					columnSelect.appendChild(selectOption);
 				});
 			}
@@ -178,8 +179,7 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 					const selectOption = document.createElement('option');
 					selectOption.className = "user-specific";
 					selectOption.value = stepResult.queryPart;
-					selectOption.textContent = translateStepResults(stepResult.queryPart, translations, artificialColumns,
-					                                                currentLanguage);
+					selectOption.textContent = translateStepResults(stepResult.queryPart, translations, currentLanguage);
 					columnSelect.appendChild(selectOption);
 					// console.log(selectOption.value);
 				});
