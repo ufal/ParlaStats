@@ -1,41 +1,36 @@
 {
-	"target_databases":["parczech4_0"],
-	"description":"How many speeches were given by members of each political party or parliamentary group",
-	"steps": [
-		{
-			"goal":"main",
-			"columns":[
-				"organisation.name",
-				{
-					"real":"speech.id",
-					"alias":"total_speeches",
-					"agg_func":"COUNT"
-				}
-			],
-			"aggregation": {
-				"group_by":["organisation.role", "organisation.name"],
-				"order_by":[]
-			},
-			"filtering": {
-				"conditions":[
-					{
-						"column":"organisation.role",
-						"operator": " IN ",
-						"value":"('politicalParty','parliamentaryGroup')"
-					},
-					{
-						"column":"speech.date",
-						"operator":">=",
-						"value":"affiliation.since"
-					},
-					{
-						"column":"speech.date",
-						"operator":"<=",
-						"value":"affiliation.until"
-					}
-				]
-			},
-			"limit":""
-		}
-	]
+  "target_databases": [
+    "parczech4_0"
+  ],
+  "description": "How many speeches were given by members of each political party or parliamentary group",
+  "steps": [
+    {
+      "goal": "main",
+      "columns": [
+        "organisation.name",
+        {
+          "real": "speech.id",
+          "alias": "total_speeches",
+          "agg_func": "COUNT"
+        }
+      ],
+      "aggregation": {
+        "group_by": [
+          "organisation.role",
+          "organisation.name"
+        ],
+        "order_by": []
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "organisation.role",
+            "operator": "IN",
+            "value": "('politicalParty','parliamentaryGroup')"
+          }
+        ]
+      },
+      "limit": ""
+    }
+  ]
 }

@@ -10,7 +10,7 @@
 				"order_by":[
 					{
 						"column": {
-							"real":"(speech.token_count / (speech.total_duration / 60000))",
+							"real":"speech.artif_wpm",
 							"agg_func":"AVG"
 						},
 						"direction":"DESC"
@@ -35,7 +35,7 @@
 			"columns":[
 				"speech.earliest_timestamp", 
 				{
-					"real":"(speech.token_count / (speech.total_duration / 60000))",
+					"real":"speech.artif_wpm",
 					"alias":"average_wpm",
 					"agg_func":"AVG"
 				}

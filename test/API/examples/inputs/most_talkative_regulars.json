@@ -1,41 +1,42 @@
 {
-	"target_databases":["parczech4_0"],
-	"description":"Most talkative regulars",
-	"steps": [
-		{
-			"goal":"main",
-			"columns":[
-				"persname.forename", 
-				"persname.surname", 
-				{
-					"real":"speech.token_count",
-					"alias":"total_tokens",
-					"agg_func":"SUM"
-				}
-			],
-			"aggregation": {
-				"group_by":[
-					"persname.forename",
-					"persname.surname",
-					"speech.role"
-				],
-				"order_by":[
-					{
-						"column":"speech.role",
-						"direction":"DESC"
-					}
-				]
-			},
-			"filtering": {
-				"conditions":[
-					{
-						"column":"speech.role",
-						"operator":"=",
-						"value":"'regular'"
-					}
-				]
-			},
-			"limit":"10"
-		}
-	]
+  "target_databases": [
+    "parczech4_0"
+  ],
+  "description": "Most talkative regulars",
+  "steps": [
+    {
+      "goal": "main",
+      "columns": [
+        "persname.forename",
+        "persname.surname",
+        {
+          "real": "speech.token_count",
+          "alias": "total_tokens",
+          "agg_func": "SUM"
+        }
+      ],
+      "aggregation": {
+        "group_by": [
+          "speech.role",
+          "person.person_id"
+        ],
+        "order_by": [
+          {
+            "column": "total_tokens",
+            "direction": "DESC"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "speech.role",
+            "operator": "=",
+            "value": "'regular'"
+          }
+        ]
+      },
+      "limit": "10"
+    }
+  ]
 }

@@ -1,37 +1,40 @@
 {
-	"target_databases":["parczech4_0"],
-	"description":" TOP 10 speakers with most words per minute.",
-	"steps":[
-		{
-			"goal":"main",
-			"columns":[
-				"person.person_id", 
-				{
-					"real":"(speech.token_count / (speech.total_duration / 60000))",
-					"agg_func":"AVG",
-					"alias":"average_wpm"
-				}
-			],
-			"aggregation": {
-				"group_by":["person.person_id"],
-				"order_by":[
-					{
-						"column":"average_wpm",
-						"direction":"desc"
-					}
-				]
-			},
-			"filtering":{
-				"conditions":[
-					{
-						"column":"speech.total_duration",
-						"operator":">=",
-						"value":"60000"
-					}
-				]
-			},
-			"limit":"10"
-
-		}
-	]
+  "target_databases": [
+    "parczech4_0"
+  ],
+  "description": " TOP 10 speakers with most words per minute.",
+  "steps": [
+    {
+      "goal": "main",
+      "columns": [
+        "person.person_id",
+        {
+          "real": "speech.artif_wpm",
+          "agg_func": "AVG",
+          "alias": "average_wpm"
+        }
+      ],
+      "aggregation": {
+        "group_by": [
+          "person.person_id"
+        ],
+        "order_by": [
+          {
+            "column": "average_wpm",
+            "direction": "desc"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "speech.total_duration",
+            "operator": ">=",
+            "value": "60000"
+          }
+        ]
+      },
+      "limit": "10"
+    }
+  ]
 }

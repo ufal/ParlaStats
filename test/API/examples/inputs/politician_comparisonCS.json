@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"Comparison of total speeches by Adam Kalous and Adam Rykala.",
+	"description":"Comparison of total speeches by AndrejBabis and Vera Jourova.",
 	"steps":[
 		{
 			"goal":"main",

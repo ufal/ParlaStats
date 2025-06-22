@@ -1,65 +1,63 @@
 {
-	"target_databases":["parczech4_0"],
-	"description":"Average named_entity references by ANO members.",
-	"steps":[
-		{
-			"goal":"get_ano_members",
-			"columns":[ "person.person_id" ],
-			"aggregation": {
-				"group_by":[ "person.person_id", "organisation.organisation_id" ],
-				"order_by":[]
-			},
-			"filtering":{	
-				"conditions":[
-					{
-						"column":"organisation.organisation_id",
-						"operator":"LIKE",
-						"value":"'%%ANO%%'"
-					}
-				]
-			},
-			"limit":""
-		},
-		{
-			"goal":"main",
-			"columns":[ 
-				"person.person_id",
-				{
-					"real":"speech.named_entity_count",
-					"alias":"average_named_entity_references",
-					"agg_func":"AVG"
-				}
-			],
-			"aggregation":{
-				"group_by":["person.person_id"],
-				"order_by":[
-					{
-						"column":"average_named_entity_references",
-						"direction":"DESC"
-					}
-				]
-			},
-			"filtering":{
-				"conditions": [
-					{
-						"column":"person.person_id",
-						"operator":"IN",
-						"value":"step_result/get_ano_members/person.person_id"
-					},
-					{
-						"column":"speech.date",
-						"operator":"<=",
-						"value":"affiliation.until"
-					},
-					{
-						"column":"speech.date",
-						"operator":">=",
-						"value":"affiliation.since"
-					}
-				]
-			},
-			"limit":""
-		}
-
-	]
+  "target_databases": [
+    "parczech4_0"
+  ],
+  "description": "Average named_entity references by ANO members.",
+  "steps": [
+    {
+      "goal": "get_ano_members",
+      "columns": [
+        "person.person_id"
+      ],
+      "aggregation": {
+        "group_by": [
+          "person.person_id",
+          "organisation.organisation_id"
+        ],
+        "order_by": []
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "organisation.organisation_id",
+            "operator": "LIKE",
+            "value": "'%%ANO%%'"
+          }
+        ]
+      },
+      "limit": ""
+    },
+    {
+      "goal": "main",
+      "columns": [
+        "step_result/get_ano_members/person.person_id",
+        {
+          "real": "speech.named_entity_count",
+          "alias": "average_named_entity_references",
+          "agg_func": "AVG"
+        }
+      ],
+      "aggregation": {
+        "group_by": [
+          "step_result/get_ano_members/person.person_id"
+        ],
+        "order_by": [
+          {
+            "column": "average_named_entity_references",
+            "direction": "DESC"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "organisation.organisation_id",
+            "operator": "LIKE",
+            "value": "'%%ANO%%'"
+          }
+        ]
+      },
+      "limit": ""
+    }
+  ]
 }

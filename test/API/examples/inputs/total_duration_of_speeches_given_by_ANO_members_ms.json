@@ -1,70 +1,68 @@
 {
-	"target_databases":["parczech4_0"],
-	"description":"Total duration of members of ANO in miliseconds",
-	"steps": [
-		{
-			"goal":"get_ano_members",
-			"columns":["person.person_id"],
-			"aggregation" : {
-				"group_by":["person.person_id", "organisation.organisation_id"],
-				"order_by":[]
-			},
-			"filtering": {
-				"conditions": [
-					{
-						"column":"organisation.organisation_id",
-						"operator":"LIKE",
-						"value":"'%%ANO%%'"
-					}
-				]
-			},
-			"limit":""
-
-		},
-		{
-			"goal":"main",
-			"columns":[
-				"person.person_id", 
-				{
-					"real":"speech.total_duration",
-					"alias":"total_duration_ms",
-					"agg_func":"SUM"
-				}
-			],
-			"aggregation": {
-				"group_by":["person.person_id"],
-				"order_by":[
-					{
-						"column":"total_duration_ms",
-						"direction":"DESC"
-					}
-				]
-			},
-			"filtering": {
-				"conditions": [
-					{
-						"column":"affiliation.person_id",
-						"operator":"IN",
-						"value":"step_result/get_ano_members/person.person_id"
-					},
-					{
-						"column":"speech.total_duration",
-						"operator":"IS NOT",
-						"value":"NULL"
-					},
-					{
-						"column":"speech.date",
-						"operator":"<=",
-						"value":"affiliation.until"
-					},
-					{
-						"column":"speech.date",
-						"operator":">=",
-						"value":"affiliation.since"
-					}
-				]
-			},
-			"limit":""
-		}
-	]
+  "target_databases": [
+    "parczech4_0"
+  ],
+  "description": "Total duration of members of ANO in miliseconds",
+  "steps": [
+    {
+      "goal": "get_ano_members",
+      "columns": [
+        "person.person_id"
+      ],
+      "aggregation": {
+        "group_by": [
+          "person.person_id",
+          "organisation.organisation_id"
+        ],
+        "order_by": []
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "organisation.organisation_id",
+            "operator": "LIKE",
+            "value": "'%%ANO%%'"
+          }
+        ]
+      },
+      "limit": ""
+    },
+    {
+      "goal": "main",
+      "columns": [
+        "step_result/get_ano_members/person.person_id",
+        {
+          "real": "speech.total_duration",
+          "alias": "total_duration_ms",
+          "agg_func": "SUM"
+        }
+      ],
+      "aggregation": {
+        "group_by": [
+          "step_result/get_ano_members/person.person_id"
+        ],
+        "order_by": [
+          {
+            "column": "total_duration_ms",
+            "direction": "DESC"
+          }
+        ]
+      },
+      "filtering": {
+        "conditions": [
+          {
+            "column": "speech.total_duration",
+            "operator": "IS NOT",
+            "value": "NULL"
+          },
+          {
+            "column": "organisation.organisation_id",
+            "operator": "LIKE",
+            "value": "'%%ANO%%'"
+          }
+        ]
+      },
+      "limit": "" 
+    }
+  ]
 }
