@@ -24,14 +24,19 @@ const translations = getTranslations();
 
 function columnsColorHash(str) {
 	if (colorCache.has(str)) { return colorCache.get(str) }
-	let hash = 5381;
+	let hash = 0x811c9dc5;
 	for (let i = 0; i < str.length; i++) {
-		hash = (hash<<5) + hash + str.charCodeAt(i);
+		hash ^= str.charCodeAt(i);
+		hash = (hash >>> 0) + ((hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24));
 	}
-	const hue = Math.abs(hash) % 360;
+	hash >>>= 0;
+	const hue = hash % 360;
+	const saturation = 60 + ((hash >> 9) % 30);
+	const lightness = 40 + ((hash >> 19) % 20);
 
-	const hsl = `hsl(${hue},70%,40%)`;
+	const hsl = `hsl(${hue},${saturation}%,${lightness}%)`;
 	colorCache.set(str, hsl);
+
 	return hsl;
 }
 
