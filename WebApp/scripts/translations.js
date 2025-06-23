@@ -240,8 +240,8 @@ let translations = {
 		"cs":"Počet tokenů v promluvě"
 	},
 	"organisation.role":{
-		"en":"Role of the organization",
-		"cs":"Role organizace vrámci parlamentu"
+		"en":"Type of the organization",
+		"cs":"Typ organizace vrámci parlamentu"
 	},
 	"persname.addname":{
 		"en":"Speaker addname",

@@ -8,6 +8,7 @@ import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
 import { createPreviewUpdateEvent } from './customEvents.js'
 import { addDebugInfo } from './debuggingSupport.js'
+import { getDescriptions } from './column_descriptions.js'
 
 export function loadQuery(jsonString) {
 	queryObject = JSON.parse(jsonString);
@@ -77,6 +78,10 @@ function updatePreview() {
 	autoResizeTextarea(QueryPreview);
 }
 
+const tooltip = document.createElement('div');
+tooltip.id = '__optionTooltip__';
+document.body.appendChild(tooltip);
+
 function renderForm() {
 	const container = document.getElementById('formContainer');
 	container.innerHTML = '';
@@ -142,7 +147,7 @@ function renderForm() {
 
 function initializeSelects(selects) {
 	M.FormSelect.init(selects, { dropdownOptions: {constrainWidth: false }});
-
+	let optionDescriptions = getDescriptions();
 	let ruler = document.getElementById('__selectRuler__');
 	if (!ruler) {
 		ruler = document.createElement('span');
@@ -183,6 +188,31 @@ function initializeSelects(selects) {
 		applyWidth();
 
 		sel.addEventListener('change', applyWidth);
+
+		const materializedInstance = M.FormSelect.getInstance(sel);
+		const ul = materializedInstance.dropdownOptions;
+		const lis = ul.querySelectorAll('li:not(.optgroup)');
+		lis.forEach((li, i) => {
+			const option = sel.options[i];
+			console.log(option);
+			if (!optionDescriptions[option.value]) return;
+			const desc = optionDescriptions[option.value]["en"];
+			if (!desc) return;
+
+			li.addEventListener('mouseenter', e => {
+				tooltip.textContent = desc;
+				tooltip.style.left = (e.clientX + 14) + 'px';
+				tooltip.style.top = (e.clientY +6) + 'px';
+				tooltip.style.display = 'block';
+			});
+			li.addEventListener('mousemove', e => {
+				tooltip.style.left = (e.clientX + 14) + 'px';
+				tooltip.style.top = (e.clientY +6) + 'px';
+			});
+			li.addEventListener('mouseleave', e => {
+				tooltip.style.display = 'none';
+			});
+		});
 	});
 }
 
