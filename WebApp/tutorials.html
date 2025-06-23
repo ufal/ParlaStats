@@ -189,7 +189,94 @@
 			</div>
 		</div>
 		<div id="res-tutorial" class="col s12">
-			
+			<div class="zig-zag-container right">
+				<div id="visualization-general" class="textdiv">
+					<h2>Visualizing the results</h2>
+					<p class="common-text">
+						When it comes to visualizing the results of your query, you have 2 options. <br>
+						The first one is table, second one is graph(s).
+						You can switch between these options using the results navigation bar.
+						By default, the table option is selected.
+					</p>
+				</div>
+				<div class="image-placeholder">
+					<img src="image/table_navbar.png" alt="Results navigation bar" class="image-box" style="width:70%; height:70%;">
+					<p class="image-description" style="width">Results navigation bar</p>
+				</div>
+			</div>
+			<div class="zig-zag-container left">
+				<div id="visualization-tables" class="textdiv">
+					<h2>Table visualization</h2>
+					<p class="common-text">
+						In the table, you can see the results of your query as rows. <br>
+						You may scroll the table in case there are more than 20 rows. Additionaly you may sort
+						the results based on individual column values, search the table for specific values or export is as
+						a CSV document.
+						In case your query targets multiple corpora, an individual table will be created for each of them.
+					</p>
+				</div>
+				<div>
+					<img src="image/table_description.png" alt="Results table" class="image-box" style="width:70%; height:70%;">
+					<p class="image-description">Table produced by sample query 13</p>
+				</div>
+			</div>
+			<div class="zig-zag-container left">
+				<div id="visualization-graphs" class="textdiv">
+					<h2>Graph visualization</h2>
+					<p class="common-text">
+						When viewing the graph, you have two options so far, bar and line chart.
+						There is a catch however when determining what will be considered labels for the graph.
+						Labels are determined like this: If a column is selected in the <b>"Columns"</b> section and
+						<b>"Group by section"</b> at the same time, then it is considered to be a label in graph.
+						In case there are multiple columns like this, label is made to be a concatenation of them.
+						Another distinguishing factor of the columns is their type. All numeric columns are considered
+						"values" which means they are used to create the bars of the bar chart or points in the line chart.
+						If there is a non numeric column selected in the <b>"Columns"</b> section of the form, it is appended
+						to the legend for bar / line names.
+					</p>
+					<p class="common-text">
+						For better inderstanding take a look at following example screenshots and feel free to
+						experiment with the sample queries. The one used in screenshots is sample 16.
+					</p>
+					<h4>Example 1</h4>
+					<p class="common-text">
+						In the first example you can see the graph produced by query in which the name of the organization
+						is in both <b>"columns"</b> and <b>"group by"</b> so it ends up as a label on the x-axis.
+						Then, election term is a non-numeric column selected only in <b>"columns"</b> section hence it ends up
+						as part of the bar description along with the name of numeric column here, whose data are used to make
+						bars of the chart, total speeches.
+					</p>
+					<h4>Example 2</h4>
+					<p class="common-text">
+						In the second example, the organization name and election term have been swapped. That means that now
+						election term is in both <b>"columns"</b> and <b>"group by"</b> and organization name is only in <b>"columns"</b>
+						section which resulted in the graph bars being grouped by election term now.
+					</p>
+					<h4>Example 3</h4>
+					<p class="common-text">
+						In some cases, you may want to group the results by columns that are not selected in the <b>"columns"</b>.
+						One such would be for example if you are interested in specific speakers. Let's say you want to know the top 10 male
+						speakers with most speeches given. Each speaker has a unique identifier, which is ideally composed of their name, but
+						it does not have to be that way (may be some technical, weird string). Therefore, it is better to select their name
+						and surname in the <b>"columns"</b> section and group by their unique identifier. 
+					</p>
+					<h4>Interacting with the graph</h4>
+					<p class="common-text">
+						The graph can be zoomed in and out by using mouse wheel. It zooms into location around your cursor on the screen.
+						You can also hide some values by clicking them in the legend above the graph itself.
+					</p>
+				</div>
+				<div>
+					<img src="image/graph_example_var1.png" alt="Graph example variation 1" class="image-box" style="width:80%; height:80%;">
+					<p class="image-description">Example 1</p>
+				
+					<img src="image/graph_example_var2.png" alt="Graph example variation 2" class="image-box" style="width:80%; height:80%;">
+					<p class="image-description">Example 2</p>
+
+					<img src="image/graph_example_var3.png" alt="Graph example variation 3" class="image-box" style="width:80%; height:80%;">
+					<p class="image-description">Example 3</p>
+				</div>
+			</div>
 		</div>
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
