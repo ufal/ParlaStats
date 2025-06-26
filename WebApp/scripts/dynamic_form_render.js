@@ -130,6 +130,8 @@ function renderForm() {
 	let inputJSONTextarea = document.getElementById("inputJSON");
 	inputJSONTextarea.placeholder = UItranslations.inputJSONPlaceholder[currentLanguage];
 	
+	let sendQueryButton2 = document.getElementById('sendQueryButton2');
+	sendQueryButton2.textContent = UItranslations.SendQueryButtonText[currentLanguage];
 	
 	const selects = document.querySelectorAll('select');
 	initializeSelects(selects);
@@ -1146,7 +1148,7 @@ function autofillAliases(query) {
 	return copy;
 }
 
-function autoResizeTextarea(textarea) {
+export function autoResizeTextarea(textarea) {
 	textarea.style.resize = 'none';
 	textarea.style.overflow = 'hidden';
 	textarea.style.width = "auto";
@@ -1157,54 +1159,53 @@ function autoResizeTextarea(textarea) {
 	});
 }
 
-const sendQueryButton = document.getElementById('sendQueryButton');
-sendQueryButton.onclick = async () => {
+export async function send() {
 	try {
 		const query = JSON.stringify(autofillAliases(queryObject), null, 2);
-		
 		const query_headers = debugMode ? 
 			{ "Content-Type": "application/json", "X-Debug": "True" } :
-			{"Content-Type": "application/json", "X-Debug": "False" };
+			{ "Content-Type": "application/json", "X-Debug": "False" };
 
 		const queryWrapped = {
-			method: "POST",
+			method: "post",
 			headers: query_headers,
 			body: query
 		}
-		const response = await fetch(serverURL, queryWrapped);
+		const response = await fetch (serverURL, queryWrapped);
 		const responseData = await response.json();
-		if (responseData.error_message) {
+		if (responseData.error_message) { 
 			const tableDiv = document.getElementById('results-table-wrapper');
 			const graphDiv = document.getElementById('results-graph-wrapper');
+			
+			const debugDiv = document.getElementById('debug');
+
 			tableDiv.innerHTML = "";
 			graphDiv.innerHTML = "";
 			const tableMessage = document.createElement('h5');
-			const graphMessage = document.createElement('h5');
+			const grpahMessage = document.createElement('h5');
 			tableMessage.textContent = responseData.error_message;
-			graphMessage.textContent = responseData.error_message;
+			grpahMessage.textContent = responseData.error_message;
+
 			tableDiv.appendChild(tableMessage);
-			graphDiv.appendChild(graphMessage);
+			graphDiv.appendChild(grpahMessage);
 
 			const dataQueryTextArea = document.createElement('textarea');
 			if (responseData.error_message.includes("JSON")) {
 				dataQueryTextArea.value = JSON.stringify(responseData.query, null, 2);
-				dataQueryTextArea.style.width = '800px';
-				dataQueryTextArea.style.height = '500px';
+				dataQueryTextArea.style.width="800px";
+				dataQueryTextarea.style.height="500px";
 			} else {
 				dataQueryTextArea.value = responseData.query;
-				autoResizeTextarea(dataQueryTextArea);
+				autoResizeTextarea(dataQueryTextArea)
 			}
-			
 
-			// tableDiv.appendChild(dataQueryTextArea);
-			graphDiv.appendChild(dataQueryTextArea);
-			
+			debugDiv.appendChild(dataQueryTextArea);
 			return;
 		}
-		
+
 		let data = debugMode ? responseData.RESPONSE : responseData;
 		visualizeAsTable(data, currentLanguage);
-		visualizeAsGraph(data, queryObject, 'bar', currentLanguage);
+		visualizeAsGraph(data, queryObject ,'bar', currentLanguage);
 		bindButtons(responseData, queryObject);
 		if (debugMode) {
 			addDebugInfo(responseData);
@@ -1212,21 +1213,18 @@ sendQueryButton.onclick = async () => {
 	} catch (error) {
 		console.log(error);
 	}
-}
+} 
 
-
+const sendQueryButton = document.getElementById('sendQueryButton');
+sendQueryButton.onclick = send;
+const sendQueryButton2 = document.getElementById('sendQueryButton2');
+sendQueryButton2.onclick = () => { loadQuery(); send(); }
 
 const inputJsonField = document.getElementById('inputJSON');
 // const outputJsonField = document.getElementById('outputJSON');
 
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
 
-
-
-// document.addEventListener("DOMContentLoaded", async () => {
-// 	renderForm();
-// 	await addSampleQueries();
-// });
 renderForm();
 await addSampleQueries();
 
@@ -1235,6 +1233,8 @@ const debugToggle = document.getElementById('debug-toggle');
 debugToggle.addEventListener('click', () => {
 	debugMode = !debugMode
 	debugToggle.textContent = debugMode ? 'Debug ON' : 'Debug OFF';
+	const debugDiv = document.getElementById('debug');
+	debugDiv.style.display = debugMode ? 'block' : 'none';
 });
 
 

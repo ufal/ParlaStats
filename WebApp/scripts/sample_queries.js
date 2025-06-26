@@ -1,5 +1,5 @@
 import { loadConfig } from '../config/config.js'
-import { loadQuery } from './dynamic_form_render.js'
+import { loadQuery, send } from './dynamic_form_render.js'
 
 const { SAMPLES_URL } = await loadConfig();
 
@@ -17,9 +17,14 @@ export async function addSampleQueries() {
 		const sampleDetail = document.createElement('details');
 		sampleDetail.className = 'repeatable-row';
 		
-		const button = document.createElement('a');
-		button.className = 'waves-effect waves-light btn sample-btn';
-		button.textContent = 'Load';
+		const loadButton = document.createElement('a'); 
+		loadButton.className = 'waves-effect waves-light btn sample-btn';
+		loadButton.textContent = 'Load';
+		
+		const sendButton = document.createElement('a');
+		sendButton.className = 'waves-effect waves-light btn sample-btn';
+		sendButton.textContent = 'Send';
+
 		sampleDetail.id = `Sample_${i}`;
 
 		const summary = document.createElement('summary');
@@ -33,13 +38,17 @@ export async function addSampleQueries() {
 		sampleDetail.appendChild(descriptionText);
 		
 		
-		button.addEventListener('click', () => {
-			console.log('here');
-			console.log(sampleQuery);
+		loadButton.addEventListener('click', () => {
 			loadQuery(JSON.stringify(sampleQuery));
 		});
 
-		sampleDetail.appendChild(button);
+		sendButton.onclick = () => { 
+			loadQuery(JSON.stringify(sampleQuery));
+			send(); 
+		}
+
+		sampleDetail.appendChild(loadButton);
+		sampleDetail.appendChild(sendButton);
 		i++;
 		const listElement = document.createElement('li');
 		listElement.appendChild(sampleDetail);
