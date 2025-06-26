@@ -1,0 +1,36 @@
+{
+	"target_databases": [
+		"parczech4_0"
+	],
+	"description":"Total speeches for parliamentary groups per election terms",
+	"steps":[
+		{
+			"goal":"step0",
+			"columns": [
+				{
+					"real":"speech.id",
+					"alias":"Total_speeches",
+					"agg_func":"COUNT"
+				},
+				"organisation.name",
+				"speech.term"
+			],
+			"aggregation": {
+				"group_by": [
+					"organisation.name"
+				],
+				"order_by": []
+			},
+			"filtering": {
+				"conditions": [
+					{
+						"column":"organisation.name",
+						"operator":"LIKE",
+						"value":"'%Poslanecký klub%'"
+					}
+				]
+			},
+			"limit":""
+		}
+	]
+}
