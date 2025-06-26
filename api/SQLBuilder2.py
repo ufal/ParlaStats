@@ -12,7 +12,7 @@ class SQLBuilder:
     def __init__(self):
         self.TABLE_MATCHING = {
             "person":[],
-            "persname":["person"], # speech IS EXPERIMENTAL
+            "persname":["person"], 
             "organisation":[],
             "affiliation":["person", "organisation"],
             "speech":["person"],
@@ -361,58 +361,79 @@ class SQLBuilder:
         return "      WHERE " + "          AND ".join(fragments), params
 
     def determine_joins(self, columns, conditions, group_by):
-        required = set()
-        tables = self.TABLE_MATCHING.keys()
-        
-        for table in tables:
-            for col in columns:
-                if isinstance(col, str):
-                    if table in col:
-                        required.add(table)
-                elif isinstance(col, dict):
-                    if table in col["real"]:
-                        required.add(table)
+        required = []
+        explicit = set()
 
-            for gb in group_by or []:
+        def add (table, *, is_explicit = False):
+            if table not in required:
+                required.append(table)
+            if is_explicit:
+                explicit.add(table)
+        
+        for table in self.TABLE_MATCHING:
+            for col in columns:
+                if (isinstance(col, str) and table in col) or (isinstance(col, dict) and table in col['real']):
+                    add(table, is_explicit=True)
+            
+            for gb in (group_by or []):
                 if table in gb:
-                    required.add(table)
+                    add(table, is_explicit=True)
 
             for cond in conditions:
-                if table in cond["column"] or table in cond["value"]:
-                    required.add(table)
+                if table in cond['column'] or table in cond['value']:
+                    add(table, is_explicit=True)
 
-        joins = []
-        required.discard("person")
-        for table in required:
-            if table in self.TABLE_MATCHING and "person" in self.TABLE_MATCHING[table]:
-                joins.append(("person", table))
-            
+        if ("organisation" in required and 
+            "speech" in required and
+            "person" not in explicit and
+            "speech_affiliation" not in required):
+
+            required.insert(required.index("speech") + 1, "speech_affiliation")
+        
+        processing_order = ["speech", "speech_affiliation", "affiliation", "organisation", "persname"]
+
+        joins: list[tuple[str, str]] = []
+
+        def push(pair):
+            if pair not in joins:       
+                joins.append(pair)
+
+        for table in processing_order:
+            if table not in required:
+                continue
+
+            if table == "speech":
+                push(("person", "speech"))
+
             elif table == "speech_affiliation":
-                if (("person", "speech") not in joins):
-                    joins.append("person", "speech")
-                if (("speech", "speech_affiliation") not in joins):
-                    joins.append(("speech", "speech_affiliation"))
+                push(("speech", "speech_affiliation"))
 
-            elif (table == "affiliation" and ("speech", "speech_affiliation") in joins):
-                if (("speech_affiliation", "affiliation") not in joins):
-                    joins.append(("speech_affiliation", "affiliation"))
-            
+            elif table == "affiliation":
+                wants_link = (
+                    "speech_affiliation" in required and
+                    "person" not in explicit
+                )
+                if wants_link:
+                    push(("speech_affiliation", "affiliation"))
+                else:
+                    push(("person", "affiliation"))
+
             elif table == "organisation":
-                if (("person", "speech") in joins):
-                    if ("speech", "speech_affiliation") not in joins:
-                        joins.append(("speech", "speech_affiliation"))
-                    if ("speech_affiliation", "affiliation") not in joins:
-                        joins.append(("speech_affiliation", "affiliation"))
-                if (("person", "affiliation") and ("speech_affiliation", "affiliation") not in joins):
-                    joins.append(("person", "affiliation"))
-                joins.append(("affiliation","organisation"))
-            else:
-                raise ValueError(f"Unsupported join path for table '{table}'.")
-        final_joins = []
-        for item in joins:
-            if item not in final_joins:
-                final_joins.append(item)
-        return final_joins
+                wants_link = (
+                    "speech_affiliation" in required and
+                    "person" not in explicit
+                )
+                if wants_link:
+                    push(("speech_affiliation", "affiliation"))
+                else:
+                    push(("person", "affiliation"))
+                push(("affiliation", "organisation"))
+
+            elif table == "persname":
+                push(("person", "persname"))
+
+        return joins
+
 
     def parse_joins(self, joins):
         

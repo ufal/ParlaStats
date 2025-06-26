@@ -49,6 +49,7 @@ class metainformationFetcher:
                         with db_connection.cursor() as db_cursor:
                             for entry in table_columns:
                                 column_split = entry["column"].split('.');
+                                if (column_split[0] == "speech_affiliation"): continue
                                 if (entry["type"] in ["character varying", "text"]):
                                     entry["data"][database] = []
                                 else:
@@ -70,7 +71,6 @@ class metainformationFetcher:
                     "columns": table_columns,
                     
                 }
-
                 return json_response
 
 

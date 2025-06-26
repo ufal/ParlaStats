@@ -97,6 +97,20 @@ def format_output(results):
     
     return formatted_results
 
+def remove_null_rows(rows, keep_when='all'):
+    cleaned = []
+    for r in rows:
+        has_nulls = any(v is None for v in r)
+        if (keep_when == 'all') and has_nulls and all( v is None for v in r):
+            continue
+        if (keep_when == 'any') and has_nulls:
+            continue
+
+        cleaned.append(r)
+
+    return cleaned
+
+
 @app.route('/query', methods=['POST'])
 def query():
     json_query = request.get_json()
@@ -110,23 +124,23 @@ def query():
         cte_snippets, all_params = [], []
         exposed_cols = {}
         
-        # try:
-        for step in json_query["steps"]:
-            snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
-            cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
-            all_params.extend(params)
-            exposed_cols[step["goal"]] = outcols
+        try:
+            for step in json_query["steps"]:
+                snippet, params, outcols = sql_builder.build_step_cte(step, exposed_cols)
+                cte_snippets.append(f"{step['goal']} AS (\n  {snippet}\n)")
+                all_params.extend(params)
+                exposed_cols[step["goal"]] = outcols
         
-        final_step = json_query["steps"][-1]["goal"]
-        full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
-        with open('sql.txt', 'w') as f:
-            f.write(full_sql)
-        # except Exception as e:
-        #     bad_json_response = {
-        #         "error_message": "Server received malformed JSON query",
-        #         "query":json_query
-        #     }
-        #     return jsonify(bad_json_response)
+            final_step = json_query["steps"][-1]["goal"]
+            full_sql = "WITH\n" + ",\n".join(cte_snippets) + f"\nSELECT * FROM {final_step};"
+            with open('sql.txt', 'w') as f:
+                f.write(full_sql)
+        except Exception as e:
+            bad_json_response = {
+                "error_message": "Server received malformed JSON query",
+                "query":json_query
+            }
+            return jsonify(bad_json_response)
         
         try:
             cursor.execute(full_sql, all_params)
@@ -139,7 +153,9 @@ def query():
 
         columns = [d.name for d in cursor.description]
         rows = cursor.fetchall()
-        
+        rows = remove_null_rows(rows, "all")
+
+
         placeholder = math.inf
         safe_rows = [
             dict(zip(columns,(placeholder if v is None else v for v in r)))
