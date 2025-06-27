@@ -78,7 +78,10 @@ function updatePreview() {
 	autoResizeTextarea(QueryPreview);
 }
 
+
 const tooltip = document.createElement('div');
+const hideTooltip = () => {tooltip.style.display = 'none';}
+
 tooltip.id = '__optionTooltip__';
 document.body.appendChild(tooltip);
 
@@ -147,75 +150,105 @@ function renderForm() {
 
 }
 
-function initializeSelects(selects) {
-	M.FormSelect.init(selects, { dropdownOptions: {constrainWidth: false }});
-	let optionDescriptions = getDescriptions();
-	let ruler = document.getElementById('__selectRuler__');
-	if (!ruler) {
+export function bindTooltipToSelect(selectElement, descriptions) {
+	const instance = M.FormSelect.getInstance(selectElement);
+	if (!instance) {
+		return;
+	}
+	const ul = instance.dropdownOptions;
+	if (!ul || ul.dataset.tooltipWired) {
+		return;
+	}
+
+	const opts = selectElement.options;
+	ul.querySelectorAll('li:not(.optgroup)').forEach((li, index) => {
+		const opt = opts[index];
+		const description = descriptions[opt.value]?.en;
+		if (!description) return;
+
+		li.addEventListener('mouseenter', e => {
+			tooltip.textContent = description;
+			tooltip.style.left = e.clientX + 14 + 'px';
+			tooltip.style.top = e.clientY + 6 + 'px';
+			tooltip.style.display = 'block';
+		});
+
+		li.addEventListener('mousemove', e => {
+			tooltip.style.left = e.clientX + 14 + 'px';
+			tooltip.style.top = e.clientY + 6 + 'px';
+		});
+
+		li.addEventListener('mouseleave', hideTooltip);
+		li.addEventListener('click', hideTooltip);
+	});
+
+	ul.dataset.tooltipWired = '1';
+}
+
+(function () {
+	let ruler = null;
+	const getRuler = () => {
+		if (ruler) return ruler;
 		ruler = document.createElement('span');
-		ruler.id = '__selectRuler__';
 		ruler.style.cssText = 'position:absolute; visibility:hidden; white-space:nowrap;';
 		document.body.appendChild(ruler);
-	}
-	
+		return ruler;
+	};
 
-	selects.forEach(sel => {
-		const wrapper = sel.parentElement;
-		const input = wrapper.querySelector('input.select-dropdown');
-		const measure = txt => {
-			ruler.style.font = getComputedStyle(input).font;
-			ruler.textContent = txt;
-			return ruler.offsetWidth;
-		};
+	const measureText = (text, referenceInput) => {
+		const r = getRuler();
+		r.style.font = getComputedStyle(referenceInput).font;
+		r.textContent = text;
+		return r.offsetWidth;
+	};
 
-		const computeWidest = () => {
-			const optionSpans = wrapper.querySelector('ul li span')?.length
-				? wrapper.querySelectorAll('ul li span')
-				: sel.querySelectorAll('option');
-		
-			let max = 0;
-			optionSpans.forEach(node => {
-				const w = measure(node.textContent || node.label || node.innerText);
-				if (w > max) { max = w;}
-			});
-			return max;
-		}
+	const originalInit = M.FormSelect.init;
 
-		const applyWidth = () => {
-			const w = computeWidest() + 40;
-			input.style.width = w + 'px';
-			wrapper.style.width = w + 'px';
-		}
+	M.FormSelect.init = function (elems, opts = {}) {
+		opts.dropdownOptions = Object.assign(
+			{ onCloseStart: hideTooltip },
+			opts.dropdownOptions || {}
+		);
 
-		applyWidth();
+		const instances = originalInit.call(this, elems, opts);
 
-		sel.addEventListener('change', applyWidth);
+		const selectsList = elems instanceof Element ? [elems] :
+			               elems instanceof NodeList ? Array.from(elems) : elems || [];
 
-		const materializedInstance = M.FormSelect.getInstance(sel);
-		const ul = materializedInstance.dropdownOptions;
-		const lis = ul.querySelectorAll('li:not(.optgroup)');
-		lis.forEach((li, i) => {
-			const option = sel.options[i];
-			console.log(option);
-			if (!optionDescriptions[option.value]) return;
-			const desc = optionDescriptions[option.value]["en"];
-			if (!desc) return;
+		const descriptions = getDescriptions();
 
-			li.addEventListener('mouseenter', e => {
-				tooltip.textContent = desc;
-				tooltip.style.left = (e.clientX + 14) + 'px';
-				tooltip.style.top = (e.clientY +6) + 'px';
-				tooltip.style.display = 'block';
-			});
-			li.addEventListener('mousemove', e => {
-				tooltip.style.left = (e.clientX + 14) + 'px';
-				tooltip.style.top = (e.clientY +6) + 'px';
-			});
-			li.addEventListener('mouseleave', e => {
-				tooltip.style.display = 'none';
-			});
+		selectsList.forEach((sel) => {
+			bindTooltipToSelect(sel, descriptions);
+
+			const instance = M.FormSelect.getInstance(sel);
+			const wrapper = instance.wrapper;
+			const input = instance.input;
+			if (!wrapper || !input) return;
+
+			const widest = () => {
+				const spans = instance.dropdownOptions.querySelectorAll('li:not(.optGroup) span');
+
+				const nodes = spans.length ? spans : sel.querySelectorAll('option');
+
+				return Math.max(...Array.from(nodes, (n) => measureText(n.textContent, input)));
+			};
+			
+			const applyWidth = () => {
+				const w  = widest() + 40;
+				input.style.width = w + 'px';
+				wrapper.style.width = w + 'px';
+			};
+			
+			applyWidth();
+			sel.addEventListener('change', applyWidth);
 		});
-	});
+
+		return instances;
+	};
+})();
+
+function initializeSelects(selects) {
+	M.FormSelect.init(selects, { dropdownOptions: {constrainWidth: false, onCloseStart: hideTooltip }});
 }
 
 
@@ -483,11 +516,17 @@ function renderConditions(container, step, stepIndex) {
 				if (option.value === condition.value) {
 					conditionValueInput.value = "";
 					valueColumnOffering.value = condition.value; 
-					done=true; }
+					done=true; 
+				}
 			});
 			if (!done) {
 				valueColumnOffering.value = "";
-				conditionValueInput.value = condition.value;	 
+				if (condition.value.includes('(')) {
+
+					conditionValueInput.value = `${condition.value.substring(1, condition.value.length -1)}`
+				} else {
+					conditionValueInput.value = condition.value;
+				}
 			}
 			conditionValueInput.dispatchEvent(new Event('input', {bubbles:true}));
 		}
@@ -500,8 +539,12 @@ function renderConditions(container, step, stepIndex) {
 				});
 				
 				toQuery = `(${toQuery.substring(0, toQuery.length-1)})`;
+				
 				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = toQuery;
 			} else {
+				if (queryObject.steps[stepIndex].filtering.conditions[conditionIndex].operator === "LIKE") {
+					queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'%${conditionValueInput.value}%'`
+				}
 				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
 			}
 			// Utilities.UpdateConditionValuePossibilities(conditionValueInput, conditionColumnTableSelect.value, queryObject.target_databases)

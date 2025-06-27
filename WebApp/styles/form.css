@@ -126,4 +126,18 @@ input {
 	box-shadow: 1px 1px 10px black;;
 }
 
-
+#__optionTooltip__ {
+	position:fixed;
+	pointer-events:none;
+	z-index:10000;
+	background:#424242;
+	color:#fff;
+	padding:6px 10px;
+	border-radius:4px;
+	font-size:.85em;
+	display:none;
+	pointer-events:none;
+}
+#debug {
+	display:none;
+}
