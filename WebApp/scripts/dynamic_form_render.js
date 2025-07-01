@@ -1261,7 +1261,11 @@ export async function send() {
 const sendQueryButton = document.getElementById('sendQueryButton');
 sendQueryButton.onclick = send;
 const sendQueryButton2 = document.getElementById('sendQueryButton2');
-sendQueryButton2.onclick = () => { loadQuery(); send(); }
+sendQueryButton2.onclick = () => { 
+	const queryTextArea = document.getElementById('inputJSON');
+	loadQuery(queryTextArea.value.trim()); 
+	send(); 
+}
 
 const inputJsonField = document.getElementById('inputJSON');
 // const outputJsonField = document.getElementById('outputJSON');
