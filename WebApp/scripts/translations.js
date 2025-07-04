@@ -9,7 +9,7 @@ let UItranslations = {
 	},
 	"languageSelectionLabel": {
 		"en":"Language selection",
-		"cs":"Výběr Jazyku"
+		"cs":"Výběr jazyka"
 	},
 	"targetDatabaseSectionTitle": {
 		"en":"Target database and Query Description",
@@ -61,11 +61,11 @@ let UItranslations = {
 	},
 	"GroupBySectionTitle": {
 		"en":"Group By",
-		"cs":"Zoskupit podle"
+		"cs":"Seskupit podle"
 	},
 	"AddGroupByButtonText": {
 		"en":"Add Group By",
-		"cs":"Přidat sloupec pro zoskupení"
+		"cs":"Přidat sloupec pro seskupení"
 	},
 	"OrderBySectionTitle": {
 		"en":"Order By",
@@ -77,7 +77,7 @@ let UItranslations = {
 	},
 	"OrderByDescendingDirection": {
 		"en":"Descending",
-		"cs":"Zestupně"
+		"cs":"Sestupně"
 	},
 	"AddOrderByButtonText": {
 		"en":"Add order by",
@@ -85,7 +85,7 @@ let UItranslations = {
 	},
 	"FilteringSectionTitle": {
 		"en":"Filtering",
-		"cs":"Filtrační část"
+		"cs":"Omezující podmínky"
 	},
 	"ConditionsSectionTitle": {
 		"en":"Conditions",
@@ -161,7 +161,7 @@ let translations = {
 	},
 	"affiliation.role": {
 		"en":"Role of a speaker within organization",
-		"cs":"Role mluvčího vrámci organizace"
+		"cs":"Role mluvčího v organizaci"
 	},
 	"speech.time_silent": {
 		"en":"Time silent",
@@ -225,11 +225,11 @@ let translations = {
 	},
 	"affiliation.until": {
 		"en":"Speaker organization affiliation end",
-		"cs":"Datum konce afiliace"
+		"cs":"Datum konce příslušnosti v organizaci"
 	},
 	"affiliation.since":{
 		"en":"Speaker organization affiliation start",
-		"cs":"Datum začátku afiliace"
+		"cs":"Datum začátku příslušnosti v organizaci"
 	},
 	"speech.sentence_count":{
 		"en":"Number of sentences",
@@ -241,7 +241,7 @@ let translations = {
 	},
 	"organisation.role":{
 		"en":"Type of the organization",
-		"cs":"Typ organizace vrámci parlamentu"
+		"cs":"Typ organizace v rámci parlamentu"
 	},
 	"persname.addname":{
 		"en":"Speaker addname",
@@ -249,7 +249,7 @@ let translations = {
 	},
 	"speech.role":{
 		"en":"Role of the speaker",
-		"cs":"Role mluvčího vrámci parlamentu"
+		"cs":"Role mluvčího v rámci parlamentu"
 	},
 	"organisation.name":{
 		"en":"Organization name",
@@ -260,8 +260,8 @@ let translations = {
 		"cs":"Datum narození mluvčího"
 	},
 	"speech.named_entity_count":{
-		"en":"Number of named entity references",
-		"cs":"Počet referncií na pojemnované entity"
+		"en":"Number of named entities",
+		"cs":"Počet pojemnovaných entit"
 	},
 	"speech.time_unknown":{
 		"en":"Undistinguishible speech time",
@@ -269,7 +269,7 @@ let translations = {
 	},
 	"speech.earliest_timestamp":{
 		"en":"Earliest timestamp of the speech",
-		"cs":"Nejskorší časová značka promluvy"
+		"cs":"Nejdřívější časová značka promluvy"
 	},
 	"speech.latest_timestamp":{
 		"en":"Latest timestamp of the speech",
