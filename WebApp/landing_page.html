@@ -27,41 +27,47 @@
 				<ul id="nav-mobile" class="left-hide-on-med-and-down">
 					<li><a id="home-page" href="landing_page.html">Home</a></li>
 					<li><a id="dynamic-form" href="dynamic_form.html">Tools</a></li>
-					<li><a id="tutorials" href="tutorials.html">Tutorials</a></li>
+					<li><a id="tutorials" href="tutorials.html">Tutorial</a></li>
 					<li><a id="github" href="https://github.com/ufal/ParlaStats">GitHub</a></li>
 				</ul>
 			</div>
 		</nav>
 		<div class="zig-zag-container left">
 			<div id='landing-text' class="textdiv">
-				<h2>Welcome to ParlaStats!</h2>
+				<h2>Welcome to ParlaStats</h2>
 				<p class="common-text">
-					Welcome to ParlaStats a statistical tool made for analysis of parliamentary discourse<br/>
-					from multiple (not only) European countries. This tool is built on top of the comparable corpora <br/>
-					of the <a href="https://www.clarin.eu/parlamint">ParlaMint project</a> with an extention for czech data utilizing the ParlaMint-based </br>
-					improved corpus <a href="https://ufal.mff.cuni.cz/parczech">ParCzech</a>. It was build (and is being built) as a bachelor thesis </br>
-					at <a href="https://ufal.mff.cuni.cz/">UFAL MFF</a> supervised by <a href="https://ufal.mff.cuni.cz/barbora-vidova-hladka">doc. Mgr. Barbora Vidová Hladká, Ph.D.</a>
-					and <a href="https://ufal.mff.cuni.cz/matyas-kopp">Bc. Matyáš Kopp</a>.
-
-				<p>
+					Welcome to ParlaStats, a statistical tool designed for the analysis of parliamentary discourse from various
+					countries, primarily within Europe. ParlaStats is built upon the multilingual and comparable corpora of the 
+					ParlaMint project, with an extension for Czech parliamentary data through the enhanced ParCzech corpus.
+				</p>
+				<p class="common-text">
+					ParlaStats has been developed as a bachelor's thesis at Charles University.	
+				</p>
+				<p class="common-text">
+					Author: <a href="mailto:matejbaco95@gmail.com">Matěj Bačo</a></br>
+					Supervisors: <a href="https://ufal.mff.cuni.cz/barbora-vidova-hladka">Barbora Hladká</a>,<a href="https://ufal.mff.cuni.cz/matyas-kopp">Matyáš Kopp</a>
+				</p>
 			</div>
 		</div>
 		<div class="zig-zag-container right">
 		<div id="current-capabilities" class="textdiv">
 			<h2>Current capabilities</h2>
 				<p class="common-text">
-					As of current state of the art, the application can work with the earlier mentioned improved
-					czech corpus </br> <a href="https://ufal.mff.cuni.cz/parczech">ParCzech</a>, 
-					Slovenian and Ukrainian <a href="https://www.clarin.si/repository/xmlui/handle/11356/1912">ParlaMint corpora</a>. </br></br>
-					You can query these datasets using the application's querying interface accessible </br>
-					under the "Tools" tab in the left part of the navigation bar. There, you will be presented with a form
-					in which you can specify </br> what are you looking for, what conditions should the results satisfy, how
-					should they be grouped and ordered. </br>
-					After constructing and sending the Query you can see the results visualized as table, that
-					allows for exporting the data in </br> "excel-like" CSV format. In addition to that, all results
-					are visualized into a bar (primary) and a line chart accessible under the "GRAPH" tab. </br>
-					The graph allows for zooming in and out, and option of excluding certain data by clicking them
-					at the legend of the graph at the top.
+					At its current stage of development, ParlaStats supports the analysis of the enhanced Czech ParCzech corpus, as well as the Slovenian and Ukrainian
+					corpora from the ParlaMint project.
+				</p>
+				<p class="common-text">
+					You can explore these datasets through the querying interface accessible via the "Tools" tab in the menu.
+					This interface provides a form wher you can specify (1) What you are searching for, (2) Which conditions the results should meet, and (3) How the
+					data should be grouped and sorted.
+				</p>
+				<p class="common-text">
+					Once you created and submitted your query, the results will be displayed in a tabular format, which also allows you to export
+					the data as an "Excel-like" CSV file, see Tools > RESULTS TABLE.
+				</p>
+				<p class="common-text">
+					In addition to tables, results are also visualized using bar (primary) and line charts, see Tools > RESULTS GRAPH. These charts
+					support interactive features, such zooming and the ability to toggle data visibility by clicking items in the chart's legend.
 				</p>
 			</div>
 		</div>
@@ -69,17 +75,19 @@
 			<div id="feedback" class="textdiv">
 				<h2>Feedback and Improvement</h2>
 				<p class="common-text">
-					As mentioned above, this application is developed as a bachelor's thesis and is meant to be
-					some sort of base for my </br> master's thesis at MFF CUNI. This means, it may not always
-					function as desired, may crash or display wrong results. Naturally, I tried (and keep trying) to
-					eliminate these shortcomings but it just happens that something slips under my radar. </br>
-					In case yours is better than mine, and the application manage to crumble under your requests,
-					please let me know at <a href="mailto:matejbaco95@gmail.com">matejbaco95@gmail.com</a>. Where
-					you filled up the query form, there is a "Manual Query" tab with some scary looking stuff
-					in it. It would help me a lot, if in the error report, along with curses, threats and what not,
-					you included this too! </br>
-					In case you do not find the contents of "Manual Query" scary, please feel free to play with
-					the debug mode, for more information please see "Tutorial" tab in the top-level navigation menu.
+					As mentioned earlier, ParlaStats is being developed as part of my bachelor's thesis and is intended to serve as the foundation for my future
+					Master's thesis. As such, it's still a work in progress. It may not always function perfectly, might crash unexpectedly or produce incorrect results.
+					While I do my best to identify and fix these issues, the occasional bug can still slip through. If you encounter any problems, especially if ParlaStats
+					breaks under your queries, please let me know at <a href="mailto:matejbaco95@gmail.com">matejbaco95@gmail.com</a> or submit an issue to 
+					<a href="https://github.com/ufal/ParlaStats">GitHub</a>
+				</p>
+				<p class="common-text">
+					When submitting an error report, it would be extremely helpful if you could also include the contents of the "Manual Query" tab (found next to the main query form).
+					It may look intimidating, but it provides crucial technical details that help me track down the issue faster. Feel free to add colorful commentary,
+					but please include that data!
+				</p>
+				<p class="common-text">
+					If you are not intimidated by the "Manual Query" contents, feel free to experiment using debug mode. For guidance, check out the "Tutorial" section in the menu.
 				</p>
 			</div>
 		</div>

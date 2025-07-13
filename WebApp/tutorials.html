@@ -29,7 +29,7 @@
 				<ul id="nav-mobile" class="left-hide-on-med_and_down">
 					<li><a id="home-page" href="landing_page.html">Home</a></li>
 					<li><a id="dynamic-form" href="dynamic_form.html">Tools</a></li>
-					<li><a id="tutorials" href="tutorials.html">Tutorials</a></li>
+					<li><a id="tutorials" href="tutorials.html">Tutorial</a></li>
 					<li><a id="github" href="https://github.com/ufal/ParlaStats">GitHub</a></li>
 				</ul>
 			</div>
@@ -49,19 +49,19 @@
 				<div id="getting-started" class="textdiv">
 					<h2>Getting started</h2>
 					<p class="common-text">
-						To get started with making a query to the data, enter the "Tools" tab by clicking it
-						in the top navigation bar. <br>
-						There you will see the form for querying the data as well as a section where results
-						will be displayed after you send it. <br>
-						For starters, you can choose the database you wish to query (database = corpus) in the
-						"Target Databases" section <br>
-						by clicking the '+' button and then selecting from the available options. <br>
-						You can select multiple corpora this way, then the results will be separated for 
-						each one you selected. <br>
-						However, be careful when targeting ParCzech and some other ParlaMint corpora at once as 
-						some features ParCzech offers may not be available for those of ParlaMint, namely those related
-						to audio recordings.
-
+						To begin querying the data, click the "Tools" tab in the menu. This will open a form where you can build your query, submit it and view its results.
+					</p>
+					<p class="common-text">
+						Start by selecting the database (=corpus) in the "Target Databases" section. Click the `+` button to choose from the available options - you can select
+						multiple corpora and the results will be shown separately for each one.
+					</p>
+					<p class="common-text">
+						When querying ParCzech alongside certain parlaMint coprora, be aware that some features specific to ParCzech, such as those related to audio recordings, 
+						may not be supported in ParlaMint.
+					</p>
+					<p>
+						At the bottom of each query header, there is a description input. There you can specify a brief, short description of the query that would help to interpret
+						the results of the query. This section is also used as a title of the graph when viewing results.
 					</p>
 				</div>
 				<div class="image-placeholder">
@@ -69,106 +69,113 @@
 					<p class="image-description">Tools location</p>
 			
 					<img src="image/getting_started2.png" alt="Initial form" class="image-box" style="width:70em; height:30em;">
-					<p class="image-description" style="width:70em;">Initial form</p>
+					<p class="image-description">Initial form</p>
 				</div>
 			</div>
 			<div class="zig-zag-container right">
 				<div id="first-steps" class="textdiv">
 					<h2>First steps</h2>
 					<p class="common-text">
-						When desigining the querying system we had to take into account the techonology
-						used in back-end database access, so the two would work together nicely. <br>
-						That essentialy determined the step-like structure of the queries. You can add a step by
-						clicking the '+' button underneath the "Steps" title. Each step then will have multiple sections discussed below. <br>		
-						At the top of each step, you see all the columns returned by it, marked with an arrow (->). If you named your step then
-						It will have the form "your_step_name" -> "returned_columns". In case the step got long you can collapse it by clicking the
-						preview of returned columns.
+						When designing the querying system, we had to consider the backend database technology to ensure that
+						both parts work well together. This led to the step-based structure of the queries.
+						To build your own query, clcik the '+' button under the "Steps" heading to add a step. Each step
+						contains several sections, which are explained below.
+					</p>
+					<p class="common-text">
+						At the top of each step, you'll see the columns (attributes) it returns, indicated by an arrow (->).
+						If you've named your step, the format will be: "your_step_name" -> "returned_columns". If a step becomes lengthy,
+						you can collapse it by clicking on the preview of the returned columns.
 					</p>
 					<h4>Step Name</h4>
 					<p class="common-text">
-						First one will be the name of the step. In case your query will have multiple steps, this
-						field is used to distinct between them and accessing the reuslts from one step within
-						another.
+						This field defines the name of the step. If your query contains multiple steps, the step name helps
+						distinguish between them and allow you to reference results from ine step in another.
 					</p>
 					<h4>Columns</h4>
 					<p class="common-text">
-						Here you can choose what do you wish to select from the database i.e. number of words in speeches
-						Speakers and their various parameters like name, birthdate, political organization affiliations.
+						Select the data you want to retrieve from the database, such as the number of words in speeches, speaker information (e.g., name, birthdate)
+						or political affiliations.
 					</p>
 					<h4>Group By</h4>
 					<p class="common-text">
-						Here you can specify how you wish the results of the step to be grouped. I.E. group by year, election term, etc.
+						Define how you want the results to be grouped, for example, by year, election term or other attributes.
 					</p>
 					<h4>Order By</h4>
 					<p class="common-text">
-						Here you can determine how the results of the step should be ordered. I.E. according to some numerical value selected in columns section.
+						Specify how the results should be sorted, typically by a numeric value chosen in the "Columns" section.
 					</p>
 					<h4>Conditions</h4>
 					<p class="common-text">
-						Here you can impose some filters on the results of the step, I.E. specify election term, speakers, organizations you are 
-						interested in or provide intervals for numeric values etc.
+						Apply filters to narrow down the results. You can, for instance, filter by election term, specific speakers or organizations
+						or define ranges for numerical values.
 					</p>
 					<h4>Limit</h4>
 					<p class="common-text">
-						Specify how many of the resulting rows is to be returned from the step.
+						Set the maximum number of rows to return from this step.
 					</p>
 				</div>
 				<div class="image-placeholder">
 					<img src="image/blank_step.png" alt="Blank step" class="image-box" style="width:auto; height:auto;">
-					<p class="image-description" style="width:80em;">Blank step</p>
+					<p class="image-description">Blank step</p>
 				</div>
 			</div>
 			<div class="zig-zag-container left">
 				<div id="columns" class="textdiv">
 					<h2>Columns</h2>
 					<p class="common-text">
-						Here you can select what data are you interested in from target corpora. <br>
-						We call the data columns as that is the way we have it stored in backend database, for each
-						entry you see in select options, there is a column in a database.
-						In addition you may select an aggregation function like sum, average, maximum or minimum
-						and count. <br>
-						Each of these is applied to values of selected column.
-						You can rename the column locally as you wish using the "Alias" field.
-						In all subsequent selects, then you will be able to select your aliased column.
-						As before you can add more by clicking the '+' button or remove existing by clicking the '-' button.
+						In this section, you can choose the data you're interested in from the selected corpora.
+						We refer to these data as columns as that's how they are stored in the underlying database,
+						each option you see corresponds to a column in the backend.
+					</p>
+					<p class="common-text">
+						You can also apply aggregation functions such as sum, average, maximum, minimum or count to the values in a selected column.
+					</p>
+					<p class="common-text">
+						Additionaly, you can assign a custom name to any column using the "Alias" field. This alias can then be used in subsequent
+						steps when referencing the column.
+					</p>
+					<p class="common-text">
+						To add more columns, click the '+' button; to remove one, click the '-' button.
 					</p>
 				</div>
 				<div class="image-placeholder">
 					<img src="image/columnSelection.png" alt="Column selection" class="image-box" style="width:70%; height:70%;">
-					<p class="image-description" style="width:60em;">Column selection</p>
+					<p class="image-description">Column selection</p>
 				</div>
 			</div>
 			<div class="zig-zag-container right">
 				<div id="group-by" class="textdiv">
 					<h2>Group By</h2>
 					<p class="common-text">
-						Here you can select which columns you wish results to be grouped by. <br>
-						You can select new columns or reuse those you selected in previous section.
+						In this section, you can choose the columsn by which the results should be grouped.
+						You may either select new columns or reuse those previously defined in the "Columns" section.
 					</p>
 				</div>
 				<div class="image-placeholder">
 					<img src="image/groupBySection.png" alt="Group by section" class="image-box" style="width:70%; height:70%;">
-					<p class=image-description style="width:50em;">Group By Section</p>
+					<p class=image-description>Group By Section</p>
 				</div>
 			</div>
 			<div class="zig-zag-container left">
 				<div id="order-by" class="textdiv">
 					<h2>Order By</h2>
 					<p class="common-text">
-						Here you can specify which columns should be the results ordered by. <br>
-						If you choose to order by textual column, it will be ordered according to alphabet. <br>
-						If you choose to order by multiple columns, they are processed from top to bottom, meaning if you order by speaker's name and then
-						for example year, first the results are ordered according to alphabetical order of speaker names, then by year keeping the
-						alphabetical order of speakers.
-						You may select whether you wish to order in the ascending or descending manner.
-						When you send the query, get results and you do not like the ordering, the table then allows for reordering based on result columns.
+						Here you can define how the results should be sorted. If you choose a textual column, the sorting will follow alphabetical order.
+						When sorting by multiple columns, the order is applied top to bottom, for example if you first sort by speaker name and then by year,
+						the results will be grouped alphabetically by speaker name and within each group sorted by a year.
+					</p>
+					<p class="common-text">
+						You can specify whether each column should be sorted in ascending or descending order.
+					</p>
+					<p class="common-text">
+						After running your query, if you're not satisfied with the initial sort, you can still reorder the results directly in the table.
 					</p>
 				</div>
 				<div class="image-placeholder">
 					<img src="image/orderBySection.png" alt="Order by section" class="image-box" style="width:50%; height:50%;">
 					<p class="image-description" style="width:40em;">Order By Section</p>
 					<img src="image/resultTableOrdering.png" alt="Results ordering options" class="image-box" style="width:auto; height:auto;">
-					<p class="image-description" style="width:90em;">Results ordering</p>
+					<p class="image-description">Results ordering</p>
 				
 				</div>
 			</div>
@@ -176,15 +183,19 @@
 				<div id="conditions" class="textdiv">
 					<h2>Conditions</h2>
 					<p class="common-text">
-						Here you may filter the results based on values of columns. <br>
-						I.e you may mark out a time frame, or specific election term, speakers etc.
-						Each condition consists of a column, operator and value.
-						Value can be either typed in or selected from another column.
+						Use this section to filter the results based on column values.					
+					</p>
+					<p class="common-text">
+						For example, you can specify a time range, focus on a particular election term or filter by specific speakers or organizations.
+					</p>
+					<p class="common-text">
+						Each condition consitis of a column, and operator (e.g., equals, greater than) and a value. The value can either be typed manually or selected
+						form another column, depending on the context.
 					</p>
 				</div>
 				<div class="image-placeholder">
 					<img src="image/conditionSection.png" alt="Conditions section" class="image-box" style="width:70%; height:70%;">
-					<p class="image-description" style="width:55em;">Conditions Section</p>
+					<p class="image-description">Conditions Section</p>
 				</div>
 			</div>
 		</div>
@@ -193,26 +204,23 @@
 				<div id="visualization-general" class="textdiv">
 					<h2>Visualizing the results</h2>
 					<p class="common-text">
-						When it comes to visualizing the results of your query, you have 2 options. <br>
-						The first one is table, second one is graph(s).
-						You can switch between these options using the results navigation bar.
-						By default, the table option is selected.
+						You have two options for visualizing your query results: table or graph(s). By default, results are displayed in a table.
+						You can switch to graph view (or back) using the results navigation bar.
 					</p>
 				</div>
 				<div class="image-placeholder">
 					<img src="image/table_navbar.png" alt="Results navigation bar" class="image-box" style="width:70%; height:70%;">
-					<p class="image-description" style="width">Results navigation bar</p>
+					<p class="image-description">Results navigation bar</p>
 				</div>
 			</div>
 			<div class="zig-zag-container left">
 				<div id="visualization-tables" class="textdiv">
 					<h2>Table visualization</h2>
 					<p class="common-text">
-						In the table, you can see the results of your query as rows. <br>
-						You may scroll the table in case there are more than 20 rows. Additionaly you may sort
-						the results based on individual column values, search the table for specific values or export is as
-						a CSV document.
-						In case your query targets multiple corpora, an individual table will be created for each of them.
+						The table displays your query results as rows. If your result table contains more than 20 rows, you can
+						scroll through the table to view them all. You can also sort the data by any column, search for specific values
+						within the table and export the results as a CSV file. If your query targets multiple corpora, a separate table
+						will be generated for each one.
 					</p>
 				</div>
 				<div>
@@ -224,46 +232,50 @@
 				<div id="visualization-graphs" class="textdiv">
 					<h2>Graph visualization</h2>
 					<p class="common-text">
-						When viewing the graph, you have two options so far, bar and line chart.
-						There is a catch however when determining what will be considered labels for the graph.
-						Labels are determined like this: If a column is selected in the <b>"Columns"</b> section and
-						<b>"Group by section"</b> at the same time, then it is considered to be a label in graph.
-						In case there are multiple columns like this, label is made to be a concatenation of them.
-						Another distinguishing factor of the columns is their type. All numeric columns are considered
-						"values" which means they are used to create the bars of the bar chart or points in the line chart.
-						If there is a non numeric column selected in the <b>"Columns"</b> section of the form, it is appended
-						to the legend for bar / line names.
+						Currently, you can view your results using two chart types: bar chart and line chart.
+						A key aspect of graph generation is how labels are determined -- if a column is selected in both the <b>"Columns"</b>
+						and <b>"Group By"</b> sections, it is treated as a label for the graph. If multiple columns are selected,
+						their values are combined (concatenated) to form the full label.
 					</p>
 					<p class="common-text">
-						For better inderstanding take a look at following example screenshots and feel free to
-						experiment with the sample queries. The one used in screenshots is sample 16.
+						Numeric columns selected in the "Columns" section are treated as values - these define the height of bars in bar charts
+						or the position of points in line charts. If you include a non-numeric column in the "Columns" section,
+						its values will appear in the legend, helping to distinguish between different lines or bars.
+					</p>
+					<p class="common-text">
+					To better understand how this works, check out the screenshots provided below and try experimenting with the <a href="dynamic_form.html">sample queries</a>, for instance,
+						Sample 16 which is used in the screenshots. They are available under the "Sample queries" tab available under the "Tools" tab in the top level menu.
 					</p>
 					<h4>Example 1</h4>
 					<p class="common-text">
-						In the first example you can see the graph produced by query in which the name of the organization
-						is in both <b>"columns"</b> and <b>"group by"</b> so it ends up as a label on the x-axis.
-						Then, election term is a non-numeric column selected only in <b>"columns"</b> section hence it ends up
-						as part of the bar description along with the name of numeric column here, whose data are used to make
-						bars of the chart, total speeches.
+						In this example, the graph is generated from a query where the organization name is selected in both the
+						"Columns" and "Group By" sections. As a result, it is used as the x-axis label.
+					</p>
+					<p class="common-text">
+					The election term, a non-numeric column selected in the <b>"Columns" section</b>, appears in the legend, helping to describe each bar.
+						The height of the bar is determined by the numeric column total speeches, which provides the actual data values shown in  the chart.
 					</p>
 					<h4>Example 2</h4>
 					<p class="common-text">
-						In the second example, the organization name and election term have been swapped. That means that now
-						election term is in both <b>"columns"</b> and <b>"group by"</b> and organization name is only in <b>"columns"</b>
-						section which resulted in the graph bars being grouped by election term now.
+						In this example, the organization name and election term have switched roles. The election term is now selected in both the <b>"Columns"</b>
+						and <b>"Group By"</b> sections, so it serves as the x-axis label.
+					</p>
+					<p class="common-text">
+						Meanwhile, the organization name, now selected in the <b>"Columns"</b> section, appears in the legend, distinguishing the bars within each election term group.
+						As a result, the bars are now grouped by election term instead of organization.
 					</p>
 					<h4>Example 3</h4>
 					<p class="common-text">
-						In some cases, you may want to group the results by columns that are not selected in the <b>"columns"</b>.
-						One such would be for example if you are interested in specific speakers. Let's say you want to know the top 10 male
-						speakers with most speeches given. Each speaker has a unique identifier, which is ideally composed of their name, but
-						it does not have to be that way (may be some technical, weird string). Therefore, it is better to select their name
-						and surname in the <b>"columns"</b> section and group by their unique identifier. 
+						In somoe cases, you may want to group results by a column that isn't included in the "Columns" section.
+						For example, suppose you're interested in finding the top 10 male speakers who have given the most speeches.
+						Each speaker has a unique identifier, which may be based on their name but could also be a technical or unintuitive string.
+						To make the results more readable you should: select the speaker's name and surname in the <b>"Columns"</b> section, adn group by
+						the speaker's unique identifier. This way, the query groups data correctly while still displaying clear and meaningful names in the output.
 					</p>
 					<h4>Interacting with the graph</h4>
 					<p class="common-text">
-						The graph can be zoomed in and out by using mouse wheel. It zooms into location around your cursor on the screen.
-						You can also hide some values by clicking them in the legend above the graph itself.
+						You can zoom in and out of the graph using your mouse wheel. The zoom focuses on the area around your cursor position. To make the graph
+						clearer or focus on specific data, you can also hide or show individual values by clicking on items in the legend above the graph.
 					</p>
 				</div>
 				<div>
@@ -275,6 +287,9 @@
 
 					<img src="image/graph_example_var3.png" alt="Graph example variation 3" class="image-box" style="width:80%; height:80%;">
 					<p class="image-description">Example 3</p>
+					
+					<img src="image/popup_legend.png" alt="Popup graph legend" class="image-box" style="width:80%; height:80%;">
+					<p class="image-description">Pop-up graph legend</p>
 				</div>
 			</div>
 		</div>
