@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"Comparison of total speeches by AndrejBabis and Vera Jourova.",
+	"description":"What is the difference in total speech count between Andrej Babiš and Věra Jourová?",
 	"steps":[
 		{
 			"goal":"main",

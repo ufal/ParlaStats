@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"How many total sentences are in speeches given by female speakers",
+	"description":"How many sentences are in speeches given by female speakers?",
 	"steps": [
 		{
 			"goal":"main",

@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"How many speeches were given by each gender.",
+	"description":"What is the total number of speeches given by each gender?",
 	"steps": [
 		{
 			"goal":"main",

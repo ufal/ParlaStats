@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"TOP 10 male speakers with most speeches",
+	"description":"Who are the top 10 male speakers with highest number of speeches?",
 	"steps": [
 		{
 			"goal":"main",

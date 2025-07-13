@@ -2,7 +2,7 @@
   "target_databases": [
     "parczech4_0"
   ],
-  "description": "How many speeches were given by members of each political party or parliamentary group",
+  "description": "How many speeches have members of each political party or parliamentary group given?",
   "steps": [
     {
       "goal": "main",

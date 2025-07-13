@@ -2,7 +2,7 @@
   "target_databases": [
     "parczech4_0"
   ],
-  "description": " TOP 10 speakers with most words per minute.",
+  "description": "Who are the top 10 speakers with highest words-per-minute rate?",
   "steps": [
     {
       "goal": "main",

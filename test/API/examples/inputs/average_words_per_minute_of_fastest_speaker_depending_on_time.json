@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"Evolution of speaking pace of the fastest speaker over time of the day.",
+	"description":"How does the speaking pace of the fastest speaker change over the course of the day?",
 	"steps":[
 		{
 			"goal":"get_fastest_speaker",

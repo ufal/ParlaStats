@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"How many words contain speeches for each position of the speaker (regular, chair, guest)",
+	"description":"How many words do speeches contain on average for each speaker position (regular, chair, gues)?",
 	"steps":[
 		{
 			"goal":"main",

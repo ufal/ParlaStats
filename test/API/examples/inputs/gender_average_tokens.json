@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"How many tokens has average speech for each gender?",
+	"description":"What is the average number of tokens per speech by gender?",
 	"steps": [
 		{
 			"goal":"main",

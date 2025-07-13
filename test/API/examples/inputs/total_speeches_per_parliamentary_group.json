@@ -2,7 +2,7 @@
 	"target_databases": [
 		"parczech4_0"
 	],
-	"description":"Total speeches for parliamentary groups per election terms",
+	"description":"What is the number of speeches given by parliamentary groups in each election term?",
 	"steps":[
 		{
 			"goal":"step0",

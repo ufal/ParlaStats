@@ -1,6 +1,6 @@
 {
 	"target_databases":["parczech4_0"],
-	"description":"Average sentences of speeches by most talkative politician across all  roles they held across all their affiliations.",
+	"description":"What is the average number of sentences in speeches by most talkative politician, considering all roles and affiliations they have held?",
 	"steps": [
 		{
 			"goal":"find_most_talkative",
