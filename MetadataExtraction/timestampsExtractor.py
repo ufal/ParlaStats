@@ -41,11 +41,11 @@ class timestampsExtractor:
         # by the personParser.
         self.speakers = { "MiroslavaNemcova.1952":0,
                           "LubomirZaoralek.1956":0 }
-        
+             
         self.missing_timestamps_file = "TokensMissingAnchors.csv"
         with open("TokensMissingAnchors.csv", 'a') as f:
             f.write("ID\n")
-
+    
     def __transformFileCSV(self, filepath):
         
         xml_file = filepath
@@ -159,8 +159,7 @@ class timestampsExtractor:
 def main(args):
     tsExtractor = timestampsExtractor(args.corpus_root, args.script)
     print(tsExtractor.pipeline(f"../../ParCzech.TEI.ana/ps2013-001/{args.specific_file}"))
-    # tsExtractor.extractTimestamps()
-    # print(args.script)
+    
     print("Done!")
 
 

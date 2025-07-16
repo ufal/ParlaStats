@@ -100,6 +100,9 @@ class speechParser2:
                                 (etree.XSLT(etree.parse(f"{directory}/timestampsCSV.xslt")),f"{directory}/timestamps.csv")]
 
     def __transformFileToCSV(self, transformation, file):
+        """
+        Pre process by applying XSLT scripts
+        """
         source_tree = etree.parse(file)
         result = transformation[0](source_tree)
         with open(transformation[1], "wb") as f:
@@ -186,7 +189,10 @@ class speechParser2:
         
         return invalid_speeches
         
-    def __processTimestampsCSV(self):        
+    def __processTimestampsCSV(self):
+        """
+        Parse the timestamps CSV product of XSLT script
+        """
         results = []
         with open(self.transformations[1][1], 'r', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
@@ -207,9 +213,6 @@ class speechParser2:
                     if current_speaker == None:
                         current_speaker = row['ID'][1:]
                     else: 
-                        # if len(intervals) > 0:
-                        #     total_duration += self.__get_total_duration_ms(intervals)
-                        # if Timelines are missing
                         if len(times) < 1:
                             if len(intervals) > 0:
                                 total_duration += self.__get_total_duration_ms(intervals)
@@ -270,7 +273,8 @@ class speechParser2:
             self.__transformFileToCSV(transformation, file)
         for invalid_speech in self.__validateData():
             invalid.append(invalid_speech)
-        # print(invalid)
+        
+        # pass the IDs of invalid speeches, so that we can omit timestamps.
         result = self.__processSpeechesCSV(invalid)
         return result
 

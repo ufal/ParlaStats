@@ -40,6 +40,10 @@ class Organisation:
         self.orientation_records = []
 
 class orgParser2:
+    """
+    A class that facilitates the extraction of organization metadata from 
+    corpus source files.
+    """
     def __init__(self, source, country_code):
         self.source_tree = etree.parse(source)
         self.transformations = [ etree.XSLT(etree.parse("MetadataExtraction/organisations.xslt")) ]
@@ -48,11 +52,17 @@ class orgParser2:
         self.country_code = country_code
     
     def __transformFileToCSV(self, script, out_file):
+        """
+        Pre-process by applying XSLT script 
+        """
         result = script(self.source_tree)
         with open(out_file, "wb") as f:
             f.write(result)
 
     def __store_organisations(self):
+        """
+        Parse the CSV result of XSLT transformation
+        """
         with open(self.out_files[0], 'r', encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file)
             rows = list(reader)
