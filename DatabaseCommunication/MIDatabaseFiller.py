@@ -5,20 +5,30 @@ from DatabaseCommunication.DatabaseOperator import DatabaseOperator
 from psycopg2.extras import execute_values
 
 class MIDatabaseFiller(DatabaseOperator):
+    """
+    A class responsible for filling the metadata database, which stores useful information
+    on the database contents. E.g. what databases are available (=corpora), within them tables
+    and columns.
+    """
     def __init__(self):
         super().__init__("DatabaseCommunication/parczech4_0.ini")
         config_main = self._DatabaseOperator__load_configuration("DatabaseCommunication/postgres.ini")
         config_meta = self._DatabaseOperator__load_configuration("DatabaseCommunication/meta.ini")
-        print(config_main)
         self.connection_main = self._DatabaseOperator__establish_connection(config_main)
         self.connection_meta = self._DatabaseOperator__establish_connection(config_meta)
     
     def __fetch_databases(self):
+        """
+        Get the list of available databases (=corpora)
+        """
         with self.connection_main.cursor() as main_cursor:
             main_cursor.execute("""SELECT datname FROM pg_database WHERE datistemplate = false AND datname != %s;""",("meta",))
             return [row[0] for row in main_cursor.fetchall()]
 
     def __fetch_tables(self, database_name):
+        """
+        Get the list of tables within specific database
+        """
         database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
         with psycopg2.connect(**database_config) as database_connection:
             with database_connection.cursor() as database_cursor:
@@ -26,6 +36,9 @@ class MIDatabaseFiller(DatabaseOperator):
                 return  database_cursor.fetchall()
 
     def __fetch_columns(self, database_name, schema, table):
+        """
+        Get columns available within a specified table
+        """
         database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
         with psycopg2.connect(**database_config) as database_connection:
             with database_connection.cursor() as database_cursor:
@@ -45,6 +58,7 @@ class MIDatabaseFiller(DatabaseOperator):
                 """, (schema, table, table, schema))
                 return database_cursor.fetchall()
     
+    @deprecated
     def __fetch_materialized_view_columns(self, database_name):
         database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
         with psycopg2.connect(**database_config) as database_connection:
@@ -59,6 +73,7 @@ class MIDatabaseFiller(DatabaseOperator):
                                         """)
                 return database_cursor.fetchall()
     
+    @deprecated
     def __fetch_artificial_columns(self, database_name):
         database_config = self._DatabaseOperator__load_configuration(f"DatabaseCommunication/{database_name}.ini")
         with psycopg2.connect(**database_config) as database_connection:
@@ -75,9 +90,12 @@ class MIDatabaseFiller(DatabaseOperator):
             
 
     def update_metadata(self):
+        """
+        Main method for inserting metadata into metadata database.
+        """
         with self.connection_meta.cursor() as meta_cursor:
             databases = self.__fetch_databases()
-            databases = [db for db in databases if db != 'postgres']
+            databases = [db for db in databases if (db != 'postgres' and db != 'parlastats')] # These are databases corresponding to postgres users.
             for database in databases:
                 meta_cursor.execute("INSERT INTO databases (database_name) VALUES (%s) ON CONFLICT (database_name) DO NOTHING RETURNING id;", (database,))
                 database_id = meta_cursor.fetchone()
@@ -91,16 +109,7 @@ class MIDatabaseFiller(DatabaseOperator):
                     for column_name, data_type in self.__fetch_columns(database,schema, table):
                         meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (table_id, column_name, data_type))
                 
-                # Add artificial columns
-                meta_cursor.execute("INSERT INTO tables (database_id, schema_name, table_name) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (database_id, 'public', 'artificial_columns'))
-
-                for column_name, data_type in self.__fetch_materialized_view_columns(database):
-                    meta_cursor.execute("INSERT INTO columns (table_id, column_name, data_type) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING;", (6, column_name, data_type))
-                # if (database != "postgres"):
-                #     execute_values(meta_cursor, 
-                #                    """INSERT INTO artificial_columns (month, day_of_the_week, year) VALUES %s
-                #                       ON CONFLICT (month, day_of_the_week, year) DO NOTHING""",
-                #                    self.__fetch_artificial_columns(database))
+                
             self.connection_meta.commit()
 
 

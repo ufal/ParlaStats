@@ -117,7 +117,7 @@ class DatabaseInserter(DatabaseOperator):
                 for s in speeches[author]:
                     if (len(s.speakerID) == 0):
                         print(f"Warning: Speech {s.speechID} has no who attribute!")
-                        continue
+                        s.speakerID = "Unknown"
                     cursor.execute(SpeechCommands.INSERT_ALL, (s.speechID,
                                                                s.when,
                                                                str(s.tokens),

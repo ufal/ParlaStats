@@ -5,9 +5,7 @@ from DatabaseCommunication.DatabaseOperator import DatabaseOperator
 
 class MIDatabaseTableCreator(DatabaseOperator):
     """
-    A class for creating tables in the common ParlaStats database.
-
-    Responsible for creating the common postgres database tables.
+    A class responsible for creating the common postgres database tables.
     """
     def __init__(self, config_path="parlastats_common.ini", log=False):
         super().__init__(config_path)
