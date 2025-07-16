@@ -3,13 +3,16 @@ import copy
 from collections import OrderedDict
 
 class SQLBuilder:
-    
+    """
+    Class that facilitates transforming our custom JSON language queries to SQL.
+    """
     STEPREF = re.compile(r"^step_result/(?P<step>\w+)[./](?P<col>[\w./]+)$")
     AUGMENTED_STEPREF = re.compile(r"^(?P<step>\w+)[./]\"(?P<col>[\w./]+)\"$")
     COLREF = re.compile(r"^\w+[.]\w+$")
     SPECIAL_VALUES = ['NULL']
 
     def __init__(self):
+        # Table matching rules
         self.TABLE_MATCHING = {
             "person":[],
             "persname":["person"], 
@@ -18,6 +21,7 @@ class SQLBuilder:
             "speech":["person"],
             "speech_affiliation":["speech", "affiliation"]
         }
+        # Table joining rules
         self.TABLE_JOIN_CONDITIONS = {
             ("person", "persname") : ("person_id", "person_id"),
             ("person", "affiliation") : ("person_id", "person_id"),
@@ -30,29 +34,25 @@ class SQLBuilder:
         self.join_end = 0;
     
     def _detect_dependencies(self, step: dict, exposed_cols: dict) -> list[tuple]:
+        """
+        Method for finding dependencies on other step CTEs.
+        """
         deps = []
-        print(exposed_cols)
         def register(prev: str, ref: str):
             remote = self._resolve_exposed(prev, ref, exposed_cols, need="exposed")
 
-            # local = self._find_local_real(step, remote, ref)
             local = self._pick_correct_local_column(step, prev, ref, remote, exposed_cols)
             deps.append((prev, local, remote))
 
         def scan_token(token: str):
             m = self.AUGMENTED_STEPREF.match(token)
-            print("TOKEN", token)
-            print("MATCH", m)
             if m and m.group('step') not in self.TABLE_MATCHING:
                 register(m.group("step"), m.group("col"))
-        print("STEP COLUMNS",step["columns"])
         for col in step["columns"]:
             if isinstance(col,str):
                 
                 scan_token(col)
             else:
-                print("COLUMN",col)
-                print("COLUMN REAL", col.get("real",""))
                 scan_token(col.get('real', ""))
 
                 if isinstance(col.get('alias'), str):
@@ -60,18 +60,13 @@ class SQLBuilder:
 
         for cond in step['filtering']['conditions']:
             scan_token(cond['value'])
-        print(deps)
         return deps
 
-    def _find_local_real(self, step_dict: dict, remote: str, ref: str) -> str:
-        for col in step_dict['columns']:
-            if isinstance(col, dict) and col.get('alias') == remote:
-                real = col['real']
-                return real
-        
-        return ref.split('/')[-1]
 
     def _pick_correct_local_column(self, step: dict, prev_step: str, ref_col: str, remote_alias: str, exposed: dict) -> str:
+        """
+        Find a real column referenced by alias from other place.
+        """
         for col in step['columns']:
             if not isinstance(col, dict):
                 continue
@@ -87,6 +82,9 @@ class SQLBuilder:
         return ref_col
 
     def _inject_dep_joins(self, core_sql, deps):
+        """
+        Insert joins with other step CTES when needed.
+        """
         if not deps:
             return core_sql
        
@@ -97,7 +95,6 @@ class SQLBuilder:
         insert_at = from_match.end()
         
         from_pos = re.search(r"\bWHERE\b", core_sql, re.I)
-        print("JOIN END",self.join_end)
         from_pos = from_pos.end() - 5 if from_pos else self.join_end
         join_snippets = []
         for prev, local, remote in deps:
@@ -115,6 +112,9 @@ class SQLBuilder:
         return core_sql[:from_pos] + "".join(join_snippets) + " " + core_sql[from_pos:]
 
     def build_step_cte(self, step: dict, exposed_cols: dict) -> tuple[str, list, dict]:
+        """
+        Main method for building step CTEs.
+        """
         step = copy.deepcopy(step)
         
 
@@ -147,6 +147,7 @@ class SQLBuilder:
                 
         step["columns"] = new_cols
         #===========================================================
+        # CECK IF ONLY USING ITEMS FROM OTHER STEPS
         only_proj_refs = all(
             isinstance(c, dict) 
             and c.get("alias_step")
@@ -227,6 +228,10 @@ class SQLBuilder:
         return sql, params, exposed
 
     def inline_step_ref(self, val: str, exposed_cols: dict) -> str | None:
+        """
+        Direct replacement of step references with SQL snippet.
+        Used for example in value section of conditions
+        """
         m = self.STEPREF.match(val)
         if not m:
             return None
@@ -244,6 +249,9 @@ class SQLBuilder:
         return f"(SELECT {real_name} FROM {step})"
 
     def _resolve_exposed(self, step: str, ref_col: str, exposed_cols: dict, need="exposed") -> str:
+        """
+        Get requested column exposed by different step
+        """
         entry = exposed_cols.get(step, {}).get(ref_col)
         
         if not entry:
@@ -263,6 +271,9 @@ class SQLBuilder:
         )
 
     def buildSQLQuery(self, json_query: dict, exposed_cols: dict | None = None) -> tuple[str, list]:
+        """
+        Method for building raw SQL of the step CTE
+        """
         exposed_cols = exposed_cols or {}
         self.join_end = 0
         select_part = self.parse_columns(json_query['columns'])
@@ -286,6 +297,9 @@ class SQLBuilder:
         return f" LIMIT {limit}" if limit else ""
 
     def parse_order_by(self, order_by):
+        """
+        Transform order by section of the JSON query.
+        """
         if not order_by:
             return ""
         parts = []
@@ -305,6 +319,9 @@ class SQLBuilder:
         return " ORDER BY " + ", ".join(parts)
 
     def parse_group_by(self, group_by, columns):
+        """
+        Transform group by section of the JSON query.
+        """
         items = []
         need_artificial = any(
             isinstance(c, dict) and c.get("agg_func") not in ("", None, "DISTINCT")
@@ -330,6 +347,9 @@ class SQLBuilder:
         return f"     GROUP BY {', '.join(uniq)}" if uniq else ""
 
     def parse_conditions(self, conditions, exposed_cols):
+        """
+        Transform the conditions section of the JSON query.
+        """
         if not conditions:
             return "", []
         fragments, params = [], []
@@ -361,6 +381,10 @@ class SQLBuilder:
         return "      WHERE " + "          AND ".join(fragments), params
 
     def determine_joins(self, columns, conditions, group_by):
+        """
+        Look at the relevant sections of the JSON query and figure out which 
+        joins need to be performed in the SQL.
+        """
         required = []
         explicit = set()
 
@@ -436,7 +460,9 @@ class SQLBuilder:
 
 
     def parse_joins(self, joins):
-        
+        """
+        Make the SQL joins.
+        """
         res = " FROM person \n  "
         for left, right in joins:
             lcol, rcol = self.TABLE_JOIN_CONDITIONS[(left, right)]
@@ -444,6 +470,9 @@ class SQLBuilder:
         return res
 
     def parse_columns(self, columns):
+        """
+        Transform the columns section of the JSON query.
+        """
         out = []
         for col in columns:
             if isinstance(col, str):

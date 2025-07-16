@@ -14,7 +14,6 @@ import json
 from datetime import datetime, time, date
 import sys
 from metainformationFetcher import metainformationFetcher
-# from SQLBuilder import SQLBuilder
 from SQLBuilder2 import SQLBuilder
 from collections import OrderedDict
 from pprint import pprint
@@ -44,12 +43,6 @@ class CustomJSONProvider(JSONProvider):
 app = Flask(__name__)
 app.json = CustomJSONProvider(app)
 
-
-# args_parser = ArgumentParser()
-
-# args_parser.add_argument("--db", type=str, default="../DatabaseCommunication/", help="connection parameters")
-    
-# args = args_parser.parse_args()
 
 class EmptyClass(object):
     pass
@@ -113,6 +106,12 @@ def remove_null_rows(rows, keep_when='all'):
 
 @app.route('/query', methods=['POST'])
 def query():
+    """
+    Querying endpoint of the Server.
+    Receives request with JSON query attached, forwards the JSON query to the SQLBuilder,
+    gets response, encapsulates it into appropriate JSON form and sends it back to the request
+    sender.
+    """
     json_query = request.get_json()
     target_databases = json_query["target_databases"]
     debug = request.headers.get('X-Debug', 'false').lower() == 'true'
@@ -187,6 +186,9 @@ def query():
 """
 @app.route('/metainformation')
 def get_metainformation_JSON():
+    """
+    Metainformation endpoint
+    """
     return jsonify(metainformationFetcher.make_metainformation_JSON())
 
 """
@@ -196,6 +198,9 @@ def get_metainformation_JSON():
 """
 @app.route('/meta_text')
 def provide_textual_suggestions():
+    """
+    Endpoint for live autocomplete suggestions of textual values.
+    """
     field = request.args.get("field", "").strip()
     q = request.args.get("q", "").strip()
     limit = request.args.get("limit", 10, type=int)
@@ -227,35 +232,7 @@ def provide_textual_suggestions():
     uniq = list(OrderedDict.fromkeys(rows))
     return jsonify([{"value": v} for v in uniq])
 
-@app.route('/meta_numeric')
-def provide_numeric_sggestions():
-    field = request.args.get("field", "").strip()
-    target_databases = request.args.get("dbs", None).split(',')
-    if not ('.' in field):
-        abort(400, f"Unknown field: {field}")
-    
-    field = field.split('.')
-    table = field[0]
-    column = field[1]
-    
-    SQL_query = (
-        f"SELECT MAX({column}) AS maximum, MIN({column}) AS minimum "
-        f"FROM {table} "
-    )
-    
-    rows = []
-    for database in target_databases:
-        with connect_to_database(f'../DatabaseCommunication/{database}.ini') as db_connection:
-            with db_connection.cursor() as cursor:
-                cursor.execute(SQL_query)
-                rows.extend((database,r) for r in cursor.fetchall())
-    
-    print(rows)
-    res = [{res[0]: {"max":res[1][0], "min":res[1][1]} for res in rows}]
 
-
-    print(res)
-    return jsonify(res)
 """
 =================================================================================================================
 ######################### SAMPLE QUERIES ########################################################################
@@ -263,6 +240,10 @@ def provide_numeric_sggestions():
 """
 @app.route('/samples')
 def get_sample_queries():
+    """
+    Sample queries endpoint, requested once upon loading of the website, gets the list 
+    of sample queries
+    """
     res = []
     test_directory_path = "../test/API/examples/inputs"
     files = os.listdir("../test/API/examples/inputs")

@@ -11,6 +11,11 @@ args_parser.add_argument("--database_ini_path", default="../DatabaseCommunicatio
                          type=str, help="Path to database connection configuration file.")
 
 class metainformationFetcher:
+    """
+    A class that facilitates communication with the metadata database.
+    This is used in web interface to provide users with some information about data available
+    in the backend.
+    """
     @staticmethod
     def connect_to_database(database_ini_path="../DatabaseCommunication/meta.ini"):
         parser = ConfigParser()
@@ -31,6 +36,11 @@ class metainformationFetcher:
     
     @staticmethod
     def make_metainformation_JSON(database_ini_path="../DatabaseCommunication/meta.ini"):
+        """
+        Method for forwarding the metainformation about stored data to a json response
+        The json response encodes the columns available in corpora databases along with 
+        their datatype and sample values (with exception for textual columns, these are handled differently)
+        """
         with metainformationFetcher.connect_to_database(database_ini_path) as meta_connection:
             with meta_connection.cursor() as meta_cursor:
                 meta_cursor.execute("SELECT database_name FROM databases;")
@@ -44,6 +54,7 @@ class metainformationFetcher:
                                """)
 
                 table_columns = [{ "column":f"{row[0]}.{row[1]}", "type":row[2], "data":{} } for row in meta_cursor.fetchall()]
+                print(table_columns)
                 for database in available_databases:
                     with metainformationFetcher.connect_to_database(f'../DatabaseCommunication/{database}.ini') as db_connection:
                         with db_connection.cursor() as db_cursor:
@@ -76,8 +87,6 @@ class metainformationFetcher:
 
 
 def main(args):
-    # pprint.pprint(metainformationFetcher.make_metainformation_JSON())
-
     pprint.pprint(metainformationFetcher.make_metainformation_JSON())
 if __name__ == "__main__":
     main(args_parser.parse_args())
