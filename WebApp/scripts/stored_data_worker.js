@@ -1,12 +1,12 @@
 import { getTranslations, translateStepResults } from './translations.js' 
-// import { getArtificialColumns } from './artificialColumns.js'
 import { metaInformationPromise } from './metaInformation.js'
 
 let translations = getTranslations();
-// const artificialColumns = getArtificialColumns();
 const metaInformation = await metaInformationPromise;
 
 export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
+	/* Function for preserving the user defined aliases.
+	 * */
 	aliases[stepIndex] = [];
 	const targetStep = jsonQuery.steps[stepIndex];
 	const columns = targetStep.columns;
@@ -28,13 +28,6 @@ export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 						}
 					}
 				}
-				// if (!real) {
-				// 	Object.keys(artificialColumns).forEach(key => {
-				// 		if (artificialColumns[key].formula === column.real) {
-				// 			real = artificialColumns[key];
-				// 		}
-				// 	});
-				// }
 				let data = (real.data) ? real.data : [];
 				let aliasesEntry = {
 					"real":column.real,
@@ -50,6 +43,9 @@ export function storeAliases(jsonQuery, aliases, stepResultsArray, stepIndex) {
 }
 
 export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex) {
+	/* Function for preserving the information about columns returned by individual
+	 * steps, also remembering their type and possible values for better access.
+	 * */
 	stepResultsArray[stepIndex] = [];
 	const targetStep = jsonQuery.steps[stepIndex];
 	const stepName = targetStep.goal;
@@ -65,14 +61,7 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 			"possibleValues":[]
 		};
 		if (typeof column === 'object') {
-			// check artificial columns
-			// Object.keys(artificialColumns).forEach(entry => {
-			// 	if (artificialColumns[entry].formula === column.real) {
-			// 		columnType = entry.type;
-			// 	}
-			// });
 			
-			// check metaInformation
 			metaInformation.columns.forEach(entry => {
 				if (entry.column === column.real) {
 					columnType = entry.type;
@@ -98,12 +87,6 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 				queryPart = "step_result/" + stepName + "/" + column.real;
 			}
 		} else if (typeof column === 'string') {
-			// check artificial columns
-			// Object.keys(artificialColumns).forEach(entry => {
-			// 	if (entry.formula === column.real) {
-			// 		columnType = entry.type;
-			// 	}
-			// });
 			
 			// check metaInformation
 			metaInformation.columns.forEach(entry => {
@@ -122,39 +105,10 @@ export function storeStepResults(jsonQuery, stepResultsArray, aliases, stepIndex
 	});
 }
 
-export function updateColumnsOfferings(userDefinedAliases, stepResultsArray, stepIndex) {
-	for (let index = stepIndex; index < stepResultsArray.length; index++) {
-		let columnOffering = document.querySelectorAll(`.column-select-${index}`);
-		columnOffering.forEach(columnSelect => {
-			const selectedOption = columnSelect.value;
-			const options = columnSelect.querySelectorAll('option.user-specific');
-			options.forEach(op => op.remove());
-
-			let aliases = userDefinedAliases[index];
-			aliases.forEach(aliasEntry => {
-				const selectOption = document.createElement('option');
-				selectOption.className = "user-specific";
-				selectOption.value = aliasEntry.alias;
-				selectOption.textContent = aliasEntry.alias;
-				columnSelect.appendChild(selectOption);
-			});
-			let currentLanguage = document.getElementById('languageSelection').value;
-			for (let i = 0; i < index; i++) {
-				stepResultsArray[i].forEach(res => {
-					const selectOption = document.createElement('option');
-					selectOption.className = "user-specific";
-					selectOption.value = res.queryPart;
-					selectOption.textContent = translateStepResults(res.queryPart, translations, currentLanguage);
-					columnSelect.appendChild(selectOption);
-				});
-			}
-			columnSelect.value = selectedOption;
-			M.FormSelect.init(columnSelect);
-		});
-	}
-}
 
 export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, stepsCount) {
+	// Function for updating options related to step results or user defined aliases
+	// after user changes them
 	for (var index = 0; index <= stepsCount; index++) {
 		let columnOfferings = document.querySelectorAll(`.column-select-${index}`);
 		columnOfferings.forEach(columnSelect => {
@@ -173,7 +127,6 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 			});
 			let languageSelectField = document.getElementById('languageSelection');
 			let currentLanguage = languageSelectField.value;
-			// console.log(index);
 			for (var i = 0; i < index; i++) {
 				stepResultsArray[i].forEach(stepResult => {
 					const selectOption = document.createElement('option');
@@ -181,7 +134,6 @@ export function updateColumnsOfferings2(userDefinedAliases, stepResultsArray, st
 					selectOption.value = stepResult.queryPart;
 					selectOption.textContent = translateStepResults(stepResult.queryPart, translations, currentLanguage);
 					columnSelect.appendChild(selectOption);
-					// console.log(selectOption.value);
 				});
 			}
 			columnSelect.value = selectedOption;

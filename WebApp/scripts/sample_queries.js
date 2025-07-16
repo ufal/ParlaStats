@@ -4,6 +4,9 @@ import { loadQuery, send } from './dynamic_form_render.js'
 const { SAMPLES_URL } = await loadConfig();
 
 export async function addSampleQueries() {
+	/* Function for rendering contents of the sample queries tab
+	 * in query building menu
+	 * */
 	const response = await fetch(SAMPLES_URL);
 	const samples = await response.json();
     

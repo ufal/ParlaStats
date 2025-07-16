@@ -1,8 +1,7 @@
 import { metaInformationPromise } from './metaInformation.js' 
 import { loadConfig } from '../config/config.js'
-import { storeAliases, storeStepResults, updateColumnsOfferings2, updateColumnsOfferings } from './stored_data_worker.js' 
+import { storeAliases, storeStepResults, updateColumnsOfferings2 } from './stored_data_worker.js' 
 import { getTranslations, getUITranslations, translateStepResults, storeTranslations, storeUITranslations } from './translations.js'
-// import { getArtificialColumns } from './artificialColumns.js'
 import * as Utilities from './rendering_utilities.js'
 import { visualizeAsTable } from './visualization_scrpits/visualize_as_tables.js'
 import { visualizeAsGraph, bindButtons } from './visualization_scrpits/graph_visualization.js'
@@ -52,40 +51,38 @@ let userDefinedAliases = []
 let stepResultArray = []
 
 // server connection specialization
-// let serverURL = "https://quest.ms.mff.cuni.cz/parlastats/api/query";
-// let serverURL = "http://127.0.0.1:5000/query";
+
 const { API_URL } = await loadConfig();
 const serverURL = API_URL;
 
 const metaInformation = await metaInformationPromise;
 
 
-// await loadConfig()
-// let serverURL = getAPIURLS().API_URL;
-
-// json where metainformation about available databases is to be stored
-
 let translations = getTranslations();
 let currentLanguage = "en";
 let UItranslations = getUITranslations();
-// let artificialColumns = getArtificialColumns();
 let debugMode = false;
 // ==================================================================
 
 function updatePreview() {
+	// Manual Query updating function.
 	const QueryPreview = document.getElementById('inputJSON');
 	QueryPreview.textContent = JSON.stringify(queryObject, null, 2);
 	autoResizeTextarea(QueryPreview);
 }
 
-
+// Tooltip for options of column selections.
 const tooltip = document.createElement('div');
 const hideTooltip = () => {tooltip.style.display = 'none';}
 
 tooltip.id = '__optionTooltip__';
 document.body.appendChild(tooltip);
 
+
 function renderForm() {
+	/* Main function responsible for rendering of the query building form
+	 * based on the underlying query object.
+	 * */
 	const container = document.getElementById('formContainer');
 	container.innerHTML = '';
 	const form = document.createElement('form');
@@ -151,6 +148,10 @@ function renderForm() {
 }
 
 export function bindTooltipToSelect(selectElement, descriptions) {
+	/* Function for displaying the tooltip when hovering cursor
+	 * over a select option as well as binding the tooltip to cursor
+	 * until it leaves the option.
+	 * */
 	const instance = M.FormSelect.getInstance(selectElement);
 	if (!instance) {
 		return;
@@ -185,7 +186,11 @@ export function bindTooltipToSelect(selectElement, descriptions) {
 	ul.dataset.tooltipWired = '1';
 }
 
+
+
 (function () {
+	// Function for resizing select elements based on their longest option, so that
+	// all options are clearly visible and not cut off.
 	let ruler = null;
 	const getRuler = () => {
 		if (ruler) return ruler;
@@ -253,7 +258,9 @@ function initializeSelects(selects) {
 
 
 function renderStepsSection(container) {
-	// Title
+	/* Function for rendering the steps section of a query building form.
+	 * Calls functions that render underlying subsections like columns, group by, etc.
+	 * */
 	const stepsTitle = document.createElement('h5');
 	stepsTitle.textContent = UItranslations.StepsTitle[currentLanguage];
 	container.appendChild(stepsTitle);
@@ -267,8 +274,9 @@ function renderStepsSection(container) {
 		stepRow.id = `step_${stepIndex}`;
 		stepRow.setAttribute('open', '');
 		const summary = document.createElement('summary');
-		// let columnsToBeReturned = '';
 		stepRow.appendChild(summary)
+		
+		// Add listener that updates step preview.
 		stepRow.addEventListener('UpdateStepPreview', () => {
 			let columnsToBeReturned = '';
 			queryObject.steps[stepIndex].columns.forEach(col => {
@@ -277,18 +285,9 @@ function renderStepsSection(container) {
 					columnsToBeReturned += col.alias ? ` ${col.alias}` : `${translations[col.agg_func][currentLanguage]}(${translations[col.real][currentLanguage]})`;
 					hit = true;
 				}
-				// if (!hit) {
-				// 	Object.keys(artificialColumns).forEach(key => {
-				// 		if (artificialColumns[key].formula === col) {
-				// 			columnsToBeReturned += ` ${translations[key][currentLanguage]}`;
-				// 			hit = true;
-				// 			return;
-				// 		}
-				// 	});
-				// }
+				
 				
 				if (!hit && col.includes('step_result')) {
-					// columnsToBeReturned += translateStepResults(col, translations, artificialColumns, currentLanguage);		
 					columnsToBeReturned += translateStepResults(col, translations, currentLanguage);
 					hit = true;
 				}
@@ -302,7 +301,6 @@ function renderStepsSection(container) {
 		
 		stepRow.className = 'repeatable-row-step';
 		stepRow.setAttribute('data-step-index', stepIndex);
-		// Goal of the step
 		const goalDiv = document.createElement('div');
 		goalDiv.className = `goal_steps_${stepIndex}`;
 		const goalLabel = document.createElement('label');
@@ -359,12 +357,11 @@ function renderStepsSection(container) {
 
 		stepsContainer.appendChild(stepRow);
 		storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex)
+		// Initial preview of the step
 		const ev = createPreviewUpdateEvent(42);
 	    stepRow.dispatchEvent(ev);
 	});
-
-	// const addStepButton = document.createElement('button');
-	// addStepButton.type = 'button';
+	
 	const addStepButton = document.createElement('a');
 	addStepButton.classList.add('waves-effect');
 	addStepButton.classList.add('waves-dark');
@@ -391,6 +388,8 @@ function renderStepsSection(container) {
 }
 
 function renderLimit(container, step, stepIndex) {
+	/* Function for rendering the limit section of the query building form
+	 * */
 	const limitLabel = document.createElement('label');
 	limitLabel.textContent = 'Limit';
 	container.appendChild(limitLabel);
@@ -410,9 +409,10 @@ function renderLimit(container, step, stepIndex) {
 }
 
 function renderFiltering(container, step, stepIndex) {
+	/* Function for rendering the filtering section of the query building form.
+	 * */
 	const filteringTitle = document.createElement('h3');
 	filteringTitle.textContent = UItranslations.FilteringSectionTitle[currentLanguage];
-	// container.appendChild(filteringTitle);
 
 	const conditionsDiv = document.createElement('div');
 	conditionsDiv.className = 'conditions';
@@ -422,6 +422,9 @@ function renderFiltering(container, step, stepIndex) {
 }
 
 function renderConditions(container, step, stepIndex) {
+	/* Function that handles the rendering of conditions section of each step,
+	 * along wit all desired functionality.
+	 * */
 	const conditionsTitle = document.createElement('h6');
 	conditionsTitle.textContent = UItranslations.ConditionsSectionTitle[currentLanguage];
 	container.appendChild(conditionsTitle);
@@ -432,10 +435,7 @@ function renderConditions(container, step, stepIndex) {
 		const conditionRow = document.createElement('div');
 		conditionRow.className = 'repeatable-row-inline';
 		conditionRow.setAttribute('data-step-index', stepIndex);
-		// ========================== NEW VERSION BEGIN ===========================
-		// ######################## NOTES BEGIN #######################
-		// TODO: Repeated code at 181-188 and 194-201
-		// ######################## NOTES END #########################
+		
 		const conditionColumnTableSelect = document.createElement('select');
 		conditionColumnTableSelect.classList.add(`column-select-conditions`);
 			
@@ -451,9 +451,7 @@ function renderConditions(container, step, stepIndex) {
 		
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, valueColumnOffering, currentLanguage);
 
-		// Offer user template columns
-		// Utilities.addArtificialColumnOfferings(conditionColumnTableSelect, currentLanguage);
-		// Utilities.addArtificialColumnOfferings(valueColumnOffering, currentLanguage);
+		
 		// Offer user aliases defined within this step
 		if (userDefinedAliases[stepIndex]) {
 			Utilities.addUserDefinedAliases(conditionColumnTableSelect, userDefinedAliases[stepIndex]);
@@ -468,10 +466,14 @@ function renderConditions(container, step, stepIndex) {
 		defaultOption.textContent = translations[''][currentLanguage];
 		conditionColumnTableSelect.appendChild(defaultOption);
 		conditionColumnTableSelect.addEventListener('change', () => {
+			
+			//Update JSON query when option is selected 
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].column = conditionColumnTableSelect.value;
 			
+			// Update possibilites for values of the selected column
 			Utilities.UpdateConditionValuePossibilities(userDefinedAliases, stepResultArray, queryObject.target_databases)
-
+			
+			// Update list of columns that selected column can be compared to based on the common data type.
 			Utilities.UpdateValueColumnOfferings(valueColumnOffering, userDefinedAliases, stepResultArray, 
 				                                 stepIndex, currentLanguage);
 			
@@ -487,7 +489,7 @@ function renderConditions(container, step, stepIndex) {
 		}
 		
 		
-		
+		// Add operator options
 		const conditionOperatorSelect = document.createElement('select');
 		const operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN", "NOT IN", "IS NOT"];
 		operators.forEach(oper => {
@@ -498,6 +500,7 @@ function renderConditions(container, step, stepIndex) {
 		});
 		conditionOperatorSelect.value = condition.operator;
 		conditionOperatorSelect.addEventListener('change', () => {
+
 			queryObject.steps[stepIndex].filtering.conditions[conditionIndex].operator = conditionOperatorSelect.value;
 			updatePreview();
 		});
@@ -530,14 +533,15 @@ function renderConditions(container, step, stepIndex) {
 			}
 			conditionValueInput.dispatchEvent(new Event('input', {bubbles:true}));
 		}
+
 		conditionValueInput.addEventListener('input', () => {
+			// If multiple values have been listed for this specific condition
 			if (conditionValueInput.value.includes(',')) {
 				let split = conditionValueInput.value.split(',');
 				let toQuery = '';
 				split.forEach(item => {
 					toQuery += `'${item}',`
 				});
-				
 				toQuery = `(${toQuery.substring(0, toQuery.length-1)})`;
 				
 				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = toQuery;
@@ -547,10 +551,10 @@ function renderConditions(container, step, stepIndex) {
 				}
 				queryObject.steps[stepIndex].filtering.conditions[conditionIndex].value = `'${conditionValueInput.value}'`;
 			}
-			// Utilities.UpdateConditionValuePossibilities(conditionValueInput, conditionColumnTableSelect.value, queryObject.target_databases)
 			const colType = Utilities.getColumnType(stepIndex, userDefinedAliases, stepResultArray,
 													conditionColumnTableSelect.value);
-			console.log('colType', colType);
+			
+			// Autocomplete for textual values based on real data in database 
 			if (['character varying', 'text'].includes(colType)) {
 				 Utilities.UpdateConditionValuePossibilities2(
 					conditionValueInput,
@@ -585,8 +589,6 @@ function renderConditions(container, step, stepIndex) {
 		conditionsContainer.appendChild(conditionRow);
 	});
 
-	// const addConditionButton = document.createElement('button');
-	// addConditionButton.type = 'button';
 	const addConditionButton = document.createElement('a');
 	addConditionButton.classList.add("wave-effect");
 	addConditionButton.classList.add("wave-dark");
@@ -602,9 +604,13 @@ function renderConditions(container, step, stepIndex) {
 }
 
 function renderAggregation(container, step, stepIndex) {
+	/* Function responsible for rendering the aggregation section of the query buidling form,
+	 * that is group by and order by sections 
+	 *
+	 * */
+
 	const aggregationTitle = document.createElement('h3');
 	aggregationTitle.textContent = UItranslations.AggregationSectionTitle[currentLanguage];
-	// container.appendChild(aggregationTitle);
 
 	const groupByDiv = document.createElement('div');
 	groupByDiv.className = 'group-by';
@@ -619,6 +625,9 @@ function renderAggregation(container, step, stepIndex) {
 }
 
 function renderOrderBy(container, step, stepIndex) {
+	/* Function for rendering the order by section of the query building form.
+	 *
+	 * */
 	const orderByTitle = document.createElement('h6');
 	orderByTitle.textContent = UItranslations.OrderBySectionTitle[currentLanguage];
 	container.appendChild(orderByTitle);
@@ -670,8 +679,6 @@ function renderOrderBy(container, step, stepIndex) {
 		                                     orderByTableSelect,
 		                                     currentLanguage);
 
-		// Offer user template columns
-		// Utilities.addArtificialColumnOfferings(orderByTableSelect, currentLanguage);
 
 		// Offer user aliases defined within the same step
 		Utilities.addUserDefinedAliases(orderByTableSelect, userDefinedAliases[stepIndex]);
@@ -730,8 +737,6 @@ function renderOrderBy(container, step, stepIndex) {
 			updatePreview();
 		});
 		
-		// const removeOrderByButton = document.createElement('button');
-		// removeOrderByButton.type = 'button';
 		const removeOrderByButton = document.createElement('a');
 		removeOrderByButton.classList.add('wave-effect');
 		removeOrderByButton.classList.add('wave-dark');
@@ -742,17 +747,13 @@ function renderOrderBy(container, step, stepIndex) {
 			renderForm();
 		};
 		orderByRow.appendChild(orderByAggregationSelect);
-		// orderByRow.appendChild(orderByColumnInput);
 		orderByRow.appendChild(orderByTableSelect);
-		// orderByRow.appendChild(orderByColumnSelect);
 		orderByRow.appendChild(orderByDirectionSelect);
 		orderByRow.appendChild(removeOrderByButton);
 
 		orderByContainer.appendChild(orderByRow);
 	});
 
-	// const addOrderByButton = document.createElement('button');
-	// addOrderByButton.type = 'button';
 	const addOrderByButton = document.createElement('a');
 	addOrderByButton.classList.add('wave-effect');
 	addOrderByButton.classList.add('wave-dark');
@@ -768,6 +769,9 @@ function renderOrderBy(container, step, stepIndex) {
 }
 
 function renderGroupBy(container, step, stepIndex) {
+	/* Function responsible for rendering the group by section of the query building form.
+	 *
+	 * */
 	const groupByTitle = document.createElement('h6');
 	groupByTitle.textContent = UItranslations.GroupBySectionTitle[currentLanguage];
 	container.appendChild(groupByTitle);
@@ -775,16 +779,15 @@ function renderGroupBy(container, step, stepIndex) {
 	const groupByContainer = document.createElement('div');
 	groupByContainer.className = 'repeatable-container';
 	step.aggregation.group_by.forEach((gbColumn, gbColumnIndex) => {
-		// let gbColumnParts = gbColumn.split('.');
+		
 		const groupByRow = document.createElement('div');
 		groupByRow.className = 'repeatable-row-inline';
 		groupByRow.setAttribute('data-step-index', stepIndex);
-		// =========================== NEW VERSION BEGIN ============================
+		
 		const groupByTableSelect = document.createElement('select');
 		groupByTableSelect.className = `column-select`;
 		const groupByColumnSelect = document.createElement('select');
 		
-		// Offer aggregation functions
 		const groupByAggregationSelect = document.createElement('select');
 		groupByAggregationSelect.className = "agg-select";
 		Utilities.makeAggregationFunctionSelect(metaInformation.columns, groupByAggregationSelect, currentLanguage,
@@ -816,12 +819,8 @@ function renderGroupBy(container, step, stepIndex) {
 
 		// Offer user columns available in databases
 		Utilities.addDatabaseColumnOfferings(metaInformation.columns, groupByTableSelect, currentLanguage);
-		
-		// Offer user template columns
-		// Utilities.addArtificialColumnOfferings(groupByTableSelect, currentLanguage);
 
 		// Offer user aliases defined within this step
-		
 		if (userDefinedAliases[stepIndex]) { 
 			Utilities.addUserDefinedAliases(groupByTableSelect, userDefinedAliases[stepIndex]);
 		}
@@ -846,7 +845,6 @@ function renderGroupBy(container, step, stepIndex) {
 		}
 
 		// Update aggregation offerings based on selected column type
-		// Store selection
 		groupByTableSelect.addEventListener('change', () => {
 			queryObject.steps[stepIndex].aggregation.group_by[gbColumnIndex] = groupByTableSelect.value;
 			groupByAggregationSelect.value = "";
@@ -857,10 +855,6 @@ function renderGroupBy(container, step, stepIndex) {
 			updatePreview();
 		});
 		
-		// ========================== NEW VERSION END ==============================
-		
-		// const removeGroupByButton = document.createElement('button');
-		// removeGroupByButton.type = 'button';
 		const removeGroupByButton = document.createElement('a');
 		removeGroupByButton.classList.add('wave-effect');
 		removeGroupByButton.classList.add('wave-dark');
@@ -876,8 +870,7 @@ function renderGroupBy(container, step, stepIndex) {
 		groupByContainer.appendChild(groupByRow);
 	});
 
-	// const addGroupByButton = document.createElement('button');
-	// addGroupByButton.type = 'button';
+	
 	const addGroupByButton = document.createElement('a');
 	addGroupByButton.classList.add('wave-effect');
 	addGroupByButton.classList.add('wave-dark');
@@ -891,7 +884,10 @@ function renderGroupBy(container, step, stepIndex) {
 		container.appendChild(addGroupByButton);
 	}
 
-	function renderColumns(container, step, stepIndex) {
+function renderColumns(container, step, stepIndex) {
+		/* Function responsible for rendering the columns selection section of the
+		 * query building form.
+		 * */
 		const columnsTitle = document.createElement('h6');
 		columnsTitle.textContent = UItranslations.columnsHeader[currentLanguage];
 		container.appendChild(columnsTitle);
@@ -902,13 +898,10 @@ function renderGroupBy(container, step, stepIndex) {
 			const columnRow = document.createElement('div');
 			columnRow.className = 'repeatable-row-inline';
 			columnRow.setAttribute('data-step-index', stepIndex);
-			// ====================== NEW VERSION BEGIN ==============================
-			// ######################## NOTES BEGIN #######################
-			// ######################## NOTES END #########################
-			// let columnParts = column.split('.');
+			
 			const columnTableSelect = document.createElement('select');
 			columnTableSelect.className = `column-select-${stepIndex}`;
-			// Alias input field
+			
 			const aliasInputField = document.createElement('input');
 			aliasInputField.type = 'text';
 			aliasInputField.placeholder = 'Type alias here.'
@@ -966,8 +959,6 @@ function renderGroupBy(container, step, stepIndex) {
 			// Offer the user choice of database tables
 			Utilities.addDatabaseColumnOfferings(metaInformation.columns, columnTableSelect, currentLanguage);
 			
-			// Offer the user choice of template columns
-			// Utilities.addArtificialColumnOfferings(columnTableSelect, currentLanguage);
 
 			// Offer results of previous steps
 			Utilities.addStepResultsOfferings(columnTableSelect, stepResultArray, stepIndex, currentLanguage);
@@ -990,11 +981,9 @@ function renderGroupBy(container, step, stepIndex) {
 				}
 			}
 			
-			// Limit aggregation function offers based on type
 			
 
 			// Store changes
-			// columnTableSelect.addEventListener('change', function(event) {
 			columnTableSelect.addEventListener('change', (e) => {
 				aliasInputField.value = "";
 				queryObject.steps[stepIndex].columns[columnIndex] = columnTableSelect.value;
@@ -1004,7 +993,7 @@ function renderGroupBy(container, step, stepIndex) {
 													  currentLanguage);
 				storeStepResults(queryObject, stepResultArray, userDefinedAliases, stepIndex);
 				
-				updateColumnsOfferings(userDefinedAliases, stepResultArray, stepIndex);
+				updateColumnsOfferings2(userDefinedAliases, stepResultArray, stepIndex);
 				
 				M.FormSelect.init(aggregationFunctionSelect);
 				updatePreview();
@@ -1014,10 +1003,7 @@ function renderGroupBy(container, step, stepIndex) {
 
 			
 		
-			// ====================== NEW VERSION END ================================
 
-			// const removeColumnButton = document.createElement('button');
-			// removeColumnButton.type = 'button';
 			const removeColumnButton = document.createElement('a');
 			removeColumnButton.classList.add('wave-effect');
 			removeColumnButton.classList.add('wave-dark');
@@ -1046,8 +1032,6 @@ function renderGroupBy(container, step, stepIndex) {
 			columnsContainer.appendChild(columnRow);
 		});
 
-		// const addColumnButton = document.createElement('button');
-		// addColumnButton.type = 'button';
 		const addColumnButton = document.createElement('a');
 		addColumnButton.classList.add('wave-effect');
 		addColumnButton.classList.add('wave-dark');
@@ -1063,6 +1047,9 @@ function renderGroupBy(container, step, stepIndex) {
 }
 
 function renderTargetSection(container) {
+	/* Function for rendering the target database selection section of the query building form.
+	 * */
+
 	// Title
 	const targetTitle = document.createElement('h5');
 	targetTitle.textContent = UItranslations.targetDatabaseSectionTitle[currentLanguage];
@@ -1081,10 +1068,9 @@ function renderTargetSection(container) {
 	queryObject.target_databases.forEach((database, databaseIndex) => {
 		const row = document.createElement('div');
 		row.className = 'repeatable-row';
-		// ========================== NEW ===============================
 		const newInput = document.createElement('select');
-		// let databases = getAvailableDatabases(); 
-		// console.log(databases);
+
+
 		metaInformation.available_databases.forEach(databaseName => {
 			const option = document.createElement('option');
 			option.value = databaseName;
@@ -1107,9 +1093,8 @@ function renderTargetSection(container) {
 			queryObject.target_databases[databaseIndex] = newInput.value;
 			updatePreview();
 		});
-		// ======================= END NEW ==============================
-		// const removeButton = document.createElement('button');
-		// removeButton.type = 'button';
+
+
 		const removeButton = document.createElement('a');
 		removeButton.classList.add('wave-effect');
 		removeButton.classList.add('wave-dark');
@@ -1124,8 +1109,6 @@ function renderTargetSection(container) {
 		targetDatabasesContainer.appendChild(row);
 	});
 
-	// const addButton = document.createElement('button');
-	// addButton.type = 'button';
 	const addButton = document.createElement('a');
 	addButton.classList.add('wave-effect');
 	addButton.classList.add('wave-dark');
@@ -1162,26 +1145,15 @@ function renderTargetSection(container) {
 
 
 
-// const generateButton = document.getElementById('generateButton');
-// generateButton.onclick = () => {
-// 	const outputJsonField = document.getElementById('outputJSON');
-// 	const jsonString = JSON.stringify(queryObject, null, 2);
-// 	outputJsonField.value = jsonString;
-
-// 	autoResizeTextarea(outputJsonField);
-// };
 
 function autofillAliases(query) {
+	// Replace spaces in aliases with underscores, as spaces are not supported
+	// in SQL SELECT x AS y
 	const copy = structuredClone(query);
 	copy.steps.forEach(step => {
 		const columns = step.columns;
 		columns.forEach(column => {
 			if (typeof(column) === 'object') {
-				// Object.keys(artificialColumns).forEach(key => {
-				// 	if (column.real === artificialColumns[key].formula && column.alias === "") {
-				// 		column.alias = `${column.agg_func}_${key}`;
-				// 	}
-				// });
 				if (column.alias === "") {
 					column.alias = `${column.agg_func}_${column.real.replaceAll('.', '_')}`;
 				}
@@ -1191,7 +1163,9 @@ function autofillAliases(query) {
 	return copy;
 }
 
+
 export function autoResizeTextarea(textarea) {
+	// Function for automatically resizing the textarea based on its content.
 	textarea.style.resize = 'none';
 	textarea.style.overflow = 'hidden';
 	textarea.style.width = "auto";
@@ -1203,6 +1177,9 @@ export function autoResizeTextarea(textarea) {
 }
 
 export async function send() {
+	/* Function for sending the JSON query to backend and visualizing response by
+	 * calling individual visualization functions
+	 * */
 	try {
 		const query = JSON.stringify(autofillAliases(queryObject), null, 2);
 		const query_headers = debugMode ? 
@@ -1268,14 +1245,13 @@ sendQueryButton2.onclick = () => {
 }
 
 const inputJsonField = document.getElementById('inputJSON');
-// const outputJsonField = document.getElementById('outputJSON');
 
 inputJsonField.addEventListener('input', () => autoResizeTextarea(inputJsonField));
 
 renderForm();
 await addSampleQueries();
 
-
+// Debug mode option
 const debugToggle = document.getElementById('debug-toggle');
 debugToggle.addEventListener('click', () => {
 	debugMode = !debugMode
@@ -1284,7 +1260,7 @@ debugToggle.addEventListener('click', () => {
 	debugDiv.style.display = debugMode ? 'block' : 'none';
 });
 
-
+// Switching tabs within query building
 const manualQueryToggle = document.getElementById('manual_query_toggle');
 manualQueryToggle.onclick = () => {
 	const queryTextArea = document.getElementById('inputJSON');

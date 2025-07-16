@@ -323,14 +323,12 @@ export function getTranslations() {
 }
 
 export function translateStepResults(stepResult, translations, currentLanguage) {
+	/* Pretty form of step result option label
+	 * */
 	let parts = stepResult.split('/');
 	let result = `${parts[1]}->`
 	if (parts.length == 3) {
-		// Object.keys(artificialColumns).forEach(key => {
-		// 	if (artificialColumns[key].formula === parts[2]) {
-		// 		result += translations[key][currentLanguage];
-		// 	} 		
-		// });
+		
 		if (result === `${parts[1]}->`) {
 			if (!(parts[2] in translations)) {
 				result += parts[2];

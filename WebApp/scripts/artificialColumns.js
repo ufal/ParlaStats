@@ -14,7 +14,7 @@ let artificialColumns = {
 	"words_per_minute": {
 		"formula":"(speech.token_count / (speech.total_duration / 60000))",
 		"type":"real"
-	}
+	},
 }
 
 function storeArtificialColumns() {

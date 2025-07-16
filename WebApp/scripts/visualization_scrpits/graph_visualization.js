@@ -23,6 +23,11 @@ const translations = getTranslations();
 
 
 function columnsColorHash(str) {
+	/* Hash function for assigining a specific color to each data label,
+	 * ensuring color distinction between bards of the graph
+	 * The ahshing function has been inspired by this stack overflow post:
+	 * https://stackoverflow.com/questions/30808980/c-making-hash-function-for-int-triples
+	 * */
 	if (colorCache.has(str)) { return colorCache.get(str) }
 	let hash = 0x811c9dc5;
 	for (let i = 0; i < str.length; i++) {
@@ -41,6 +46,7 @@ function columnsColorHash(str) {
 }
 
 function augmentLabels(currentLanguage, key) {
+	/* Little helper for better visualizing of labels*/
 	let res = "";
 	let parts = key.split('_');
 	Object.keys(translations).forEach(k => {
@@ -58,9 +64,14 @@ function augmentLabels(currentLanguage, key) {
 }
 
 function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
+	/* function that prepares the labels and datasets for the graph
+	 * transforms raw tabular data into datasets compatible with charts.js grpahs
+	 * */
 	const allKeys = Object.keys(rows[0] || {});
-	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number' && !labelKeys.includes(k));
-	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number');
+	const numericKeys = allKeys.filter(k => typeof(rows[0][k]) === 'number' && !labelKeys.includes(k)); // values
+	const catKeys = allKeys.filter(k => !labelKeys.includes(k) && typeof rows[0][k] !== 'number'); // will become part of data description
+	// create labels - a map where key is all the label keys joint with '|' and value is the array of those label keys
+	// the array is then used to match data rows.
 	const labels = [ ...new Map(
 		rows.map(r => [
 			labelKeys.map(k => {
@@ -82,6 +93,8 @@ function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
 				else {return String(r[k]);} 
 			})])
 	).values()];
+	// in case the label should be composed of multiple keys concatenate those keys to a singular label
+	// i.e. speaker forename + surname
 	const splitKey = splitKeys.length ? '_join_' : allKeys.find(k => !labelKeys.includes(k) && isNaN(+rows[0][k]))
 	const withDerived = splitKeys.length 
 		? rows.map(r => ({ ...r,
@@ -91,6 +104,7 @@ function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
 
 	let datasets = [];
 	let i = 0;
+	// determine series in the chart
 	const splitVals = [... new Set(withDerived.map(r => r[splitKey]))]
 	splitVals.forEach((splitVal, iSplit) => {
 		numericKeys.forEach((numKey, iNum) => {
@@ -116,6 +130,9 @@ function pivotChart(rows, labelKeys, currentLanguage, splitKeys = []) {
 }
 
 export function visualizeAsGraph(responseData, queryObject, type, currentLanguage) {
+	/* Function for visualizing query results as graph
+	 *
+	 * */
 	const targetElement = document.getElementById('results-graph-wrapper');
 	targetElement.innerHTML = "";
 	if (responseData.length === 0) {
@@ -180,17 +197,12 @@ export function visualizeAsGraph(responseData, queryObject, type, currentLanguag
 
 }
 
-function getLabels2(queryObject) {
-	let labels = [];
-	const lastStep = queryObject.steps[queryObject.steps.length - 1];
-	const groupBySection = lastStep.aggregation.group_by;
-	groupBySection.forEach(entry => {
-		labels.push(entry);
-	});
-	return labels
-}
 
 function getLabels(queryObject) {
+	/* Function that decides vlaues of which columns are to be used as x-axis labels
+	 * Current logic is: Column is an x-axis label if it is selected both in
+	 * group by and columns secton of the JSON query
+	 * */
 	const lastStep = queryObject.steps[queryObject.steps.length -1];
 	const columnSection = lastStep.columns;
 	const groupBySection = lastStep.aggregation.group_by;
@@ -209,6 +221,7 @@ function getLabels(queryObject) {
 }
 
 export function bindButtons(responseData, queryObject) {
+	/*Chart type options */
 	const barButton = document.getElementById('bar-button');
 	barButton.onclick = () => {
 		visualizeAsGraph(responseData, queryObject, 'bar');
@@ -220,55 +233,5 @@ export function bindButtons(responseData, queryObject) {
 	};
 }
 
-function determineLabels(data, queryObject, currentLanguage) {
-	const last_step = queryObject.steps[queryObject.steps.length - 1];
-	const columns = last_step.columns;
-	const group_by = last_step.aggregation.group_by;
-	const columns_parsed = columns.map(col => {
-		if (typeof(col) === 'object') {
-			if (col.alias != "") {
-				return col.alias;
-			} else {
-				return `${col.agg_func.toLowerCase()}_${col.real.replace('.', '_')}`
-			}
-		} else if (col.includes('.')) {
-			return col.split('.')[1];
-		} else if (col.includes('step_result')) {
-			const parts = col.split('/');
-			return parts[parts.length - 1]
-		} else {
-			return col
-		}
-	});
-	const group_by_cols_parsed = group_by.map(col => {
-		if (typeof(col) === 'object') {
-			if (col.agg_func != "") {
-				return `${col.agg_func.toLowerCase()}_${col.real.replace('.', '_')}`
-			} else {
-				return col.real.split('.')[1];
-			}
-		} else if (col.includes('.')) {
-			return col.split('.')[1];
-		} else if (col.includes('step_result')) {
-			const parts = col.split('/');
-			return parts[parts.length - 1]
-		} else {
-			return col;
-		}
-	});
-	
-	const label_columns = columns_parsed.filter(col => { 
-		if (group_by_cols_parsed.includes(col)) {
-			return col.toLowerCase;
-		}
-	});
-	const labels = data.map(row => {
-		return Object.entries(row)
-			.filter(([key, val]) => label_columns.includes(key.toLowerCase()) && isNaN(val))
-			.map(([_, val]) => val)
-			.join('-')
-	});
-	return labels
 
-}
 

@@ -3,6 +3,7 @@ import {getTranslations} from '../translations.js'
 const translations = getTranslations();
 
 export function visualizeAsTable(response, currentLanguage) {
+	/* Function for visualizing the response in the datatables table */
 	const targetElement = document.getElementById('results-table-wrapper');
 	targetElement.innerHTML = "";
 	if (response.length === 0) {

@@ -1,3 +1,5 @@
+// Navigation for tutorial pages.
+
 document.addEventListener("DOMContentLoaded", () => {
 	const formToggle = document.getElementById('form-toggle');
 	const resToggle = document.getElementById('res-toggle');

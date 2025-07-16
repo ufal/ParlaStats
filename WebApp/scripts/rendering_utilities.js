@@ -1,4 +1,3 @@
-// import { getArtificialColumns } from './artificialColumns.js'
 import { getTranslations, translateStepResults } from './translations.js'
 import { loadConfig } from '../config/config.js'
 import { metaInformationPromise } from './metaInformation.js'
@@ -7,19 +6,14 @@ const metaInformation = await metaInformationPromise;
 const { META_URL } = await loadConfig();
 const serverURL = META_URL;
 
-// let artificialColumns = getArtificialColumns();
-// let metaInformation = getMetaInformation();
+
 let translations = getTranslations();
 
 
-// let serverURL = getAPIURLS().META_URL;
-
-// let serverURL = 'http://127.0.0.1:5000/meta'; 
-
-// export function makePrettySelect(metaInformation);
-
-
 export function addDatabaseColumnOfferings(offerings, targetElement, currentLanguage) {
+	/* Function for adding the options of columns available in backend database to column selects
+	 * within query building form. In addition, group the options based on the table from which teh columns come
+	 * */
 	let data = {
 		"speech":[],
 		"person":[],
@@ -54,20 +48,12 @@ export function addDatabaseColumnOfferings(offerings, targetElement, currentLang
 	}
 }
 
-// export function addArtificialColumnOfferings( targetElement, currentLanguage) {
-// 	const optionGroup = targetElement.querySelector('.speech');
-// 	Object.keys(artificialColumns).forEach(item => {
-// 		const selectOption = document.createElement('option');
-// 		selectOption.value = artificialColumns[item].formula;
-// 		selectOption.textContent = translations[item][currentLanguage];
-// 		optionGroup.appendChild(selectOption);
-// 	});
-// }
-
-
 
 export function makeAggregationFunctionSelect(availableColumns, targetElement, currentLanguage, forField,
 											  typeMapping, userDefinedAliases, stepResultArray) {
+	/* Function for adding the aggregation function select options based on the data type
+	 * of currently selected column
+	 * */
 	let aggFOptions = ['AVG', 'SUM', 'MAX', 'MIN', 'COUNT', ""];
 	let currentField = forField;
 	if (currentField) {
@@ -75,18 +61,10 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 			currentField = currentField.real;
 		}
 		let currentFieldMeta = "";
-		// Object.keys(artificialColumns).forEach(key => {
-		// 	if (artificialColumns[key].formula === currentField) {
-		// 		currentFieldMeta = artificialColumns[key].type;
-		// 	}
-		// });
+		
 		userDefinedAliases.forEach(item => {
 			if (currentField === item.alias) {
-				// Object.keys(artificialColumns).forEach(key => {
-				// 	if (item.real === artificialColumns[key].formula) {
-				// 		currentFieldMeta = artificialColumns[key].type;
-				// 	}
-				// });
+				
 				if (currentFieldMeta === "") {
 					currentFieldMeta = availableColumns.find(col => col.column === item.real).type;
 				}
@@ -111,10 +89,8 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 		if (currentFieldMeta !== "") {
 			aggFOptions = typeMapping[currentFieldMeta];
 		}
-		console.log(currentFieldMeta);
 	
 	}
-	console.log(aggFOptions);
 	aggFOptions.forEach(option => {
 		const aggFOption = document.createElement('option');
 		aggFOption.value = option;
@@ -125,6 +101,9 @@ export function makeAggregationFunctionSelect(availableColumns, targetElement, c
 }
 
 export function addUserDefinedAliases(targetElement, userDefinedAliases) {
+	/* Function for adding the options with user defined aliases to each column selects
+	 *
+	 * */
 	const userDefinedOptionGroup = document.createElement('optgroup');
 	userDefinedOptionGroup.label = "User defined";
 	
@@ -140,6 +119,9 @@ export function addUserDefinedAliases(targetElement, userDefinedAliases) {
 
 
 export function addStepResultsOfferings(targetElement, stepResultArray, stepIndex, currentLanguage) {
+	/* Function for adding the options with other step results to column selects
+	 * Only add step results from previous steps
+	 * */
 	const stepResultsOptionGroup = document.createElement('optgroup');
 	stepResultsOptionGroup.label = "Other steps"
 	let index = 0;
@@ -149,8 +131,6 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 				const selectOption = document.createElement('option');
 				selectOption.className = "user-specific";
 				selectOption.value = column.queryPart;
-				// selectOption.textContent = translateStepResults(column.queryPart, translations, artificialColumns,
-				//                                                 currentLanguage);
 				selectOption.textContent = translateStepResults(column.queryPart, translations, currentLanguage);
 				stepResultsOptionGroup.appendChild(selectOption);
 			});
@@ -161,6 +141,7 @@ export function addStepResultsOfferings(targetElement, stepResultArray, stepInde
 }
 
 export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray, aggregationTypeMapping, currentLanguage) {
+	// Function for globally updating aggregation function selects based on their respective selected column datatype.
 	const columnSelects = document.querySelectorAll('.column-select');
 	columnSelects.forEach(colSelect => {
 		const rowContainer = colSelect.closest('.repeatable-row');
@@ -195,21 +176,15 @@ export function updateAllAggregationSelects(userDefinedAliases, stepResultsArray
 }
 
 export function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, selectValue) {
+	/* Function for finding out the datatype of the column 
+	 * */
 	let columnType = null;
-	// Object.keys(artificialColumns).forEach(key => {
-	// 	if (artificialColumns[key].formula === selectValue) {
-	// 		columnType = artificialColumns[key].type;
-	// 	}
-	// });
+	
 	if (!columnType && stepIndex !== null && userDefinedAliases[stepIndex]) {
 		userDefinedAliases[stepIndex].forEach(aliasEntry => {
 			if (aliasEntry.alias === selectValue) {
 				const realValue = aliasEntry.real;
-				// Object.keys(artificialColumns).forEach(key => {
-				// 	if (artificialColumns[key].formula === realValue) {
-				// 		columnType = artificialColumns[key].type;
-				// 	}
-				// });
+				
 				if (!columnType) {
 					columnType = aliasEntry.type;
 				}
@@ -241,6 +216,7 @@ export function getColumnType(stepIndex, userDefinedAliases, stepResultsArray, s
 }
 
 function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, database, selectValue) {
+	// Function for getting possible values of the specified selected column
 	let possibleValues = [];
 	let found = false;
 	if (stepIndex !== null && userDefinedAliases[stepIndex]) {
@@ -265,16 +241,6 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 			}
 		}
 	}
-	// Check artificialColumns
-	if (!found) {
-		// Object.keys(artificialColumns).forEach(key => {
-		// 	if (artificialColumns[key].formula === selectValue) {
-		// 		const columnEntry = metaInformation.columns.find(col => col.column === `artificial_columns.${key}`);
-		// 		possibleValues = columnEntry["data"][database];
-		// 		found = true;
-		// 	}
-		// });
-	}
 	if (!found) {
 		const columnEntry = metaInformation.columns.find(col => col.column === selectValue);
 		if (columnEntry) {
@@ -290,24 +256,20 @@ function getPossibleValues(stepIndex, userDefinedAliases, stepResultsArray, data
 }
 
 export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, stepResultsArray, stepIndex, currentLanguage) {
+	/* Function for adding the column options to a condition building field.
+	 * */
+
 	let compatibleColumns = [];
 	const rowContainer = targetElement.closest('.repeatable-row-inline');
 	const columnSelect = rowContainer.querySelector('.column-select-conditions');
 	const selectValueType = getColumnType(stepIndex, userDefinedAliases, stepResultsArray, columnSelect.value);
 	targetElement.innerHTML = "";
-	// Include aliases
 	userDefinedAliases[stepIndex].forEach(aliasEntry => {
 		if (selectValueType === aliasEntry.type) {
 			compatibleColumns.push(aliasEntry.alias);
 		}
 	});
 	
-	// Artificial columns
-	// Object.keys(artificialColumns).forEach(key => {
-	// 	if (artificialColumns[key].type === selectValueType) {
-	// 		compatibleColumns.push(key);
-	// 		}
-	// });
 
 	// Step results
 	for (let i = 0; i < stepIndex; i++) {
@@ -336,6 +298,11 @@ export function UpdateValueColumnOfferings(targetElement, userDefinedAliases, st
 
 
 function resetField(targetElement) {
+	// Helper function for reseting materialized items
+	// Used in condition building field to ensure proper value input for each input type:
+	// For date -> calendar
+	// For time -> clock
+	// For textual -> autocomplete
 	const acInstance = M.Autocomplete.getInstance(targetElement);
 	if (acInstance) {
 		acInstance.destroy();
@@ -358,6 +325,8 @@ function resetField(targetElement) {
 }
 
 export async function UpdateConditionValuePossibilities2(valueInput, columnSelectValue, userDefinedAliases, stepResultArray, stepIndex, databases) {
+	/* Function for fetching and displaying the autocomplete options.
+	 * */
 	let columnSelectType = getColumnType(stepIndex, userDefinedAliases, stepResultArray, columnSelectValue)
 	const target_databases = databases.join(',');
 	let res = null;
@@ -385,8 +354,10 @@ export async function UpdateConditionValuePossibilities2(valueInput, columnSelec
 }
 
 export function UpdateConditionValuePossibilities(userDefinedAliases, stepResultsArray, databases) {
+	/* Function for updating the value input for non-textual input fields, also provide ranges
+	 * for the values based on what we have in backend database.
+	 * */
 	const columnSelects = document.querySelectorAll('.column-select-conditions');
-	console.log(columnSelects.length);
 	columnSelects.forEach(colSelect => {
 		const rowContainer = colSelect.closest('.repeatable-row-inline');
 		if (!rowContainer) { return; }
@@ -455,15 +426,6 @@ export function UpdateConditionValuePossibilities(userDefinedAliases, stepResult
 			resetField(valueInput);
 			valueInput.placeholder = `Enter a number. Max:${Object.keys(possibleValues)[1]} Min: ${Object.keys(possibleValues)[0]}`
 		}
-		
-		// M.Autocomplete.init(valueInput, {
-		// 	data: possibleValues,
-		// 	limit: 5,
-		// 	minLength: ["text", "character varying"].includes(columnSelectType) ? 1 : 0,
-		// 	onAutocomplete: function(val) {
-		// 		console.log(`User selected: ${val}`)
-		// 	}
-		// });
 		 	
 	});
 }
