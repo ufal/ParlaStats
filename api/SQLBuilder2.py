@@ -135,7 +135,8 @@ class SQLBuilder:
                 })
 
             elif isinstance(col, str) and '.' in col:
-                alias_sql = f'"{col.replace("\"","\"\"")}"'
+                replaced_col = col.replace('\"', '\"\"')
+                alias_sql = f'"{replaced_col}"'
                 new_cols.append({
                     "real":col,
                     "alias":alias_sql,
